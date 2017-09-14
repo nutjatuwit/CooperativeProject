@@ -5,6 +5,8 @@
 --%>
 
 
+
+
 <%@page import="net.sf.jasperreports.engine.design.JRDesignStyle"%>
 <%@ page import="net.sf.jasperreports.engine.*" %>
 <%@ page import="java.util.*" %>
@@ -31,18 +33,28 @@
 
 
 
+
  
  <%  
                 
             try {
-                Class.forName("org.postgresql.Driver").newInstance();
-                Connection conn = DriverManager.getConnection("jdbc:postgresql://localhost:5433/dbHos", "postgres", "postgres"); //database connection
+               
+               //for connect HosOS
+               Class.forName("org.postgresql.Driver").newInstance();
+               Connection conn = DriverManager.getConnection("jdbc:postgresql://localhost:5433/dbHos", "postgres", "postgres"); //database connection
+              
                String b_visit_clinic_id="";
                String visit_service_staff_doctor="";
                String item_id ="";
                String b_service_point_id="";
                String start_date="";
                String end_date="";
+               
+               
+              
+               ArrayList<String> allParams = new ArrayList<String>();
+               ArrayList<String> allValues = new ArrayList<String>();
+              
                //Integer fiscal_year = Integer.parseInt(request.getParameter("fiscal_year"));
                b_visit_clinic_id = request.getParameter("b_visit_clinic_id"); 
                visit_service_staff_doctor = request.getParameter("visit_service_staff_doctor"); 
@@ -72,6 +84,31 @@
             //File reportFile = new File(application.getRealPath("//Report/testpharm.jasper"));
            
             //out.print(reportFile.getPath().toString());
+           
+           
+            
+            //String url = request.getQueryString();
+            //out.print(url);
+           
+            //Split parameters and values
+            String[] splits = request.getQueryString().toString().split("&");
+            for(int i =0;i<splits.length;i++){
+               String[] paramSplit  = splits[i].split("=");
+               for(int j=0;j<paramSplit.length;j+=2){
+                  //out.print(paramSplit[j]+"<br>");
+                   allParams.add(paramSplit[j]);
+               }
+    
+               for(int k=1;k<paramSplit.length;k+=2){
+                  //out.print(paramSplit[k]+"<br>");
+                    allValues.add(paramSplit[k]);
+               }
+            }
+            
+            //for(int i = 0;i<allParams.size();i++){
+                //out.print("Test : "+allValues.get(i)+"<br>");
+           // }
+            
             Map parameters = new HashMap();
             
             //parameters.put("fiscal_year", fiscal_year);
@@ -79,11 +116,12 @@
             //parameters.put("visit_service_staff_doctor", visit_service_staff_doctor);
             //parameters.put("item_id", item_id);
             //parameters.put("b_service_point_id", b_service_point_id);
-            parameters.put("start_date", start_date);
-            parameters.put("end_date", end_date); 
+            for(int i = 0;i<allParams.size();i++){
+             //out.print("Params : "+allParams.get(i)+" Values : "+allValues.get(i));
+            parameters.put(""+allParams.get(i), allValues.get(i));   
+            }
             
-            out.print(request.);
-            /*
+            
             byte[] bytes = JasperRunManager.runReportToPdf(reportFile.getPath(), parameters, conn);
              
            
@@ -94,7 +132,7 @@
             ServletOutputStream outStream = response.getOutputStream();
             outStream.write(bytes, 0, bytes.length);
             outStream.flush();
-            outStream.close();*/
+            outStream.close();
             } catch (Exception ex) {
                 ex.printStackTrace();
             }

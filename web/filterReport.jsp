@@ -97,7 +97,10 @@ input[type=date] {
               Connection conn = (Connection) DriverManager.getConnection("jdbc:mysql://localhost:3306/dbHosDemo?useUnicode=yes&characterEncoding=UTF-8", "root", "");
               Statement statement = conn.createStatement();
               ResultSet rs = statement.executeQuery(sql);
-              
+             
+              String sqlCompile = "";
+              //ResultSet rsCompile = statement.executeQuery(sqlCompile);
+              ResultSet rsCompile;
                
            
            //out.println(">>>>>>"+text);
@@ -118,25 +121,25 @@ input[type=date] {
            
            
            File inputFileReportForm = new File("C:/Users/NUT/Desktop/ex.xml");//path XML report form
-           File inputFileFilterForm = new File("C:/Users/NUT/Desktop/filterForm.xml");//path XML filter form
+           //File inputFileFilterForm = new File("C:/Users/NUT/Desktop/filterForm.xml");//path XML filter form
            
            //process read form
            DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
            DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
            
            Document docReportForm = dBuilder.parse(inputFileReportForm); //report form
-           Document docFilterForm = dBuilder.parse(inputFileFilterForm); //filter form
+           //Document docFilterForm = dBuilder.parse(inputFileFilterForm); //filter form
            
            docReportForm.getDocumentElement().normalize();
-           docFilterForm.getDocumentElement().normalize();
+           //docFilterForm.getDocumentElement().normalize();
            
            //report form
            NodeList nList = docReportForm.getElementsByTagName("reportgroup");
            NodeList findWord = docReportForm.getElementsByTagName("report");
            
            //filter form
-           NodeList nListFilter = docFilterForm.getElementsByTagName("reportgroup");
-           NodeList findFilter = docFilterForm.getElementsByTagName("name");
+           //NodeList nListFilter = docFilterForm.getElementsByTagName("reportgroup");
+           //NodeList findFilter = docFilterForm.getElementsByTagName("name");
            
          
           for(int a=0;a<findWord.getLength();a++){
@@ -176,6 +179,20 @@ input[type=date] {
                      out.print(paramDbName+": <input class='date' type='date' name="+paramJas+" value='2555-01-02'><br>");
                      }else if(paramDbType.equals("textfield")){
                      out.print(paramDbName+": <input type='text' name="+paramJas+" value=''><br>"); 
+                     }else if(paramDbType.equals("textarea")){
+                         out.print(paramDbName+":  <textarea name="+paramJas+" value='' rows='10' cols='50'>Write something here</textarea>"); 
+                     }else if(paramDbType.equals("list")){ //want database for test
+                         sqlCompile = rs.getString(5).toString();
+                         rsCompile = statement.executeQuery(sqlCompile);
+                         out.print(paramDbName+": ");
+                             out.println("<select name="+paramJas+">");
+                             while (rsCompile.next()) {
+                                 out.print("<option value=" + rsCompile.getString(1) + ">");
+                                 out.print(rsCompile.getString(2));
+                                 out.print("</option>");
+                                 out.println("");
+                             }
+                             out.println("</select><br><br>");
                      }
                      
                     
@@ -191,26 +208,26 @@ input[type=date] {
           
           
           //out.println(">>>>>text : "+text+"<br><br>");
-          for(int b=0;b<nListFilter.getLength();b++){
-          Node nListFilterNode = nListFilter.item(b);
+          //for(int b=0;b<nListFilter.getLength();b++){
+          //Node nListFilterNode = nListFilter.item(b);
           //out.println(b); 
-          if (nListFilterNode.getNodeType() == Node.ELEMENT_NODE) {
-            Element e = (Element) nListFilterNode;
-            String textGroup = e.getElementsByTagName("name").item(0).getTextContent().toString();     
-            for(int c=1;c<e.getElementsByTagName("name").getLength();c++){
+          //if (nListFilterNode.getNodeType() == Node.ELEMENT_NODE) {
+            //Element e = (Element) nListFilterNode;
+            //String textGroup = e.getElementsByTagName("name").item(0).getTextContent().toString();     
+           // for(int c=1;c<e.getElementsByTagName("name").getLength();c++){
                 //Node findFilterNode = nListFilter.item(b);
                 //out.println(c); 
-                String textListName = e.getElementsByTagName("name").item(c).getTextContent().toString();
-                if(text.equals(textListName)){
+               // String textListName = e.getElementsByTagName("name").item(c).getTextContent().toString();
+                //if(text.equals(textListName)){
                    //out.println(textListName+">>>>>text group : "+textGroup+"<br><br><br>");
-                   textGroupFilter=textGroup.toString();
-                }
+                 //  textGroupFilter=textGroup.toString();
+               // }
                 
         
-            }
-          }
+            //}
+          //}
             //out.println(ee.getElementsByTagName("name").item(0).getTextContent());  
-         } 
+         //} 
           
           
           //method for filter
