@@ -96,11 +96,13 @@ input[type=date] {
               Class.forName("com.mysql.jdbc.Driver");
               Connection conn = (Connection) DriverManager.getConnection("jdbc:mysql://localhost:3306/dbHosDemo?useUnicode=yes&characterEncoding=UTF-8", "root", "");
               Statement statement = conn.createStatement();
+               Statement statement1 = conn.createStatement();
               ResultSet rs = statement.executeQuery(sql);
              
-              String sqlCompile = "";
+              String sqlCompile = "";  
+              ResultSet rsCompile = null;
               //ResultSet rsCompile = statement.executeQuery(sqlCompile);
-              ResultSet rsCompile;
+             
                
            
            //out.println(">>>>>>"+text);
@@ -167,32 +169,39 @@ input[type=date] {
                  paramDbDes = rs.getString(4).toString();
                  paramDbType = rs.getString(2).toString();
                  paramDbName = rs.getString(3).toString();
-                  //out.println("ParamJas : "+paramJas+"    ParamDB : "+paramDb+"<br>");
+                 
+                 sqlCompile = rs.getString(5).toString();
+                 //rsCompile = statement1.executeQuery(sqlCompile);
+                  //out.println("ParamJas : "+paramJas+"    ParamDB : "+paramDbDes+"<br>");
                   if(paramJas.equals(paramDbDes)){
                      //out.println("ParamDb : "+paramDb+"  ParamJas  : "+paramJas+"<br>");
                       
-                     //out.print(paramJas+"  "+paramDbName+"   ");
+                     out.print(paramJas+"<br>");
                      //out.print(paramDbType+"<br>");
                      
                      
                      if(paramDbType.equals("date")){
                      out.print(paramDbName+": <input class='date' type='date' name="+paramJas+" value='2555-01-02'><br>");
-                     }else if(paramDbType.equals("textfield")){
+                     }
+                     if(paramDbType.equals("textfield")){
                      out.print(paramDbName+": <input type='text' name="+paramJas+" value=''><br>"); 
-                     }else if(paramDbType.equals("textarea")){
+                     }
+                     if(paramDbType.equals("textarea")){
                          out.print(paramDbName+":  <textarea name="+paramJas+" value='' rows='10' cols='50'>Write something here</textarea>"); 
-                     }else if(paramDbType.equals("list")){ //want database for test
-                         sqlCompile = rs.getString(5).toString();
-                         rsCompile = statement.executeQuery(sqlCompile);
-                         out.print(paramDbName+": ");
+                     }
+                     if(paramDbType.equals("list")){ //want database for test
+                         
+                         //out.print(rsCompile.getCursorName());
+                        /* out.print(paramDbName+": ");
                              out.println("<select name="+paramJas+">");
                              while (rsCompile.next()) {
                                  out.print("<option value=" + rsCompile.getString(1) + ">");
                                  out.print(rsCompile.getString(2));
                                  out.print("</option>");
-                                 out.println("");
+                                 
                              }
-                             out.println("</select><br><br>");
+                             out.println("</select><br><br>");*/
+                             
                      }
                      
                     
@@ -200,6 +209,7 @@ input[type=date] {
                   } 
                   //out.print(paramJas+"<br>");
                   }
+                    
             } 
             out.print("<input type='hidden' name='textPath' value="+textPath+">");
             out.print("<input type='hidden' name='textReport' value="+textReport+">");

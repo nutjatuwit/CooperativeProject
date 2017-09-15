@@ -89,6 +89,7 @@ public final class addParams_jsp extends org.apache.jasper.runtime.HttpJspBase
               Connection conn = (Connection) DriverManager.getConnection("jdbc:mysql://localhost:3306/dbHosDemo?useUnicode=yes&characterEncoding=UTF-8", "root", "");
               Statement statement = conn.createStatement();
               ResultSet rs = statement.executeQuery(sql);
+              
               out.print("Filter Type : ");
                out.println("<select name='idfil'>");
                while(rs.next()){
@@ -99,12 +100,19 @@ public final class addParams_jsp extends org.apache.jasper.runtime.HttpJspBase
                 out.println("");
                }
                out.println("</select><br><br>");
+               
+               
+               
+               
+                     
+              
                }catch(Exception ex){
                   ex.printStackTrace();
                }
                
            
       out.write("\n");
+      out.write("   \n");
       out.write("           SQL Query :  <textarea row=\"50\" cols=\"50\" name=\"query\"></textarea><br><br><br>\n");
       out.write("           <input type=\"submit\" action=\"\" value=\"ยืนยัน\">\n");
       out.write("        </form>    \n");

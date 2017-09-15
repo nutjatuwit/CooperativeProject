@@ -24,11 +24,11 @@
         <title>JSP Page</title>
     </head>
     <body>
-        <h1>Add Parameters</h1>
+        <h1 align="center">Add Parameters</h1>
        
         <form action="insertData">
-           Parameters :  <input type="text" name="name"><br><br>
-           Description :  <input type="text" name="description"><br><br>
+           ชื่อตัวแปร :  <input type="text" name="name"><br><br>
+           ตัวแปร :  <input type="text" name="description"><br><br>
            <%
                try{
                String sql = "SELECT * FROM filtertype";
@@ -37,7 +37,8 @@
               Connection conn = (Connection) DriverManager.getConnection("jdbc:mysql://localhost:3306/dbHosDemo?useUnicode=yes&characterEncoding=UTF-8", "root", "");
               Statement statement = conn.createStatement();
               ResultSet rs = statement.executeQuery(sql);
-              out.print("Filter Type : ");
+              
+              out.print("FilterType : ");
                out.println("<select name='idfil'>");
                while(rs.next()){
                    out.print(rs.getString(2));
@@ -47,11 +48,18 @@
                 out.println("");
                }
                out.println("</select><br><br>");
+               
+               
+               
+               
+                     
+              
                }catch(Exception ex){
                   ex.printStackTrace();
                }
                
            %>
+   
            SQL Query :  <textarea row="50" cols="50" name="query"></textarea><br><br><br>
            <input type="submit" action="" value="ยืนยัน">
         </form>    
