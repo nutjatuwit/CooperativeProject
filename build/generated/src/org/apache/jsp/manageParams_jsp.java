@@ -3,20 +3,12 @@ package org.apache.jsp;
 import javax.servlet.*;
 import javax.servlet.http.*;
 import javax.servlet.jsp.*;
-import net.sf.jasperreports.engine.*;
-import java.util.*;
-import java.io.*;
-import java.sql.*;
-import java.util.HashMap;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.InputStream;
-import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.Statement;
 import java.sql.DriverManager;
-import java.sql.SQLException;
+import java.sql.Connection;
 
-public final class addParams_jsp extends org.apache.jasper.runtime.HttpJspBase
+public final class manageParams_jsp extends org.apache.jasper.runtime.HttpJspBase
     implements org.apache.jasper.runtime.JspSourceDependent {
 
   private static final JspFactory _jspxFactory = JspFactory.getDefaultFactory();
@@ -60,14 +52,6 @@ public final class addParams_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("\n");
       out.write("\n");
       out.write("\n");
-      out.write("\n");
-      out.write("\n");
-      out.write("\n");
-      out.write("\n");
-      out.write("\n");
-      out.write("\n");
-      out.write("\n");
-      out.write("\n");
       out.write("<!DOCTYPE html>\n");
       out.write("<html>\n");
       out.write("    <head>\n");
@@ -75,47 +59,54 @@ public final class addParams_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("        <title>JSP Page</title>\n");
       out.write("    </head>\n");
       out.write("    <body>\n");
-      out.write("        <h1 align=\"center\">Add Parameters</h1>\n");
-      out.write("       \n");
-      out.write("        <form action=\"insertData\">\n");
-      out.write("           ชื่อตัวแปร :  <input type=\"text\" name=\"name\"><br><br>\n");
-      out.write("           ตัวแปร :  <input type=\"text\" name=\"description\"><br><br>\n");
-      out.write("           ");
+      out.write("        ");
 
-               try{
-               String sql = "SELECT * FROM filtertype";
             
-              Class.forName("com.mysql.jdbc.Driver");
-              Connection conn = (Connection) DriverManager.getConnection("jdbc:mysql://localhost:3306/dbHosDemo?useUnicode=yes&characterEncoding=UTF-8", "root", "");
-              Statement statement = conn.createStatement();
-              ResultSet rs = statement.executeQuery(sql);
-              
-              out.print("FilterType : ");
-               out.println("<select name='idfil'>");
-               while(rs.next()){
-                   out.print(rs.getString(2));
-                out.print("<option value="+rs.getString(1)+">");
-                   out.print(rs.getString(2));
-                out.print("</option>");
-                out.println("");
-               }
-               out.println("</select><br><br>");
+           try{
                
+               String sql = "select id,name,description,query,filtertype.nameFil from addparam,filtertype where addparam.idFil "
+                       + "= filtertype.idFil";
+               //String sqlFilter = "select filtertype.nameFil from addparam ";
+               Connection con =null; 
                
+               Class.forName("com.mysql.jdbc.Driver");
+               con = DriverManager.getConnection("jdbc:mysql://localhost:3306/dbHosDemo","root","");
                
+               Statement statement = con.createStatement();
                
-                     
-              
-               }catch(Exception ex){
-                  ex.printStackTrace();
-               }
-               
+               ResultSet rs = statement.executeQuery(sql);
+               //ResultSet rsFilter = statement.executeQuery(sqlFilter);
+                   out.println("<table border='2'>");
+                         out.println("<tr>");
+                          out.print("<td>ID</td>");
+                          out.print("<td>DETIALS</td>");
+                          out.print("<td>PARAMETER</td>");
+                          out.print("<td>QUERY</td>");
+                          out.print("<td>TYPE FILTER</td>");
+                         out.println("</tr>");
+                     while(rs.next()){
+                         out.println("<tr>");
+                          out.print("<td>"+rs.getString(1)+"</td>");
+                          out.print("<td>"+rs.getString(2)+"</td>");
+                          out.print("<td>"+rs.getString(3)+"</td>");
+                          out.print("<td>"+rs.getString(4)+"</td>");
+                          out.print("<td>"+rs.getString(5)+"</td>");
+                         out.println("</tr>");
+                     }
+                     out.println("</table>");
            
+           
+              rs.close();
+               //out.println("test");
+               
+               //out.println(statement.executeQuery(sql));
+           }catch(Exception ex){
+               ex.printStackTrace();
+           }
+        
+        
       out.write("\n");
-      out.write("   \n");
-      out.write("           SQL Query :  <textarea row=\"50\" cols=\"50\" name=\"query\"></textarea><br><br><br>\n");
-      out.write("           <input type=\"submit\" action=\"\" value=\"ยืนยัน\">\n");
-      out.write("        </form>    \n");
+      out.write("        \n");
       out.write("    </body>\n");
       out.write("</html>\n");
     } catch (Throwable t) {

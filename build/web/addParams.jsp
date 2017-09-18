@@ -27,8 +27,8 @@
         <h1 align="center">Add Parameters</h1>
        
         <form action="insertData">
-           ชื่อตัวแปร :  <input type="text" name="name"><br><br>
-           ตัวแปร :  <input type="text" name="description"><br><br>
+           ชื่อตัวแปร :  <input type="text" name="name" placeholder='ทดสอบ1'><br><br>
+           ตัวแปร :  <input type="text" name="description" placeholder='test_1'><br><br>
            <%
                try{
                String sql = "SELECT * FROM filtertype";
@@ -60,7 +60,7 @@
                
            %>
    
-           SQL Query :  <textarea row="50" cols="50" name="query"></textarea><br><br><br>
+           SQL Query :  <textarea row="50" cols="50" name="query" placeholder='select * from membertest //for list data in list filter '></textarea><br><br><br>
            <input type="submit" action="" value="ยืนยัน">
         </form>    
     </body>

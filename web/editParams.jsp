@@ -24,13 +24,31 @@
         <title>JSP Page</title>
     </head>
     <body>
-        <h1 align="center">Add Parameters</h1>
-       
-        <form action="insertData">
-           ชื่อตัวแปร :  <input type="text" name="name" placeholder='ทดสอบ1'><br><br>
-           ตัวแปร :  <input type="text" name="description" placeholder='test_1'><br><br>
+        <h1 align="center">Edit Parameters</h1>
+       <%
+                response.setContentType("text/html;charset=UTF-8");
+                request.setCharacterEncoding("UTF-8");
+                String id = request.getParameter("id");
+                String name = request.getParameter("name");
+                String description = request.getParameter("description");
+                String query = request.getParameter("query");
+                String filtertype = request.getParameter("filtertype");
+       %>
+        <form action="updateData">
+           ชื่อตัวแปร :  <input type="text" name="name" value=<%=name%>><br><br>
+           ตัวแปร :  <input type="text" name="description" value=<%=description%>><br><br>
            <%
                try{
+                   
+                   
+                   /*out.print("<input type='hidden' name='id' value="+rs.getString(1)+">");
+                          out.print("<input type='hidden' name='name' value="+rs.getString(2)+">");
+                          out.print("<input type='hidden' name='description' value="+rs.getString(3)+">");
+                          out.print("<input type='hidden' name='query' value="+rs.getString(4)+">");
+                          out.print("<input type='hidden' name='filtertype' value="+rs.getString(5)+">");*/
+                   
+                
+                
                String sql = "SELECT * FROM filtertype";
             
               Class.forName("com.mysql.jdbc.Driver");
@@ -39,13 +57,19 @@
               ResultSet rs = statement.executeQuery(sql);
               
               out.print("FilterType : ");
-               out.println("<select name='idfil'>");
+               out.println("<select name='idfil' >");
                while(rs.next()){
                    out.print(rs.getString(2));
+                   if(rs.getString(2).equals(filtertype)){
+                   out.print("<option value="+rs.getString(1)+" selected>");
+                   out.print(rs.getString(2));
+                   out.print("</option>");
+                   }else{
                 out.print("<option value="+rs.getString(1)+">");
                    out.print(rs.getString(2));
                 out.print("</option>");
-                out.println("");
+                   }
+               
                }
                out.println("</select><br><br>");
                
@@ -59,8 +83,9 @@
                }
                
            %>
-   
-           SQL Query :  <textarea row="50" cols="50" name="query" placeholder='select * from membertest //for list data in list filter '></textarea><br><br><br>
+    
+           SQL Query :  <textarea row="50" cols="50" name="query" ><%=query%></textarea><br><br><br>
+           <input type="hidden" name='id' value='<%=id%>'>
            <input type="submit" action="" value="ยืนยัน">
         </form>    
     </body>

@@ -1,0 +1,12 @@
+SMAP
+manageParams_jsp.java
+JSP
+*S JSP
+*F
++ 0 manageParams.jsp
+manageParams.jsp
+*L
+5,15:48
+21,43:65
+63,5:108
+*E

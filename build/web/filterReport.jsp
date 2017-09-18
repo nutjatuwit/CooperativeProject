@@ -91,17 +91,17 @@ input[type=date] {
            String text = request.getParameter("text").toString();
            
               //database filter type
+              
               String sql = "select id,filtertype.nameFil,name,description,query from addparam,filtertype where addparam.idFil "
                        + "= filtertype.idFil";
               Class.forName("com.mysql.jdbc.Driver");
               Connection conn = (Connection) DriverManager.getConnection("jdbc:mysql://localhost:3306/dbHosDemo?useUnicode=yes&characterEncoding=UTF-8", "root", "");
               Statement statement = conn.createStatement();
-               Statement statement1 = conn.createStatement();
               ResultSet rs = statement.executeQuery(sql);
-             
-              String sqlCompile = "";  
-              ResultSet rsCompile = null;
               //ResultSet rsCompile = statement.executeQuery(sqlCompile);
+              //String sqlCompile = "";  
+              //ResultSet rsCompile = null;
+              
              
                
            
@@ -170,7 +170,13 @@ input[type=date] {
                  paramDbType = rs.getString(2).toString();
                  paramDbName = rs.getString(3).toString();
                  
-                 sqlCompile = rs.getString(5).toString();
+                 String sqlCompile = rs.getString(5).toString();
+                 
+                  
+                 //Connection con = (Connection) DriverManager.getConnection("jdbc:mysql://localhost:3306/dbHosDemo?useUnicode=yes&characterEncoding=UTF-8", "root", "");
+                 //Statement statement1 = con.createStatement();
+                 //ResultSet rsCompile = statement1.executeQuery(sqlCompile);
+                 
                  //rsCompile = statement1.executeQuery(sqlCompile);
                   //out.println("ParamJas : "+paramJas+"    ParamDB : "+paramDbDes+"<br>");
                   if(paramJas.equals(paramDbDes)){
@@ -190,15 +196,18 @@ input[type=date] {
                          out.print(paramDbName+":  <textarea name="+paramJas+" value='' rows='10' cols='50'>Write something here</textarea>"); 
                      }
                      if(paramDbType.equals("list")){ //want database for test
-                         
+                         //out.print(rsCompile);
+                         //
+                         //for(int a=0;a>5;a++){
+                             //out.println("Row : "+rsCompile.getString(2));
+                         //}
                          //out.print(rsCompile.getCursorName());
-                        /* out.print(paramDbName+": ");
-                             out.println("<select name="+paramJas+">");
+                        //out.print(paramDbName+": ");
+                             /*out.println("<select name="+paramJas+">");
                              while (rsCompile.next()) {
                                  out.print("<option value=" + rsCompile.getString(1) + ">");
                                  out.print(rsCompile.getString(2));
                                  out.print("</option>");
-                                 
                              }
                              out.println("</select><br><br>");*/
                              

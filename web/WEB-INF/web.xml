@@ -8,6 +8,14 @@
         <servlet-name>DatabaseConnection</servlet-name>
         <servlet-class>DatabaseConnection</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>deleteData</servlet-name>
+        <servlet-class>deleteData</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>updateData</servlet-name>
+        <servlet-class>updateData</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>insertData</servlet-name>
         <url-pattern>/insertData</url-pattern>
@@ -15,6 +23,14 @@
     <servlet-mapping>
         <servlet-name>DatabaseConnection</servlet-name>
         <url-pattern>/DatabaseConnection</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>deleteData</servlet-name>
+        <url-pattern>/deleteData</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>updateData</servlet-name>
+        <url-pattern>/updateData</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
