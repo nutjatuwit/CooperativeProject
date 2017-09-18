@@ -21,27 +21,34 @@
            
  try{
                String s = request.getParameter("query");
-               
+               //String s = "select id,description from addparam";
                //String sqlFilter = "select filtertype.nameFil from addparam ";
                Connection con =null; 
                
                Class.forName("com.mysql.jdbc.Driver");
-               con = DriverManager.getConnection("jdbc:mysql://localhost:3306/dbHosDemo","root","");
+               con = DriverManager.getConnection("jdbc:mysql://localhost:3306/dbHosDemo?useUnicode=yes&characterEncoding=UTF-8","root","");
                
                Statement statement = con.createStatement();
                
                ResultSet rs = statement.executeQuery(s);
-               
+               //out.println(rs.getMetaData().getColumnCount());
+               //out.println(rs.getMetaData().getColumnName(2));
                //ResultSet rsFilter = statement.executeQuery(sqlFilter);
+                    
+               //for(int i =1;i<rs.getMetaData().getColumnCount();i++){
+                          //out.println(rs.getMetaData().getColumnName(i)); 
+                   //}
                    out.println("<table border='2'>");
-                         out.println("<tr>");
-                          out.print("<td>ID</td>"); 
-                          out.print("<td>NAME</td>");
-                         out.println("</tr>");
+                   out.println("<tr>");
+                   for(int i =1;i<(rs.getMetaData().getColumnCount()+1);i++){
+                          out.print("<td>"+rs.getMetaData().getColumnName(i).toUpperCase()+"</td>"); 
+                   }
+                   out.println("</tr>");
                      while(rs.next()){
                          out.println("<tr>");
-                          out.print("<td>"+rs.getString(1)+"</td>");
-                          out.print("<td>"+rs.getString(2)+"</td>");
+                         for(int i =1;i<(rs.getMetaData().getColumnCount()+1);i++){
+                          out.print("<td>"+rs.getString(i)+"</td>");
+                         }
                          out.println("</tr>");
                      }
                      out.println("</table>");

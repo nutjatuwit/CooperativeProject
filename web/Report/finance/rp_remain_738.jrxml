@@ -15,7 +15,8 @@
 		<defaultValueExpression><![CDATA["D:\\01_ProjectSVN56\\CHU1\\WorkingDirectory\\Development\\DevDocument\\2.jrxml_รายงานหน้าห้องตรวจ\\"]]></defaultValueExpression>
 	</parameter>
 	<parameter name="testList" class="java.lang.String"/>
-	<parameter name="testTextfield" class="java.lang.String"/>
+	<parameter name="testTF" class="java.lang.String"/>
+	<parameter name="testList2" class="java.lang.String"/>
 	<queryString>
 		<![CDATA[SELECT
 q2.date_rec

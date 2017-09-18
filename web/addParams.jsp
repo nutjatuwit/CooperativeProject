@@ -61,7 +61,11 @@
            %>
    
            SQL Query :  <textarea row="50" cols="50" name="query" placeholder='select * from membertest //for list data in list filter '></textarea><br><br><br>
+           
            <input type="submit" action="" value="ยืนยัน">
-        </form>    
+        </form>  
+           <form action='manageParams.jsp'>
+           <input type="submit" action="" value="กลับ">
+           </form>
     </body>
 </html>
