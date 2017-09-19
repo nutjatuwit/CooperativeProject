@@ -97,7 +97,8 @@ public class insertData extends HttpServlet {
         response.setContentType("text/html");
         response.setCharacterEncoding("UTF-8");
         //request.setAttribute("todo", "10");
-        response.sendRedirect("/WebApplication3/addParams.jsp");
+        response.sendRedirect("/WebApplication3/manageParams.jsp");
+        
         //request.getRequestDispatcher("/addParams.jsp").forward(request, response);
         try {
             processRequest(request, response);

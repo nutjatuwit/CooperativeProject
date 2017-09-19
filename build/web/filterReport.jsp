@@ -75,6 +75,12 @@ input[type=date] {
 	width: 130px;
 }
 
+input[type=text] {
+        border:2px solid lightblue;
+	border-radius:8px;
+	height: 22px;
+	width: 130px;
+}
 
 </style>
         
@@ -231,7 +237,7 @@ input[type=date] {
                      
                     if(cRow>2){
                         cRow = 0;
-                       out.print("<br>");
+                       out.print("<br><br>");
                     }
                     // break;
                   } 
@@ -241,7 +247,7 @@ input[type=date] {
             } 
             out.print("<input type='hidden' name='textPath' value="+textPath+">");
             out.print("<input type='hidden' name='textReport' value="+textReport+">");
-            out.print("<br><br><input type='submit' class='button2' value='แสดงรายการ'>");
+            out.print("<br><br><input type='submit' class='button button2' value='แสดงรายการ'>");
            out.print("</form>");
           
           

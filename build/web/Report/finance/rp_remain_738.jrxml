@@ -16,7 +16,9 @@
 	</parameter>
 	<parameter name="testList" class="java.lang.String"/>
 	<parameter name="testTF" class="java.lang.String"/>
-	<parameter name="testList2" class="java.lang.String"/>
+	<parameter name="testDate" class="java.lang.String"/>
+	<parameter name="testTA" class="java.lang.String"/>
+	<parameter name="testList3" class="java.lang.String"/>
 	<queryString>
 		<![CDATA[SELECT
 q2.date_rec

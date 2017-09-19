@@ -44,7 +44,7 @@ public class updateData extends HttpServlet {
             throws ServletException, IOException, SQLException {
         response.setContentType("text/html;charset=UTF-8");
         request.setCharacterEncoding("UTF-8");
-        response.setCharacterEncoding("UTF-8");
+        //response.setCharacterEncoding("UTF-8");
         try (PrintWriter out = response.getWriter()) {
             try {
                 Class.forName("com.mysql.jdbc.Driver");
@@ -54,7 +54,7 @@ public class updateData extends HttpServlet {
             Connection conn = (Connection) DriverManager.getConnection("jdbc:mysql://localhost:3306/dbHosDemo?useUnicode=yes&characterEncoding=UTF-8", "root", "");
 
 //Af_Scheme_Number=request.getParameter("Af_Scheme_Number"); 
-            id = request.getParameter("id");
+            Integer id = Integer.parseInt(request.getParameter("id"));
             name = request.getParameter("name");
             idFil = request.getParameter("idfil");
             description = request.getParameter("description");
