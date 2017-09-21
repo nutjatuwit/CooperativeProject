@@ -23,7 +23,7 @@ table {
 
 
 th, td {
-    text-align: left;
+    text-align: center;
     padding: 8px;
     width:100px;
 }
@@ -44,7 +44,7 @@ th {
 
 /* When the input field gets focus, change its width to 100% */
 .search:focus {
-    width: 50%;
+    width: 20%;
 }
 
 .button {
@@ -60,6 +60,7 @@ th {
     -webkit-transition-duration: 0.4s; /* Safari */
     transition-duration: 0.4s;
     cursor: pointer;
+    border-radius: 16px;
 }
 .searchText {
     background-color: #01A9DB; 
@@ -78,11 +79,12 @@ th {
     color: white; 
     border: 2px solid #81DAF5;
     font-size: 14px;
+    
 }
 .button1:hover{
      background-color: #81DAF5;
      color: black;
-     
+     padding: 8px 28px;
 }
 
 .button2 {
@@ -94,33 +96,10 @@ th {
 .button2:hover{
      background-color: #81DAF5;
      color: black;
-     
+     padding: 8px 28px;
 }
 
-.buttonBack span {
-  cursor: pointer;
-  display: inline-block;
-  position: relative;
-  transition: 0.5s;
-}
 
-.buttonBack span:after {
-  content: 'ย้อน';
-  position: absolute;
-  opacity: 0;
-  top: 0;
-  left: -40px;
-  transition: 0.5s;
-}
-
-.buttonBack:hover span {
-  padding-left: 25px;
-}
-
-.buttonBack:hover span:after {
-  opacity: 1;
-  left: 0;
-}
 
 .addButton {
     background-color: #01A9DB; 
@@ -136,15 +115,65 @@ th {
 }
 
 
+
+#mySidenav a {
+    position: absolute;
+    left: -80px;
+    transition: 0.3s;
+    padding: 15px;
+    width: 90px;
+    text-decoration: none;
+    font-size: 20px;
+    color: white;
+    border-radius: 0 5px 5px 0;
+}
+
+#mySidenav a:hover {
+    left: 0;
+    cursor: pointer;
+}
+
+#back {
+    top: 10px;
+    background-color: #4CAF50;
+}
+
+#myBtn {
+  display: none;
+  position: fixed;
+  bottom: 20px;
+  right: 12px;
+  z-index: 99;
+  border: none;
+  outline: none;
+  background-color: red;
+  color: white;
+  cursor: pointer;
+  padding: 10px;
+  border-radius: 10px;
+  transition-duration: 0.4s;
+}
+
+#myBtn:hover {
+  background-color: orangered;
+  padding: 30px 8px;
+}
+
+
 </style>
     </head>
     <body>
+        <div id="mySidenav" class="sidenav">
+        <a id="back" onclick="goBack()">กลับ</a>
+  
+         </div>
+        
         <%
             
            try{
                
                String sql = "select id,name,description,query,filtertype.nameFil from addparam,filtertype where addparam.idFil "
-                       + "= filtertype.idFil";
+                       + "= filtertype.idFil order by id ASC";
                //String sqlFilter = "select filtertype.nameFil from addparam ";
                Connection con =null; 
                
@@ -157,37 +186,25 @@ th {
                
                   out.println("<h1 align='center'>Manage Parameters</h1>");
                //ResultSet rsFilter = statement.executeQuery(sqlFilter);
-               out.print("<table border='0' align='center'>");
-               
-                   
-                   out.print("<tr>");
-                     out.print("<td>");
-                out.print("<form action='manageReport.html'>"); //back page
-                   out.print("<button class ='button buttonBack'  style='vertical-align:middle'><span>กลับ</span></button>");
-               out.print("</form>");
-                     out.print("</td>");
+              
                
                     
                      
-                     out.print("<td>");
-                         out.print("&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;");
-                     out.print("</td>");
-                     
-                      out.print("<td align='right'>");
+                    
+                      
                out.print("<form action='addParams.jsp' align='right'>"); //add parameter
                    out.print("<input type='submit' class='button addButton'  name='' value='เพิ่มตัวแปร'>");
                out.print("</form>");
-                     out.print("</td>");
+                   
                      
-                     out.print("<td>");
+                    
                out.print("<form action='filterParams.jsp' align='right'>"); //filter parameter
                    out.print("<input type='text' class='search' name='query' value=''>");
                    out.print("<input type='submit' class='button searchText' name='' value='ค้นหา'>");
                out.print("</form>");
-                     out.print("</td>");
+                     
                
-               out.print("</tr>");
-               out.print("</table><br>");
+               
                
                    out.println("<table border='2' align='center'>");
                         out.print("<thead>");
@@ -203,7 +220,7 @@ th {
                         out.print("</thead>"); 
                          
                      while(rs.next()){
-                         out.println("<tr align='center'>");
+                         out.println("<tr>");
                          out.println("<form action='editParams.jsp'>");
                          
                           out.print("<td>"+rs.getString(1)+"</td>");
@@ -243,5 +260,29 @@ th {
         
         %>
         
+        <button onclick="topFunction()" id="myBtn" title="Go to top">ขึ้นบน</button>
+        
+            <script>
+     function goBack() {
+    //window.history.back();
+    window.location.replace("manageReport.html");
+    }
+    
+    window.onscroll = function() {scrollFunction()};
+
+function scrollFunction() {
+    if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+        document.getElementById("myBtn").style.display = "block";
+    } else {
+        document.getElementById("myBtn").style.display = "none";
+    }
+}
+
+// When the user clicks on the button, scroll to the top of the document
+function topFunction() {
+    document.body.scrollTop = 0;
+    document.documentElement.scrollTop = 0;
+}
+    </script>
     </body>
 </html>

@@ -29,12 +29,53 @@
 	body { max-width:800px; min-width:300px; margin:0 auto; padding:20px 10px; font-size:14px; font-size:1.4em; }
 	h1 { font-size:1.8em; }
 	.demo { overflow:auto; border:1px solid silver; min-height:100px; }
+        
+        div.tab {
+    overflow: hidden;
+    border: 1px solid #ccc;
+    background-color: #f1f1f1;
+}
+
+/* Style the buttons inside the tab */
+div.tab button {
+    background-color: inherit;
+    float: left;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    padding: 12px 20px;
+    transition: 0.6s;
+}
+
+/* Change background color of buttons on hover */
+div.tab button:hover {
+    background-color: #cceeff;
+}
+
+/* Create an active/current tablink class */
+div.tab button.active {
+    background-color: #ccc;
+}
+
+/* Style the tab content */
+.tabcontent {
+    display: none;
+    padding: 6px 10px;
+    border: 1px solid #ccc;
+    border-top: none;
+}
+
 	</style>
 	<link rel="stylesheet" href="dist/themes/default/style.min.css" />
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jstree/3.2.1/themes/default/style.min.css" />
         
+         <div class="tab">
+      <button class="tablinks" onclick="goBack();">กลับ</button>
+      
+    </div>   
     </head>
     <body>
+       
        <%
            //ArrayList findWord = new ArrayList(); 
            
@@ -165,7 +206,10 @@
   
   */
   
-  
+  function goBack() {
+    //window.history.back();
+    window.open("manageReport.html");
+    }
 	</script>
         
     </body>

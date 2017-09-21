@@ -43,12 +43,7 @@
                Class.forName("org.postgresql.Driver").newInstance();
                Connection conn = DriverManager.getConnection("jdbc:postgresql://localhost:5433/dbHos", "postgres", "postgres"); //database connection
               
-               String b_visit_clinic_id="";
-               String visit_service_staff_doctor="";
-               String item_id ="";
-               String b_service_point_id="";
-               String start_date="";
-               String end_date="";
+              
                
                
               
@@ -56,12 +51,8 @@
                ArrayList<String> allValues = new ArrayList<String>();
               
                //Integer fiscal_year = Integer.parseInt(request.getParameter("fiscal_year"));
-               b_visit_clinic_id = request.getParameter("b_visit_clinic_id"); 
-               visit_service_staff_doctor = request.getParameter("visit_service_staff_doctor"); 
-               item_id = request.getParameter("item_id");
-               b_service_point_id = request.getParameter("b_service_point_id"); 
-               start_date = request.getParameter("start_date");
-               end_date = request.getParameter("end_date");
+              
+               
                String path = request.getParameter("textPath");
                String fileGet = request.getParameter("textReport");
                String[] fileView=fileGet.split("\\.");
@@ -106,7 +97,7 @@
             }
             
             //for(int i = 0;i<allParams.size();i++){
-                //out.print("Test : "+allValues.get(i)+"<br>");
+                //out.print("Parameters : "+allParams.get(i)+"Values : "+allValues.get(i));
            // }
             
             Map parameters = new HashMap();

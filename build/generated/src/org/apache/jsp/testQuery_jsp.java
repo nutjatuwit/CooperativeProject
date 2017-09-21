@@ -82,33 +82,28 @@ public final class testQuery_jsp extends org.apache.jasper.runtime.HttpJspBase
             
            try{
                
-               String sql = "select id,filtertype.nameFil,name,description,query from addparam,filtertype where addparam.idFil "
-                       + "= filtertype.idFil";
+               String sql = "select * from a_add_param";
                //String sqlFilter = "select filtertype.nameFil from addparam ";
                Connection con =null; 
                
-               Class.forName("com.mysql.jdbc.Driver");
-               con = DriverManager.getConnection("jdbc:mysql://localhost:3306/dbHosDemo","root","");
+               Class.forName("org.postgresql.Driver").newInstance();
+               Connection conn = DriverManager.getConnection("jdbc:postgresql://localhost:5433/dbHos", "postgres", "postgres");
                
                Statement statement = con.createStatement();
                
                ResultSet rs = statement.executeQuery(sql);
                //ResultSet rsFilter = statement.executeQuery(sqlFilter);
                    out.println("<table border='2'>");
-                         out.println("<tr>");
-                          out.print("<td>ID</td>");
-                          out.print("<td>FilterType</td>");
-                          out.print("<td>NAME</td>");
-                          out.print("<td>DESCRIPTION</td>");
-                          out.print("<td>QUERY</td>");
-                         out.println("</tr>");
+                   out.println("<tr>");
+                   for(int i =1;i<(rs.getMetaData().getColumnCount()+1);i++){
+                          out.print("<td>"+rs.getMetaData().getColumnName(i).toUpperCase()+"</td>"); 
+                   }
+                   out.println("</tr>");
                      while(rs.next()){
                          out.println("<tr>");
-                          out.print("<td>"+rs.getString(1)+"</td>");
-                          out.print("<td>"+rs.getString(2)+"</td>");
-                          out.print("<td>"+rs.getString(3)+"</td>");
-                          out.print("<td>"+rs.getString(4)+"</td>");
-                          out.print("<td>"+rs.getString(5)+"</td>");
+                         for(int i =1;i<(rs.getMetaData().getColumnCount()+1);i++){
+                          out.print("<td>"+rs.getString(i)+"</td>");
+                         }
                          out.println("</tr>");
                      }
                      out.println("</table>");

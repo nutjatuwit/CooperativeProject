@@ -29,8 +29,72 @@ input[type=submit]:hover {
 }
 
 
+div.tab {
+    overflow: hidden;
+    border: 1px solid #ccc;
+    background-color: #f1f1f1;
+}
+
+/* Style the buttons inside the tab */
+div.tab button {
+    background-color: inherit;
+    float: left;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    padding: 12px 14px;
+    transition: 0.6s;
+}
+
+/* Change background color of buttons on hover */
+div.tab button:hover {
+    background-color: #1ac6ff;
+    padding: 12px 25px;
+    
+}
+
+/* Create an active/current tablink class */
+div.tab button.active {
+    background-color: #ccc;
+}
+
+/* Style the tab content */
+.tabcontent {
+    display: none;
+    padding: 6px 10px;
+    border: 1px solid #ccc;
+    border-top: none;
+}
+
+#mySidenav a {
+    position: absolute;
+    left: -80px;
+    transition: 0.3s;
+    padding: 15px;
+    width: 100px;
+    text-decoration: none;
+    font-size: 20px;
+    color: white;
+    border-radius: 0 5px 5px 0;
+}
+
+#mySidenav a:hover {
+    left: 0;
+    cursor: pointer;
+}
+
+#about {
+    top: 10px;
+    background-color: #4CAF50;
+}
+
 </style>
     </head>
+    <div id="mySidenav" class="sidenav">
+        <a id="about" onclick="goBack()">กลับ</a>
+  
+</div>
+    
     <body align='center'>
         <form action = "">
             <input type="submit"  value="Report Form" action=""><br><br>
@@ -39,5 +103,12 @@ input[type=submit]:hover {
         <form action = "manageParams.jsp">
             <input type="submit"  value="Manage Parameters"><br><br>
         </form>
+        
+        <script>
+     function goBack() {
+    //window.history.back();
+    window.location.replace("managePage.html");
+    }
+    </script>
     </body>
 </html>

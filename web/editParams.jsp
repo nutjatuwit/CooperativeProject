@@ -31,10 +31,11 @@ input[type=text], select,button {
     border: 1px solid #ccc;
     border-radius: 4px;
     box-sizing: border-box;
+    font-size: 16px;
 }
 
 input[type=submit]{
-    width: 49%;
+    width: 100%;
     background-color: #0040FF;
     color: white;
     padding: 14px 20px;
@@ -42,10 +43,12 @@ input[type=submit]{
     border: none;
     border-radius: 4px;
     cursor: pointer;
+    align-content: center;
+    font-size: 16px;
 }
 
 button {
-    width: 49%;
+    width: 100%;
     background-color: #0040FF;
     color: white;
     padding: 14px 20px;
@@ -53,7 +56,9 @@ button {
     border: none;
     border-radius: 4px;
     cursor: pointer;
+    
 }
+
 
 input[type=submit],button:hover {
     background-color: #45a049;
@@ -61,9 +66,20 @@ input[type=submit],button:hover {
 
 div {
     border-radius: 5px;
-    background-color: #f2f2f2;
-    padding: 20px;
+    background-color: #e6f3ff;
+    padding: 0px 250px;
+    
+   
 }
+.buttonBack {
+    background-color: #ffffff;
+    
+}
+.buttonAccept {
+    background-color: #ffffff;
+    font-size: 20px;
+}
+
 textarea {
     width: 100%;
     height: 150px;
@@ -129,7 +145,7 @@ textarea {
                
                out.print("<input type='hidden' name='id' value='"+id+"'>");
                
-               
+              
                      
               
                }catch(Exception ex){
@@ -139,14 +155,21 @@ textarea {
            %>
     
           <div id="textArea">
-           SQL Query :  <br><textarea row="50" cols="50" name="query" placeholder='select * from membertest //for list data in list filter '></textarea><br><br><br>
+           SQL Query :  <br><textarea row="50" cols="50" name="query" ><%out.print(query);%></textarea><br><br><br>
            </div>
-           <button onclick="goBack()">กลับ</button>
-           <input type="submit" action="" value="ยืนยัน">
+           
+           <div id="buttonAccept">
+           <input type="submit" align="right" action="" value="ยืนยัน">
+           </div>
         </form>  
+           <div id="buttonBack">
+          <button onclick="goBack()">กลับ</button>
+           </div>
+           
            <script>
      function goBack() {
-    window.history.back();
+    //window.history.back();
+    window.location.replace("manageParams.jsp");
     }
     function showData() {
         var theSelect = updateData.idfil;

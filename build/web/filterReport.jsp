@@ -168,9 +168,9 @@ input[type=text] {
             if(text.equals(textCompare)){
               textPath = ee.getElementsByTagName("path").item(0).getTextContent().toString();
               textReport = ee.getElementsByTagName("jrxml").item(0).getTextContent().toString();
-               out.println(">>>>>"+text+"<br>");
-               out.println(">>>>>"+textPath+"<br>");
-               out.println(">>>>>"+textReport+"<br><br>");
+               //out.println(">>>>>"+text+"<br>");
+               //out.println(">>>>>"+textPath+"<br>");
+               //out.println(">>>>>"+textReport+"<br><br>");
             }
              //out.println(textCompare);  
             }
@@ -247,7 +247,7 @@ input[type=text] {
             } 
             out.print("<input type='hidden' name='textPath' value="+textPath+">");
             out.print("<input type='hidden' name='textReport' value="+textReport+">");
-            out.print("<br><br><input type='submit' class='button button2' value='แสดงรายการ'>");
+            out.print("<br><input type='submit' class='button button2' value='แสดงรายการ'>");
            out.print("</form>");
           
           
