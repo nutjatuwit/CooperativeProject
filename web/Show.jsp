@@ -109,7 +109,7 @@
             //parameters.put("b_service_point_id", b_service_point_id);
             for(int i = 0;i<allParams.size();i++){
              //out.print("Params : "+allParams.get(i)+" Values : "+allValues.get(i));
-            parameters.put(""+allParams.get(i), allValues.get(i));   
+            parameters.put(allParams.get(i), allValues.get(i));   
             }
             
             
@@ -117,7 +117,7 @@
              
            
             
-            response.setContentType("application/pdf");
+           response.setContentType("application/pdf");
             
             response.setContentLength(bytes.length);
             ServletOutputStream outStream = response.getOutputStream();

@@ -118,12 +118,14 @@ textarea {
                    
                 
                 
-               String sql = "SELECT * FROM filtertype";
+               String sql = "SELECT * FROM a_filter_type";
             
-              Class.forName("com.mysql.jdbc.Driver");
-              Connection conn = (Connection) DriverManager.getConnection("jdbc:mysql://localhost:3306/dbHosDemo?useUnicode=yes&characterEncoding=UTF-8", "root", "");
-              Statement statement = conn.createStatement();
-              ResultSet rs = statement.executeQuery(sql);
+             Class.forName("org.postgresql.Driver").newInstance();
+               Connection conn = (Connection)DriverManager.getConnection("jdbc:postgresql://localhost:5433/dbHos", "postgres", "postgres");
+               
+               Statement statement = conn.createStatement();
+               
+               ResultSet rs = statement.executeQuery(sql);
               
               out.print("FilterType : <br>");
                out.println("<select name='idfil' onchange='showData()'>");

@@ -100,15 +100,22 @@ input[type=text] {
            
               //database filter type
               
-              String sql = "select id,filtertype.nameFil,name,description,query from addparam,filtertype where addparam.idFil "
-                       + "= filtertype.idFil";
-              Class.forName("com.mysql.jdbc.Driver");
-              Connection conn = (Connection) DriverManager.getConnection("jdbc:mysql://localhost:3306/dbHosDemo?useUnicode=yes&characterEncoding=UTF-8", "root", "");
+              String sql = "select a_add_param.id,a_filter_type.namefil,a_add_param.name,a_add_param.description,a_add_param.query from a_add_param inner join a_filter_type on a_add_param.idfil = a_filter_type.idfil order by a_add_param.id ASC";
+              Class.forName("org.postgresql.Driver").newInstance();
+              Connection conn = DriverManager.getConnection("jdbc:postgresql://localhost:5433/dbHos", "postgres", "postgres");
               Statement statement = conn.createStatement();
               ResultSet rs = statement.executeQuery(sql);
               
-              Class.forName("com.mysql.jdbc.Driver");
-              Connection con = (Connection) DriverManager.getConnection("jdbc:mysql://localhost:3306/dbHosDemo?useUnicode=yes&characterEncoding=UTF-8", "root", "");
+              
+               
+               
+               
+               
+               
+              
+              
+              Class.forName("org.postgresql.Driver");
+              Connection con = (Connection) DriverManager.getConnection("jdbc:postgresql://localhost:5433/dbHos", "postgres", "postgres");
               Statement statement1 = con.createStatement();
               //String sqlCompile = "select * from member";
               //ResultSet rsCompile = statement1.executeQuery(sqlCompile);

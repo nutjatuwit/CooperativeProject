@@ -30,8 +30,7 @@
             
            try{
                
-               String sql = "select id,name,description,query,a_filter_type.nameFil from a_add_param,a_filter_type where a_add_param.idFil "
-                       + "= a_filter_type.idFil order by id ASC";
+               String sql = "select a_add_param.id,a_filter_type.namefil,a_add_param.name,a_add_param.description,a_add_param.query from a_add_param inner join a_filter_type on a_add_param.idfil = a_filter_type.idfil order by a_add_param.id ASC";
                //String sqlFilter = "select filtertype.nameFil from addparam ";
                Connection con =null; 
                
@@ -41,6 +40,7 @@
                Statement statement = con.createStatement();
                
                ResultSet rs = statement.executeQuery(sql);
+               
                //ResultSet rsFilter = statement.executeQuery(sqlFilter);
                    out.println("<table border='2'>");
                    out.println("<tr>");

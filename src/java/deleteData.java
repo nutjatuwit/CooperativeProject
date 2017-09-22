@@ -4,20 +4,19 @@
  * and open the template in the editor.
  */
 
-import com.mysql.jdbc.Connection;
-import com.mysql.jdbc.Statement;
+import java.sql.Connection;
+import java.sql.DriverManager;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
 
 
 /**
@@ -47,11 +46,11 @@ public class deleteData extends HttpServlet {
         response.setCharacterEncoding("UTF-8");
         try (PrintWriter out = response.getWriter()) {
             try {
-                Class.forName("com.mysql.jdbc.Driver");
+                Class.forName("org.postgresql.Driver");
             } catch (ClassNotFoundException ex) {
                 Logger.getLogger(insertData.class.getName()).log(Level.SEVERE, null, ex);
             }
-            Connection conn = (Connection) DriverManager.getConnection("jdbc:mysql://localhost:3306/dbHosDemo?useUnicode=yes&characterEncoding=UTF-8", "root", "");
+            Connection conn = (Connection) DriverManager.getConnection("jdbc:postgresql://localhost:5433/dbHos", "postgres", "postgres");
 
 //Af_Scheme_Number=request.getParameter("Af_Scheme_Number");  
          
@@ -65,7 +64,7 @@ public class deleteData extends HttpServlet {
             
             Statement stmt = (Statement) conn.createStatement();
            
-            sql = "delete from addparam where id="+id;
+            sql = "delete from a_add_param where id="+id;
             //stmt.executeUpdate("SET NAMES UTF8");
             //stmt.executeUpdate("SET character_set_results=utf8");
             //stmt.executeUpdate("SET character_set_client=utf8");

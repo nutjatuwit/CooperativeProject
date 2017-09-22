@@ -82,16 +82,18 @@ public final class testQuery_jsp extends org.apache.jasper.runtime.HttpJspBase
             
            try{
                
-               String sql = "select * from a_add_param";
+               String sql = "select a_add_param.id,a_filter_type.namefil,a_add_param.name,a_add_param.description,a_add_param.query from a_add_param inner join a_filter_type on a_add_param.idfil = a_filter_type.idfil"
+                       + "order by a_add_param.id ASC";
                //String sqlFilter = "select filtertype.nameFil from addparam ";
                Connection con =null; 
                
                Class.forName("org.postgresql.Driver").newInstance();
-               Connection conn = DriverManager.getConnection("jdbc:postgresql://localhost:5433/dbHos", "postgres", "postgres");
+               con = DriverManager.getConnection("jdbc:postgresql://localhost:5433/dbHos", "postgres", "postgres");
                
                Statement statement = con.createStatement();
                
                ResultSet rs = statement.executeQuery(sql);
+               
                //ResultSet rsFilter = statement.executeQuery(sqlFilter);
                    out.println("<table border='2'>");
                    out.println("<tr>");

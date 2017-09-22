@@ -172,13 +172,12 @@ th {
             
            try{
                
-               String sql = "select id,name,description,query,filtertype.nameFil from addparam,filtertype where addparam.idFil "
-                       + "= filtertype.idFil order by id ASC";
+               String sql = "select a_add_param.id,a_add_param.name,a_add_param.description,a_add_param.query,a_filter_type.namefil from a_add_param inner join a_filter_type on a_add_param.idfil = a_filter_type.idfil order by a_add_param.id ASC";
                //String sqlFilter = "select filtertype.nameFil from addparam ";
                Connection con =null; 
                
-               Class.forName("com.mysql.jdbc.Driver");
-               con = DriverManager.getConnection("jdbc:mysql://localhost:3306/dbHosDemo?useUnicode=yes&characterEncoding=UTF-8","root","");
+               Class.forName("org.postgresql.Driver").newInstance();
+               con = DriverManager.getConnection("jdbc:postgresql://localhost:5433/dbHos", "postgres", "postgres");
                
                Statement statement = con.createStatement();
                
