@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+
+
+<images>
+<item>
+	<ImageID>1</ImageID>
+	<ItemID>Item 01</ItemID>
+	<ImagePath>http://www.thaicreate.com/android/images/img01.gif</ImagePath>
+	<Link>http://www.thaicreate.com/page-1.html</Link>
+</item>
+
+<item>
+	<ImageID>2</ImageID>
+	<ItemID>Item 02</ItemID>
+	<ImagePath>http://www.thaicreate.com/android/images/img02.gif</ImagePath>
+	<Link>http://www.thaicreate.com/page-2.html</Link>
+</item>
+
+<item>
+	<ImageID>3</ImageID>
+	<ItemID>Item 03</ItemID>
+	<ImagePath>http://www.thaicreate.com/android/images/img03.gif</ImagePath>
+	<Link>http://www.thaicreate.com/page-3.html</Link>
+</item>
+</images>
