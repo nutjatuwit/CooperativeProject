@@ -12,6 +12,10 @@
         <title>JSP Page</title>
     </head>
     <body>
-        <h1>Hello World!</h1>
+        <%
+           request.setCharacterEncoding("UTF-8");
+           String category=request.getParameter("category");
+           out.print(category);
+        %>
     </body>
 </html>

@@ -24,7 +24,7 @@ import javax.swing.tree.DefaultMutableTreeNode;
 import java.io.File;
 import java.util.ArrayList;
 
-public final class reportForm_jsp extends org.apache.jasper.runtime.HttpJspBase
+public final class reportCateForm_jsp extends org.apache.jasper.runtime.HttpJspBase
     implements org.apache.jasper.runtime.JspSourceDependent {
 
 
@@ -290,21 +290,18 @@ public final class reportForm_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("        <div id=\"pagewrap\">\n");
       out.write("\n");
       out.write("\t<header align='center'>\n");
-      out.write("\t\t<h1>Manage Report Form</h1>\n");
+      out.write("\t\t");
+ out.print("<h1>ประเภทรายงาน</h1>"); 
+      out.write("\n");
       out.write("\t</header>\n");
-      out.write("\t<h2>ประเภทรายงาน</h2>\n");
       out.write("\t\n");
-      out.write("\t\t\n");
+      out.write("        \n");
       out.write("\t\t");
 
                     rs = statement.executeQuery(sql);
                     out.print("<div class='w3-container'>");
                     out.print("<table class='w3-table-all w3-hoverable'>");
-                    out.print("<tr>");
-                          out.print("<th>");
-                             out.print("Category"); 
-                          out.print("</th>");
-                      out.print("</tr>");
+                    
                     while(rs.next()){
                       out.print("<tr class='w3-hover-blue'>");
                           out.print("<td onclick='goLink(this)'>");
@@ -315,91 +312,11 @@ public final class reportForm_jsp extends org.apache.jasper.runtime.HttpJspBase
                     }
                     out.print("</table>");
                     out.print("</div>");
-                  /*try{ 
-               //String comparStaff="0";
-               //String comparDivision="0";
-        out.print("<ul>"); 
-        for (int temp = 0; temp < nList.getLength(); temp++) {
-            Node nNode = nList.item(temp);
-            if (nNode.getNodeType() == Node.ELEMENT_NODE) {
-               Element eElement = (Element) nNode;
-            out.print("<li>"); 
-            out.print(eElement.getElementsByTagName("name").item(0).getTextContent());  
-              
-                   out.print("<ul>");
-                         /*
-                          for(int i=1;i<eElement.getElementsByTagName("name").getLength();i++){
-                          out.print("<li>");
-                          out.print(eElement.getElementsByTagName("name").item(i).getTextContent());
-                          out.print("</li>");//staff
-                          }
-                        
-                   out.print("</ul>");//staff
-           out.print("</li>");//company
-           
-            }
-        }
-        out.print("</ul>");//company
-          
-             }catch(Exception ex){
-                ex.printStackTrace();
-             } 
-                */
+                 
                 
       out.write("\n");
-      out.write("\t</div>\n");
-      out.write("\t<h2>รายงาน</h2>\n");
-      out.write("\t<div id=\"middle\">\n");
-      out.write("\t\t");
-
-                    //out.print(report);
-                  /*   try{ 
-               //String comparStaff="0";
-               //String comparDivision="0";
-        out.print("<ul>"); 
-        for (int temp = 0; temp < nList.getLength(); temp++) {
-            Node nNode = nList.item(temp);
-            if (nNode.getNodeType() == Node.ELEMENT_NODE) {
-               Element eElement = (Element) nNode;
-            //out.print("<li>"); 
-            //out.print(eElement.getElementsByTagName("name").item(0).getTextContent());  
-                 if(eElement.getElementsByTagName("name").item(0).getTextContent().toString().equals(report)){
-                   //out.print("<ul>");
-                   //out.print(report);
-                         
-                          for(int i=1;i<eElement.getElementsByTagName("name").getLength();i++){
-                          out.print("<li>");
-                          out.print(eElement.getElementsByTagName("name").item(i).getTextContent());
-                          out.print("</li>");//staff
-                          }
-                        
-                   //out.print("</ul>");//staff
-                 }
-           //out.print("</li>");//company
-            }
-        }
-        out.print("</ul>");//company
-          
-             }catch(Exception ex){
-                ex.printStackTrace();
-             } 
-                */ 
-                
-                
-      out.write("\n");
-      out.write("\t</div>\n");
-      out.write("\n");
-      out.write("\t<div id=\"sidebar\">\n");
-      out.write("\t\t<h2>รายละเอียดของรายงาน</h2><br>\n");
-      out.write("\t\t\n");
       out.write("\t</div>\n");
       out.write("\t\n");
-      out.write("\t<footer>\n");
-      out.write("\t\t<h4>Footer</h4>\n");
-      out.write("\t\t<p>Footer text</p>\n");
-      out.write("\t</footer>\n");
-      out.write("\n");
-      out.write("         </div>\n");
       out.write("        <script src=\"https://cdnjs.cloudflare.com/ajax/libs/jquery/1.12.1/jquery.min.js\"></script>\n");
       out.write("        <script src=\"https://cdnjs.cloudflare.com/ajax/libs/jstree/3.2.1/jstree.min.js\"></script>\n");
       out.write("         <script>\n");
@@ -407,11 +324,11 @@ public final class reportForm_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write(" function goLink(element) {\n");
       out.write("    //window.history.back();\n");
       out.write("    var y = element.innerHTML;\n");
-      out.write("     alert(y);\n");
+      out.write("     //alert(y);\n");
       out.write("    //var x = document.getElementsByTagName(\"td\")[0].innerText;\n");
       out.write("    //alert(x);\n");
-      out.write("    var linkHref = \"index.jsp?category=\"+y;\n");
-      out.write("     window.location.replace(linkHref);\n");
+      out.write("    var linkHref = \"reportDetailForm.jsp?category=\"+y;\n");
+      out.write("     window.open(linkHref,\"mid\");\n");
       out.write("    }\n");
       out.write("  \n");
       out.write("    \n");
