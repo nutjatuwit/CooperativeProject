@@ -16,6 +16,14 @@
         <servlet-name>updateData</servlet-name>
         <servlet-class>updateData</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>insertCate</servlet-name>
+        <servlet-class>insertCate</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>insertDetail</servlet-name>
+        <servlet-class>insertDetail</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>insertData</servlet-name>
         <url-pattern>/insertData</url-pattern>
@@ -31,6 +39,14 @@
     <servlet-mapping>
         <servlet-name>updateData</servlet-name>
         <url-pattern>/updateData</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>insertCate</servlet-name>
+        <url-pattern>/insertCate</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>insertDetail</servlet-name>
+        <url-pattern>/insertDetail</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

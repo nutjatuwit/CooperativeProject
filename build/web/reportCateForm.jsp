@@ -176,6 +176,7 @@
               //ResultSet rsCompile = statement1.executeQuery(sqlCompile);
               
               String sql = "select id_cate,name_cate from a_report_category order by id_cate ASC";
+              int count=0;
               ResultSet rs = null;
             /*String report = request.getParameter("report");
             File inputFile = new File("C:/Users/NUT/Desktop/ex.xml");
@@ -234,6 +235,7 @@
         
 		<%
                     rs = statement.executeQuery(sql);
+                    out.print("<form action='insertCate'>");
                     out.print("<div class='w3-container'>");
                     out.print("<table class='w3-table-all w3-hoverable'>");
                     
@@ -243,25 +245,40 @@
                              out.print(rs.getString(2)); 
                           out.print("</td>");
                       out.print("</tr>");
-                    
+                       count = count+1;
                     }
                     out.print("</table>");
                     out.print("</div>");
-                 
+                 out.print("<input type='text' name='nameCate'>"); 
+                 out.print("<input type='hidden' name='pkNum' value='"+(count+1)+"'>");
+                 out.print("<input type='submit' value='เพิ่ม'>");
+                 out.print("</form>");
                 %>
 	</div>
 	
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.12.1/jquery.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jstree/3.2.1/jstree.min.js"></script>
          <script>
+function goInsert() {
+    //window.history.back();
+    //var y = element.innerHTML;
+    //var pkCate = <%=count%>;
+     //alert(pkCate);
+    //var x = document.getElementsByTagName("td")[0].innerText;
+    //alert(x);
+    //var linkHref = "reportCateForm.jsp";
+    // window.open(linkHref,"left");
+    }
+
 
  function goLink(element) {
     //window.history.back();
     var y = element.innerHTML;
-     //alert(y);
+    //var pkCate = <%=count%>;
+     //alert(pkCate);
     //var x = document.getElementsByTagName("td")[0].innerText;
     //alert(x);
-    var linkHref = "reportDetailForm.jsp?category="+y;
+    var linkHref = "reportDetailForm.jsp?category="+y+"&pkCate=0";
      window.open(linkHref,"mid");
     }
   

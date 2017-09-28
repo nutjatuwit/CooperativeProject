@@ -169,18 +169,25 @@
     <body>
        <%
            request.setCharacterEncoding("UTF-8");
+           response.setCharacterEncoding("UTF-8");
            String category=request.getParameter("category");
-          
            
+          
+           String cateNum=request.getParameter("pkCate");
+           int count=0;
+           String pkCate="";
            
            Class.forName("org.postgresql.Driver").newInstance();
                Connection conn = DriverManager.getConnection("jdbc:postgresql://localhost:5433/dbHos", "postgres", "postgres"); //database connection
                Statement statement = conn.createStatement();
+               Statement statement1 = conn.createStatement();
               //String sqlCompile = "select * from member";
               //ResultSet rsCompile = statement1.executeQuery(sqlCompile);
               
-              String sql = "select id_report,name_report,path_report,jrxml_report from a_report_category inner join a_report_detail on (a_report_category.id_cate = a_report_detail.id_cate) where name_cate = '"+category+"' order by id_report ASC";
+              String sql = "select id_report,name_report,path_report,jrxml_report from a_report_category inner join a_report_detail on (a_report_category.id_cate = a_report_detail.id_cate) where (name_cate = '"+category+"' or a_report_detail.id_cate='"+cateNum+"') order by id_report ASC";
+              String sqlCate = "select distinct(a_report_category.id_cate) from a_report_category inner join a_report_detail on (a_report_category.id_cate = a_report_detail.id_cate) where (name_cate = '"+category+"' or a_report_detail.id_cate='"+cateNum+"') limit 1";
               ResultSet rs = null;
+              ResultSet rsCate = null;
               
            
         %>
@@ -192,9 +199,15 @@
 	
         
 		<%
+                    rsCate = statement1.executeQuery(sqlCate);
                     rs = statement.executeQuery(sql);
+                    out.print("<form action='insertDetail'>");
                     out.print("<div class='w3-container'>");
                     out.print("<table class='w3-table-all w3-hoverable'>");
+                    
+                    while(rsCate.next()){
+                        pkCate=rsCate.getString(1);
+                    }
                     
                     while(rs.next()){
                       out.print("<tr class='w3-hover-blue'>");
@@ -202,11 +215,16 @@
                              out.print(rs.getString(2)); 
                           out.print("</td>");
                       out.print("</tr>");
-                    
+                    count = count+1;
                     }
                     out.print("</table>");
                     out.print("</div>");
-                 
+                 out.print("<input type='text' name='nameDetail'>"); 
+                 out.print("<input type='hidden' name='category' value='"+category+"'>");
+                 out.print("<input type='hidden' name='pkCate' value='"+pkCate+"'>");
+                 out.print("<input type='hidden' name='pkDetail' value='"+(count+1)+"'>");
+                 out.print("<input type='submit' value='เพิ่ม'>");
+                 out.print("</form>");
                 %>
 	</div>
         
@@ -217,11 +235,12 @@
  function goLink(element) {
     //window.history.back();
     var cate = '<%=category%>';
+    var count = '<%=count%>';
     var y = element.innerHTML;
      //alert(y);
     //var x = document.getElementsByTagName("td")[0].innerText;
     //alert(x);
-    var linkHref = "reportPathForm.jsp?detail="+y+"&category="+cate;
+    var linkHref = "reportPathForm.jsp?detail="+y+"&category="+cate+"&pkDetail="+count;
     //alert(linkHref);
      window.open(linkHref,'right');
     }

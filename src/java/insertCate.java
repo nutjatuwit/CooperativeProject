@@ -18,15 +18,14 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-
-
 /**
  *
  * @author NUT
  */
-public class insertData extends HttpServlet {
-    String name, description,query,idFil;
-    String sql;
+public class insertCate extends HttpServlet {
+  String nameCate;
+  int pkNum;        
+  String sql;
     
   
     ResultSet res;
@@ -54,23 +53,21 @@ public class insertData extends HttpServlet {
             Connection conn = (Connection) DriverManager.getConnection("jdbc:postgresql://localhost:5433/dbHos", "postgres", "postgres");
 
 //Af_Scheme_Number=request.getParameter("Af_Scheme_Number");  
-            name = request.getParameter("name");
-            idFil = request.getParameter("idfil");
-            description = request.getParameter("description");
-            query = request.getParameter("query");
+            nameCate = request.getParameter("nameCate");
+            pkNum = Integer.parseInt(request.getParameter("pkNum"));
+           
+            System.out.println("pkNum : "+pkNum);
+            System.out.println("nameCate : "+nameCate);
             
-            System.out.println("Name : "+name);
-            System.out.println("IdFil : "+idFil);
-            System.out.println("Description : "+description);
-            System.out.println("Query : "+query);
+            
 
             
             
             
             Statement stmt = (Statement) conn.createStatement();
            
-            sql = "insert into a_add_param(name,idfil,description,query)"
-                    + " values('" + name + "','" + idFil + "','" + description + "','" + query + "')";
+            sql = "insert into a_report_category(id_cate,name_cate)"
+                    + " values('" + pkNum + "','" + nameCate + "')";
             //stmt.executeUpdate("SET NAMES UTF8");
             //stmt.executeUpdate("SET character_set_results=utf8");
             //stmt.executeUpdate("SET character_set_client=utf8");
@@ -97,7 +94,7 @@ public class insertData extends HttpServlet {
         response.setContentType("text/html");
         response.setCharacterEncoding("UTF-8");
         //request.setAttribute("todo", "10");
-        response.sendRedirect("/WebApplication3/manageParams.jsp");
+        response.sendRedirect("/WebApplication3/reportCateForm.jsp");
         
         //request.getRequestDispatcher("/addParams.jsp").forward(request, response);
         try {

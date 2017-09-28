@@ -237,6 +237,7 @@ public final class reportCateForm_jsp extends org.apache.jasper.runtime.HttpJspB
               //ResultSet rsCompile = statement1.executeQuery(sqlCompile);
               
               String sql = "select id_cate,name_cate from a_report_category order by id_cate ASC";
+              int count=0;
               ResultSet rs = null;
             /*String report = request.getParameter("report");
             File inputFile = new File("C:/Users/NUT/Desktop/ex.xml");
@@ -299,6 +300,7 @@ public final class reportCateForm_jsp extends org.apache.jasper.runtime.HttpJspB
       out.write("\t\t");
 
                     rs = statement.executeQuery(sql);
+                    out.print("<form action='insertCate'>");
                     out.print("<div class='w3-container'>");
                     out.print("<table class='w3-table-all w3-hoverable'>");
                     
@@ -308,11 +310,14 @@ public final class reportCateForm_jsp extends org.apache.jasper.runtime.HttpJspB
                              out.print(rs.getString(2)); 
                           out.print("</td>");
                       out.print("</tr>");
-                    
+                       count = count+1;
                     }
                     out.print("</table>");
                     out.print("</div>");
-                 
+                 out.print("<input type='text' value='' name='nameCate'>"); 
+                 out.print("<input type='hidden' value='' name='pkNum' value='"+count+"'>");
+                 out.print("<input type='submit' value='เพิ่ม' onclick=''>");
+                 out.print("</form>");
                 
       out.write("\n");
       out.write("\t</div>\n");
@@ -320,11 +325,27 @@ public final class reportCateForm_jsp extends org.apache.jasper.runtime.HttpJspB
       out.write("        <script src=\"https://cdnjs.cloudflare.com/ajax/libs/jquery/1.12.1/jquery.min.js\"></script>\n");
       out.write("        <script src=\"https://cdnjs.cloudflare.com/ajax/libs/jstree/3.2.1/jstree.min.js\"></script>\n");
       out.write("         <script>\n");
+      out.write("function goInsert() {\n");
+      out.write("    //window.history.back();\n");
+      out.write("    //var y = element.innerHTML;\n");
+      out.write("    //var pkCate = ");
+      out.print(count);
+      out.write(";\n");
+      out.write("     //alert(pkCate);\n");
+      out.write("    //var x = document.getElementsByTagName(\"td\")[0].innerText;\n");
+      out.write("    //alert(x);\n");
+      out.write("    //var linkHref = \"reportCateForm.jsp\";\n");
+      out.write("    // window.open(linkHref,\"left\");\n");
+      out.write("    }\n");
+      out.write("\n");
       out.write("\n");
       out.write(" function goLink(element) {\n");
       out.write("    //window.history.back();\n");
       out.write("    var y = element.innerHTML;\n");
-      out.write("     //alert(y);\n");
+      out.write("    //var pkCate = ");
+      out.print(count);
+      out.write(";\n");
+      out.write("     //alert(pkCate);\n");
       out.write("    //var x = document.getElementsByTagName(\"td\")[0].innerText;\n");
       out.write("    //alert(x);\n");
       out.write("    var linkHref = \"reportDetailForm.jsp?category=\"+y;\n");
