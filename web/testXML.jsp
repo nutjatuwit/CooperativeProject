@@ -77,7 +77,7 @@
                                  //out.println("<br>NAME = " + ele.getElementsByTagName("name").item(i+1).getTextContent());
 			          //out.println("<br>PATH = " + ele.getElementsByTagName("path").item(i-1).getTextContent());
 			          //out.println("<br>JRXML = " + ele.getElementsByTagName("jrxml").item(i-1).getTextContent()+"<br>");
-                                  String sql1 = "insert into a_report_detail(id_report,id_cate,name_report,path_report,jrxml_report)  values('"+(count=count+1)+"','"+(temp+1)+"','"+ele.getElementsByTagName("name").item(i).getTextContent()+"','"+ele.getElementsByTagName("path").item(i-1).getTextContent()+"','"+ele.getElementsByTagName("jrxml").item(i-1).getTextContent()+"')";
+                                  String sql1 = "insert into a_report_detail(id_cate,name_report,path_report,jrxml_report)  values('"+(temp+1)+"','"+ele.getElementsByTagName("name").item(i).getTextContent()+"','"+ele.getElementsByTagName("path").item(i-1).getTextContent()+"','"+ele.getElementsByTagName("jrxml").item(i-1).getTextContent()+"');";
                                   //String sql1 = "insert into a_report_category(id_cate,name_cate)  values('"+(temp+1)+"','"+ele.getElementsByTagName("name").item(0).getTextContent()+"')";
                                   sql.add(sql1);
                                   //Statement statement = conn.createStatement();

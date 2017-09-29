@@ -300,7 +300,7 @@ public final class reportCateForm_jsp extends org.apache.jasper.runtime.HttpJspB
       out.write("\t\t");
 
                     rs = statement.executeQuery(sql);
-                    out.print("<form action='insertCate'>");
+                    
                     out.print("<div class='w3-container'>");
                     out.print("<table class='w3-table-all w3-hoverable'>");
                     
@@ -309,14 +309,20 @@ public final class reportCateForm_jsp extends org.apache.jasper.runtime.HttpJspB
                           out.print("<td onclick='goLink(this)'>");
                              out.print(rs.getString(2)); 
                           out.print("</td>");
+                           out.print("<td onclick='alert('edit')'>");
+                             out.print("EDIT"); 
+                          out.print("</td>");
+                           out.print("<td onclick='alert('remove')'>");
+                             out.print("REMOVE"); 
+                          out.print("</td>");
                       out.print("</tr>");
                        count = count+1;
                     }
                     out.print("</table>");
                     out.print("</div>");
-                 out.print("<input type='text' value='' name='nameCate'>"); 
-                 out.print("<input type='hidden' value='' name='pkNum' value='"+count+"'>");
-                 out.print("<input type='submit' value='เพิ่ม' onclick=''>");
+                 out.print("<form action='insertCate'>");
+                 out.print("<input type='text' name='nameCate'>");
+                 out.print("<input type='submit' value='เพิ่ม'>");
                  out.print("</form>");
                 
       out.write("\n");
@@ -342,6 +348,7 @@ public final class reportCateForm_jsp extends org.apache.jasper.runtime.HttpJspB
       out.write(" function goLink(element) {\n");
       out.write("    //window.history.back();\n");
       out.write("    var y = element.innerHTML;\n");
+      out.write("    \n");
       out.write("    //var pkCate = ");
       out.print(count);
       out.write(";\n");

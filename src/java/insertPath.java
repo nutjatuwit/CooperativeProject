@@ -8,6 +8,7 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.net.URLEncoder;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -22,13 +23,13 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author NUT
  */
-public class insertCate extends HttpServlet {
-  String nameCate;
-        
-  String sql;
+public class insertPath extends HttpServlet {
+  String path,category,jrxml,detail;
+  String pkCate;        
+  String sql,sqlCate;
     
   
-    ResultSet res;
+    ResultSet res,resCate;
     
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -53,11 +54,18 @@ public class insertCate extends HttpServlet {
             Connection conn = (Connection) DriverManager.getConnection("jdbc:postgresql://localhost:5433/dbHos", "postgres", "postgres");
 
 //Af_Scheme_Number=request.getParameter("Af_Scheme_Number");  
-            nameCate = request.getParameter("nameCate");
+            path = request.getParameter("path");
+            jrxml = request.getParameter("jrxml");
+            detail = request.getParameter("detail");
+            category = request.getParameter("category");
+            //pkDetail = request.getParameter("pkDetail");
             
            
-           
-            System.out.println("nameCate : "+nameCate);
+            //System.out.println("pkDetail : "+pkDetail);
+            System.out.println("path : "+path);
+            System.out.println("jrxml : "+jrxml);
+            System.out.println("detail : "+detail);
+            System.out.println("category : "+category);
             
             
 
@@ -65,17 +73,30 @@ public class insertCate extends HttpServlet {
             
             
             Statement stmt = (Statement) conn.createStatement();
+            Statement stmtCate = (Statement) conn.createStatement();
+            
+            sqlCate = "select id_cate from a_report_category where name_cate = '"+category+"' limit 1";
+            resCate = stmtCate.executeQuery(sqlCate);
            
-            sql = "insert into a_report_category(name_cate)"
-                    + " values('" + nameCate + "')";
-            //stmt.executeUpdate("SET NAMES UTF8");
-            //stmt.executeUpdate("SET character_set_results=utf8");
-            //stmt.executeUpdate("SET character_set_client=utf8");
-            //stmt.executeUpdate("SET character_set_connection=utf8");
+            
+            
+            
+            
+             while(resCate.next()){
+                pkCate = resCate.getString(1);
+            }
+             //update a_report_detail set path_report='1',jrxml_report='1'
+             //where id_cate='12' and name_report='2.รายงานอื่น'
+             sql = "update a_report_detail set path_report='"+path+"',jrxml_report='"+jrxml+"' where id_cate='"+pkCate+"' and name_report='"+detail+"'";
+                   
             System.out.println(sql);
             
-            stmt.executeUpdate(sql);
+            //stmtCate.executeQuery(sqlCate);
+            stmt.execute(sql);
             
+            //pass parameter error
+            //response.setCharacterEncoding("UTF-8");
+            response.sendRedirect("/WebApplication3/reportPathForm.jsp?detail="+URLEncoder.encode(detail, "UTF-8")+"&category="+ URLEncoder.encode(category, "UTF-8"));
         }
     }
 
@@ -93,8 +114,9 @@ public class insertCate extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html");
         response.setCharacterEncoding("UTF-8");
+        
         //request.setAttribute("todo", "10");
-        response.sendRedirect("/WebApplication3/reportCateForm.jsp");
+        
         
         //request.getRequestDispatcher("/addParams.jsp").forward(request, response);
         try {

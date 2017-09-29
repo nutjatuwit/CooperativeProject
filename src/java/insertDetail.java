@@ -8,6 +8,7 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.net.URLEncoder;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -23,12 +24,12 @@ import javax.servlet.http.HttpServletResponse;
  * @author NUT
  */
 public class insertDetail extends HttpServlet {
-  String nameDetail,category;
-  String pkDetail,pkCate;        
-  String sql;
+  String nameDetail,category,nameCate;
+  String pkCate;        
+  String sql,sqlCate;
     
   
-    ResultSet res;
+    ResultSet res,resCate;
     
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -55,10 +56,10 @@ public class insertDetail extends HttpServlet {
 //Af_Scheme_Number=request.getParameter("Af_Scheme_Number");  
             nameDetail = request.getParameter("nameDetail");
             category = request.getParameter("category");
-            pkDetail = request.getParameter("pkDetail");
+            //pkDetail = request.getParameter("pkDetail");
             pkCate = request.getParameter("pkCate");
            
-            System.out.println("pkDetail : "+pkDetail);
+            //System.out.println("pkDetail : "+pkDetail);
             System.out.println("pkCate : "+pkCate);
             System.out.println("nameDetail : "+nameDetail);
             System.out.println("category : "+category);
@@ -69,19 +70,28 @@ public class insertDetail extends HttpServlet {
             
             
             Statement stmt = (Statement) conn.createStatement();
+            Statement stmtCate = (Statement) conn.createStatement();
+            
            
-            sql = "insert into a_report_detail(id_report,id_cate,name_report)"
-                    + " values('" + pkDetail + "','" + pkCate + "','" + nameDetail + "')";
+            sql = "insert into a_report_detail(id_cate,name_report)"
+                    + " values('" + pkCate + "','" + nameDetail + "')";
+            sqlCate = "select name_cate from a_report_category where id_cate = '"+pkCate+"'";
+            resCate = stmtCate.executeQuery(sqlCate);
             //stmt.executeUpdate("SET NAMES UTF8");
             //stmt.executeUpdate("SET character_set_results=utf8");
             //stmt.executeUpdate("SET character_set_client=utf8");
             //stmt.executeUpdate("SET character_set_connection=utf8");
+            while(resCate.next()){
+                nameCate = resCate.getString(1);
+            }
             System.out.println(sql);
             
-            //stmt.executeUpdate(sql);
+            //stmtCate.executeQuery(sqlCate);
+            stmt.execute(sql);
             
             //pass parameter error
-            response.sendRedirect("/WebApplication3/reportDetailForm.jsp?pkCate="+pkCate+"&category=pass&pkDetail="+pkDetail);
+            response.setCharacterEncoding("UTF-8");
+            response.sendRedirect("/WebApplication3/reportDetailForm.jsp?category="+ URLEncoder.encode(nameCate, "UTF-8"));
         }
     }
 

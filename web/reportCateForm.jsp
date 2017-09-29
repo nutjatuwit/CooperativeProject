@@ -43,6 +43,7 @@
             body { 
                 font-family: 'Open Sans', sans-serif;
                 color: #666;
+                
             }
 
             /* STRUCTURE */
@@ -60,6 +61,7 @@
                 width: 380px;
                 float: left;
                 padding: 5px 15px;
+                
             }
 
             #middle {
@@ -235,7 +237,7 @@
         
 		<%
                     rs = statement.executeQuery(sql);
-                    out.print("<form action='insertCate'>");
+                    
                     out.print("<div class='w3-container'>");
                     out.print("<table class='w3-table-all w3-hoverable'>");
                     
@@ -244,13 +246,26 @@
                           out.print("<td onclick='goLink(this)'>");
                              out.print(rs.getString(2)); 
                           out.print("</td>");
+                          
+                          out.print("<form action=''>");
+                           out.print("<td>");
+                             out.print("<input type='submit' value='แก้ไข'>");
+                          out.print("</td>");
+                          out.print("</form>");
+                          
+                          out.print("<form action=''>");
+                           out.print("<td>");
+                             out.print("<input type='submit' value='ลบ'>"); 
+                          out.print("</td>");
+                          out.print("</form>");
+                          
                       out.print("</tr>");
                        count = count+1;
                     }
                     out.print("</table>");
                     out.print("</div>");
-                 out.print("<input type='text' name='nameCate'>"); 
-                 out.print("<input type='hidden' name='pkNum' value='"+(count+1)+"'>");
+                 out.print("<form action='insertCate'>");
+                 out.print("<input type='text' name='nameCate'>");
                  out.print("<input type='submit' value='เพิ่ม'>");
                  out.print("</form>");
                 %>
@@ -259,11 +274,12 @@
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.12.1/jquery.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jstree/3.2.1/jstree.min.js"></script>
          <script>
-function goInsert() {
+function goEdit(e) {
     //window.history.back();
-    //var y = element.innerHTML;
+    var currentRow = $(e).
+    alert(currentRow.toString());
     //var pkCate = <%=count%>;
-     //alert(pkCate);
+     //alert(y);
     //var x = document.getElementsByTagName("td")[0].innerText;
     //alert(x);
     //var linkHref = "reportCateForm.jsp";
@@ -274,12 +290,13 @@ function goInsert() {
  function goLink(element) {
     //window.history.back();
     var y = element.innerHTML;
+    //alert(y);
     //var pkCate = <%=count%>;
      //alert(pkCate);
     //var x = document.getElementsByTagName("td")[0].innerText;
     //alert(x);
-    var linkHref = "reportDetailForm.jsp?category="+y+"&pkCate=0";
-     window.open(linkHref,"mid");
+    var linkHref = "reportDetailForm.jsp?category="+y;
+    window.open(linkHref,"mid");
     }
   
     
