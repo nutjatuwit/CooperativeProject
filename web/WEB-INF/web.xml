@@ -28,6 +28,10 @@
         <servlet-name>insertPath</servlet-name>
         <servlet-class>insertPath</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>deleteCate</servlet-name>
+        <servlet-class>deleteCate</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>insertData</servlet-name>
         <url-pattern>/insertData</url-pattern>
@@ -55,6 +59,10 @@
     <servlet-mapping>
         <servlet-name>insertPath</servlet-name>
         <url-pattern>/insertPath</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>deleteCate</servlet-name>
+        <url-pattern>/deleteCate</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

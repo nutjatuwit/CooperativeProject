@@ -247,20 +247,22 @@
                              out.print(rs.getString(2)); 
                           out.print("</td>");
                           
-                          out.print("<form action=''>");
+                          out.print("<form action='index.jsp'>");
                            out.print("<td>");
-                             out.print("<input type='submit' value='แก้ไข'>");
+                             out.print("<input type='hidden' name='id_cate' value='"+rs.getString(1)+"'>");
+                             out.print("<input type='submit' src='' value='แก้ไข'>");
                           out.print("</td>");
                           out.print("</form>");
                           
-                          out.print("<form action=''>");
+                          out.print("<form action='deleteCate'>");
                            out.print("<td>");
-                             out.print("<input type='submit' value='ลบ'>"); 
+                             out.print("<input type='hidden' name='id_cate' value='"+rs.getString(1)+"'>");
+                             out.print("<input type='submit' src='' value='ลบ'>"); 
                           out.print("</td>");
                           out.print("</form>");
                           
                       out.print("</tr>");
-                       count = count+1;
+                       
                     }
                     out.print("</table>");
                     out.print("</div>");

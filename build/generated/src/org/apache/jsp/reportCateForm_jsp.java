@@ -103,6 +103,7 @@ public final class reportCateForm_jsp extends org.apache.jasper.runtime.HttpJspB
       out.write("            body { \n");
       out.write("                font-family: 'Open Sans', sans-serif;\n");
       out.write("                color: #666;\n");
+      out.write("                \n");
       out.write("            }\n");
       out.write("\n");
       out.write("            /* STRUCTURE */\n");
@@ -120,6 +121,7 @@ public final class reportCateForm_jsp extends org.apache.jasper.runtime.HttpJspB
       out.write("                width: 380px;\n");
       out.write("                float: left;\n");
       out.write("                padding: 5px 15px;\n");
+      out.write("                \n");
       out.write("            }\n");
       out.write("\n");
       out.write("            #middle {\n");
@@ -309,12 +311,21 @@ public final class reportCateForm_jsp extends org.apache.jasper.runtime.HttpJspB
                           out.print("<td onclick='goLink(this)'>");
                              out.print(rs.getString(2)); 
                           out.print("</td>");
-                           out.print("<td onclick='alert('edit')'>");
-                             out.print("EDIT"); 
+                          
+                          out.print("<form action='index.jsp'>");
+                           out.print("<td>");
+                             out.print("<input type='hidden' name='id_cate' value='"+rs.getString(1)+"'>");
+                             out.print("<input type='submit' value='แก้ไข'>");
                           out.print("</td>");
-                           out.print("<td onclick='alert('remove')'>");
-                             out.print("REMOVE"); 
+                          out.print("</form>");
+                          
+                          out.print("<form action='index.jsp'>");
+                           out.print("<td>");
+                             out.print("<input type='hidden' name='id_cate' value='"+rs.getString(1)+"'>");
+                             out.print("<input type='submit' value='ลบ'>"); 
                           out.print("</td>");
+                          out.print("</form>");
+                          
                       out.print("</tr>");
                        count = count+1;
                     }
@@ -331,13 +342,14 @@ public final class reportCateForm_jsp extends org.apache.jasper.runtime.HttpJspB
       out.write("        <script src=\"https://cdnjs.cloudflare.com/ajax/libs/jquery/1.12.1/jquery.min.js\"></script>\n");
       out.write("        <script src=\"https://cdnjs.cloudflare.com/ajax/libs/jstree/3.2.1/jstree.min.js\"></script>\n");
       out.write("         <script>\n");
-      out.write("function goInsert() {\n");
+      out.write("function goEdit(e) {\n");
       out.write("    //window.history.back();\n");
-      out.write("    //var y = element.innerHTML;\n");
+      out.write("    var currentRow = $(e).\n");
+      out.write("    alert(currentRow.toString());\n");
       out.write("    //var pkCate = ");
       out.print(count);
       out.write(";\n");
-      out.write("     //alert(pkCate);\n");
+      out.write("     //alert(y);\n");
       out.write("    //var x = document.getElementsByTagName(\"td\")[0].innerText;\n");
       out.write("    //alert(x);\n");
       out.write("    //var linkHref = \"reportCateForm.jsp\";\n");
@@ -348,7 +360,7 @@ public final class reportCateForm_jsp extends org.apache.jasper.runtime.HttpJspB
       out.write(" function goLink(element) {\n");
       out.write("    //window.history.back();\n");
       out.write("    var y = element.innerHTML;\n");
-      out.write("    \n");
+      out.write("    //alert(y);\n");
       out.write("    //var pkCate = ");
       out.print(count);
       out.write(";\n");
@@ -356,7 +368,7 @@ public final class reportCateForm_jsp extends org.apache.jasper.runtime.HttpJspB
       out.write("    //var x = document.getElementsByTagName(\"td\")[0].innerText;\n");
       out.write("    //alert(x);\n");
       out.write("    var linkHref = \"reportDetailForm.jsp?category=\"+y;\n");
-      out.write("     window.open(linkHref,\"mid\");\n");
+      out.write("    window.open(linkHref,\"mid\");\n");
       out.write("    }\n");
       out.write("  \n");
       out.write("    \n");
