@@ -32,6 +32,14 @@
         <servlet-name>deleteCate</servlet-name>
         <servlet-class>deleteCate</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>deleteDetail</servlet-name>
+        <servlet-class>deleteDetail</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>updateReport</servlet-name>
+        <servlet-class>updateReport</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>insertData</servlet-name>
         <url-pattern>/insertData</url-pattern>
@@ -63,6 +71,14 @@
     <servlet-mapping>
         <servlet-name>deleteCate</servlet-name>
         <url-pattern>/deleteCate</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>deleteDetail</servlet-name>
+        <url-pattern>/deleteDetail</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>updateReport</servlet-name>
+        <url-pattern>/updateReport</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

@@ -36,7 +36,7 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>JSP Page</title>
          
-        <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+        <link rel="stylesheet" href="style/w3.css">
         <style>
             @import url(https://fonts.googleapis.com/css?family=Open+Sans);
 
@@ -163,10 +163,49 @@
             #pagewrap, header, #content, #middle, #sidebar, footer {
                 border: solid 1px #ccc;
             }  
+            
+             div.tab {
+    overflow: hidden;
+    border: 1px solid #ccc;
+    background-color: #f1f1f1;
+}
+
+/* Style the buttons inside the tab */
+div.tab button {
+    background-color: inherit;
+    float: left;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    padding: 12px 20px;
+    transition: 0.6s;
+}
+
+/* Change background color of buttons on hover */
+div.tab button:hover {
+    background-color: #cceeff;
+}
+
+/* Create an active/current tablink class */
+div.tab button.active {
+    background-color: #ccc;
+}
+
+/* Style the tab content */
+.tabcontent {
+    display: none;
+    padding: 6px 10px;
+    border: 1px solid #ccc;
+    border-top: none;
+}
         </style>
         <link rel="stylesheet" href="dist/themes/default/style.min.css" />
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jstree/3.2.1/themes/default/style.min.css" />
        
+    <div class="tab">
+      <button class="tablinks" onclick="goBack();">กลับ</button>
+    </div>   
+      
     </head>
     <body>
         <%
@@ -247,9 +286,11 @@
                              out.print(rs.getString(2)); 
                           out.print("</td>");
                           
-                          out.print("<form action='index.jsp'>");
+                          out.print("<form action='reportEditForm.jsp'>");
                            out.print("<td>");
                              out.print("<input type='hidden' name='id_cate' value='"+rs.getString(1)+"'>");
+                             out.print("<input type='hidden' name='category' value='"+rs.getString(2)+"'>");
+                             out.print("<input type='hidden' name='reportType' value='category'>");
                              out.print("<input type='submit' src='' value='แก้ไข'>");
                           out.print("</td>");
                           out.print("</form>");

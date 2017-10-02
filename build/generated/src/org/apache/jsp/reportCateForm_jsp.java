@@ -96,7 +96,7 @@ public final class reportCateForm_jsp extends org.apache.jasper.runtime.HttpJspB
       out.write("        <meta http-equiv=\"Content-Type\" content=\"text/html; charset=UTF-8\">\n");
       out.write("        <title>JSP Page</title>\n");
       out.write("         \n");
-      out.write("        <link rel=\"stylesheet\" href=\"https://www.w3schools.com/w3css/4/w3.css\">\n");
+      out.write("        <link rel=\"stylesheet\" href=\"style/w3.css\">\n");
       out.write("        <style>\n");
       out.write("            @import url(https://fonts.googleapis.com/css?family=Open+Sans);\n");
       out.write("\n");
@@ -312,22 +312,24 @@ public final class reportCateForm_jsp extends org.apache.jasper.runtime.HttpJspB
                              out.print(rs.getString(2)); 
                           out.print("</td>");
                           
-                          out.print("<form action='index.jsp'>");
+                          out.print("<form action='reportEditForm.jsp'>");
                            out.print("<td>");
                              out.print("<input type='hidden' name='id_cate' value='"+rs.getString(1)+"'>");
-                             out.print("<input type='submit' value='แก้ไข'>");
+                             out.print("<input type='hidden' name='category' value='"+rs.getString(2)+"'>");
+                             out.print("<input type='hidden' name='reportType' value='category'>");
+                             out.print("<input type='submit' src='' value='แก้ไข'>");
                           out.print("</td>");
                           out.print("</form>");
                           
-                          out.print("<form action='index.jsp'>");
+                          out.print("<form action='deleteCate'>");
                            out.print("<td>");
                              out.print("<input type='hidden' name='id_cate' value='"+rs.getString(1)+"'>");
-                             out.print("<input type='submit' value='ลบ'>"); 
+                             out.print("<input type='submit' src='' value='ลบ'>"); 
                           out.print("</td>");
                           out.print("</form>");
                           
                       out.print("</tr>");
-                       count = count+1;
+                       
                     }
                     out.print("</table>");
                     out.print("</div>");

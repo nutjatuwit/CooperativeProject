@@ -36,7 +36,7 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>JSP Page</title>
          
-        <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+        <link rel="stylesheet" href="style/w3.css">
         <style>
             @import url(https://fonts.googleapis.com/css?family=Open+Sans);
 
@@ -201,20 +201,39 @@
 		<%
                     rsCate = statement1.executeQuery(sqlCate);
                     rs = statement.executeQuery(sql);
-                    
+                      while(rsCate.next()){
+                        pkCate=rsCate.getString(1);
+                    }
                     out.print("<div class='w3-container'>");
                     out.print("<table class='w3-table-all w3-hoverable'>");
                     
-                    while(rsCate.next()){
-                        pkCate=rsCate.getString(1);
-                    }
-                    out.print(category+"<br>");
-                    out.print(pkCate);
+                  
                     while(rs.next()){
                       out.print("<tr class='w3-hover-blue'>");
                           out.print("<td onclick='goLink(this)'>");
                              out.print(rs.getString(2)); 
                           out.print("</td>");
+                          
+                          out.print("<form action='reportEditForm.jsp'>");
+                           out.print("<td>");
+                             out.print("<input type='hidden' name='category' value='"+category+"'>");
+                             out.print("<input type='hidden' name='reportType' value='detail'>");
+                             out.print("<input type='hidden' name='id_cate' value='"+pkCate+"'>");
+                             out.print("<input type='hidden' name='id_report' value='"+rs.getString(1)+"'>");
+                             out.print("<input type='hidden' name='detail' value='"+rs.getString(2)+"'>");
+                             out.print("<input type='submit' src='' value='แก้ไข'>");
+                          out.print("</td>");
+                          out.print("</form>");
+                          
+                          out.print("<form action='deleteDetail'>");
+                           out.print("<td>");
+                             out.print("<input type='hidden' name='category' value='"+category+"'>");
+                             out.print("<input type='hidden' name='pkCate' value='"+pkCate+"'>");
+                             out.print("<input type='hidden' name='id_report' value='"+rs.getString(1)+"'>");
+                             out.print("<input type='submit' src='' value='ลบ'>"); 
+                          out.print("</td>");
+                          out.print("</form>");
+                          
                       out.print("</tr>");
                     //count = count+1;
                     }
