@@ -35,7 +35,7 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>JSP Page</title>
-         
+        <link rel="stylesheet" href="style/default.css"> 
         <link rel="stylesheet" href="style/w3.css">
         <style>
             @import url(https://fonts.googleapis.com/css?family=Open+Sans);
@@ -198,6 +198,17 @@ div.tab button.active {
     border: 1px solid #ccc;
     border-top: none;
 }
+
+input[type=text] {
+    width: 80%;
+    padding: 6.25px 16px;
+    margin: 20px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+    font-size: 16px;
+}
         </style>
         <link rel="stylesheet" href="dist/themes/default/style.min.css" />
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jstree/3.2.1/themes/default/style.min.css" />
@@ -217,53 +228,9 @@ div.tab button.active {
               //ResultSet rsCompile = statement1.executeQuery(sqlCompile);
               
               String sql = "select id_cate,name_cate from a_report_category order by id_cate ASC";
-              int count=0;
-              ResultSet rs = null;
-            /*String report = request.getParameter("report");
-            File inputFile = new File("C:/Users/NUT/Desktop/ex.xml");
-         DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
-         DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
-         Document doc = dBuilder.parse(inputFile);
-         doc.getDocumentElement().normalize();
-         NodeList nList = doc.getElementsByTagName("reportgroup");
-             /*try{ 
-               //String comparStaff="0";
-               //String comparDivision="0";
-        
-        for (int temp = 0; temp < nList.getLength(); temp++) {
-            Node nNode = nList.item(temp);
-            if (nNode.getNodeType() == Node.ELEMENT_NODE) {
-               Element eElement = (Element) nNode;
-            out.print("<table border='1'>"); 
-            
-            out.print(eElement.getElementsByTagName("name").item(0).getTextContent());  
               
-                   
-                   
-                          for(int i=1;i<eElement.getElementsByTagName("name").getLength();i++){
-                        out.print("<tr>");      
-                          out.print("<td>");
-                          out.print(eElement.getElementsByTagName("name").item(i).getTextContent());
-                          out.print("</td>");
-                          out.print("<td>");
-                          out.print(eElement.getElementsByTagName("path").item(i-1).getTextContent());
-                          out.print("</td>");
-                          out.print("<td>");
-                          out.print(eElement.getElementsByTagName("jrxml").item(i-1).getTextContent());
-                          out.print("</td>");//staff
-                        out.print("</tr>");//staff  
-                          }
-                        
-                   
-           out.print("</table>");//company
-           out.print("<br><br><br>");//staff
-            }
-        }
-        
-          
-             }catch(Exception ex){
-                ex.printStackTrace();
-             } */
+              ResultSet rs = null;
+           
         %>
        
 
@@ -281,7 +248,7 @@ div.tab button.active {
                     out.print("<table class='w3-table-all w3-hoverable'>");
                     
                     while(rs.next()){
-                      out.print("<tr class='w3-hover-blue'>");
+                      out.print("<tr class='w3-hover-light-blue'>");
                           out.print("<td onclick='goLink(this)'>");
                              out.print(rs.getString(2)); 
                           out.print("</td>");
@@ -291,14 +258,14 @@ div.tab button.active {
                              out.print("<input type='hidden' name='id_cate' value='"+rs.getString(1)+"'>");
                              out.print("<input type='hidden' name='category' value='"+rs.getString(2)+"'>");
                              out.print("<input type='hidden' name='reportType' value='category'>");
-                             out.print("<input type='submit' src='' value='แก้ไข'>");
+                             out.print("<input type='submit' class='button button1' src='' value='แก้ไข'>");
                           out.print("</td>");
                           out.print("</form>");
                           
                           out.print("<form action='deleteCate'>");
                            out.print("<td>");
                              out.print("<input type='hidden' name='id_cate' value='"+rs.getString(1)+"'>");
-                             out.print("<input type='submit' src='' value='ลบ'>"); 
+                             out.print("<input type='submit' class='button button2' src='' value='ลบ'>"); 
                           out.print("</td>");
                           out.print("</form>");
                           
@@ -308,8 +275,8 @@ div.tab button.active {
                     out.print("</table>");
                     out.print("</div>");
                  out.print("<form action='insertCate'>");
-                 out.print("<input type='text' name='nameCate'>");
-                 out.print("<input type='submit' value='เพิ่ม'>");
+                 out.print("<input type='text' class='w3-input w3-border w3-round  w3-light-blue' name='nameCate'>");
+                 out.print("<input type='submit' class='w3-button w3-blue w3-medium w3-round' style='width:20% '  value='เพิ่ม'>");
                  out.print("</form>");
                 %>
 	</div>
@@ -321,7 +288,7 @@ function goEdit(e) {
     //window.history.back();
     var currentRow = $(e).
     alert(currentRow.toString());
-    //var pkCate = <%=count%>;
+    
      //alert(y);
     //var x = document.getElementsByTagName("td")[0].innerText;
     //alert(x);
@@ -334,7 +301,7 @@ function goEdit(e) {
     //window.history.back();
     var y = element.innerHTML;
     //alert(y);
-    //var pkCate = <%=count%>;
+    
      //alert(pkCate);
     //var x = document.getElementsByTagName("td")[0].innerText;
     //alert(x);

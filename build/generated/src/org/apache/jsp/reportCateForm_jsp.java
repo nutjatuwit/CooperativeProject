@@ -95,7 +95,7 @@ public final class reportCateForm_jsp extends org.apache.jasper.runtime.HttpJspB
       out.write("    <head>\n");
       out.write("        <meta http-equiv=\"Content-Type\" content=\"text/html; charset=UTF-8\">\n");
       out.write("        <title>JSP Page</title>\n");
-      out.write("         \n");
+      out.write("        <link rel=\"stylesheet\" href=\"style/default.css\"> \n");
       out.write("        <link rel=\"stylesheet\" href=\"style/w3.css\">\n");
       out.write("        <style>\n");
       out.write("            @import url(https://fonts.googleapis.com/css?family=Open+Sans);\n");
@@ -223,10 +223,60 @@ public final class reportCateForm_jsp extends org.apache.jasper.runtime.HttpJspB
       out.write("            #pagewrap, header, #content, #middle, #sidebar, footer {\n");
       out.write("                border: solid 1px #ccc;\n");
       out.write("            }  \n");
+      out.write("            \n");
+      out.write("             div.tab {\n");
+      out.write("    overflow: hidden;\n");
+      out.write("    border: 1px solid #ccc;\n");
+      out.write("    background-color: #f1f1f1;\n");
+      out.write("}\n");
+      out.write("\n");
+      out.write("/* Style the buttons inside the tab */\n");
+      out.write("div.tab button {\n");
+      out.write("    background-color: inherit;\n");
+      out.write("    float: left;\n");
+      out.write("    border: none;\n");
+      out.write("    outline: none;\n");
+      out.write("    cursor: pointer;\n");
+      out.write("    padding: 12px 20px;\n");
+      out.write("    transition: 0.6s;\n");
+      out.write("}\n");
+      out.write("\n");
+      out.write("/* Change background color of buttons on hover */\n");
+      out.write("div.tab button:hover {\n");
+      out.write("    background-color: #cceeff;\n");
+      out.write("}\n");
+      out.write("\n");
+      out.write("/* Create an active/current tablink class */\n");
+      out.write("div.tab button.active {\n");
+      out.write("    background-color: #ccc;\n");
+      out.write("}\n");
+      out.write("\n");
+      out.write("/* Style the tab content */\n");
+      out.write(".tabcontent {\n");
+      out.write("    display: none;\n");
+      out.write("    padding: 6px 10px;\n");
+      out.write("    border: 1px solid #ccc;\n");
+      out.write("    border-top: none;\n");
+      out.write("}\n");
+      out.write("\n");
+      out.write("input[type=text] {\n");
+      out.write("    width: 90%;\n");
+      out.write("    padding: 6.25px 16px;\n");
+      out.write("    margin: 20px 0;\n");
+      out.write("    display: inline-block;\n");
+      out.write("    border: 1px solid #ccc;\n");
+      out.write("    border-radius: 4px;\n");
+      out.write("    box-sizing: border-box;\n");
+      out.write("    font-size: 16px;\n");
+      out.write("}\n");
       out.write("        </style>\n");
       out.write("        <link rel=\"stylesheet\" href=\"dist/themes/default/style.min.css\" />\n");
       out.write("        <link rel=\"stylesheet\" href=\"https://cdnjs.cloudflare.com/ajax/libs/jstree/3.2.1/themes/default/style.min.css\" />\n");
       out.write("       \n");
+      out.write("    <div class=\"tab\">\n");
+      out.write("      <button class=\"tablinks\" onclick=\"goBack();\">กลับ</button>\n");
+      out.write("    </div>   \n");
+      out.write("      \n");
       out.write("    </head>\n");
       out.write("    <body>\n");
       out.write("        ");
@@ -239,53 +289,9 @@ public final class reportCateForm_jsp extends org.apache.jasper.runtime.HttpJspB
               //ResultSet rsCompile = statement1.executeQuery(sqlCompile);
               
               String sql = "select id_cate,name_cate from a_report_category order by id_cate ASC";
-              int count=0;
-              ResultSet rs = null;
-            /*String report = request.getParameter("report");
-            File inputFile = new File("C:/Users/NUT/Desktop/ex.xml");
-         DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
-         DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
-         Document doc = dBuilder.parse(inputFile);
-         doc.getDocumentElement().normalize();
-         NodeList nList = doc.getElementsByTagName("reportgroup");
-             /*try{ 
-               //String comparStaff="0";
-               //String comparDivision="0";
-        
-        for (int temp = 0; temp < nList.getLength(); temp++) {
-            Node nNode = nList.item(temp);
-            if (nNode.getNodeType() == Node.ELEMENT_NODE) {
-               Element eElement = (Element) nNode;
-            out.print("<table border='1'>"); 
-            
-            out.print(eElement.getElementsByTagName("name").item(0).getTextContent());  
               
-                   
-                   
-                          for(int i=1;i<eElement.getElementsByTagName("name").getLength();i++){
-                        out.print("<tr>");      
-                          out.print("<td>");
-                          out.print(eElement.getElementsByTagName("name").item(i).getTextContent());
-                          out.print("</td>");
-                          out.print("<td>");
-                          out.print(eElement.getElementsByTagName("path").item(i-1).getTextContent());
-                          out.print("</td>");
-                          out.print("<td>");
-                          out.print(eElement.getElementsByTagName("jrxml").item(i-1).getTextContent());
-                          out.print("</td>");//staff
-                        out.print("</tr>");//staff  
-                          }
-                        
-                   
-           out.print("</table>");//company
-           out.print("<br><br><br>");//staff
-            }
-        }
-        
-          
-             }catch(Exception ex){
-                ex.printStackTrace();
-             } */
+              ResultSet rs = null;
+           
         
       out.write("\n");
       out.write("       \n");
@@ -317,14 +323,14 @@ public final class reportCateForm_jsp extends org.apache.jasper.runtime.HttpJspB
                              out.print("<input type='hidden' name='id_cate' value='"+rs.getString(1)+"'>");
                              out.print("<input type='hidden' name='category' value='"+rs.getString(2)+"'>");
                              out.print("<input type='hidden' name='reportType' value='category'>");
-                             out.print("<input type='submit' src='' value='แก้ไข'>");
+                             out.print("<input type='submit' class='button button1' src='' value='แก้ไข'>");
                           out.print("</td>");
                           out.print("</form>");
                           
                           out.print("<form action='deleteCate'>");
                            out.print("<td>");
                              out.print("<input type='hidden' name='id_cate' value='"+rs.getString(1)+"'>");
-                             out.print("<input type='submit' src='' value='ลบ'>"); 
+                             out.print("<input type='submit' class='button button2' src='' value='ลบ'>"); 
                           out.print("</td>");
                           out.print("</form>");
                           
@@ -334,8 +340,8 @@ public final class reportCateForm_jsp extends org.apache.jasper.runtime.HttpJspB
                     out.print("</table>");
                     out.print("</div>");
                  out.print("<form action='insertCate'>");
-                 out.print("<input type='text' name='nameCate'>");
-                 out.print("<input type='submit' value='เพิ่ม'>");
+                 out.print("<input type='text' class='w3-input w3-border w3-round  w3-light-blue' name='nameCate'>");
+                 out.print("<input type='submit' class='w3-button w3-blue w3-medium w3-round' style='width:10% '  value='เพิ่ม'>");
                  out.print("</form>");
                 
       out.write("\n");
@@ -348,9 +354,7 @@ public final class reportCateForm_jsp extends org.apache.jasper.runtime.HttpJspB
       out.write("    //window.history.back();\n");
       out.write("    var currentRow = $(e).\n");
       out.write("    alert(currentRow.toString());\n");
-      out.write("    //var pkCate = ");
-      out.print(count);
-      out.write(";\n");
+      out.write("    \n");
       out.write("     //alert(y);\n");
       out.write("    //var x = document.getElementsByTagName(\"td\")[0].innerText;\n");
       out.write("    //alert(x);\n");
@@ -363,9 +367,7 @@ public final class reportCateForm_jsp extends org.apache.jasper.runtime.HttpJspB
       out.write("    //window.history.back();\n");
       out.write("    var y = element.innerHTML;\n");
       out.write("    //alert(y);\n");
-      out.write("    //var pkCate = ");
-      out.print(count);
-      out.write(";\n");
+      out.write("    \n");
       out.write("     //alert(pkCate);\n");
       out.write("    //var x = document.getElementsByTagName(\"td\")[0].innerText;\n");
       out.write("    //alert(x);\n");

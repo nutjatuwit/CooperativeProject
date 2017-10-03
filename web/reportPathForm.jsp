@@ -37,6 +37,7 @@
         <title>JSP Page</title>
          
         <link rel="stylesheet" href="style/w3.css">
+        <link rel="stylesheet" href="style/default.css">
         <style>
             @import url(https://fonts.googleapis.com/css?family=Open+Sans);
 
@@ -160,7 +161,31 @@
 
             #pagewrap, header, #content, #middle, #sidebar, footer {
                 border: solid 1px #ccc;
-            }  
+            } 
+            
+           input[type=submit]{
+                    width: 100%;
+                    background-color: #088A08;
+                    color: white;
+                    padding: 14px 20px;
+                    margin: 8px 0;
+                    border: none;
+                    border-radius: 4px;
+                    cursor: pointer;
+                    align-content: center;
+                    font-size: 16px;
+}
+
+            input[type=text]{
+                    width: 100%;
+                    padding: 12px 20px;
+                    margin: 8px 0;
+                    display: inline-block;
+                    border: 1px solid #ccc;
+                    border-radius: 4px;
+                    box-sizing: border-box;
+                    font-size: 16px;
+}
         </style>
         <link rel="stylesheet" href="dist/themes/default/style.min.css" />
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jstree/3.2.1/themes/default/style.min.css" />

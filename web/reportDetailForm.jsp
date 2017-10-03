@@ -37,6 +37,7 @@
         <title>JSP Page</title>
          
         <link rel="stylesheet" href="style/w3.css">
+        <link rel="stylesheet" href="style/default.css">
         <style>
             @import url(https://fonts.googleapis.com/css?family=Open+Sans);
 
@@ -161,6 +162,17 @@
             #pagewrap, header, #content, #middle, #sidebar, footer {
                 border: solid 1px #ccc;
             }  
+            
+            input[type=text] {
+    width: 80%;
+    padding: 6.25px 16px;
+    margin: 20px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+    font-size: 16px;
+}
         </style>
         <link rel="stylesheet" href="dist/themes/default/style.min.css" />
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jstree/3.2.1/themes/default/style.min.css" />
@@ -209,7 +221,7 @@
                     
                   
                     while(rs.next()){
-                      out.print("<tr class='w3-hover-blue'>");
+                      out.print("<tr class='w3-hover-light-blue'>");
                           out.print("<td onclick='goLink(this)'>");
                              out.print(rs.getString(2)); 
                           out.print("</td>");
@@ -221,7 +233,7 @@
                              out.print("<input type='hidden' name='id_cate' value='"+pkCate+"'>");
                              out.print("<input type='hidden' name='id_report' value='"+rs.getString(1)+"'>");
                              out.print("<input type='hidden' name='detail' value='"+rs.getString(2)+"'>");
-                             out.print("<input type='submit' src='' value='แก้ไข'>");
+                             out.print("<input type='submit' src='' class='button button1' value='แก้ไข'>");
                           out.print("</td>");
                           out.print("</form>");
                           
@@ -230,7 +242,7 @@
                              out.print("<input type='hidden' name='category' value='"+category+"'>");
                              out.print("<input type='hidden' name='pkCate' value='"+pkCate+"'>");
                              out.print("<input type='hidden' name='id_report' value='"+rs.getString(1)+"'>");
-                             out.print("<input type='submit' src='' value='ลบ'>"); 
+                             out.print("<input type='submit' src='' class='button button2' value='ลบ'>"); 
                           out.print("</td>");
                           out.print("</form>");
                           
@@ -240,11 +252,12 @@
                     out.print("</table>");
                     out.print("</div>");
                  out.print("<form action='insertDetail'>");
-                 out.print("<input type='text' name='nameDetail'>"); 
+                 out.print("<input type='text' class='w3-input w3-border w3-round  w3-light-blue' name='nameDetail'>");
                  out.print("<input type='hidden' name='category' value='"+category+"'>");
                  out.print("<input type='hidden' name='pkCate' value='"+pkCate+"'>");
                  //out.print("<input type='hidden' name='pkDetail' value='"+(count+1)+"'>");
-                 out.print("<input type='submit' value='เพิ่ม'>");
+                 
+                 out.print("<input type='submit' class='w3-button w3-blue w3-medium w3-round' style='width:20% '  value='เพิ่ม'>");
                  out.print("</form>");
                 %>
 	</div>

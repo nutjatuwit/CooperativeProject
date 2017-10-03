@@ -94,9 +94,9 @@ input[type=text] {
           try{
             int cRow = 0;  
               
-           //encode from getparameter
+           
            request.setCharacterEncoding("UTF-8");
-           String text = request.getParameter("text").toString();
+           String text = request.getParameter("text");
            
               //database filter type
               
@@ -106,83 +106,40 @@ input[type=text] {
               Statement statement = conn.createStatement();
               ResultSet rs = statement.executeQuery(sql);
               
-              
-               
-               
-               
-               
-               
-              
-              
-              Class.forName("org.postgresql.Driver");
+    
               Connection con = (Connection) DriverManager.getConnection("jdbc:postgresql://localhost:5433/dbHos", "postgres", "postgres");
               Statement statement1 = con.createStatement();
-              //String sqlCompile = "select * from member";
-              //ResultSet rsCompile = statement1.executeQuery(sqlCompile);
-              
+             
+              //for compile
               String sqlCompile = "";
               ResultSet rsCompile = null;
                 
-              //ResultSet rsCompile = null;
-              
-             
-               
            
-           //out.println(">>>>>>"+text);
-           //out.println(text+"<<<<<<");
-           //Read XML 
            JasperDesign jasperDesign; //find filter
            
-           String textPath="";
-           String textReport="";
+           String textPath=""; //getString(4);
+           String textReport=""; //getString(5);
            
            String paramJas="";
            String paramDbDes="";
            String paramDbType="";
            String paramDbName="";
            
-           String textGroupFilter="";
-           
-           
-           
-           File inputFileReportForm = new File("C:/Users/NUT/Desktop/ex.xml");//path XML report form
-           //File inputFileFilterForm = new File("C:/Users/NUT/Desktop/filterForm.xml");//path XML filter form
-           
-           //process read form
-           DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
-           DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
-           
-           Document docReportForm = dBuilder.parse(inputFileReportForm); //report form
-           //Document docFilterForm = dBuilder.parse(inputFileFilterForm); //filter form
-           
-           docReportForm.getDocumentElement().normalize();
-           //docFilterForm.getDocumentElement().normalize();
-           
-           //report form
-           NodeList nList = docReportForm.getElementsByTagName("reportgroup");
-           NodeList findWord = docReportForm.getElementsByTagName("report");
-           
-           //filter form
-           //NodeList nListFilter = docFilterForm.getElementsByTagName("reportgroup");
-           //NodeList findFilter = docFilterForm.getElementsByTagName("name");
-           
-         
-          for(int a=0;a<findWord.getLength();a++){
-          Node findNode = findWord.item(a);
-          if (findNode.getNodeType() == Node.ELEMENT_NODE) {
-            Element ee = (Element) findNode;
-            String textCompare = ee.getElementsByTagName("name").item(0).getTextContent().toString();
-            if(text.equals(textCompare)){
-              textPath = ee.getElementsByTagName("path").item(0).getTextContent().toString();
-              textReport = ee.getElementsByTagName("jrxml").item(0).getTextContent().toString();
-               //out.println(">>>>>"+text+"<br>");
-               //out.println(">>>>>"+textPath+"<br>");
-               //out.println(">>>>>"+textReport+"<br><br>");
+
+                        String sqlDetailCount = "select id_cate,id_report,name_report,path_report,jrxml_report from a_report_detail order by id_report ASC";
+                         ResultSet rsDetailCount = statement1.executeQuery(sqlDetailCount);
+                              while(rsDetailCount.next()){
+                             if(text.equals(rsDetailCount.getString(3))){
+                                  textPath = rsDetailCount.getString(4);
+                                  textReport = rsDetailCount.getString(5);
+                                  
+                                  //out.println(">>>>>"+text+"<br>");
+                                  //out.println(">>>>>"+textPath+"<br>");
+                                  //out.println(">>>>>"+textReport+"<br><br>");
             }
-             //out.println(textCompare);  
-            }
-            //out.println(ee.getElementsByTagName("name").item(0).getTextContent());  
-         }
+                            }
+                  
+
           jasperDesign = JRXmlLoader.load(application.getRealPath(textPath+"/"+textReport));
           out.print("<form action='Show.jsp' target='righty'>");
           while(rs.next()){
@@ -192,23 +149,10 @@ input[type=text] {
                  paramDbDes = rs.getString(4).toString();
                  paramDbType = rs.getString(2).toString();
                  paramDbName = rs.getString(3).toString();
-                 
-                 //String sqlCompile = rs.getString(5).toString();
-                 
-                  
-                 //Connection con = (Connection) DriverManager.getConnection("jdbc:mysql://localhost:3306/dbHosDemo?useUnicode=yes&characterEncoding=UTF-8", "root", "");
-                 //Statement statement1 = con.createStatement();
-                 //ResultSet rsCompile = statement1.executeQuery(sqlCompile);
-                 
-                 //rsCompile = statement1.executeQuery(sqlCompile);
-                  //out.println("ParamJas : "+paramJas+"    ParamDB : "+paramDbDes+"<br>");
+                
+                
                   if(paramJas.equals(paramDbDes)){
-                     //out.println("ParamDb : "+paramDb+"  ParamJas  : "+paramJas+"<br>");
-                      
-                     //out.print(paramJas+"<br>");
-                     //out.print(paramDbType+"<br>");
-                     
-                     
+                    //out.println(paramJas+"from report   <br>"); //test paramter list
                      if(paramDbType.equals("date")){
                      out.print(paramDbName+": <input class='date' type='date' name="+paramJas+" value='2555-01-02'>");
                      cRow++;
@@ -225,11 +169,7 @@ input[type=text] {
                          //out.print(rsCompile);
                          sqlCompile=rs.getString(5);
                          rsCompile = statement1.executeQuery(sqlCompile);
-                         //
-                         //for(int a=0;a>5;a++){
-                             //out.println("Row : "+rsCompile.getString(2));
-                         //}
-                         //out.print(rsCompile.getCursorName());
+                         
                         out.print(paramDbName+": ");
                              out.println("<select name="+paramJas+">");
                              while (rsCompile.next()) {
@@ -258,35 +198,7 @@ input[type=text] {
            out.print("</form>");
           
           
-          //out.println(">>>>>text : "+text+"<br><br>");
-          //for(int b=0;b<nListFilter.getLength();b++){
-          //Node nListFilterNode = nListFilter.item(b);
-          //out.println(b); 
-          //if (nListFilterNode.getNodeType() == Node.ELEMENT_NODE) {
-            //Element e = (Element) nListFilterNode;
-            //String textGroup = e.getElementsByTagName("name").item(0).getTextContent().toString();     
-           // for(int c=1;c<e.getElementsByTagName("name").getLength();c++){
-                //Node findFilterNode = nListFilter.item(b);
-                //out.println(c); 
-               // String textListName = e.getElementsByTagName("name").item(c).getTextContent().toString();
-                //if(text.equals(textListName)){
-                   //out.println(textListName+">>>>>text group : "+textGroup+"<br><br><br>");
-                 //  textGroupFilter=textGroup.toString();
-               // }
-                
-        
-            //}
-          //}
-            //out.println(ee.getElementsByTagName("name").item(0).getTextContent());  
-         //} 
-          
-          
-          //method for filter
-          
-          
-          //out.println(">>>>>"+text);
-            
-      
+         
          }catch(Exception ex){
            ex.printStackTrace();
             }

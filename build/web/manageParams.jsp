@@ -185,11 +185,7 @@ th {
                
                   out.println("<h1 align='center'>Manage Parameters</h1>");
                //ResultSet rsFilter = statement.executeQuery(sqlFilter);
-              
-               
-                    
-                     
-                    
+ 
                       
                out.print("<form action='addParams.jsp' align='right'>"); //add parameter
                    out.print("<input type='submit' class='button addButton'  name='' value='เพิ่มตัวแปร'>");
@@ -202,9 +198,7 @@ th {
                    out.print("<input type='submit' class='button searchText' name='' value='ค้นหา'>");
                out.print("</form>");
                      
-               
-               
-               
+                   
                    out.println("<table border='2' align='center'>");
                         out.print("<thead>");
                          out.println("<tr border='3' align='center'>");

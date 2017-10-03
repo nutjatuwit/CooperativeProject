@@ -1,0 +1,165 @@
+table {
+    border-collapse: collapse;
+    width: 100%;
+}
+
+
+
+th, td {
+    text-align: center;
+    padding: 8px;
+    width:100px;
+}
+
+tr:nth-child(even){background-color: #f2f2f2}
+
+th {
+    background-color: blue;
+    color: white;
+}
+/*search button */
+.search {
+    width: 120px;
+    height: 25px;
+    -webkit-transition: width 0.6s ease-in-out;
+    transition: width 0.6s ease-in-out;
+}
+
+/* When the input field gets focus, change its width to 100% */
+.search:focus {
+    width: 20%;
+}
+
+.button {
+    background-color: #01A9DB; /* Green */
+    border: none;
+    color: white;
+    padding: 8px 16px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 12px;
+    margin: 4px 2px;
+    -webkit-transition-duration: 0.4s; /* Safari */
+    transition-duration: 0.4s;
+    cursor: pointer;
+    border-radius: 16px;
+}
+.searchText {
+    background-color: #01A9DB; 
+    color: white; 
+    border: 2px solid #008CBA;
+    
+}
+.searchText:hover {
+    background-color: white;
+    color: black;
+    border-radius: 12px;
+}
+
+.button1 {
+    background-color: #01A9DB; 
+    color: white; 
+    border: 2px solid #81DAF5;
+    font-size: 14px;
+    
+}
+.button1:hover{
+     background-color: #81DAF5;
+     color: black;
+     padding: 8px 23px;
+     
+}
+
+.button2 {
+    background-color: #01A9DB; 
+    color: white; 
+    border: 2px solid #81DAF5;
+    font-size: 14px;
+}
+.button2:hover{
+     background-color: #81DAF5;
+     color: black;
+     padding: 8px 23px;
+     
+}
+
+.buttonBack span {
+  cursor: pointer;
+  display: inline-block;
+  position: relative;
+  transition: 0.5s;
+}
+
+.buttonBack span:after {
+  content: 'ย้อน';
+  position: absolute;
+  opacity: 0;
+  top: 0;
+  left: -40px;
+  transition: 0.5s;
+}
+
+.buttonBack:hover span {
+  padding-left: 25px;
+}
+
+.buttonBack:hover span:after {
+  opacity: 1;
+  left: 0;
+}
+
+.addButton {
+    background-color: #01A9DB; 
+    color: white; 
+    border: 2px solid #81DAF5;
+    font-size: 13px;
+    padding: 10px 18px;
+}
+.addButton:hover{
+     background-color: #81DAF5;
+     color: black;
+     
+}
+
+#mySidenav a {
+    position: absolute;
+    left: -80px;
+    transition: 0.3s;
+    padding: 15px;
+    width: 90px;
+    text-decoration: none;
+    font-size: 20px;
+    color: white;
+    border-radius: 0 5px 5px 0;
+}
+
+#mySidenav a:hover {
+    left: 0;
+    cursor: pointer;
+}
+
+#back {
+    top: 10px;
+    background-color: #4CAF50;
+}
+#myBtn {
+  display: none;
+  position: fixed;
+  bottom: 20px;
+  right: 12px;
+  z-index: 99;
+  border: none;
+  outline: none;
+  background-color: red;
+  color: white;
+  cursor: pointer;
+  padding: 10px;
+  border-radius: 10px;
+  transition-duration: 0.4s;
+}
+
+#myBtn:hover {
+  background-color: orangered;
+  padding: 30px 8px;
+}

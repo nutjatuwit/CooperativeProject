@@ -4,6 +4,10 @@
     Author     : NUT
 --%>
 
+<%@page import="java.sql.ResultSet"%>
+<%@page import="java.sql.DriverManager"%>
+<%@page import="java.sql.Statement"%>
+<%@page import="java.sql.Connection"%>
 <%@page import="java.util.List"%>
 <%@page import="org.w3c.dom.traversal.NodeIterator"%>
 <%@page import="javax.swing.tree.DefaultMutableTreeNode"%>
@@ -77,57 +81,42 @@ div.tab button.active {
     <body>
        
        <%
-           //ArrayList findWord = new ArrayList(); 
-           
-         File inputFile = new File("C:/Users/NUT/Desktop/ex.xml");
-         DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
-         DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
-         Document doc = dBuilder.parse(inputFile);
-         doc.getDocumentElement().normalize();
-         NodeList nList = doc.getElementsByTagName("reportgroup");
-         
-         
-         
-         /*
-         NodeList findWord = doc.getElementsByTagName("report");
-         
-         for(int a=0;a<findWord.getLength();a++){
-         Node findNode = findWord.item(a);
-         if (findNode.getNodeType() == Node.ELEMENT_NODE) {
-            Element ee = (Element) findNode;
-            out.println(ee.getElementsByTagName("name").item(0).getTextContent());  
-         }
-         }*///check word from text
-         
           
+         request.setCharacterEncoding("UTF-8");
+            Class.forName("org.postgresql.Driver").newInstance();
+               Connection conn = DriverManager.getConnection("jdbc:postgresql://localhost:5433/dbHos", "postgres", "postgres"); //database connection
+               Statement statement = conn.createStatement();
+               Statement statement1 = conn.createStatement();
+            
+              
+              String sqlCateCount = "select id_cate,name_cate from a_report_category order by id_cate ASC";
+              ResultSet rsCateCount = statement.executeQuery(sqlCateCount);
+              
+
+         
          
          %>
        <div id="jstree"> 
            <!-- in this example the tree is populated from inline HTML -->
            <%
              try{ 
-               //String comparStaff="0";
-               //String comparDivision="0";
+            
         out.print("<ul>"); 
-        for (int temp = 0; temp < nList.getLength(); temp++) {
-            Node nNode = nList.item(temp);
-            if (nNode.getNodeType() == Node.ELEMENT_NODE) {
-               Element eElement = (Element) nNode;
+         while(rsCateCount.next()){
             out.print("<li>"); 
-            out.print(eElement.getElementsByTagName("name").item(0).getTextContent());  
-              
+            out.print(rsCateCount.getString(2)); 
                    out.print("<ul>");
-                         
-                          for(int i=1;i<eElement.getElementsByTagName("name").getLength();i++){
-                          out.print("<li>");
-                          out.print(eElement.getElementsByTagName("name").item(i).getTextContent());
-                          out.print("</li>");//staff
-                          }
-                        
+                        String sqlDetailCount = "select id_report,name_report from a_report_detail where id_cate = '"+rsCateCount.getString(1)+"' order by id_report ASC";
+                         ResultSet rsDetailCount = statement1.executeQuery(sqlDetailCount);
+                              while(rsDetailCount.next()){
+                             out.print("<li>");
+                             out.print(rsDetailCount.getString(2));
+                             out.print("</li>");//staff
+                            }
                    out.print("</ul>");//staff
            out.print("</li>");//company
             }
-        }
+        
         out.print("</ul>");//company
           
              }catch(Exception ex){
@@ -142,14 +131,7 @@ div.tab button.active {
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.12.1/jquery.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jstree/3.2.1/jstree.min.js"></script>
         <script> //var img = "JonSnow.jpg"; 
-        </script>
-        <%
-          //String myVar = "12345";//use java parameter in javascript
-        %> 
-        <script>
-            
-            
-            
+       
     	$(function () {
     // 6 create an instance when the DOM is ready
     $('#jstree').jstree();
@@ -165,46 +147,10 @@ div.tab button.active {
            
            var linkHref = "filterReport.jsp?text="+text;
            window.open(linkHref,'filty');
-        
-       
-         
-            
+ 
     });
-    // 8 interact with the tree - either way is OK
-    /*$('button').on('click', function () {
-      $('#jstree').jstree(true).select_node('child_node_1');
-      $('#jstree').jstree('select_node', 'child_node_1');
-      $.jstree.reference('#jstree').select_node('child_node_1');
-    });*/
-      
-        
+   
   });
-  /*
-  // interaction and events
-	$('#evts_button').on("click", function () {
-		var instance = $('#evts').jstree(true);
-		instance.deselect_all();
-		instance.select_node('1');
-	});
-	$('#evts')
-		.on("changed.jstree", function (e, data) {
-			if(data.selected.length) {
-				alert('The selected node is: ' + data.instance.get_node(data.selected[0]).text);
-			}
-		})
-		.jstree({
-			'core' : {
-				'multiple' : false,
-				'data' : [
-					{ "text" : "Root node", "children" : [
-							{ "text" : "Child node 1", "id" : 1 },
-							{ "text" : "Child node 2" }
-					]}
-				]
-			}
-		});
-  
-  */
   
   function goBack() {
     //window.history.back();

@@ -94,9 +94,9 @@ input[type=text] {
           try{
             int cRow = 0;  
               
-           
+           //encode from getparameter
            request.setCharacterEncoding("UTF-8");
-           String text = request.getParameter("text");
+           String text = "1.รายงานผู้ป่วยที่ค้างชำระเงิน";
            
               //database filter type
               
@@ -110,11 +110,22 @@ input[type=text] {
               Connection con = (Connection) DriverManager.getConnection("jdbc:postgresql://localhost:5433/dbHos", "postgres", "postgres");
               Statement statement1 = con.createStatement();
              
+              //for list category
+               //String sqlCateCount = "select id_cate,id_report,name_report,path_report,jrxml_report from a_report_detail order by id_report ASC";
+              //ResultSet rsCateCount = statement.executeQuery(sqlCateCount);
+   
               //for compile
               String sqlCompile = "";
               ResultSet rsCompile = null;
                 
+              //ResultSet rsCompile = null;
+              
+             
+               
            
+           //out.println(">>>>>>"+text);
+           //out.println(text+"<<<<<<");
+           //Read XML 
            JasperDesign jasperDesign; //find filter
            
            String textPath=""; //getString(4);
@@ -125,7 +136,14 @@ input[type=text] {
            String paramDbType="";
            String paramDbName="";
            
-
+           String textGroupFilter="";
+           
+           
+          // while(rsCateCount.next()){
+            
+           // out.print(rsCateCount.getString(2)); 
+                   
+                        //String sqlDetailCount = "select id_report,name_report from a_report_detail where id_cate = '"+rsCateCount.getString(1)+"' order by id_report ASC";
                         String sqlDetailCount = "select id_cate,id_report,name_report,path_report,jrxml_report from a_report_detail order by id_report ASC";
                          ResultSet rsDetailCount = statement1.executeQuery(sqlDetailCount);
                               while(rsDetailCount.next()){
@@ -139,7 +157,9 @@ input[type=text] {
             }
                             }
                   
-
+            //}
+         
+          
           jasperDesign = JRXmlLoader.load(application.getRealPath(textPath+"/"+textReport));
           out.print("<form action='Show.jsp' target='righty'>");
           while(rs.next()){
@@ -149,10 +169,23 @@ input[type=text] {
                  paramDbDes = rs.getString(4).toString();
                  paramDbType = rs.getString(2).toString();
                  paramDbName = rs.getString(3).toString();
-                
-                
+                 
+                 //String sqlCompile = rs.getString(5).toString();
+                 
+                  
+                 //Connection con = (Connection) DriverManager.getConnection("jdbc:mysql://localhost:3306/dbHosDemo?useUnicode=yes&characterEncoding=UTF-8", "root", "");
+                 //Statement statement1 = con.createStatement();
+                 //ResultSet rsCompile = statement1.executeQuery(sqlCompile);
+                 
+                 //rsCompile = statement1.executeQuery(sqlCompile);
+                  //out.println("ParamJas : "+paramJas+"    ParamDB : "+paramDbDes+"<br>");
                   if(paramJas.equals(paramDbDes)){
-                    //out.println(paramJas+"from report   <br>"); //test paramter list
+                     //out.println("ParamDb : "+paramDbDes+"  ParamJas  : "+paramJas+"<br>");
+                      
+                     //out.print(paramJas+"<br>");
+                     //out.print(paramDbType+"<br>");
+                     
+                     
                      if(paramDbType.equals("date")){
                      out.print(paramDbName+": <input class='date' type='date' name="+paramJas+" value='2555-01-02'>");
                      cRow++;
@@ -169,7 +202,11 @@ input[type=text] {
                          //out.print(rsCompile);
                          sqlCompile=rs.getString(5);
                          rsCompile = statement1.executeQuery(sqlCompile);
-                         
+                         //
+                         //for(int a=0;a>5;a++){
+                             //out.println("Row : "+rsCompile.getString(2));
+                         //}
+                         //out.print(rsCompile.getCursorName());
                         out.print(paramDbName+": ");
                              out.println("<select name="+paramJas+">");
                              while (rsCompile.next()) {
