@@ -4,17 +4,11 @@
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
             <file>file:/C:/Users/NUT/Documents/NetBeansProjects/WebApplication3/web/filterReport.jsp</file>
-            <file>file:/C:/Users/NUT/Documents/NetBeansProjects/WebApplication3/web/addParams.jsp</file>
-            <file>file:/C:/Users/NUT/Documents/NetBeansProjects/WebApplication3/web/filterParams.jsp</file>
-            <file>file:/C:/Users/NUT/Documents/NetBeansProjects/WebApplication3/web/reportDetailForm.jsp</file>
-            <file>file:/C:/Users/NUT/Documents/NetBeansProjects/WebApplication3/web/Show.jsp</file>
-            <file>file:/C:/Users/NUT/Documents/NetBeansProjects/WebApplication3/web/manageParams.jsp</file>
+            <file>file:/C:/Users/NUT/Documents/NetBeansProjects/WebApplication3/web/testIndex.jsp</file>
+            <file>file:/C:/Users/NUT/Documents/NetBeansProjects/WebApplication3/web/testUpload.jsp</file>
             <file>file:/C:/Users/NUT/Documents/NetBeansProjects/WebApplication3/web/managePage.html</file>
-            <file>file:/C:/Users/NUT/Documents/NetBeansProjects/WebApplication3/web/reportEditForm.jsp</file>
-            <file>file:/C:/Users/NUT/Documents/NetBeansProjects/WebApplication3/web/reportPathForm.jsp</file>
-            <file>file:/C:/Users/NUT/Documents/NetBeansProjects/WebApplication3/src/java/insertDetail.java</file>
-            <file>file:/C:/Users/NUT/Documents/NetBeansProjects/WebApplication3/web/reportForm.html</file>
-            <file>file:/C:/Users/NUT/Documents/NetBeansProjects/WebApplication3/web/reportCateForm.jsp</file>
+            <file>file:/C:/Users/NUT/Documents/NetBeansProjects/WebApplication3/web/testMessage.jsp</file>
+            <file>file:/C:/Users/NUT/Documents/NetBeansProjects/WebApplication3/src/java/UploadServlet.java</file>
         </group>
     </open-files>
 </project-private>

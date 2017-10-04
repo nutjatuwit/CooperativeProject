@@ -4,6 +4,7 @@
     Author     : NUT
 --%>
 
+
 <%@page import="java.sql.ResultSet"%>
 <%@page import="java.sql.Statement"%>
 <%@page import="java.sql.DriverManager"%>
@@ -223,11 +224,12 @@
                     while(rs.next()){
                     out.print("<div class='w3-container'>");
                     out.print("<form action='insertPath'>");
-                    out.print("ตำแหน่งไฟล์  <input type='text' name='path'  width='100%' value='"+rs.getString(3)+"'><br>");
-                    out.print("ชื่อไฟล์  <input type='text' name='jrxml' width='100%' value='"+rs.getString(4)+"'><br>");
+                    //out.print("ตำแหน่งไฟล์  <input type='text' name='path'  width='100%' value='"+rs.getString(3)+"'><input type='file' name='filUpload'><br>");
+                    //out.print("ชื่อไฟล์  <input type='text' name='jrxml' width='100%' value='"+rs.getString(4)+"'><br>");
+                    out.print("<input type='file' name='filUpload'>");
                     out.print("<input type='hidden' name='category' value='"+category+"'>");
                     out.print("<input type='hidden' name='detail' value='"+detail+"'>");
-                    out.print("<input type='submit' value='ยืนยัน'>");
+                    //out.print("<input type='submit' value='ยืนยัน'>");
                     out.print("</form>");
                     out.print("</div>");
                     }

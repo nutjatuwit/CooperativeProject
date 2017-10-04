@@ -3,6 +3,10 @@ package org.apache.jsp;
 import javax.servlet.*;
 import javax.servlet.http.*;
 import javax.servlet.jsp.*;
+import java.sql.ResultSet;
+import java.sql.DriverManager;
+import java.sql.Statement;
+import java.sql.Connection;
 import java.util.List;
 import org.w3c.dom.traversal.NodeIterator;
 import javax.swing.tree.DefaultMutableTreeNode;
@@ -58,6 +62,10 @@ public final class readXML_jsp extends org.apache.jasper.runtime.HttpJspBase
       _jspx_out = out;
       _jspx_resourceInjector = (org.glassfish.jsp.api.ResourceInjector) application.getAttribute("com.sun.appserv.jsp.resource.injector");
 
+      out.write("\n");
+      out.write("\n");
+      out.write("\n");
+      out.write("\n");
       out.write("\n");
       out.write("\n");
       out.write("\n");
@@ -129,29 +137,19 @@ public final class readXML_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("       \n");
       out.write("       ");
 
-           //ArrayList findWord = new ArrayList(); 
-           
-         File inputFile = new File("C:/Users/NUT/Desktop/ex.xml");
-         DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
-         DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
-         Document doc = dBuilder.parse(inputFile);
-         doc.getDocumentElement().normalize();
-         NodeList nList = doc.getElementsByTagName("reportgroup");
-         
-         
-         
-         /*
-         NodeList findWord = doc.getElementsByTagName("report");
-         
-         for(int a=0;a<findWord.getLength();a++){
-         Node findNode = findWord.item(a);
-         if (findNode.getNodeType() == Node.ELEMENT_NODE) {
-            Element ee = (Element) findNode;
-            out.println(ee.getElementsByTagName("name").item(0).getTextContent());  
-         }
-         }*///check word from text
-         
           
+         request.setCharacterEncoding("UTF-8");
+            Class.forName("org.postgresql.Driver").newInstance();
+               Connection conn = DriverManager.getConnection("jdbc:postgresql://localhost:5433/dbHos", "postgres", "postgres"); //database connection
+               Statement statement = conn.createStatement();
+               Statement statement1 = conn.createStatement();
+            
+              
+              String sqlCateCount = "select id_cate,name_cate from a_report_category order by id_cate ASC";
+              ResultSet rsCateCount = statement.executeQuery(sqlCateCount);
+              
+
+         
          
          
       out.write("\n");
@@ -160,28 +158,23 @@ public final class readXML_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("           ");
 
              try{ 
-               //String comparStaff="0";
-               //String comparDivision="0";
+            
         out.print("<ul>"); 
-        for (int temp = 0; temp < nList.getLength(); temp++) {
-            Node nNode = nList.item(temp);
-            if (nNode.getNodeType() == Node.ELEMENT_NODE) {
-               Element eElement = (Element) nNode;
+         while(rsCateCount.next()){
             out.print("<li>"); 
-            out.print(eElement.getElementsByTagName("name").item(0).getTextContent());  
-              
+            out.print(rsCateCount.getString(2)); 
                    out.print("<ul>");
-                         
-                          for(int i=1;i<eElement.getElementsByTagName("name").getLength();i++){
-                          out.print("<li>");
-                          out.print(eElement.getElementsByTagName("name").item(i).getTextContent());
-                          out.print("</li>");//staff
-                          }
-                        
+                        String sqlDetailCount = "select id_report,name_report from a_report_detail where id_cate = '"+rsCateCount.getString(1)+"' order by id_report ASC";
+                         ResultSet rsDetailCount = statement1.executeQuery(sqlDetailCount);
+                              while(rsDetailCount.next()){
+                             out.print("<li>");
+                             out.print(rsDetailCount.getString(2));
+                             out.print("</li>");//staff
+                            }
                    out.print("</ul>");//staff
            out.print("</li>");//company
             }
-        }
+        
         out.print("</ul>");//company
           
              }catch(Exception ex){
@@ -197,16 +190,7 @@ public final class readXML_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("\t<script src=\"https://cdnjs.cloudflare.com/ajax/libs/jquery/1.12.1/jquery.min.js\"></script>\n");
       out.write("        <script src=\"https://cdnjs.cloudflare.com/ajax/libs/jstree/3.2.1/jstree.min.js\"></script>\n");
       out.write("        <script> //var img = \"JonSnow.jpg\"; \n");
-      out.write("        </script>\n");
-      out.write("        ");
-
-          //String myVar = "12345";//use java parameter in javascript
-        
-      out.write(" \n");
-      out.write("        <script>\n");
-      out.write("            \n");
-      out.write("            \n");
-      out.write("            \n");
+      out.write("       \n");
       out.write("    \t$(function () {\n");
       out.write("    // 6 create an instance when the DOM is ready\n");
       out.write("    $('#jstree').jstree();\n");
@@ -222,46 +206,10 @@ public final class readXML_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("           \n");
       out.write("           var linkHref = \"filterReport.jsp?text=\"+text;\n");
       out.write("           window.open(linkHref,'filty');\n");
-      out.write("        \n");
-      out.write("       \n");
-      out.write("         \n");
-      out.write("            \n");
+      out.write(" \n");
       out.write("    });\n");
-      out.write("    // 8 interact with the tree - either way is OK\n");
-      out.write("    /*$('button').on('click', function () {\n");
-      out.write("      $('#jstree').jstree(true).select_node('child_node_1');\n");
-      out.write("      $('#jstree').jstree('select_node', 'child_node_1');\n");
-      out.write("      $.jstree.reference('#jstree').select_node('child_node_1');\n");
-      out.write("    });*/\n");
-      out.write("      \n");
-      out.write("        \n");
+      out.write("   \n");
       out.write("  });\n");
-      out.write("  /*\n");
-      out.write("  // interaction and events\n");
-      out.write("\t$('#evts_button').on(\"click\", function () {\n");
-      out.write("\t\tvar instance = $('#evts').jstree(true);\n");
-      out.write("\t\tinstance.deselect_all();\n");
-      out.write("\t\tinstance.select_node('1');\n");
-      out.write("\t});\n");
-      out.write("\t$('#evts')\n");
-      out.write("\t\t.on(\"changed.jstree\", function (e, data) {\n");
-      out.write("\t\t\tif(data.selected.length) {\n");
-      out.write("\t\t\t\talert('The selected node is: ' + data.instance.get_node(data.selected[0]).text);\n");
-      out.write("\t\t\t}\n");
-      out.write("\t\t})\n");
-      out.write("\t\t.jstree({\n");
-      out.write("\t\t\t'core' : {\n");
-      out.write("\t\t\t\t'multiple' : false,\n");
-      out.write("\t\t\t\t'data' : [\n");
-      out.write("\t\t\t\t\t{ \"text\" : \"Root node\", \"children\" : [\n");
-      out.write("\t\t\t\t\t\t\t{ \"text\" : \"Child node 1\", \"id\" : 1 },\n");
-      out.write("\t\t\t\t\t\t\t{ \"text\" : \"Child node 2\" }\n");
-      out.write("\t\t\t\t\t]}\n");
-      out.write("\t\t\t\t]\n");
-      out.write("\t\t\t}\n");
-      out.write("\t\t});\n");
-      out.write("  \n");
-      out.write("  */\n");
       out.write("  \n");
       out.write("  function goBack() {\n");
       out.write("    //window.history.back();\n");

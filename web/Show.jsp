@@ -22,18 +22,6 @@
 <%@ page import="java.sql.DriverManager"%>
 <%@ page import="java.sql.SQLException"%>
 
-
-
-
-
-
-
-
-
-
-
-
-
  
  <%  
                 
@@ -42,11 +30,7 @@
                //for connect HosOS
                Class.forName("org.postgresql.Driver").newInstance();
                Connection conn = DriverManager.getConnection("jdbc:postgresql://localhost:5433/dbHos", "postgres", "postgres"); //database connection
-              
-              
-               
-               
-              
+
                ArrayList<String> allParams = new ArrayList<String>();
                ArrayList<String> allValues = new ArrayList<String>();
               
@@ -57,20 +41,10 @@
                String fileGet = request.getParameter("textReport");
                String[] fileView=fileGet.split("\\.");
                String fileOut = fileView[0].toString();
-              
-               //out.println(path+""+fileGet);
-               //out.println(path+""+fileView);
-              //out.println(path+""+fileOut);
-              //out.println(start_date);
-              //out.println(end_date);
                
-               
-                 //Integer id=Integer.parseInt(request.getParameter("id"));
-               //out.println(id); //id parameter
-               //out.println(path); // path file
-               //out.println(fileOut); //.jrxml
-               //out.println(path+""+fileOut+".jasper");
-              
+               JasperCompileManager.compileReportToFile("C:/Users/NUT/Documents/NetBeansProjects/WebApplication3/build/web/Report/finance/"+fileGet);
+               //out.print(path+"/"+fileGet);
+                
             File reportFile = new File(application.getRealPath(path+"/"+fileOut+".jasper"));//your report_name.jasper file
             //File reportFile = new File(application.getRealPath("//Report/testpharm.jasper"));
            

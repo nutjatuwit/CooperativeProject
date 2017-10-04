@@ -260,7 +260,7 @@ public final class reportCateForm_jsp extends org.apache.jasper.runtime.HttpJspB
       out.write("}\n");
       out.write("\n");
       out.write("input[type=text] {\n");
-      out.write("    width: 90%;\n");
+      out.write("    width: 80%;\n");
       out.write("    padding: 6.25px 16px;\n");
       out.write("    margin: 20px 0;\n");
       out.write("    display: inline-block;\n");
@@ -313,7 +313,7 @@ public final class reportCateForm_jsp extends org.apache.jasper.runtime.HttpJspB
                     out.print("<table class='w3-table-all w3-hoverable'>");
                     
                     while(rs.next()){
-                      out.print("<tr class='w3-hover-blue'>");
+                      out.print("<tr class='w3-hover-light-blue'>");
                           out.print("<td onclick='goLink(this)'>");
                              out.print(rs.getString(2)); 
                           out.print("</td>");
@@ -341,7 +341,7 @@ public final class reportCateForm_jsp extends org.apache.jasper.runtime.HttpJspB
                     out.print("</div>");
                  out.print("<form action='insertCate'>");
                  out.print("<input type='text' class='w3-input w3-border w3-round  w3-light-blue' name='nameCate'>");
-                 out.print("<input type='submit' class='w3-button w3-blue w3-medium w3-round' style='width:10% '  value='เพิ่ม'>");
+                 out.print("<input type='submit' class='w3-button w3-blue w3-medium w3-round' style='width:20% '  value='เพิ่ม'>");
                  out.print("</form>");
                 
       out.write("\n");
