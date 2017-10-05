@@ -8,21 +8,32 @@
 	pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>File Upload</title>
-</head>
-<body>
+ <head><title>Upload page</title></head></p> <p><body>
+ <form action="testUpload.jsp" method="post" enctype="multipart/form-data" name="form1" id="form1">
+   <center>
+   <table border="2">
+       <tr>
+	       <td align="center"><b>Multipale file Uploade</td>
+	   </tr>
+       <tr>
+	       <td>
+		       Specify file: <input name="file" type="file" id="file">
+		   <td>
+	   </tr>
+	   <tr>
+	     
+            <tr>
+		   <td>
+		      Specify file:<input name="file" type="file" id="file">
+		   </td>
+		 </tr>
+		 <tr>
+		    <td align="center">
+               <input type="submit" name="Submit" value="Submit files"/>
+			</td>
+		 </tr>
+    </table>
 	<center>
-		<h1>Multiple Files Upload</h1>
-		<form method="post" action="UploadServlet" enctype="multipart/form-data">
-			Select file #1: <input type="file" size="50" /><br />
-			Select file #2: <input type="file" size="50" /><br />
-			Select file #3: <input type="file" size="50" /><br />
-			Select file #4: <input type="file" size="50" /><br />
-			Select file #5: <input type="file" size="50" /><br />
-			<br /> <input type="submit" value="Upload" />
-		</form>
-	</center>
-</body>
-</html>
+ </form>
+ </body>
+ </html>
