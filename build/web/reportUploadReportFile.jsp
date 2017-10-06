@@ -1,6 +1,6 @@
 <%-- 
-    Document   : reportForm
-    Created on : Sep 25, 2017, 1:34:49 PM
+    Document   : reportUploadReportFile
+    Created on : Oct 5, 2017, 2:36:54 PM
     Author     : NUT
 --%>
 
@@ -19,6 +19,7 @@
 <%@page import="org.w3c.dom.traversal.NodeIterator"%>
 <%@page import="javax.swing.tree.DefaultMutableTreeNode"%>
 <%@page import="java.io.File"%>
+<%@page contentType="text/html; charset=UTF-8" %>
 <%@page import="java.util.ArrayList"%>
 <!DOCTYPE html>
 <%!
@@ -198,6 +199,20 @@ div.tab button.active {
     border-top: none;
 }
 
+input[type=submit]{
+                    width: 100%;
+                    background-color: #088A08;
+                    color: white;
+                    padding: 14px 20px;
+                    margin: 8px 0;
+                    border: none;
+                    border-radius: 4px;
+                    cursor: pointer;
+                    align-content: center;
+                    font-size: 16px;
+}
+
+
 input[type=text] {
     width: 80%;
     padding: 6.25px 16px;
@@ -220,93 +235,66 @@ input[type=text] {
     <body>
         <%
             request.setCharacterEncoding("UTF-8");
+            
+            String path,jrxml,jasper,detail,category,name_folder;
+            
+            path = request.getParameter("path");
+            jrxml = request.getParameter("jrxml");
+            jasper = request.getParameter("jasper");
+            name_folder = request.getParameter("name_folder");
+            detail = request.getParameter("detail");
+            category = request.getParameter("category");
+            
             Class.forName("org.postgresql.Driver").newInstance();
                Connection conn = DriverManager.getConnection("jdbc:postgresql://localhost:5433/dbHos", "postgres", "postgres"); //database connection
                Statement statement = conn.createStatement();
               //String sqlCompile = "select * from member";
               //ResultSet rsCompile = statement1.executeQuery(sqlCompile);
               
-              String sql = "select id_cate,name_cate,name_folder from a_report_category order by id_cate ASC";
+              String sql = "select id_report,name_report,path_report,jrxml_report,jasper_report from a_report_category inner join a_report_detail on (a_report_category.id_cate = a_report_detail.id_cate) where name_cate = '"+category+"' and name_report = '"+detail+"' ";
               
               ResultSet rs = null;
-           
+           //out.println(category);
+           //out.println(detail);
         %>
        
 
         <div id="pagewrap">
 
 	<header align='center'>
-		<% out.print("<h1>ประเภทรายงาน</h1>"); %>
+		<% out.print("<h1>อัพโหลดไฟล์รายงาน</h1>"); %>
 	</header>
 	
         
 		<%
                     rs = statement.executeQuery(sql);
-                    
-                    out.print("<div class='w3-container'>");
-                    out.print("<table class='w3-table-all w3-hoverable'>");
-                    
                     while(rs.next()){
-                      out.print("<tr class='w3-hover-light-blue'>");
-                          out.print("<td onclick='goLink(this)'>");
-                             out.print(rs.getString(2)); 
-                          out.print("</td>");
-                          
-                          out.print("<form action='reportEditForm.jsp'>");
-                           out.print("<td>");
-                             out.print("<input type='hidden' name='id_cate' value='"+rs.getString(1)+"'>");
-                             out.print("<input type='hidden' name='category' value='"+rs.getString(2)+"'>");
-                             out.print("<input type='hidden' name='name_folder' value='"+rs.getString(3)+"'>");
-                             out.print("<input type='hidden' name='reportType' value='category'>");
-                             out.print("<input type='submit' class='button button1' src='' value='แก้ไข'>");
-                          out.print("</td>");
-                          out.print("</form>");
-                          
-                          out.print("<form action='deleteCate'>");
-                           out.print("<td>");
-                             out.print("<input type='hidden' name='id_cate' value='"+rs.getString(1)+"'>");
-                             out.print("<input type='submit' class='button button2' src='' value='ลบ'>"); 
-                          out.print("</td>");
-                          out.print("</form>");
-                          
-                      out.print("</tr>");
-                       
-                    }
-                    out.print("</table>");
+                    out.print("<div class='w3-container'>");
+                    out.print("<form action='reportUploadAccept.jsp' method='post' enctype='multipart/form-data' name='form1' id='form1' accept-charset='UTF-8'>");
+                    out.print("jrxml file: <input name='file' type='file' id='file' accept='.jrxml'><br>");
+                    out.print("jasper file: <input name='file' type='file' id='file' accept='.jasper'>");
+                    out.print("<input type='hidden' name='category' value='"+category+"'>");
+                    out.print("<input type='hidden' name='detail' value='"+detail+"'>");
+                    out.print("<input type='hidden' name='name_folder' value='"+name_folder+"'>");
+                    out.print("<input type='submit' value='อัพโหลดไฟล์รายงาน'>");
+                    out.print("</form>");
                     out.print("</div>");
-                 out.print("<form action='insertCate'>");
-                 out.print("<input type='text' class='w3-input w3-border w3-round  w3-light-blue' name='nameCate'>");
-                 out.print("<input type='submit' class='w3-button w3-blue w3-medium w3-round' style='width:20% '  value='เพิ่ม'>");
-                 out.print("</form>");
+                    }
                 %>
 	</div>
-	
+        
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.12.1/jquery.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jstree/3.2.1/jstree.min.js"></script>
          <script>
-function goEdit(e) {
-    //window.history.back();
-    var currentRow = $(e).
-    alert(currentRow.toString());
-    
-     //alert(y);
-    //var x = document.getElementsByTagName("td")[0].innerText;
-    //alert(x);
-    //var linkHref = "reportCateForm.jsp";
-    // window.open(linkHref,"left");
-    }
-
 
  function goLink(element) {
     //window.history.back();
     var y = element.innerHTML;
-    //alert(y);
-    
-     //alert(pkCate);
+     //alert(y);
     //var x = document.getElementsByTagName("td")[0].innerText;
     //alert(x);
-    var linkHref = "reportDetailForm.jsp?category="+y;
-    window.open(linkHref,"mid");
+    //var linkHref = "reportPathForm.jsp?category="+y;
+     //window.open(linkHref);
     }
   
     

@@ -181,9 +181,9 @@
     <body>
        <%
            request.setCharacterEncoding("UTF-8");
-           response.setCharacterEncoding("UTF-8");
+           //response.setCharacterEncoding("UTF-8");
            String category=request.getParameter("category");
-           
+           String name_folder="";
           
            //String cateNum=request.getParameter("pkCate");
            //int count=0;
@@ -196,8 +196,8 @@
               //String sqlCompile = "select * from member";
               //ResultSet rsCompile = statement1.executeQuery(sqlCompile);
               
-              String sql = "select id_report,name_report,path_report,jrxml_report from a_report_category inner join a_report_detail on (a_report_category.id_cate = a_report_detail.id_cate) where name_cate = '"+category+"' order by id_report ASC";
-              String sqlCate = "select id_cate from a_report_category where name_cate = '"+category+"' limit 1";
+              String sql = "select id_report,name_report,path_report,jrxml_report,jasper_report from a_report_category inner join a_report_detail on (a_report_category.id_cate = a_report_detail.id_cate) where name_cate = '"+category+"' order by id_report ASC";
+              String sqlCate = "select id_cate,name_folder from a_report_category where name_cate = '"+category+"' limit 1";
               ResultSet rs = null;
               ResultSet rsCate = null;
               
@@ -215,6 +215,7 @@
                     rs = statement.executeQuery(sql);
                       while(rsCate.next()){
                         pkCate=rsCate.getString(1);
+                        name_folder=rsCate.getString(2);
                     }
                     out.print("<div class='w3-container'>");
                     out.print("<table class='w3-table-all w3-hoverable'>");
@@ -229,6 +230,7 @@
                           out.print("<form action='reportEditForm.jsp'>");
                            out.print("<td>");
                              out.print("<input type='hidden' name='category' value='"+category+"'>");
+                             out.print("<input type='hidden' name='jasper_report' value='"+rs.getString(5)+"'>");
                              out.print("<input type='hidden' name='reportType' value='detail'>");
                              out.print("<input type='hidden' name='id_cate' value='"+pkCate+"'>");
                              out.print("<input type='hidden' name='id_report' value='"+rs.getString(1)+"'>");
@@ -269,12 +271,13 @@
  function goLink(element) {
     //window.history.back();
     var cate = '<%=category%>';
+    var folder = '<%=name_folder%>';
     
     var y = element.innerHTML;
      //alert(y);
     //var x = document.getElementsByTagName("td")[0].innerText;
     //alert(x);
-    var linkHref = "reportPathForm.jsp?detail="+y+"&category="+cate;
+    var linkHref = "reportPathForm.jsp?detail="+y+"&category="+cate+"&name_folder="+folder;
     //alert(linkHref);
      window.open(linkHref,'right');
     }

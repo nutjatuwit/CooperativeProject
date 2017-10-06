@@ -119,6 +119,7 @@ input[type=text] {
            
            String textPath=""; //getString(4);
            String textReport=""; //getString(5);
+           String textReportJasper=""; //getString(5);
            
            String paramJas="";
            String paramDbDes="";
@@ -126,13 +127,13 @@ input[type=text] {
            String paramDbName="";
            
 
-                        String sqlDetailCount = "select id_cate,id_report,name_report,path_report,jrxml_report from a_report_detail order by id_report ASC";
+                        String sqlDetailCount = "select id_cate,id_report,name_report,path_report,jrxml_report,jasper_report from a_report_detail order by id_report ASC";
                          ResultSet rsDetailCount = statement1.executeQuery(sqlDetailCount);
                               while(rsDetailCount.next()){
                              if(text.equals(rsDetailCount.getString(3))){
                                   textPath = rsDetailCount.getString(4);
                                   textReport = rsDetailCount.getString(5);
-                                  
+                                  textReportJasper = rsDetailCount.getString(6);
                                   //out.println(">>>>>"+text+"<br>");
                                   //out.println(">>>>>"+textPath+"<br>");
                                   //out.println(">>>>>"+textReport+"<br><br>");
@@ -193,6 +194,7 @@ input[type=text] {
                     
             } 
             out.print("<input type='hidden' name='textPath' value="+textPath+">");
+            out.print("<input type='hidden' name='textReportJasper' value="+textReportJasper+">");
             out.print("<input type='hidden' name='textReport' value="+textReport+">");
             out.print("<br><input type='submit' class='button button2' value='แสดงรายการ'>");
            out.print("</form>");

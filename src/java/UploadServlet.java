@@ -1,86 +1,163 @@
-
-/**
- * UploadServlet.java
- * Copyright (C) 2012 by www.codejava.net
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
  */
 
-import java.io.File;  
-import java.io.IOException;  
-import java.io.PrintWriter;  
-import java.util.Iterator;   
-import java.util.List;  
-import javax.servlet.ServletException;  
-import javax.servlet.http.HttpServlet;  
-import javax.servlet.http.HttpServletRequest;  
-import javax.servlet.http.HttpServletResponse;  
-import org.apache.commons.fileupload.FileItem;  
-import org.apache.commons.fileupload.FileItemFactory;  
-import org.apache.commons.fileupload.FileUploadException;  
-import org.apache.commons.fileupload.disk.DiskFileItemFactory;  
-import org.apache.commons.fileupload.servlet.ServletFileUpload;  
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.net.URLEncoder;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
-public class UploadServlet extends HttpServlet 
-{  
+/**
+ *
+ * @author NUT
+ */
+public class UploadServlet extends HttpServlet {
+  String path,category,jrxml,jasper,detail,name_folder;
+  String pkCate;        
+  String sql,sqlCate;
+//category=1.รายงานการเงิน&detail=1.รายงานผู้ป่วยที่ค้างชำระเงิน&jrxml=rp_cash_bill7318.jrxml&jasper=rp_cash_bill7318.jasper
+  
+  
+    ResultSet res,resCate;
+    
+    /**
+     * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
+     * methods.
+     *
+     * @param request servlet request
+     * @param response servlet response
+     * @throws ServletException if a servlet-specific error occurs
+     * @throws IOException if an I/O error occurs
+     */
+    protected void processRequest(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException, SQLException {
+        //response.setContentType("text/html;charset=UTF-8");
+        //category=1.รายงานการเงิน&detail=1.รายงานผู้ป่วยที่ค้างชำระเงิน&jrxml=rp_cash_bill7318.jrxml&jasper=rp_cash_bill7318.jasper
+        
+        request.setCharacterEncoding("UTF-8");
+        //response.setCharacterEncoding("UTF-8");
+        try (PrintWriter out = response.getWriter()) {
+            try {
+                Class.forName("org.postgresql.Driver");
+            } catch (ClassNotFoundException ex) {
+                Logger.getLogger(insertData.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            Connection conn = (Connection) DriverManager.getConnection("jdbc:postgresql://localhost:5433/dbHos", "postgres", "postgres");
 
-private static final long serialVersionUID = 1L;
+//Af_Scheme_Number=request.getParameter("Af_Scheme_Number");  
+            jasper = request.getParameter("jasper");
+            name_folder = request.getParameter("name_folder");
+            jrxml = request.getParameter("jrxml");
+            detail = request.getParameter("detail");
+            category = request.getParameter("category");
+            //pkDetail = request.getParameter("pkDetail");
+            
+           
+            //System.out.println("pkDetail : "+pkDetail);
+            System.out.println("jasper : "+jasper);
+            System.out.println("jrxml : "+jrxml);
+            System.out.println("detail : "+detail);
+            System.out.println("category : "+category);
+            System.out.println("name_folder : "+name_folder);
+            
+            
 
-    @Override  
-      protected void doPost(HttpServletRequest request, HttpServletResponse response)  
-          throws ServletException, IOException 
-          {  
-            boolean isMultipart = ServletFileUpload.isMultipartContent(request);  
-            response.setContentType("text/html");  
-            PrintWriter out = response.getWriter();  
-            if (isMultipart) 
-            {  
-                // Create a factory for disk-based file items  
-                FileItemFactory factory = new DiskFileItemFactory();  
-                // Create a new file upload handler  
-                ServletFileUpload upload = new ServletFileUpload(factory);  
-                try 
-                {  
-                    // Parse the request  
-                    List items = upload.parseRequest(request);  
-                    Iterator iterator = items.iterator();  
-                    while (iterator.hasNext()) 
-                    {  
-                        FileItem item = (FileItem) iterator.next();  
-                        if (!item.isFormField())  
-                        {  
-                            String fileName = item.getName();      
-                            String root = getServletContext().getRealPath("/");  
-                            File path = new File(root + "/uploads");  
-                            if (!path.exists())  
-                            {  
-                                boolean status = path.mkdirs();  
-                            }  
-                            File uploadedFile = new File(path + "/" + fileName);  
-                            System.out.println(uploadedFile.getAbsolutePath());  
-                        if(fileName!="")  
-                            item.write(uploadedFile);  
-                        else  
-                        out.println("file not found");  
-                        out.println("<h1>File Uploaded Successfully....:-)</h1>");  
-                    }  
-                    else  
-                    {  
-                        String abc = item.getString();  
-                        out.println("<br><br><h1>"+abc+"</h1><br><br>");  
-                    }  
-                }  
-            } 
-            catch (FileUploadException e) 
-            {  
-            out.println(e);  
-            } 
-            catch (Exception e) 
-            {  
-            out.println(e);  
-            }  
-        }  
-        else  
-        {  
-            out.println("Not Multipart");  
-        }  
-      }  
+            
+            
+            
+            Statement stmt = (Statement) conn.createStatement();
+            Statement stmtCate = (Statement) conn.createStatement();
+            
+            sqlCate = "select id_cate from a_report_category where name_cate = '"+category+"' limit 1";
+            resCate = stmtCate.executeQuery(sqlCate);
+           
+            
+            
+            
+            
+             while(resCate.next()){
+                pkCate = resCate.getString(1);
+            }
+             String pathFolder = "//Report/"+name_folder;
+             //update a_report_detail set path_report='1',jrxml_report='1'
+             //where id_cate='12' and name_report='2.รายงานอื่น'
+             sql = "update a_report_detail set jasper_report='"+jasper+"',jrxml_report='"+jrxml+"',path_report='"+pathFolder+"' where id_cate='"+pkCate+"' and name_report='"+detail+"'";
+                   
+            System.out.println(sql);
+            
+            //stmtCate.executeQuery(sqlCate);
+            stmt.execute(sql);
+            
+            //pass parameter error
+            //response.setCharacterEncoding("UTF-8");
+            response.sendRedirect("/WebApplication3/reportPathForm.jsp?detail="+URLEncoder.encode(detail, "UTF-8")+"&category="+ URLEncoder.encode(category, "UTF-8")+"&name_folder="+ URLEncoder.encode(name_folder, "UTF-8"));
+        }
+    }
+
+    // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
+    /**
+     * Handles the HTTP <code>GET</code> method.
+     *
+     * @param request servlet request
+     * @param response servlet response
+     * @throws ServletException if a servlet-specific error occurs
+     * @throws IOException if an I/O error occurs
+     */
+    @Override
+    protected void doGet(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        response.setContentType("text/html");
+        response.setCharacterEncoding("UTF-8");
+        
+        //request.setAttribute("todo", "10");
+        
+        
+        //request.getRequestDispatcher("/addParams.jsp").forward(request, response);
+        try {
+            processRequest(request, response);
+        } catch (SQLException ex) {
+            Logger.getLogger(insertData.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+    /**
+     * Handles the HTTP <code>POST</code> method.
+     *
+     * @param request servlet request
+     * @param response servlet response
+     * @throws ServletException if a servlet-specific error occurs
+     * @throws IOException if an I/O error occurs
+     */
+    @Override
+    protected void doPost(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        try {
+            processRequest(request, response);
+        } catch (SQLException ex) {
+            Logger.getLogger(insertData.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+    /**
+     * Returns a short description of the servlet.
+     *
+     * @return a String containing servlet description
+     */
+    @Override
+    public String getServletInfo() {
+        return "Short description";
+    }// </editor-fold>
+
 }

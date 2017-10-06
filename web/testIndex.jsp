@@ -9,7 +9,7 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
  <head><title>Upload page</title></head></p> <p><body>
- <form action="testUpload.jsp" method="post" enctype="multipart/form-data" name="form1" id="form1">
+ <form action="UploadServlet" method="post" enctype="multipart/form-data" name="form1" id="form1">
    <center>
    <table border="2">
        <tr>

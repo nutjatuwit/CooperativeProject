@@ -5,14 +5,10 @@
    <%@ page import="org.apache.commons.fileupload.disk.DiskFileItemFactory"%>
    <%@ page import="org.apache.commons.fileupload.*"%>
    <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-   <center>
-<table border="2">
-        <tr>
-        <td>
-	<h1>Your files  uploaded </h1>
-	</td>
-	</tr>
+   
+
    <%
+       request.setCharacterEncoding("UTF-8");
  boolean isMultipart = ServletFileUpload.isMultipartContent(request);
  if (!isMultipart) {
  } else {
@@ -30,10 +26,19 @@
 	   if (item.isFormField()) {
 	   } else {
 		   try {
+                       String strProjectDir = ""; 
+                        strProjectDir = getServletContext().getRealPath("/")+"upload/g2/"; //create directory if exist
+                        File ProjectDir = new File(strProjectDir);
+                        if(! ProjectDir.exists())
+                        {
+                            ProjectDir.mkdir();
+                        }
 			   String itemName = item.getName();
-			   File savedFile = new File(config.getServletContext().getRealPath("/")+"upload/"+itemName);
-			   item.write(savedFile);  
-		          out.println("<tr><td><b>Your file has been saved at the loaction:</b></td></tr><tr><td><b>"+config.getServletContext().getRealPath("/")+"uploadedFiles"+"\\"+itemName+"</td></tr>");
+			   File savedFile = new File(getServletContext().getRealPath("/")+"upload/g2/"+itemName); //set follow category folder
+                            item.write(savedFile);
+                            
+		           out.println("Your file has been saved at the loaction: "+strProjectDir+itemName+"<br><br>");
+                           out.println(itemName+" "+request.getParameter("category"));
 		   } catch (Exception e) {
 			   e.printStackTrace();
 		   }
@@ -41,5 +46,4 @@
 	   }
    }
    %>
-    </table>
-   </center>
+   

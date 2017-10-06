@@ -19,7 +19,6 @@
 <%@page import="org.w3c.dom.traversal.NodeIterator"%>
 <%@page import="javax.swing.tree.DefaultMutableTreeNode"%>
 <%@page import="java.io.File"%>
-<%@page contentType="text/html; charset=UTF-8" %>
 <%@page import="java.util.ArrayList"%>
 <!DOCTYPE html>
 <%!
@@ -227,7 +226,7 @@ input[type=text] {
               //String sqlCompile = "select * from member";
               //ResultSet rsCompile = statement1.executeQuery(sqlCompile);
               
-              String sql = "select id_cate,name_cate from a_report_category order by id_cate ASC";
+              String sql = "select id_cate,name_cate,name_folder from a_report_category order by id_cate ASC";
               
               ResultSet rs = null;
            
@@ -257,6 +256,7 @@ input[type=text] {
                            out.print("<td>");
                              out.print("<input type='hidden' name='id_cate' value='"+rs.getString(1)+"'>");
                              out.print("<input type='hidden' name='category' value='"+rs.getString(2)+"'>");
+                             out.print("<input type='hidden' name='name_folder' value='"+rs.getString(3)+"'>");
                              out.print("<input type='hidden' name='reportType' value='category'>");
                              out.print("<input type='submit' class='button button1' src='' value='แก้ไข'>");
                           out.print("</td>");

@@ -38,14 +38,13 @@
               
                
                String path = request.getParameter("textPath");
-               String fileGet = request.getParameter("textReport");
-               String[] fileView=fileGet.split("\\.");
-               String fileOut = fileView[0].toString();
+               String textReportJasper = request.getParameter("textReportJasper");
+              
                
-               JasperCompileManager.compileReportToFile("C:/Users/NUT/Documents/NetBeansProjects/WebApplication3/build/web/Report/finance/"+fileGet);
+               //JasperCompileManager.compileReportToFile("C:/Users/NUT/Documents/NetBeansProjects/WebApplication3/build/web/Report/finance/"+fileGet);
                //out.print(path+"/"+fileGet);
                 
-            File reportFile = new File(application.getRealPath(path+"/"+fileOut+".jasper"));//your report_name.jasper file
+            File reportFile = new File(application.getRealPath(path+"/"+textReportJasper));//your report_name.jasper file
             //File reportFile = new File(application.getRealPath("//Report/testpharm.jasper"));
            
             //out.print(reportFile.getPath().toString());

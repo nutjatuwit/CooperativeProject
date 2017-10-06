@@ -3,12 +3,12 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/NUT/Documents/NetBeansProjects/WebApplication3/web/filterReport.jsp</file>
-            <file>file:/C:/Users/NUT/Documents/NetBeansProjects/WebApplication3/web/testIndex.jsp</file>
-            <file>file:/C:/Users/NUT/Documents/NetBeansProjects/WebApplication3/web/testUpload.jsp</file>
+            <file>file:/C:/Users/NUT/Documents/NetBeansProjects/WebApplication3/web/reportDetailForm.jsp</file>
+            <file>file:/C:/Users/NUT/Documents/NetBeansProjects/WebApplication3/src/java/updateReport.java</file>
             <file>file:/C:/Users/NUT/Documents/NetBeansProjects/WebApplication3/web/managePage.html</file>
-            <file>file:/C:/Users/NUT/Documents/NetBeansProjects/WebApplication3/web/testMessage.jsp</file>
-            <file>file:/C:/Users/NUT/Documents/NetBeansProjects/WebApplication3/src/java/UploadServlet.java</file>
+            <file>file:/C:/Users/NUT/Documents/NetBeansProjects/WebApplication3/web/reportEditForm.jsp</file>
+            <file>file:/C:/Users/NUT/Documents/NetBeansProjects/WebApplication3/web/reportPathForm.jsp</file>
+            <file>file:/C:/Users/NUT/Documents/NetBeansProjects/WebApplication3/web/reportCateForm.jsp</file>
         </group>
     </open-files>
 </project-private>

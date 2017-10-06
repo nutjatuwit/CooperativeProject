@@ -47,7 +47,7 @@ public final class testIndex_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("<!DOCTYPE html PUBLIC \"-//W3C//DTD HTML 4.01 Transitional//EN\" \"http://www.w3.org/TR/html4/loose.dtd\">\n");
       out.write("<html>\n");
       out.write(" <head><title>Upload page</title></head></p> <p><body>\n");
-      out.write(" <form action=\"testUpload.jsp\" method=\"post\" enctype=\"multipart/form-data\" name=\"form1\" id=\"form1\">\n");
+      out.write(" <form action=\"UploadServlet\" method=\"post\" enctype=\"multipart/form-data\" name=\"form1\" id=\"form1\">\n");
       out.write("   <center>\n");
       out.write("   <table border=\"2\">\n");
       out.write("       <tr>\n");
@@ -59,10 +59,8 @@ public final class testIndex_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("\t\t   <td>\n");
       out.write("\t   </tr>\n");
       out.write("\t   <tr>\n");
-      out.write("\t      <td>\n");
-      out.write("\t\t     Specify file:<input name=\"file\" type=\"file\" id=\"file\">\n");
-      out.write("\t\t  </td>\n");
-      out.write("        <tr>\n");
+      out.write("\t     \n");
+      out.write("            <tr>\n");
       out.write("\t\t   <td>\n");
       out.write("\t\t      Specify file:<input name=\"file\" type=\"file\" id=\"file\">\n");
       out.write("\t\t   </td>\n");

@@ -196,6 +196,7 @@
        <%
            request.setCharacterEncoding("UTF-8");
            String category=request.getParameter("category");
+           String name_folder=request.getParameter("name_folder");
            String detail=request.getParameter("detail");
           
            
@@ -207,7 +208,7 @@
               //String sqlCompile = "select * from member";
               //ResultSet rsCompile = statement1.executeQuery(sqlCompile);
               
-              String sql = "select id_report,name_report,path_report,jrxml_report from a_report_category inner join a_report_detail on (a_report_category.id_cate = a_report_detail.id_cate) where name_cate = '"+category+"' and name_report = '"+detail+"' ";
+              String sql = "select id_report,name_report,path_report,jrxml_report,jasper_report from a_report_category inner join a_report_detail on (a_report_category.id_cate = a_report_detail.id_cate) where name_cate = '"+category+"' and name_report = '"+detail+"' ";
               ResultSet rs = null;
               //out.print(sql);
            
@@ -223,13 +224,16 @@
                     rs = statement.executeQuery(sql);
                     while(rs.next()){
                     out.print("<div class='w3-container'>");
-                    out.print("<form action='insertPath'>");
-                    //out.print("ตำแหน่งไฟล์  <input type='text' name='path'  width='100%' value='"+rs.getString(3)+"'><input type='file' name='filUpload'><br>");
-                    //out.print("ชื่อไฟล์  <input type='text' name='jrxml' width='100%' value='"+rs.getString(4)+"'><br>");
-                    out.print("<input type='file' name='filUpload'>");
+                    out.print("<form action='reportUploadReportFile.jsp'>");
+                    out.print("ตำแหน่งไฟล์  <input type='text' name='path'  width='100%' value='"+rs.getString(3)+"'><br>");
+                    out.print("Folder  <input type='text' name='name_folder'  width='100%' value='"+name_folder+"'><br>");
+                    out.print("jrxml  <input type='text' name='jrxml' width='100%' value='"+rs.getString(4)+"'><br>");
+                    out.print("jasper  <input type='text' name='jasper' width='100%' value='"+rs.getString(5)+"'><br>");
+                    //out.print("jrxml file: <input name='file' type='file' id='file' accept='.jrxml'><br>");
+                    //out.print("jasper file: <input name='file' type='file' id='file' accept='.jasper'>");
                     out.print("<input type='hidden' name='category' value='"+category+"'>");
                     out.print("<input type='hidden' name='detail' value='"+detail+"'>");
-                    //out.print("<input type='submit' value='ยืนยัน'>");
+                    out.print("<input type='submit' value='แก้ไขไฟล์รายงาน'>");
                     out.print("</form>");
                     out.print("</div>");
                     }
