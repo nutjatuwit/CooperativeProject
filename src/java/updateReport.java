@@ -25,21 +25,7 @@ import javax.servlet.http.HttpServletResponse;
  */
 public class updateReport extends HttpServlet {
   String reportType;
-  //String id_cate,category; //id_cate=1&category=1.รายงานการเงิน&reportType=category
-  //String id_report,detail;  //category=4.รายงานการนัดหมาย&reportType=detail&pkCate=4&id_report=18&detail=1.รายการนัดหมายแยกตามวัน+เวลา+คลินิก+และแพทย์      
-  //String sql,sqlCate;
-    
-                           /*out.print("<input type='hidden' name='id_cate' value='"+rs.getString(1)+"'>");
-                             out.print("<input type='hidden' name='category' value='"+rs.getString(2)+"'>");
-                             out.print("<input type='hidden' name='reportType' value='category'>");   */                       
-  
-  
-                          /* out.print("<input type='hidden' name='category' value='"+category+"'>");
-                             out.print("<input type='hidden' name='reportType' value='detail'>");
-                             out.print("<input type='hidden' name='id_cate' value='"+pkCate+"'>");
-                             out.print("<input type='hidden' name='id_report' value='"+rs.getString(1)+"'>");
-                             out.print("<input type='hidden' name='detail' value='"+rs.getString(2)+"'>");*/
-  
+
     ResultSet res,resCate;
     
     /**
@@ -64,8 +50,6 @@ public class updateReport extends HttpServlet {
             }
             Connection conn = (Connection) DriverManager.getConnection("jdbc:postgresql://localhost:5433/dbHos", "postgres", "postgres");
 
-//Af_Scheme_Number=request.getParameter("Af_Scheme_Number"); 
-            
             reportType = request.getParameter("reportType");
              if(reportType.equals("category")){ //id_cate=1&category=1.รายงานการเงิน&reportType=category
                  String category = request.getParameter("category");

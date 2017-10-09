@@ -228,23 +228,23 @@
                           out.print("</td>");
                           
                           out.print("<form action='reportEditForm.jsp'>");
-                           out.print("<td>");
+                           out.print("<td style='text-align: right; width: 10%;'>");
                              out.print("<input type='hidden' name='category' value='"+category+"'>");
                              out.print("<input type='hidden' name='jasper_report' value='"+rs.getString(5)+"'>");
                              out.print("<input type='hidden' name='reportType' value='detail'>");
                              out.print("<input type='hidden' name='id_cate' value='"+pkCate+"'>");
                              out.print("<input type='hidden' name='id_report' value='"+rs.getString(1)+"'>");
                              out.print("<input type='hidden' name='detail' value='"+rs.getString(2)+"'>");
-                             out.print("<input type='submit' src='' class='button button1' value='แก้ไข'>");
+                             out.print("<button type='submit' class='button button2' src=''><img src='images/edit.png' id='img' height='30' width='30'></button>");
                           out.print("</td>");
                           out.print("</form>");
                           
                           out.print("<form action='deleteDetail'>");
-                           out.print("<td>");
+                           out.print("<td style='text-align: right; width: 10%;'>");
                              out.print("<input type='hidden' name='category' value='"+category+"'>");
                              out.print("<input type='hidden' name='pkCate' value='"+pkCate+"'>");
                              out.print("<input type='hidden' name='id_report' value='"+rs.getString(1)+"'>");
-                             out.print("<input type='submit' src='' class='button button2' value='ลบ'>"); 
+                             out.print("<button type='submit' class='button button2' src=''><img src='images/remove.png' id='img' height='30' width='30'></button>"); 
                           out.print("</td>");
                           out.print("</form>");
                           

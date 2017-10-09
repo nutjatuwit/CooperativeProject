@@ -1,4 +1,5 @@
-    <%@page import="java.net.URLEncoder"%>
+    <%@page import="java.awt.Desktop"%>
+<%@page import="java.net.URLEncoder"%>
 <%@page import="java.net.URLDecoder"%>
 <%@page pageEncoding="utf8" %>
    <%@page import="java.util.Enumeration"%>
@@ -12,7 +13,195 @@
    <%@ page language="java" contentType="text/html;charset=UTF-8" %>
    
      <meta contentType="text/html; charset=UTF-8"/>
-   
+      <link rel="stylesheet" href="style/default.css"> 
+      <link rel="stylesheet" href="style/w3.css">
+      <style>
+            @import url(https://fonts.googleapis.com/css?family=Open+Sans);
+
+            body { 
+                font-family: 'Open Sans', sans-serif;
+                color: #666;
+                
+            }
+
+            /* STRUCTURE */
+
+            #pagewrap {
+                padding: 5px;
+                width: 1300px;
+                margin: 20px auto;
+            }
+            header {
+                height: 100px;
+                padding: 0 15px;
+            }
+            #content {
+                width: 380px;
+                float: left;
+                padding: 5px 15px;
+                
+            }
+
+            #middle {
+                width: 520px; /* Account for margins + border values */
+                float: left;
+                padding: 5px 15px;
+                
+            }
+
+            #sidebar {
+                width: 290px;
+                padding: 5px 15px;
+                float: left;
+            }
+            footer {
+                clear: both;
+                padding: 0 15px;
+            }
+
+            /************************************************************************************
+            MEDIA QUERIES
+            *************************************************************************************/
+            /* for 980px or less */
+            @media screen and (max-width: 980px) {
+
+                #pagewrap {
+                    width: 94%;
+                }
+                #content {
+                    width: 41%;
+                    padding: 1% 4%;
+                }
+                #middle {
+                    width: 41%;
+                    padding: 1% 4%;
+                    margin: 0px 0px 5px 5px;
+                    float: right;
+                }
+
+                #sidebar {
+                    clear: both;
+                    padding: 1% 4%;
+                    width: auto;
+                    float: none;
+                }
+
+                header, footer {
+                    padding: 1% 4%;
+                }
+            }
+
+            /* for 700px or less */
+            @media screen and (max-width: 600px) {
+
+                #content {
+                    width: auto;
+                    float: none;
+                }
+
+                #middle {
+                    width: auto;
+                    float: none;
+                    margin-left: 0px;
+                }
+
+                #sidebar {
+                    width: auto;
+                    float: none;
+                }
+
+            }
+
+            /* for 480px or less */
+            @media screen and (max-width: 480px) {
+
+                header {
+                    height: auto;
+                }
+                h1 {
+                    font-size: 2em;
+                }
+                #sidebar {
+                    display: none;
+                }
+
+            }
+
+
+            #content {
+                background: #f8f8f8;
+            }
+            #sidebar {
+                background: #f0efef;
+            }
+            header, #content, #middle, #sidebar {
+                margin-bottom: 5px;
+            }
+
+            #pagewrap, header, #content, #middle, #sidebar, footer {
+                border: solid 1px #ccc;
+            }  
+            
+             div.tab {
+    overflow: hidden;
+    border: 1px solid #ccc;
+    background-color: #f1f1f1;
+}
+
+/* Style the buttons inside the tab */
+div.tab button {
+    background-color: inherit;
+    float: left;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    padding: 12px 20px;
+    transition: 0.6s;
+}
+
+/* Change background color of buttons on hover */
+div.tab button:hover {
+    background-color: #cceeff;
+}
+
+/* Create an active/current tablink class */
+div.tab button.active {
+    background-color: #ccc;
+}
+
+/* Style the tab content */
+.tabcontent {
+    display: none;
+    padding: 6px 10px;
+    border: 1px solid #ccc;
+    border-top: none;
+}
+
+input[type=submit]{
+                    width: 100%;
+                    background-color: #088A08;
+                    color: white;
+                    padding: 14px 20px;
+                    margin: 8px 0;
+                    border: none;
+                    border-radius: 4px;
+                    cursor: pointer;
+                    align-content: center;
+                    font-size: 16px;
+}
+
+
+input[type=text] {
+    width: 80%;
+    padding: 6.25px 16px;
+    margin: 20px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+    font-size: 16px;
+}
+        </style>
    
    <%
         /*List<FileItem> multiparts = new ServletFileUpload(new DiskFileItemFactory()).parseRequest(request);
@@ -32,8 +221,11 @@
        //out.println(request.getRequestURL());
        ArrayList reportList = new ArrayList();
        ArrayList detailList = new ArrayList();
-  
        
+       
+       
+  
+       out.print("<div id='pagewrap'>");
  boolean isMultipart = ServletFileUpload.isMultipartContent(request);
  if (!isMultipart) {
  } else {
@@ -93,9 +285,9 @@
                         String value = item.getName();
                         
                         reportList.add(value);
-                        out.print("!isFormField : "+value+"<br>");
+                        //out.print("!isFormField : "+value+"<br>");
                         //out.print(item.getOutputStream());
-                        out.print("isFormField : "+name_folder+"<br>");
+                        //out.print("isFormField : "+name_folder+"<br>");
                         
                         
                         String strProjectDir = ""; 
@@ -105,11 +297,18 @@
                         if(! ProjectDir.exists())
                         {
                             ProjectDir.mkdir();
-                            out.print("make dir");
+                            //out.print("make dir");
                         }
 			    String itemName = item.getName();
 			    File savedFile = new File(getServletContext().getRealPath("/")+"upload"+"\\"+name_folder+"\\"+itemName); //set follow category folder
                             item.write(savedFile);
+                            
+                            
+                            
+                            // String pathFolder = getServletContext().getRealPath("/")+"upload/"+name_folder; 
+                            // File fileDir = new File (pathFolder);
+                            // Desktop desktop = Desktop.getDesktop();
+                             //desktop.open(fileDir);
                             
 		           out.println("Your file has been saved at the loaction: "+getServletContext().getRealPath("/")+"upload"+"\\"+name_folder+"\\"+itemName+"<br><br>");
                            //out.println(itemName+" "+request.getParameter("category"));
@@ -133,9 +332,19 @@
         out.print("<input type='hidden' name='name_folder' value='"+detailList.get(2).toString()+"'>");
         out.print("<input type='hidden' name='jrxml' value='"+reportList.get(0).toString()+"'>");
         out.print("<input type='hidden' name='jasper' value='"+reportList.get(1).toString()+"'>");
+        
         out.print("<input type='submit' value='ตกลง'>");
         out.print("<form>");
-       //response.sendRedirect("/WebApplication3/index.jsp?detail="+URLEncoder.encode(reportList.get(2).toString(), "UTF-8")+"&category="+ URLEncoder.encode(reportList.get(1).toString(), "UTF-8"));
+       
+       
       
+        out.print("</div>");
    %>
-   
+  
+   <script>
+      function openFolder(){
+       
+      }
+    
+    
+   </script>

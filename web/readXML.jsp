@@ -49,6 +49,7 @@ div.tab button {
     cursor: pointer;
     padding: 12px 20px;
     transition: 0.6s;
+    font-size: 22px;
 }
 
 /* Change background color of buttons on hover */

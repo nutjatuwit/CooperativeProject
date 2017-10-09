@@ -48,6 +48,10 @@
         <servlet-name>UploadServlet</servlet-name>
         <servlet-class>UploadServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>openFolder</servlet-name>
+        <servlet-class>openFolder</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>insertData</servlet-name>
         <url-pattern>/insertData</url-pattern>
@@ -95,6 +99,10 @@
     <servlet-mapping>
         <servlet-name>UploadServlet</servlet-name>
         <url-pattern>/UploadServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>openFolder</servlet-name>
+        <url-pattern>/openFolder</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

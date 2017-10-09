@@ -53,29 +53,19 @@ public class insertCate extends HttpServlet {
             Connection conn = (Connection) DriverManager.getConnection("jdbc:postgresql://localhost:5433/dbHos", "postgres", "postgres");
 
 //Af_Scheme_Number=request.getParameter("Af_Scheme_Number");  
-            nameCate = request.getParameter("nameCate");
             
-           
-           
-            System.out.println("nameCate : "+nameCate);
+           nameCate = request.getParameter("nameCate");
+           if(nameCate.equals("")){      
             
-            
-
-            
-            
-            
+           }else{
+             System.out.println("nameCate : "+nameCate);
             Statement stmt = (Statement) conn.createStatement();
            
             sql = "insert into a_report_category(name_cate)"
                     + " values('" + nameCate + "')";
-            //stmt.executeUpdate("SET NAMES UTF8");
-            //stmt.executeUpdate("SET character_set_results=utf8");
-            //stmt.executeUpdate("SET character_set_client=utf8");
-            //stmt.executeUpdate("SET character_set_connection=utf8");
             System.out.println(sql);
-            
             stmt.executeUpdate(sql);
-            
+           }
         }
     }
 

@@ -67,9 +67,7 @@ public class insertDetail extends HttpServlet {
             
 
             
-            
-            
-            Statement stmt = (Statement) conn.createStatement();
+              Statement stmt = (Statement) conn.createStatement();
             Statement stmtCate = (Statement) conn.createStatement();
             
            
@@ -77,10 +75,7 @@ public class insertDetail extends HttpServlet {
                     + " values('" + pkCate + "','" + nameDetail + "')";
             sqlCate = "select name_cate from a_report_category where id_cate = '"+pkCate+"'";
             resCate = stmtCate.executeQuery(sqlCate);
-            //stmt.executeUpdate("SET NAMES UTF8");
-            //stmt.executeUpdate("SET character_set_results=utf8");
-            //stmt.executeUpdate("SET character_set_client=utf8");
-            //stmt.executeUpdate("SET character_set_connection=utf8");
+            
             while(resCate.next()){
                 nameCate = resCate.getString(1);
             }
@@ -90,7 +85,7 @@ public class insertDetail extends HttpServlet {
             stmt.execute(sql);
             
             //pass parameter error
-            response.setCharacterEncoding("UTF-8");
+            
             response.sendRedirect("/WebApplication3/reportDetailForm.jsp?category="+ URLEncoder.encode(nameCate, "UTF-8"));
         }
     }

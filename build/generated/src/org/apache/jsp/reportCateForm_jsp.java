@@ -3,6 +3,7 @@ package org.apache.jsp;
 import javax.servlet.*;
 import javax.servlet.http.*;
 import javax.servlet.jsp.*;
+import java.awt.Desktop;
 import java.sql.ResultSet;
 import java.sql.Statement;
 import java.sql.DriverManager;
@@ -67,6 +68,7 @@ public final class reportCateForm_jsp extends org.apache.jasper.runtime.HttpJspB
       _jspx_out = out;
       _jspx_resourceInjector = (org.glassfish.jsp.api.ResourceInjector) application.getAttribute("com.sun.appserv.jsp.resource.injector");
 
+      out.write("\n");
       out.write("\n");
       out.write("\n");
       out.write("\n");
@@ -238,6 +240,7 @@ public final class reportCateForm_jsp extends org.apache.jasper.runtime.HttpJspB
       out.write("    cursor: pointer;\n");
       out.write("    padding: 12px 20px;\n");
       out.write("    transition: 0.6s;\n");
+      out.write("    font-size: 25px;\n");
       out.write("}\n");
       out.write("\n");
       out.write("/* Change background color of buttons on hover */\n");
@@ -268,6 +271,7 @@ public final class reportCateForm_jsp extends org.apache.jasper.runtime.HttpJspB
       out.write("    box-sizing: border-box;\n");
       out.write("    font-size: 16px;\n");
       out.write("}\n");
+      out.write("\n");
       out.write("        </style>\n");
       out.write("        <link rel=\"stylesheet\" href=\"dist/themes/default/style.min.css\" />\n");
       out.write("        <link rel=\"stylesheet\" href=\"https://cdnjs.cloudflare.com/ajax/libs/jstree/3.2.1/themes/default/style.min.css\" />\n");
@@ -290,9 +294,10 @@ public final class reportCateForm_jsp extends org.apache.jasper.runtime.HttpJspB
               String sql = "select id_cate,name_cate,name_folder from a_report_category order by id_cate ASC";
               
               ResultSet rs = null;
-           
+              
+             
         
-      out.write("\n");
+      out.write("    \n");
       out.write("       \n");
       out.write("\n");
       out.write("        <div id=\"pagewrap\">\n");
@@ -318,21 +323,42 @@ public final class reportCateForm_jsp extends org.apache.jasper.runtime.HttpJspB
                           out.print("</td>");
                           
                           out.print("<form action='reportEditForm.jsp'>");
-                           out.print("<td>");
+                           out.print("<td style='text-align: right; width: 10%;'>");
                              out.print("<input type='hidden' name='id_cate' value='"+rs.getString(1)+"'>");
                              out.print("<input type='hidden' name='category' value='"+rs.getString(2)+"'>");
                              out.print("<input type='hidden' name='name_folder' value='"+rs.getString(3)+"'>");
                              out.print("<input type='hidden' name='reportType' value='category'>");
-                             out.print("<input type='submit' class='button button1' src='' value='แก้ไข'>");
+                             out.print("<button type='submit' class='button button2' src=''><img src='images/edit.png' id='img' height='30' width='30'></button>");
                           out.print("</td>");
                           out.print("</form>");
                           
                           out.print("<form action='deleteCate'>");
-                           out.print("<td>");
+                           out.print("<td style='text-align: right; width: 10%;'>");
                              out.print("<input type='hidden' name='id_cate' value='"+rs.getString(1)+"'>");
-                             out.print("<input type='submit' class='button button2' src='' value='ลบ'>"); 
+                             out.print("<button type='submit' class='button button2' src=''><img src='images/remove.png' id='img' height='30' width='30'></button>"); 
                           out.print("</td>");
                           out.print("</form>");
+                          
+                          String isFolder = getServletContext().getRealPath("/")+"upload/"+rs.getString(3);
+                          File fileList = new File(isFolder);
+                          if(fileList.isDirectory()){
+                              out.print("<form action='openFolder'>");
+                           out.print("<td style='text-align: right; width: 10%;'>");
+                             out.print("<input type='hidden' name='name_folder' value='"+rs.getString(3)+"'>");
+                             out.print("<button type='submit' class='button button2'><img src='images/openfolder.png' id='img' height='30' width='30'></button>");  
+                          out.print("</td>");
+                          out.print("</form>");
+                          }else{
+                          out.print("<form action='openFolder'>");
+                           out.print("<td style='text-align: right; width: 10%;'>");
+                             out.print("<input type='hidden' name='name_folder' value='"+rs.getString(3)+"'>");
+                             out.print("<button type='submit' class='button button2' disabled><img src='images/openfolder.png' id='img' height='30' width='30'></button>"); 
+                             
+                          out.print("</td>");
+                          out.print("</form>");
+                          }
+                          
+                          
                           
                       out.print("</tr>");
                        

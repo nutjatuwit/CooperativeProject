@@ -223,13 +223,13 @@ input[type=text] {
     box-sizing: border-box;
     font-size: 16px;
 }
+
+
         </style>
         <link rel="stylesheet" href="dist/themes/default/style.min.css" />
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jstree/3.2.1/themes/default/style.min.css" />
        
-    <div class="tab">
-      <button class="tablinks" onclick="goBack();">กลับ</button>
-    </div>   
+    
       
     </head>
     <body>
@@ -271,8 +271,10 @@ input[type=text] {
                     while(rs.next()){
                     out.print("<div class='w3-container'>");
                     out.print("<form action='reportUploadAccept.jsp' method='post' enctype='multipart/form-data' name='form1' id='form1' accept-charset='UTF-8'>");
-                    out.print("jrxml file: <input name='file' type='file' id='file' accept='.jrxml'><br>");
+                    out.print("<div class='custom-file-upload'>");
+                    out.print("jrxml file: <input name='file' type='file' id='file' accept='.jrxml'><br><br>");
                     out.print("jasper file: <input name='file' type='file' id='file' accept='.jasper'>");
+                    out.print("</div>");
                     out.print("<input type='hidden' name='category' value='"+category+"'>");
                     out.print("<input type='hidden' name='detail' value='"+detail+"'>");
                     out.print("<input type='hidden' name='name_folder' value='"+name_folder+"'>");
@@ -283,8 +285,7 @@ input[type=text] {
                 %>
 	</div>
         
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.12.1/jquery.min.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/jstree/3.2.1/jstree.min.js"></script>
+        
          <script>
 
  function goLink(element) {

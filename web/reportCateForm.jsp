@@ -4,6 +4,7 @@
     Author     : NUT
 --%>
 
+<%@page import="java.awt.Desktop"%>
 <%@page import="java.sql.ResultSet"%>
 <%@page import="java.sql.Statement"%>
 <%@page import="java.sql.DriverManager"%>
@@ -178,6 +179,7 @@ div.tab button {
     cursor: pointer;
     padding: 12px 20px;
     transition: 0.6s;
+    font-size: 22px;
 }
 
 /* Change background color of buttons on hover */
@@ -208,6 +210,7 @@ input[type=text] {
     box-sizing: border-box;
     font-size: 16px;
 }
+
         </style>
         <link rel="stylesheet" href="dist/themes/default/style.min.css" />
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jstree/3.2.1/themes/default/style.min.css" />
@@ -229,8 +232,9 @@ input[type=text] {
               String sql = "select id_cate,name_cate,name_folder from a_report_category order by id_cate ASC";
               
               ResultSet rs = null;
-           
-        %>
+              
+             
+        %>    
        
 
         <div id="pagewrap">
@@ -253,21 +257,42 @@ input[type=text] {
                           out.print("</td>");
                           
                           out.print("<form action='reportEditForm.jsp'>");
-                           out.print("<td>");
+                           out.print("<td style='text-align: right; width: 10%;'>");
                              out.print("<input type='hidden' name='id_cate' value='"+rs.getString(1)+"'>");
                              out.print("<input type='hidden' name='category' value='"+rs.getString(2)+"'>");
                              out.print("<input type='hidden' name='name_folder' value='"+rs.getString(3)+"'>");
                              out.print("<input type='hidden' name='reportType' value='category'>");
-                             out.print("<input type='submit' class='button button1' src='' value='แก้ไข'>");
+                             out.print("<button type='submit' class='button button2' src=''><img src='images/edit.png' id='img' height='30' width='30'></button>");
                           out.print("</td>");
                           out.print("</form>");
                           
                           out.print("<form action='deleteCate'>");
-                           out.print("<td>");
+                           out.print("<td style='text-align: right; width: 10%;'>");
                              out.print("<input type='hidden' name='id_cate' value='"+rs.getString(1)+"'>");
-                             out.print("<input type='submit' class='button button2' src='' value='ลบ'>"); 
+                             out.print("<button type='submit' class='button button2' src=''><img src='images/remove.png' id='img' height='30' width='30'></button>"); 
                           out.print("</td>");
                           out.print("</form>");
+                          
+                          String isFolder = getServletContext().getRealPath("/")+"upload/"+rs.getString(3);
+                          File fileList = new File(isFolder);
+                          if(fileList.isDirectory()){
+                              out.print("<form action='openFolder'>");
+                           out.print("<td style='text-align: right; width: 10%;'>");
+                             out.print("<input type='hidden' name='name_folder' value='"+rs.getString(3)+"'>");
+                             out.print("<button type='submit' class='button button2'><img src='images/openfolder.png' id='img' height='30' width='30'></button>");  
+                          out.print("</td>");
+                          out.print("</form>");
+                          }else{
+                          out.print("<form action='openFolder'>");
+                           out.print("<td style='text-align: right; width: 10%;'>");
+                             out.print("<input type='hidden' name='name_folder' value='"+rs.getString(3)+"'>");
+                             out.print("<button type='submit' class='button button2' disabled><img src='images/openfolder.png' id='img' height='30' width='30'></button>"); 
+                             
+                          out.print("</td>");
+                          out.print("</form>");
+                          }
+                          
+                          
                           
                       out.print("</tr>");
                        
