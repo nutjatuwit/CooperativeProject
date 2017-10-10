@@ -293,7 +293,7 @@ input[type=text] {
                         String strProjectDir = ""; 
                         strProjectDir = getServletContext().getRealPath("/")+"upload"+"\\"+name_folder+"\\"; //create directory if exist
                         File ProjectDir = new File(strProjectDir);
-                        out.print(getServletContext().getRealPath("/")+"upload"+"\\"+name_folder+"\\<br>");
+                        //out.print(getServletContext().getRealPath("/")+"upload"+"\\"+name_folder+"\\<br>");
                         if(! ProjectDir.exists())
                         {
                             ProjectDir.mkdir();
@@ -310,7 +310,7 @@ input[type=text] {
                             // Desktop desktop = Desktop.getDesktop();
                              //desktop.open(fileDir);
                             
-		           out.println("Your file has been saved at the loaction: "+getServletContext().getRealPath("/")+"upload"+"\\"+name_folder+"\\"+itemName+"<br><br>");
+		           out.println("ตำแหน่งไฟล์ที่ได้บันทึก: "+getServletContext().getRealPath("/")+"upload"+"\\"+name_folder+"\\"+itemName+"<br><br>");
                            //out.println(itemName+" "+request.getParameter("category"));
 		   } catch (Exception e) {
 			   e.printStackTrace();

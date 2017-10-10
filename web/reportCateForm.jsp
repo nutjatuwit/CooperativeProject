@@ -211,6 +211,33 @@ input[type=text] {
     font-size: 16px;
 }
 
+.tooltip {
+    position: relative;
+    display: inline-block;
+   
+}
+
+.tooltip .tooltiptext {
+    visibility: hidden;
+    
+    background-color: black;
+    color: #fff;
+    text-align: center;
+    border-radius: 6px;
+    padding: 5px 0;
+    width: 120px;
+    bottom: 100%;
+    left: 50%; 
+    margin-left: -60px;
+    /* Position the tooltip */
+    position: absolute;
+    z-index: 1;
+}
+
+.tooltip:hover .tooltiptext {
+    visibility: visible;
+}
+
         </style>
         <link rel="stylesheet" href="dist/themes/default/style.min.css" />
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jstree/3.2.1/themes/default/style.min.css" />
@@ -262,14 +289,14 @@ input[type=text] {
                              out.print("<input type='hidden' name='category' value='"+rs.getString(2)+"'>");
                              out.print("<input type='hidden' name='name_folder' value='"+rs.getString(3)+"'>");
                              out.print("<input type='hidden' name='reportType' value='category'>");
-                             out.print("<button type='submit' class='button button2' src=''><img src='images/edit.png' id='img' height='30' width='30'></button>");
+                             out.print("<div class='tooltip'><button type='submit' class='button button2' src=''><img src='images/edit.png' id='img' height='25' width='25'></button><span class='tooltiptext'>แก้ไข</span></div>");
                           out.print("</td>");
                           out.print("</form>");
                           
                           out.print("<form action='deleteCate'>");
                            out.print("<td style='text-align: right; width: 10%;'>");
                              out.print("<input type='hidden' name='id_cate' value='"+rs.getString(1)+"'>");
-                             out.print("<button type='submit' class='button button2' src=''><img src='images/remove.png' id='img' height='30' width='30'></button>"); 
+                             out.print("<div class='tooltip'><button type='submit' class='button button2' src=''><img src='images/remove.png' id='img' height='25' width='25'></button><span class='tooltiptext'>ลบ</span></div>"); 
                           out.print("</td>");
                           out.print("</form>");
                           
@@ -279,14 +306,14 @@ input[type=text] {
                               out.print("<form action='openFolder'>");
                            out.print("<td style='text-align: right; width: 10%;'>");
                              out.print("<input type='hidden' name='name_folder' value='"+rs.getString(3)+"'>");
-                             out.print("<button type='submit' class='button button2'><img src='images/openfolder.png' id='img' height='30' width='30'></button>");  
+                             out.print("<div class='tooltip'><button type='submit' class='button button2' src=''><img src='images/openfolder.png' id='img' height='25' width='25'></button><span class='tooltiptext'>เปิดโฟลเดอร์: "+rs.getString(3)+"</span></div>");  
                           out.print("</td>");
                           out.print("</form>");
                           }else{
                           out.print("<form action='openFolder'>");
                            out.print("<td style='text-align: right; width: 10%;'>");
                              out.print("<input type='hidden' name='name_folder' value='"+rs.getString(3)+"'>");
-                             out.print("<button type='submit' class='button button2' disabled><img src='images/openfolder.png' id='img' height='30' width='30'></button>"); 
+                             out.print("<button type='submit' class='button button2' disabled><img src='images/openfolder.png' id='img' height='25' width='25'></button>"); 
                              
                           out.print("</td>");
                           out.print("</form>");

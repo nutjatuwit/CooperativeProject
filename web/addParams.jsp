@@ -4,7 +4,7 @@
     Author     : NUT
 --%>
 
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@ page contentType="text/html" pageEncoding="UTF-8"%>
 <%@ page import="net.sf.jasperreports.engine.*" %>
 <%@ page import="java.util.*" %>
 <%@ page import="java.io.*" %>
@@ -104,30 +104,21 @@ textarea {
                String sql = "SELECT * FROM a_filter_type order by idfil";
             
              Class.forName("org.postgresql.Driver").newInstance();
-               Connection conn = (Connection)DriverManager.getConnection("jdbc:postgresql://localhost:5433/dbHos", "postgres", "postgres");
-               
-               Statement statement = conn.createStatement();
-               
+               Connection conn = (Connection)DriverManager.getConnection("jdbc:postgresql://localhost:5433/dbHos", "postgres", "postgres"); 
+               Statement statement = conn.createStatement(); 
                ResultSet rs = statement.executeQuery(sql);
-              
+               
               out.print("FilterType : <br>");
                out.println("<select name='idfil' onchange='showData()'>");
-               while(rs.next()){
-                  
+               
+               while(rs.next()){  
                    out.print(rs.getString(2));
                 out.print("<option value="+rs.getString(1)+">");
                    out.print(rs.getString(2));
-                out.print("</option>");
-                   
-               
+                out.print("</option>"); 
                }
                out.println("</select><br><br>");
-               
-               
-               
-               
-                     
-              
+ 
                }catch(Exception ex){
                   ex.printStackTrace();
                }

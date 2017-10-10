@@ -1,0 +1,12 @@
+SMAP
+testTextRead_jsp.java
+JSP
+*S JSP
+*F
++ 0 testTextRead.jsp
+testTextRead.jsp
+*L
+5,13:46
+18,7:60
+24,4:67
+*E

@@ -240,7 +240,7 @@ public final class reportCateForm_jsp extends org.apache.jasper.runtime.HttpJspB
       out.write("    cursor: pointer;\n");
       out.write("    padding: 12px 20px;\n");
       out.write("    transition: 0.6s;\n");
-      out.write("    font-size: 25px;\n");
+      out.write("    font-size: 22px;\n");
       out.write("}\n");
       out.write("\n");
       out.write("/* Change background color of buttons on hover */\n");
@@ -270,6 +270,30 @@ public final class reportCateForm_jsp extends org.apache.jasper.runtime.HttpJspB
       out.write("    border-radius: 4px;\n");
       out.write("    box-sizing: border-box;\n");
       out.write("    font-size: 16px;\n");
+      out.write("}\n");
+      out.write("\n");
+      out.write(".tooltip {\n");
+      out.write("    position: relative;\n");
+      out.write("    display: inline-block;\n");
+      out.write("    border-bottom: 1px dotted black;\n");
+      out.write("}\n");
+      out.write("\n");
+      out.write(".tooltip .tooltiptext {\n");
+      out.write("    visibility: hidden;\n");
+      out.write("    width: 120px;\n");
+      out.write("    background-color: black;\n");
+      out.write("    color: #fff;\n");
+      out.write("    text-align: center;\n");
+      out.write("    border-radius: 6px;\n");
+      out.write("    padding: 5px 0;\n");
+      out.write("\n");
+      out.write("    /* Position the tooltip */\n");
+      out.write("    position: absolute;\n");
+      out.write("    z-index: 1;\n");
+      out.write("}\n");
+      out.write("\n");
+      out.write(".tooltip:hover .tooltiptext {\n");
+      out.write("    visibility: visible;\n");
       out.write("}\n");
       out.write("\n");
       out.write("        </style>\n");
@@ -328,14 +352,14 @@ public final class reportCateForm_jsp extends org.apache.jasper.runtime.HttpJspB
                              out.print("<input type='hidden' name='category' value='"+rs.getString(2)+"'>");
                              out.print("<input type='hidden' name='name_folder' value='"+rs.getString(3)+"'>");
                              out.print("<input type='hidden' name='reportType' value='category'>");
-                             out.print("<button type='submit' class='button button2' src=''><img src='images/edit.png' id='img' height='30' width='30'></button>");
+                             out.print("<div class='tooltip'><button type='submit' class='button button2' src=''><img src='images/edit.png' id='img' height='25' width='25'></button><span class='tooltiptext'>Tooltip text</span></div>");
                           out.print("</td>");
                           out.print("</form>");
                           
                           out.print("<form action='deleteCate'>");
                            out.print("<td style='text-align: right; width: 10%;'>");
                              out.print("<input type='hidden' name='id_cate' value='"+rs.getString(1)+"'>");
-                             out.print("<button type='submit' class='button button2' src=''><img src='images/remove.png' id='img' height='30' width='30'></button>"); 
+                             out.print("<button type='submit' class='button button2' src=''><img src='images/remove.png' id='img' height='25' width='25'></button>"); 
                           out.print("</td>");
                           out.print("</form>");
                           
@@ -345,14 +369,14 @@ public final class reportCateForm_jsp extends org.apache.jasper.runtime.HttpJspB
                               out.print("<form action='openFolder'>");
                            out.print("<td style='text-align: right; width: 10%;'>");
                              out.print("<input type='hidden' name='name_folder' value='"+rs.getString(3)+"'>");
-                             out.print("<button type='submit' class='button button2'><img src='images/openfolder.png' id='img' height='30' width='30'></button>");  
+                             out.print("<button type='submit' class='button button2'><img src='images/openfolder.png' id='img' height='25' width='25'></button>");  
                           out.print("</td>");
                           out.print("</form>");
                           }else{
                           out.print("<form action='openFolder'>");
                            out.print("<td style='text-align: right; width: 10%;'>");
                              out.print("<input type='hidden' name='name_folder' value='"+rs.getString(3)+"'>");
-                             out.print("<button type='submit' class='button button2' disabled><img src='images/openfolder.png' id='img' height='30' width='30'></button>"); 
+                             out.print("<button type='submit' class='button button2' disabled><img src='images/openfolder.png' id='img' height='25' width='25'></button>"); 
                              
                           out.print("</td>");
                           out.print("</form>");

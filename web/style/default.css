@@ -67,7 +67,7 @@ th {
 .button1:hover{
      background-color: #81DAF5;
      color: black;
-     padding: 8px 23px;
+     
      
 }
 
@@ -80,7 +80,7 @@ th {
 .button2:hover{
      background-color: #81DAF5;
      color: black;
-     padding: 8px 23px;
+     
      
 }
 
@@ -92,7 +92,7 @@ th {
 }
 
 .buttonBack span:after {
-  content: 'ÂéÍ¹';
+  content: 'ï¿½ï¿½Í¹';
   position: absolute;
   opacity: 0;
   top: 0;

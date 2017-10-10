@@ -6,6 +6,9 @@
 
 
 
+<%@page import="java.util.LinkedHashSet"%>
+<%@page import="java.util.Set"%>
+<%@page import="java.util.HashSet"%>
 <%@page import="java.sql.ResultSet"%>
 <%@page import="java.sql.Statement"%>
 <%@page import="java.sql.DriverManager"%>
@@ -140,7 +143,7 @@ input[type=text] {
             }
                             }
                   
-
+          ArrayList reportParams = new ArrayList();
           jasperDesign = JRXmlLoader.load(application.getRealPath(textPath+"/"+textReport));
           out.print("<form action='Show.jsp' target='righty'>");
           while(rs.next()){
@@ -150,7 +153,7 @@ input[type=text] {
                  paramDbDes = rs.getString(4).toString();
                  paramDbType = rs.getString(2).toString();
                  paramDbName = rs.getString(3).toString();
-                
+                 reportParams.add(paramJas);
                 
                   if(paramJas.equals(paramDbDes)){
                     //out.println(paramJas+"from report   <br>"); //test paramter list
@@ -199,8 +202,14 @@ input[type=text] {
             out.print("<br><input type='submit' class='button button2' value='แสดงรายการ'>");
            out.print("</form>");
           
+            
+          //Set<String> set=new HashSet<>(reportParams);
+          List li2 = new ArrayList(new LinkedHashSet(reportParams));
+         for(int i=0;i<li2.size();i++){
+               out.print(li2.get(i)+"<br>");
+            }
           
-         
+          
          }catch(Exception ex){
            ex.printStackTrace();
             }

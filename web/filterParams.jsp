@@ -205,13 +205,13 @@ th {
                }else{ 
                    sql = "select a_add_param.id,a_add_param.name,a_add_param.description,a_add_param.query,a_filter_type.namefil from a_add_param,a_filter_type where (a_add_param.idfil = a_filter_type.idfil) "
                        + "and ((a_add_param.name LIKE '%"+query+"%') "
-                       + "or (a_add_param.id = '"+query+"') "
+                       //+ "or (a_add_param.id = '"+query+"') "
                        + "or (a_add_param.description LIKE '%"+query+"%') "
                        + "or (a_add_param.query LIKE '%"+query+"%') "
                        + "or (a_filter_type.nameFil LIKE '%"+query+"%'))order by a_add_param.id ASC";
                }
                //String sqlFilter = "select filtertype.nameFil from addparam ";
-               //out.print(sql);
+               //out.print("<br><br><br><br><br><br>"+sql);
                Connection con =null; 
                
                Class.forName("org.postgresql.Driver").newInstance();
