@@ -279,7 +279,7 @@ input[type=text] {
                     
                     while(rs.next()){
                       out.print("<tr class='w3-hover-light-blue'>");
-                          out.print("<td onclick='goLink(this)'>");
+                          out.print("<td style='cursor: pointer;' onclick='goLink(this)'>");
                              out.print(rs.getString(2)); 
                           out.print("</td>");
                           

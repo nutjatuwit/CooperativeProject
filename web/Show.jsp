@@ -21,12 +21,39 @@
 <%@ page import="java.sql.Connection"%>
 <%@ page import="java.sql.DriverManager"%>
 <%@ page import="java.sql.SQLException"%>
+<html>
+    <head>
+  
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <script type="text/javascript" src="http://code.jquery.com/jquery-1.6.3.min.js"></script>
+        <script type="text/javascript" src="scripts/jquery.cycle.all.js"></script>
 
- 
+        <script type="text/javascript">
+        $(window).load(function() {
+                $("#spinner").fadeOut("slow");
+        });
+        </script>
+        
+       <script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-38151043-3', 'bradsknutson.com');
+  ga('send', 'pageview');
+
+</script>
+       <div id="spinner"></div> 
+      
+    </head>
+    <body>
+        
  <%  
                 
             try {
                
+  
                //for connect HosOS
                Class.forName("org.postgresql.Driver").newInstance();
                Connection conn = DriverManager.getConnection("jdbc:postgresql://localhost:5433/dbHos", "postgres", "postgres"); //database connection
@@ -34,26 +61,13 @@
                ArrayList<String> allParams = new ArrayList<String>();
                ArrayList<String> allValues = new ArrayList<String>();
               
-               //Integer fiscal_year = Integer.parseInt(request.getParameter("fiscal_year"));
               
-               
                String path = request.getParameter("textPath");
                String textReportJasper = request.getParameter("textReportJasper");
               
-               
-               //JasperCompileManager.compileReportToFile("C:/Users/NUT/Documents/NetBeansProjects/WebApplication3/build/web/Report/finance/"+fileGet);
-               //out.print(path+"/"+fileGet);
-                
+             
             File reportFile = new File(application.getRealPath(path+"/"+textReportJasper));//your report_name.jasper file
-            //File reportFile = new File(application.getRealPath("//Report/testpharm.jasper"));
-           
-            //out.print(reportFile.getPath().toString());
-           
-           
-            
-            //String url = request.getQueryString();
-            //out.print(url);
-           
+          
             //Split parameters and values
             String[] splits = request.getQueryString().toString().split("&");
             for(int i =0;i<splits.length;i++){
@@ -74,24 +88,15 @@
            // }
             
             Map parameters = new HashMap();
-            
-            //parameters.put("fiscal_year", fiscal_year);
-           // parameters.put("b_visit_clinic_id", b_visit_clinic_id);
-            //parameters.put("visit_service_staff_doctor", visit_service_staff_doctor);
-            //parameters.put("item_id", item_id);
-            //parameters.put("b_service_point_id", b_service_point_id);
             for(int i = 0;i<allParams.size();i++){
-             //out.print("Params : "+allParams.get(i)+" Values : "+allValues.get(i));
             parameters.put(allParams.get(i), allValues.get(i));   
             }
-            
-            
+ 
             byte[] bytes = JasperRunManager.runReportToPdf(reportFile.getPath(), parameters, conn);
              
            
-            
-           response.setContentType("application/pdf");
-            
+            //display pdf form 
+            response.setContentType("application/pdf");
             response.setContentLength(bytes.length);
             ServletOutputStream outStream = response.getOutputStream();
             outStream.write(bytes, 0, bytes.length);
@@ -101,27 +106,24 @@
                 ex.printStackTrace();
             }
         %>
-        <%/*
-          Connection conn = null;
-    try{
-       Class.forName("org.postgresql.Driver").newInstance();
-                conn = DriverManager.getConnection("jdbc:postgresql://localhost:5433/dbHos", "postgres", "postgres");
-        String jrxmlFile = session.getServletContext().getRealPath("//Report/testPost.jrxml");
-        InputStream input = new FileInputStream(new File(jrxmlFile));
+     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+        <script>
+        jQuery(document).ready(function () {
+    alert('page is loaded');
+
+   
+});
+ jQuery(window).load(function () {
+    alert('page is loaded');
+
+   
+});
+        </script>    
         
-        JasperReport jr = JasperCompileManager.compileReport(input);
-        JasperPrint jp = JasperFillManager.fillReport(jr, null,conn);
-        
-        JasperExportManager.exportReportToPdfStream(jp,response.getOutputStream());
-       
-        
-        conn.close();
-    }catch(Exception e){
-        e.printStackTrace();
-    }*/
-        %>
-        
-        
+     </body>
+     
+
+</html>   
     
     
     

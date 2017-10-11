@@ -31,8 +31,8 @@ th, td {
 tr:nth-child(even){background-color: #f2f2f2}
 
 th {
-    background-color: blue;
-    color: white;
+    background-color: #01A9DB;
+    color: #f2f2f2;
 }
 /*search button */
 .search {
@@ -40,6 +40,7 @@ th {
     height: 25px;
     -webkit-transition: width 0.6s ease-in-out;
     transition: width 0.6s ease-in-out;
+    margin: 1px 2px;
 }
 
 /* When the input field gets focus, change its width to 100% */
@@ -180,6 +181,33 @@ th {
   background-color: orangered;
   padding: 30px 8px;
 }
+.tooltip {
+    position: relative;
+    display: inline-block;
+   
+}
+
+.tooltip .tooltiptext {
+    visibility: hidden;
+    
+    background-color: black;
+    color: #fff;
+    text-align: center;
+    border-radius: 6px;
+    padding: 5px 0;
+    width: 120px;
+    bottom: 100%;
+    left: 50%; 
+    margin-left: -60px;
+    /* Position the tooltip */
+    position: absolute;
+    z-index: 1;
+    
+}
+
+.tooltip:hover .tooltiptext {
+    visibility: visible;
+}
 
 </style>
     </head>
@@ -237,7 +265,7 @@ th {
                     
                out.print("<form action='filterParams.jsp' align='right'>"); //filter parameter
                    out.print("<input type='text' class='search' name='query' value=''>");
-                   out.print("<input type='submit' class='button searchText' name='' value='ค้นหา'>");
+                   out.print("<div class='tooltip'><button type='submit' style='background-color:transparent; border-color:transparent; padding: 0 ; margin-left: 1px; margin-bottom: 2px; cursor: pointer;'><img src='images/search.png' style=' padding: 0 ; margin-left: 1px; margin-bottom: -11px;'id='img' height='32' width='32'></button><span class='tooltiptext'>ค้นหา</span></div>");
                out.print("</form>");
                      
                   
@@ -272,12 +300,12 @@ th {
                           out.print("<input type='hidden' name='query' value="+rs.getString(4)+">");
                           out.print("<input type='hidden' name='filtertype' value="+rs.getString(5)+">");
                           
-                          out.print("<td><input type='submit' name='' class='button button1' value='แก้ไข'></td>");
+                          out.print("<td><div class='tooltip'><button type='submit' class='button button2' src=''><img src='images/edit.png' id='img' height='25' width='25'></button><span class='tooltiptext'>แก้ไข</span></div></td>");
                          out.println("</form>"); 
                          
                          out.println("<form action='deleteData'>");
                          out.print("<input type='hidden' name='id' value="+rs.getString(1)+">");
-                         out.print("<td align='center'><input type='submit' class='button button2' value='ลบ'></td>");
+                         out.print("<td align='center'><div class='tooltip'><button type='submit' class='button button2'  src=''><img src='images/remove.png' id='img' height='25' width='25'></button><span class='tooltiptext'>ลบ</span></div></td>");
                          out.println("</form>"); 
                          out.println("</tr>");
                      }

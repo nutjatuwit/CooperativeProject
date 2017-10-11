@@ -1,0 +1,12 @@
+SMAP
+testInsertFromXML_jsp.java
+JSP
+*S JSP
+*F
++ 0 testInsertFromXML.jsp
+testInsertFromXML.jsp
+*L
+5,30:64
+36,95:95
+130,4:190
+*E

@@ -104,6 +104,7 @@ public final class readXML_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("    cursor: pointer;\n");
       out.write("    padding: 12px 20px;\n");
       out.write("    transition: 0.6s;\n");
+      out.write("    font-size: 22px;\n");
       out.write("}\n");
       out.write("\n");
       out.write("/* Change background color of buttons on hover */\n");
@@ -125,8 +126,8 @@ public final class readXML_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("}\n");
       out.write("\n");
       out.write("\t</style>\n");
-      out.write("\t<link rel=\"stylesheet\" href=\"style/style.min.css\" />\n");
-      out.write("        \n");
+      out.write("\t<link rel=\"stylesheet\" href=\"dist/themes/default/style.min.css\" />\n");
+      out.write("        <link rel=\"stylesheet\" href=\"https://cdnjs.cloudflare.com/ajax/libs/jstree/3.2.1/themes/default/style.min.css\" />\n");
       out.write("        \n");
       out.write("         <div class=\"tab\">\n");
       out.write("      <button class=\"tablinks\" onclick=\"goBack();\">กลับ</button>\n");
@@ -147,7 +148,7 @@ public final class readXML_jsp extends org.apache.jasper.runtime.HttpJspBase
               
               String sqlCateCount = "select id_cate,name_cate from a_report_category order by id_cate ASC";
               ResultSet rsCateCount = statement.executeQuery(sqlCateCount);
-              
+               
 
          
          
@@ -186,9 +187,9 @@ public final class readXML_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("       </div>\n");
       out.write("        \n");
       out.write("\n");
-      out.write("         <link rel=\"stylesheet\" href=\"style/jquery.min.js\"> \n");
-      out.write("         <link rel=\"stylesheet\" href=\"style/jstree.min.js\"> \n");
-      out.write("\t\n");
+      out.write("      \n");
+      out.write("\t<script src=\"https://cdnjs.cloudflare.com/ajax/libs/jquery/1.12.1/jquery.min.js\"></script>\n");
+      out.write("        <script src=\"https://cdnjs.cloudflare.com/ajax/libs/jstree/3.2.1/jstree.min.js\"></script>\n");
       out.write("        <script> //var img = \"JonSnow.jpg\"; \n");
       out.write("       \n");
       out.write("    \t$(function () {\n");

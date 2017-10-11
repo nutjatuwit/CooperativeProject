@@ -40,6 +40,7 @@ th {
     height: 25px;
     -webkit-transition: width 0.6s ease-in-out;
     transition: width 0.6s ease-in-out;
+    margin: 1px 2px;
 }
 
 /* When the input field gets focus, change its width to 100% */
@@ -179,6 +180,7 @@ th {
     /* Position the tooltip */
     position: absolute;
     z-index: 1;
+    
 }
 
 .tooltip:hover .tooltiptext {
@@ -220,7 +222,7 @@ th {
                     
                out.print("<form action='filterParams.jsp' align='right'>"); //filter parameter
                    out.print("<input type='text' class='search' name='query' value=''>");
-                   out.print("<input type='submit' class='button searchText' name='' value='ค้นหา'>");
+                   out.print("<div class='tooltip'><button type='submit' style='background-color:transparent; border-color:transparent; padding: 0 ; margin-left: 1px; margin-bottom: 2px; cursor: pointer;'><img src='images/search.png' style=' padding: 0 ; margin-left: 1px; margin-bottom: -11px;'id='img' height='32' width='32'></button><span class='tooltiptext'>ค้นหา</span></div>");
                out.print("</form>");
                      
                    
@@ -259,7 +261,7 @@ th {
                          
                          out.println("<form action='deleteData'>");
                          out.print("<input type='hidden' name='id' value="+rs.getString(1)+">");
-                         out.print("<td align='center'><div class='tooltip'><button type='submit' class='button button2' src=''><img src='images/remove.png' id='img' height='25' width='25'></button><span class='tooltiptext'>ลบ</span></div></td>");
+                         out.print("<td align='center'><div class='tooltip'><button type='submit' class='button button2'  src=''><img src='images/remove.png' id='img' height='25' width='25'></button><span class='tooltiptext'>ลบ</span></div></td>");
                          out.println("</form>"); 
                          out.println("</tr>");
                      }
