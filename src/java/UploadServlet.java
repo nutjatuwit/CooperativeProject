@@ -18,6 +18,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import path.managePath;
 
 /**
  *
@@ -47,6 +48,7 @@ public class UploadServlet extends HttpServlet {
         //category=1.รายงานการเงิน&detail=1.รายงานผู้ป่วยที่ค้างชำระเงิน&jrxml=rp_cash_bill7318.jrxml&jasper=rp_cash_bill7318.jasper
         
         request.setCharacterEncoding("UTF-8");
+        managePath path = new managePath(getServletContext().getRealPath("/")+"setting/setting.txt");
         //response.setCharacterEncoding("UTF-8");
         try (PrintWriter out = response.getWriter()) {
             try {
@@ -54,7 +56,7 @@ public class UploadServlet extends HttpServlet {
             } catch (ClassNotFoundException ex) {
                 Logger.getLogger(insertData.class.getName()).log(Level.SEVERE, null, ex);
             }
-            Connection conn = (Connection) DriverManager.getConnection("jdbc:postgresql://localhost:5433/dbHos", "postgres", "postgres");
+            Connection conn = (Connection) DriverManager.getConnection(path.getPathDB(), path.getUserDB(), path.getPassDB());
 
 //Af_Scheme_Number=request.getParameter("Af_Scheme_Number");  
             jasper = request.getParameter("jasper");

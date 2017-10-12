@@ -4,6 +4,7 @@
     Author     : NUT
 --%>
 
+<%@page import="path.managePath"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="java.util.List"%>
 <%@page import="java.io.FileReader"%>
@@ -17,7 +18,7 @@
     </head>
     <body>
        <%
-           String path = getServletContext().getRealPath("/")+"setting/setting.txt";
+           /*String path = getServletContext().getRealPath("/")+"setting/setting.txt";
           BufferedReader br = new BufferedReader(new FileReader(path));
            StringBuilder sb = new StringBuilder();
             String line;
@@ -29,9 +30,13 @@
             }
             for(int i = 0;i<list.size();i++){
                out.println(list.get(i)+"<br>");
-            }
-            
-               
+            }*/
+           
+            managePath test = new managePath(getServletContext().getRealPath("/")+"setting/setting.txt");
+            //String path = test.path();
+              out.print(test.getPathDB());
+              out.print(test.getUserDB());
+              out.print(test.getPassDB());
        %>
     </body>
 </html>

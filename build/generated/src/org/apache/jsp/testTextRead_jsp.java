@@ -3,6 +3,9 @@ package org.apache.jsp;
 import javax.servlet.*;
 import javax.servlet.http.*;
 import javax.servlet.jsp.*;
+import path.managePath;
+import java.util.ArrayList;
+import java.util.List;
 import java.io.FileReader;
 import java.io.BufferedReader;
 
@@ -48,6 +51,9 @@ public final class testTextRead_jsp extends org.apache.jasper.runtime.HttpJspBas
       out.write("\n");
       out.write("\n");
       out.write("\n");
+      out.write("\n");
+      out.write("\n");
+      out.write("\n");
       out.write("<!DOCTYPE html>\n");
       out.write("<html>\n");
       out.write("    <head>\n");
@@ -57,12 +63,25 @@ public final class testTextRead_jsp extends org.apache.jasper.runtime.HttpJspBas
       out.write("    <body>\n");
       out.write("       ");
 
-           String path = getServletContext().getRealPath("/")+"setting/setting.txt";
+           /*String path = getServletContext().getRealPath("/")+"setting/setting.txt";
           BufferedReader br = new BufferedReader(new FileReader(path));
-
-              String line1 = null, line2 = null;
-              line1 = br.readLine();
-              out.print(line1);
+           StringBuilder sb = new StringBuilder();
+            String line;
+            ArrayList list = new ArrayList();
+            
+              while((line = br.readLine())!= null){
+                sb.append(line+",");
+                list.add(line);
+            }
+            for(int i = 0;i<list.size();i++){
+               out.println(list.get(i)+"<br>");
+            }*/
+           
+            managePath test = new managePath(getServletContext().getRealPath("/")+"setting/setting.txt");
+            //String path = test.path();
+              out.print(test.getPathDB());
+              out.print(test.getUserDB());
+              out.print(test.getPassDB());
        
       out.write("\n");
       out.write("    </body>\n");

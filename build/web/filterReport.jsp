@@ -6,6 +6,7 @@
 
 
 
+<%@page import="path.managePath"%>
 <%@page import="java.util.LinkedHashSet"%>
 <%@page import="java.util.Set"%>
 <%@page import="java.util.HashSet"%>
@@ -85,6 +86,33 @@ input[type=text] {
 	width: 130px;
 }
 
+.tooltip {
+    position: relative;
+    display: inline-block;
+   
+}
+
+.tooltip .tooltiptext {
+    visibility: hidden;
+    
+    background-color: black;
+    color: #fff;
+    text-align: center;
+    border-radius: 6px;
+    padding: 5px 0;
+    width: 180px;
+    top: -5px;
+    left: 155%; 
+    margin-left: -60px;
+    /* Position the tooltip */
+    position: absolute;
+    z-index: 1;
+}
+
+.tooltip:hover .tooltiptext {
+    visibility: visible;
+}
+
 </style>
         
       
@@ -95,22 +123,28 @@ input[type=text] {
         <%  
             
           try{
+              managePath path = new managePath(getServletContext().getRealPath("/")+"setting/setting.txt");
             int cRow = 0;  
-              
+              StringBuilder sb = new StringBuilder();
+
+
+                
+                
+        
            
            request.setCharacterEncoding("UTF-8");
            String text = request.getParameter("text");
-           
+           out.println("<h4>"+text+"</h4>");
               //database filter type
               
               String sql = "select a_add_param.id,a_filter_type.namefil,a_add_param.name,a_add_param.description,a_add_param.query from a_add_param inner join a_filter_type on a_add_param.idfil = a_filter_type.idfil order by a_add_param.id ASC";
               Class.forName("org.postgresql.Driver").newInstance();
-              Connection conn = DriverManager.getConnection("jdbc:postgresql://localhost:5433/dbHos", "postgres", "postgres");
+              Connection conn = DriverManager.getConnection(path.getPathDB(), path.getUserDB(), path.getPassDB());
               Statement statement = conn.createStatement();
               ResultSet rs = statement.executeQuery(sql);
               
     
-              Connection con = (Connection) DriverManager.getConnection("jdbc:postgresql://localhost:5433/dbHos", "postgres", "postgres");
+              Connection con = (Connection) DriverManager.getConnection(path.getPathDB(), path.getUserDB(), path.getPassDB());
               Statement statement1 = con.createStatement();
              
               //for compile
@@ -196,18 +230,20 @@ input[type=text] {
                   }
                     
             } 
+          //Set<String> set=new HashSet<>(reportParams);
+          List li2 = new ArrayList(new LinkedHashSet(reportParams));
+             for(int i=0;i<li2.size();i++){
+               //out.print(li2.get(i)+"<br>");
+               sb.append(li2.get(i)+"<br>");
+            }
             out.print("<input type='hidden' name='textPath' value="+textPath+">");
             out.print("<input type='hidden' name='textReportJasper' value="+textReportJasper+">");
             out.print("<input type='hidden' name='textReport' value="+textReport+">");
-            out.print("<br><input type='submit' class='button button2' value='แสดงรายการ'>");
+            out.print("<br><div class='tooltip'><input type='submit' class='button button2' value='แสดงรายการ'><span class='tooltiptext'>ตัวแปรที่จำเป็น: <br>"+sb+"</span></div>");
            out.print("</form>");
           
             
-          //Set<String> set=new HashSet<>(reportParams);
-          List li2 = new ArrayList(new LinkedHashSet(reportParams));
-         for(int i=0;i<li2.size();i++){
-               out.print(li2.get(i)+"<br>");
-            }
+          
           
           
          }catch(Exception ex){

@@ -3,6 +3,7 @@ package org.apache.jsp;
 import javax.servlet.*;
 import javax.servlet.http.*;
 import javax.servlet.jsp.*;
+import path.managePath;
 import java.sql.ResultSet;
 import java.sql.DriverManager;
 import java.sql.Statement;
@@ -62,6 +63,7 @@ public final class readXML_jsp extends org.apache.jasper.runtime.HttpJspBase
       _jspx_out = out;
       _jspx_resourceInjector = (org.glassfish.jsp.api.ResourceInjector) application.getAttribute("com.sun.appserv.jsp.resource.injector");
 
+      out.write("\n");
       out.write("\n");
       out.write("\n");
       out.write("\n");
@@ -135,13 +137,17 @@ public final class readXML_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("    </div>   \n");
       out.write("    </head>\n");
       out.write("    <body>\n");
+      out.write("        \n");
       out.write("       \n");
       out.write("       ");
 
-          
+            
+           managePath path = new managePath(getServletContext().getRealPath("/")+"setting/setting.txt");
+           
+           
          request.setCharacterEncoding("UTF-8");
-            Class.forName("org.postgresql.Driver").newInstance();
-               Connection conn = DriverManager.getConnection("jdbc:postgresql://localhost:5433/dbHos", "postgres", "postgres"); //database connection
+            Class.forName("org.postgresql.Driver");
+               Connection conn = DriverManager.getConnection(path.getPathDB(), path.getUserDB(), path.getPassDB()); //database connection
                Statement statement = conn.createStatement();
                Statement statement1 = conn.createStatement();
             

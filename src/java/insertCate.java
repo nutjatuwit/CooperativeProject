@@ -17,6 +17,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import path.managePath;
 
 /**
  *
@@ -42,6 +43,7 @@ public class insertCate extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException, SQLException {
         //response.setContentType("text/html;charset=UTF-8");
+        managePath path = new managePath(getServletContext().getRealPath("/")+"setting/setting.txt");
         request.setCharacterEncoding("UTF-8");
         //response.setCharacterEncoding("UTF-8");
         try (PrintWriter out = response.getWriter()) {
@@ -50,7 +52,7 @@ public class insertCate extends HttpServlet {
             } catch (ClassNotFoundException ex) {
                 Logger.getLogger(insertData.class.getName()).log(Level.SEVERE, null, ex);
             }
-            Connection conn = (Connection) DriverManager.getConnection("jdbc:postgresql://localhost:5433/dbHos", "postgres", "postgres");
+            Connection conn = (Connection) DriverManager.getConnection(path.getPathDB(), path.getUserDB(), path.getPassDB());
 
 //Af_Scheme_Number=request.getParameter("Af_Scheme_Number");  
             

@@ -4,6 +4,7 @@
     Author     : NUT
 --%>
 
+<%@page import="path.managePath"%>
 <%@page import="java.sql.ResultSet"%>
 <%@page import="java.sql.Statement"%>
 <%@page import="java.sql.DriverManager"%>
@@ -234,6 +235,7 @@ input[type=text] {
     </head>
     <body>
         <%
+            managePath pathDB = new managePath(getServletContext().getRealPath("/")+"setting/setting.txt");
             request.setCharacterEncoding("UTF-8");
             
             String path,jrxml,jasper,detail,category,name_folder;
@@ -246,7 +248,7 @@ input[type=text] {
             category = request.getParameter("category");
             
             Class.forName("org.postgresql.Driver").newInstance();
-               Connection conn = DriverManager.getConnection("jdbc:postgresql://localhost:5433/dbHos", "postgres", "postgres"); //database connection
+               Connection conn = DriverManager.getConnection(pathDB.getPathDB(), pathDB.getUserDB(), pathDB.getPassDB()); //database connection
                Statement statement = conn.createStatement();
               //String sqlCompile = "select * from member";
               //ResultSet rsCompile = statement1.executeQuery(sqlCompile);

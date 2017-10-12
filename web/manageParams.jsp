@@ -4,6 +4,7 @@
     Author     : NUT
 --%>
 
+<%@page import="path.managePath"%>
 <%@page import="java.sql.ResultSet"%>
 <%@page import="java.sql.Statement"%>
 <%@page import="java.sql.DriverManager"%>
@@ -198,13 +199,14 @@ th {
         <%
             
            try{
+               managePath path = new managePath(getServletContext().getRealPath("/")+"setting/setting.txt");
                
                String sql = "select a_add_param.id,a_add_param.name,a_add_param.description,a_add_param.query,a_filter_type.namefil from a_add_param inner join a_filter_type on a_add_param.idfil = a_filter_type.idfil order by a_add_param.id ASC";
                //String sqlFilter = "select filtertype.nameFil from addparam ";
                Connection con =null; 
                
                Class.forName("org.postgresql.Driver").newInstance();
-               con = DriverManager.getConnection("jdbc:postgresql://localhost:5433/dbHos", "postgres", "postgres");
+               con = DriverManager.getConnection(path.getPathDB(), path.getUserDB(), path.getPassDB());
                
                Statement statement = con.createStatement();
                

@@ -204,21 +204,9 @@ input[type=text] {
         </style>
    
    <%
-        /*List<FileItem> multiparts = new ServletFileUpload(new DiskFileItemFactory()).parseRequest(request);
-    for (FileItem item : multiparts) {
-        if (!item.isFormField()) {
-            //your operations on file
-        } else {
-            String name = item.getFieldName();
-            String value = item.getString();
-            out.println(name+"---"+value);
-            //you operations on paramters
-        }*/
-        
+       
        request.setCharacterEncoding("UTF-8");
-       //response.setContentType("text/html;charset=UTF-8;pageEncoding=UTF-8");
-       //response.setCharacterEncoding("UTF-8");
-       //out.println(request.getRequestURL());
+       
        ArrayList reportList = new ArrayList();
        ArrayList detailList = new ArrayList();
        

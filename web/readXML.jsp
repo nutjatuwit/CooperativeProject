@@ -4,6 +4,7 @@
     Author     : NUT
 --%>
 
+<%@page import="path.managePath"%>
 <%@page import="java.sql.ResultSet"%>
 <%@page import="java.sql.DriverManager"%>
 <%@page import="java.sql.Statement"%>
@@ -80,12 +81,16 @@ div.tab button.active {
     </div>   
     </head>
     <body>
+        
        
        <%
-          
+            
+           managePath path = new managePath(getServletContext().getRealPath("/")+"setting/setting.txt");
+           
+           
          request.setCharacterEncoding("UTF-8");
-            Class.forName("org.postgresql.Driver").newInstance();
-               Connection conn = DriverManager.getConnection("jdbc:postgresql://localhost:5433/dbHos", "postgres", "postgres"); //database connection
+            Class.forName("org.postgresql.Driver");
+               Connection conn = DriverManager.getConnection(path.getPathDB(), path.getUserDB(), path.getPassDB()); //database connection
                Statement statement = conn.createStatement();
                Statement statement1 = conn.createStatement();
             

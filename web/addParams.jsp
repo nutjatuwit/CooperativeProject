@@ -4,6 +4,7 @@
     Author     : NUT
 --%>
 
+<%@page import="path.managePath"%>
 <%@ page contentType="text/html" pageEncoding="UTF-8"%>
 <%@ page import="net.sf.jasperreports.engine.*" %>
 <%@ page import="java.util.*" %>
@@ -101,10 +102,11 @@ textarea {
            ตัวแปร :  <br><input type="text" name="description" placeholder='test_1'><br><br>
            <%
                try{
+                   managePath path = new managePath(getServletContext().getRealPath("/")+"setting/setting.txt");
                String sql = "SELECT * FROM a_filter_type order by idfil";
             
              Class.forName("org.postgresql.Driver").newInstance();
-               Connection conn = (Connection)DriverManager.getConnection("jdbc:postgresql://localhost:5433/dbHos", "postgres", "postgres"); 
+               Connection conn = (Connection)DriverManager.getConnection(path.getPathDB(), path.getUserDB(), path.getPassDB()); 
                Statement statement = conn.createStatement(); 
                ResultSet rs = statement.executeQuery(sql);
                

@@ -4,6 +4,7 @@
     Author     : NUT
 --%>
 
+<%@page import="path.managePath"%>
 <%@page import="java.sql.ResultSet"%>
 <%@page import="java.sql.Statement"%>
 <%@page import="java.sql.DriverManager"%>
@@ -222,7 +223,7 @@ th {
         <%
             
            try{
-               
+               managePath path = new managePath(getServletContext().getRealPath("/")+"setting/setting.txt");
                request.setCharacterEncoding("UTF-8");
                //response.setCharacterEncoding("UTF-8");
                String query = request.getParameter("query");
@@ -243,7 +244,7 @@ th {
                Connection con =null; 
                
                Class.forName("org.postgresql.Driver").newInstance();
-               con = DriverManager.getConnection("jdbc:postgresql://localhost:5433/dbHos?useUnicode=yes&characterEncoding=UTF-8", "postgres", "postgres");
+               con = DriverManager.getConnection(path.getPathDB(), path.getUserDB(), path.getPassDB());
                
                Statement statement = con.createStatement();
                

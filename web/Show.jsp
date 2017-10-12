@@ -7,6 +7,7 @@
 
 
 
+<%@page import="path.managePath"%>
 <%@page import="net.sf.jasperreports.engine.design.JRDesignStyle"%>
 <%@ page import="net.sf.jasperreports.engine.*" %>
 <%@ page import="java.util.*" %>
@@ -28,11 +29,7 @@
         <script type="text/javascript" src="http://code.jquery.com/jquery-1.6.3.min.js"></script>
         <script type="text/javascript" src="scripts/jquery.cycle.all.js"></script>
 
-        <script type="text/javascript">
-        $(window).load(function() {
-                $("#spinner").fadeOut("slow");
-        });
-        </script>
+       
         
        <script>
   (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
@@ -44,7 +41,7 @@
   ga('send', 'pageview');
 
 </script>
-       <div id="spinner"></div> 
+       
       
     </head>
     <body>
@@ -52,11 +49,12 @@
  <%  
                 
             try {
-               
+               managePath pathDB = new managePath(getServletContext().getRealPath("/")+"setting/setting.txt");
+                //out.print(getServletContext().getRealPath("/")+"setting/setting.txt");
   
                //for connect HosOS
                Class.forName("org.postgresql.Driver").newInstance();
-               Connection conn = DriverManager.getConnection("jdbc:postgresql://localhost:5433/dbHos", "postgres", "postgres"); //database connection
+               Connection conn = DriverManager.getConnection(pathDB.getPathDB(), pathDB.getUserDB(), pathDB.getPassDB()); //database connection
 
                ArrayList<String> allParams = new ArrayList<String>();
                ArrayList<String> allValues = new ArrayList<String>();
@@ -107,19 +105,7 @@
             }
         %>
      <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
-        <script>
-        jQuery(document).ready(function () {
-    alert('page is loaded');
-
-   
-});
- jQuery(window).load(function () {
-    alert('page is loaded');
-
-   
-});
-        </script>    
-        
+      
      </body>
      
 

@@ -4,6 +4,7 @@
     Author     : NUT
 --%>
 
+<%@page import="path.managePath"%>
 <!DOCTYPE html>
 <%@page contentType="text/html; charset=UTF-8" %>
 
@@ -18,6 +19,7 @@
     <h2>แก้ไขชื่อ</h2>
   </div>
     <%
+        managePath path = new managePath(getServletContext().getRealPath("/")+"setting/setting.txt");
        request.setCharacterEncoding("UTF-8");
        String reportType = request.getParameter("reportType");
        String text = "";
