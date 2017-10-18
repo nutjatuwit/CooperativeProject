@@ -29,7 +29,7 @@ public class insertCate extends HttpServlet {
   String sql;
     
   
-    ResultSet res;
+    ResultSet res,rs;
     
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -62,11 +62,24 @@ public class insertCate extends HttpServlet {
            }else{
              System.out.println("nameCate : "+nameCate);
             Statement stmt = (Statement) conn.createStatement();
-           
-            sql = "insert into a_report_category(name_cate)"
-                    + " values('" + nameCate + "')";
+            Statement stmtCompare = (Statement) conn.createStatement();
+            String sqlCompare = "select name_cate from a_report_category";
+            
+            rs = stmtCompare.executeQuery(sqlCompare);
+            boolean checked = true;
+            while(rs.next()){
+                if(rs.getString(1).equals(nameCate)){
+                         checked = false;
+                         
+                }
+            }
+            
+            if(checked){
+            sql = "insert into a_report_category(name_cate,name_folder)"
+                    + " values('" + nameCate + "','" + nameCate + "')";
             System.out.println(sql);
             stmt.executeUpdate(sql);
+            }
            }
         }
     }
@@ -109,6 +122,7 @@ public class insertCate extends HttpServlet {
             throws ServletException, IOException {
         try {
             processRequest(request, response);
+            
         } catch (SQLException ex) {
             Logger.getLogger(insertData.class.getName()).log(Level.SEVERE, null, ex);
         }

@@ -296,7 +296,14 @@
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.12.1/jquery.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jstree/3.2.1/jstree.min.js"></script>
          <script>
-
+$(document).ready(function() { 
+    
+  $(document).delegate("tr","click",function(e){
+  $("tr").css('background-color', 'white');
+  $("tr:nth-child(even)").css('background-color', '#f2f2f2');
+  $(this).css('background-color', '#74B3DF');
+});
+});
  function goLink(element) {
     //window.history.back();
     var cate = '<%=category%>';

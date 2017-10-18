@@ -1,2 +1,2 @@
-jdbc:postgresql://localhost:5433/dbHos,postgres,postgres
-upload
+jdbc:postgresql://localhost:5433/dbHos,postgres,postgres  #database path,username,password
+upload                                                  #path for upload file

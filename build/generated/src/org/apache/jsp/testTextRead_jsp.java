@@ -79,9 +79,11 @@ public final class testTextRead_jsp extends org.apache.jasper.runtime.HttpJspBas
            
             managePath test = new managePath(getServletContext().getRealPath("/")+"setting/setting.txt");
             //String path = test.path();
-              out.print(test.getPathDB());
-              out.print(test.getUserDB());
-              out.print(test.getPassDB());
+              out.println(test.getPathDB());
+              out.println(test.getUserDB());
+              out.println(test.getPassDB()+"<br>");
+              out.println(test.getPathReport()+"<br>");
+            
        
       out.write("\n");
       out.write("    </body>\n");

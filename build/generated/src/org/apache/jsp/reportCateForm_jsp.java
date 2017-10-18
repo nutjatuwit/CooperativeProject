@@ -3,6 +3,7 @@ package org.apache.jsp;
 import javax.servlet.*;
 import javax.servlet.http.*;
 import javax.servlet.jsp.*;
+import path.managePath;
 import java.awt.Desktop;
 import java.sql.ResultSet;
 import java.sql.Statement;
@@ -68,6 +69,7 @@ public final class reportCateForm_jsp extends org.apache.jasper.runtime.HttpJspB
       _jspx_out = out;
       _jspx_resourceInjector = (org.glassfish.jsp.api.ResourceInjector) application.getAttribute("com.sun.appserv.jsp.resource.injector");
 
+      out.write("\n");
       out.write("\n");
       out.write("\n");
       out.write("\n");
@@ -275,18 +277,21 @@ public final class reportCateForm_jsp extends org.apache.jasper.runtime.HttpJspB
       out.write(".tooltip {\n");
       out.write("    position: relative;\n");
       out.write("    display: inline-block;\n");
-      out.write("    border-bottom: 1px dotted black;\n");
+      out.write("   \n");
       out.write("}\n");
       out.write("\n");
       out.write(".tooltip .tooltiptext {\n");
       out.write("    visibility: hidden;\n");
-      out.write("    width: 120px;\n");
+      out.write("    \n");
       out.write("    background-color: black;\n");
       out.write("    color: #fff;\n");
       out.write("    text-align: center;\n");
       out.write("    border-radius: 6px;\n");
       out.write("    padding: 5px 0;\n");
-      out.write("\n");
+      out.write("    width: 120px;\n");
+      out.write("    bottom: 100%;\n");
+      out.write("    left: 50%; \n");
+      out.write("    margin-left: -60px;\n");
       out.write("    /* Position the tooltip */\n");
       out.write("    position: absolute;\n");
       out.write("    z-index: 1;\n");
@@ -308,9 +313,10 @@ public final class reportCateForm_jsp extends org.apache.jasper.runtime.HttpJspB
       out.write("    <body>\n");
       out.write("        ");
 
+            managePath path = new managePath(getServletContext().getRealPath("/")+"setting/setting.txt");
             request.setCharacterEncoding("UTF-8");
             Class.forName("org.postgresql.Driver").newInstance();
-               Connection conn = DriverManager.getConnection("jdbc:postgresql://localhost:5433/dbHos", "postgres", "postgres"); //database connection
+               Connection conn = DriverManager.getConnection(path.getPathDB(), path.getUserDB(), path.getPassDB()); //database connection
                Statement statement = conn.createStatement();
               //String sqlCompile = "select * from member";
               //ResultSet rsCompile = statement1.executeQuery(sqlCompile);
@@ -342,7 +348,7 @@ public final class reportCateForm_jsp extends org.apache.jasper.runtime.HttpJspB
                     
                     while(rs.next()){
                       out.print("<tr class='w3-hover-light-blue'>");
-                          out.print("<td onclick='goLink(this)'>");
+                          out.print("<td style='cursor: pointer;' onclick='goLink(this)'>");
                              out.print(rs.getString(2)); 
                           out.print("</td>");
                           
@@ -352,14 +358,14 @@ public final class reportCateForm_jsp extends org.apache.jasper.runtime.HttpJspB
                              out.print("<input type='hidden' name='category' value='"+rs.getString(2)+"'>");
                              out.print("<input type='hidden' name='name_folder' value='"+rs.getString(3)+"'>");
                              out.print("<input type='hidden' name='reportType' value='category'>");
-                             out.print("<div class='tooltip'><button type='submit' class='button button2' src=''><img src='images/edit.png' id='img' height='25' width='25'></button><span class='tooltiptext'>Tooltip text</span></div>");
+                             out.print("<div class='tooltip'><button type='submit' class='button button2' src=''><img src='images/edit.png' id='img' height='25' width='25'></button><span class='tooltiptext'>แก้ไข</span></div>");
                           out.print("</td>");
                           out.print("</form>");
                           
                           out.print("<form action='deleteCate'>");
                            out.print("<td style='text-align: right; width: 10%;'>");
                              out.print("<input type='hidden' name='id_cate' value='"+rs.getString(1)+"'>");
-                             out.print("<button type='submit' class='button button2' src=''><img src='images/remove.png' id='img' height='25' width='25'></button>"); 
+                             out.print("<div class='tooltip'><button type='submit' class='button button2' src=''><img src='images/remove.png' id='img' height='25' width='25'></button><span class='tooltiptext'>ลบ</span></div>"); 
                           out.print("</td>");
                           out.print("</form>");
                           
@@ -369,7 +375,7 @@ public final class reportCateForm_jsp extends org.apache.jasper.runtime.HttpJspB
                               out.print("<form action='openFolder'>");
                            out.print("<td style='text-align: right; width: 10%;'>");
                              out.print("<input type='hidden' name='name_folder' value='"+rs.getString(3)+"'>");
-                             out.print("<button type='submit' class='button button2'><img src='images/openfolder.png' id='img' height='25' width='25'></button>");  
+                             out.print("<div class='tooltip'><button type='submit' class='button button2' src=''><img src='images/openfolder.png' id='img' height='25' width='25'></button><span class='tooltiptext'>เปิดโฟลเดอร์: "+rs.getString(3)+"</span></div>");  
                           out.print("</td>");
                           out.print("</form>");
                           }else{
@@ -400,6 +406,14 @@ public final class reportCateForm_jsp extends org.apache.jasper.runtime.HttpJspB
       out.write("        <script src=\"https://cdnjs.cloudflare.com/ajax/libs/jquery/1.12.1/jquery.min.js\"></script>\n");
       out.write("        <script src=\"https://cdnjs.cloudflare.com/ajax/libs/jstree/3.2.1/jstree.min.js\"></script>\n");
       out.write("         <script>\n");
+      out.write(" $(document).ready(function() { \n");
+      out.write("    \n");
+      out.write("  $(document).delegate(\"tr\",\"click\",function(e){\n");
+      out.write("  $(\"tr\").css('background-color', 'white');\n");
+      out.write("  $(\"tr:nth-child(even)\").css('background-color', '#f2f2f2');\n");
+      out.write("  $(this).css('background-color', '#74B3DF');\n");
+      out.write("});\n");
+      out.write("});\n");
       out.write("function goEdit(e) {\n");
       out.write("    //window.history.back();\n");
       out.write("    var currentRow = $(e).\n");
@@ -416,6 +430,7 @@ public final class reportCateForm_jsp extends org.apache.jasper.runtime.HttpJspB
       out.write(" function goLink(element) {\n");
       out.write("    //window.history.back();\n");
       out.write("    var y = element.innerHTML;\n");
+      out.write("    \n");
       out.write("    //alert(y);\n");
       out.write("    \n");
       out.write("     //alert(pkCate);\n");

@@ -1,4 +1,5 @@
-    <%@page import="java.awt.Desktop"%>
+    <%@page import="path.managePath"%>
+<%@page import="java.awt.Desktop"%>
 <%@page import="java.net.URLEncoder"%>
 <%@page import="java.net.URLDecoder"%>
 <%@page pageEncoding="utf8" %>
@@ -210,8 +211,9 @@ input[type=text] {
        ArrayList reportList = new ArrayList();
        ArrayList detailList = new ArrayList();
        
+       managePath path = new managePath(getServletContext().getRealPath("/")+"setting/setting.txt");
        
-       
+       //out.println("TEST PATH : "+path.getPathReport());
   
        out.print("<div id='pagewrap'>");
  boolean isMultipart = ServletFileUpload.isMultipartContent(request);
@@ -279,16 +281,18 @@ input[type=text] {
                         
                         
                         String strProjectDir = ""; 
-                        strProjectDir = getServletContext().getRealPath("/")+"upload"+"\\"+name_folder+"\\"; //create directory if exist
+                        strProjectDir = getServletContext().getRealPath("/")+path.getPathReport()+"\\"+name_folder; //create directory if exist
+                        //out.print("testDir"+strProjectDir);
                         File ProjectDir = new File(strProjectDir);
                         //out.print(getServletContext().getRealPath("/")+"upload"+"\\"+name_folder+"\\<br>");
                         if(! ProjectDir.exists())
                         {
                             ProjectDir.mkdir();
-                            //out.print("make dir");
+                            out.print("make dir<br>");
                         }
 			    String itemName = item.getName();
-			    File savedFile = new File(getServletContext().getRealPath("/")+"upload"+"\\"+name_folder+"\\"+itemName); //set follow category folder
+			    File savedFile = new File(getServletContext().getRealPath("/")+path.getPathReport()+"\\"+name_folder+"\\"+itemName); //set follow category folder
+                            out.println("testItemName : "+getServletContext().getRealPath("/")+path.getPathReport()+"\\"+name_folder+"\\"+itemName+"<br>");
                             item.write(savedFile);
                             
                             
@@ -298,7 +302,7 @@ input[type=text] {
                             // Desktop desktop = Desktop.getDesktop();
                              //desktop.open(fileDir);
                             
-		           out.println("ตำแหน่งไฟล์ที่ได้บันทึก: "+getServletContext().getRealPath("/")+"upload"+"\\"+name_folder+"\\"+itemName+"<br><br>");
+		           out.println("ตำแหน่งไฟล์ที่ได้บันทึก: "+getServletContext().getRealPath("/")+path.getPathReport()+"\\"+name_folder+"\\"+itemName+"<br><br>");
                            //out.println(itemName+" "+request.getParameter("category"));
 		   } catch (Exception e) {
 			   e.printStackTrace();

@@ -98,8 +98,8 @@ textarea {
        
         <form name="insertData" action="insertData" align="left">
             
-           ชื่อตัวแปร :  <br><input type="text" name="name" placeholder='ทดสอบ1'><br><br>
-           ตัวแปร :  <br><input type="text" name="description" placeholder='test_1'><br><br>
+           ชื่อตัวแปร :  <br><input type="text" name="name" placeholder='ทดสอบ1(คำอธิบายตัวแปร)'><br><br>
+           ตัวแปร :  <br><input type="text" name="description" placeholder='test_1(ชื่อตัวแปรใช่ส่งไปยังreport)'><br><br>
            <%
                try{
                    managePath path = new managePath(getServletContext().getRealPath("/")+"setting/setting.txt");
@@ -128,7 +128,7 @@ textarea {
            %>
            
            <div id="textArea">
-           SQL Query :  <br><textarea row="60" cols="50" name="query" placeholder='select * from membertest //for list data in list filter '></textarea>
+           SQL Query :  <br><textarea row="60" cols="50" name="query" placeholder='select id,name from membertest //ใช้2คอลัมน์ คือid(ส่งไปยัง report) ,name(แสดงในlist)'></textarea>
            </div>
            
            <div id="buttonAccept">

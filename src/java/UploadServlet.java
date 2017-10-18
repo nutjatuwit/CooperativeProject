@@ -92,7 +92,7 @@ public class UploadServlet extends HttpServlet {
              while(resCate.next()){
                 pkCate = resCate.getString(1);
             }
-             String pathFolder = "//Report/"+name_folder;
+             String pathFolder = "//"+path.getPathReport()+"/"+name_folder; //report path insert เป็นตำแหน่งใช้ในการดู parameters
              //update a_report_detail set path_report='1',jrxml_report='1'
              //where id_cate='12' and name_report='2.รายงานอื่น'
              sql = "update a_report_detail set jasper_report='"+jasper+"',jrxml_report='"+jrxml+"',path_report='"+pathFolder+"' where id_cate='"+pkCate+"' and name_report='"+detail+"'";

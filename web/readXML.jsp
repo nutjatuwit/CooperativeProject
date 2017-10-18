@@ -160,7 +160,7 @@ div.tab button.active {
   
   function goBack() {
     //window.history.back();
-    window.open("manageReport.html");
+    window.open("managePage.html");
     }
 	</script>
         

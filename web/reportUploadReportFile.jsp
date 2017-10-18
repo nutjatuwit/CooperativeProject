@@ -275,14 +275,25 @@ input[type=text] {
                     out.print("<form action='reportUploadAccept.jsp' method='post' enctype='multipart/form-data' name='form1' id='form1' accept-charset='UTF-8'>");
                     out.print("<div class='custom-file-upload'>");
                     out.print("jrxml file: <input name='file' type='file' id='file' accept='.jrxml'><br><br>");
-                    out.print("jasper file: <input name='file' type='file' id='file' accept='.jasper'>");
+                    out.print("jasper file: <input name='file' type='file' id='file' accept='.jasper'><br><br>");
                     out.print("</div>");
                     out.print("<input type='hidden' name='category' value='"+category+"'>");
                     out.print("<input type='hidden' name='detail' value='"+detail+"'>");
                     out.print("<input type='hidden' name='name_folder' value='"+name_folder+"'>");
                     out.print("<input type='submit' value='อัพโหลดไฟล์รายงาน'>");
                     out.print("</form>");
+                    
+                    out.print("<form action='reportPathForm.jsp'>");
+                    out.print("<input type='hidden' name='category' value='"+category+"'>");
+                    out.print("<input type='hidden' name='detail' value='"+detail+"'>");
+                    out.print("<input type='hidden' name='name_folder' value='"+name_folder+"'>");
+                    out.print("<input type='submit' style='background-color: #2A69E5;' value='กลับ'>");
+                    out.print("</form>");
                     out.print("</div>");
+                    
+                    // String category=request.getParameter("category");
+           //String name_folder=request.getParameter("name_folder");
+           //String detail=request.getParameter("detail");
                     }
                 %>
 	</div>

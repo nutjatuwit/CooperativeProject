@@ -29,26 +29,33 @@
         <script type="text/javascript" src="http://code.jquery.com/jquery-1.6.3.min.js"></script>
         <script type="text/javascript" src="scripts/jquery.cycle.all.js"></script>
 
-       
-        
-       <script>
-  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-
-  ga('create', 'UA-38151043-3', 'bradsknutson.com');
-  ga('send', 'pageview');
-
-</script>
+       <style>
+           .content{
+               display:none;
+           } 
+           
+           .preload{
+               margin:0;
+               position:absolute;
+               top:50%;
+               left:50%;
+               margin-right: -50%;
+               transform: translate(-50%, -50%)
+           }
+       </style>
+    
        
       
     </head>
     <body>
+        <div class="preload">
+              <img src="images/remove.png">
+        </div>    
         
  <%  
                 
             try {
+               out.print("<div class='content'>");
                managePath pathDB = new managePath(getServletContext().getRealPath("/")+"setting/setting.txt");
                 //out.print(getServletContext().getRealPath("/")+"setting/setting.txt");
   
@@ -81,18 +88,20 @@
                }
             }
             
-            //for(int i = 0;i<allParams.size();i++){
-                //out.print("Parameters : "+allParams.get(i)+"Values : "+allValues.get(i));
-           // }
+            for(int i = 0;i<allParams.size();i++){
+                //out.print("Parameters : "+allParams.get(i)+"Values : "+allValues.get(i)+"<>");
+            }
             
             Map parameters = new HashMap();
             for(int i = 0;i<allParams.size();i++){
             parameters.put(allParams.get(i), allValues.get(i));   
             }
- 
+            
+            
+            
             byte[] bytes = JasperRunManager.runReportToPdf(reportFile.getPath(), parameters, conn);
              
-           
+            
             //display pdf form 
             response.setContentType("application/pdf");
             response.setContentLength(bytes.length);
@@ -100,12 +109,20 @@
             outStream.write(bytes, 0, bytes.length);
             outStream.flush();
             outStream.close();
+            out.print("</div>");
             } catch (Exception ex) {
                 ex.printStackTrace();
             }
         %>
      <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
-      
+     <script>
+          $(function(){
+              $(".preload").fadeOut(2000, function(){
+                     $(".content").fadeIn(1000); 
+              });
+          });
+          
+     </script>
      </body>
      
 

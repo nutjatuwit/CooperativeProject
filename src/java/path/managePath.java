@@ -18,7 +18,7 @@ import java.util.ArrayList;
  * @author NUT
  */
 public class managePath {
-   
+    //UploadServlet set path of report
     public String path;
         public managePath(String path){
               this.path = path;
@@ -30,7 +30,7 @@ public class managePath {
            
                //String path = application.getRealPath("/")+"setting/setting.txt";
           BufferedReader br = new BufferedReader(new FileReader(path));
-           StringBuilder sb = new StringBuilder();
+           //StringBuilder sb = new StringBuilder();
             String line;
             ArrayList list = new ArrayList();
             
@@ -47,7 +47,7 @@ public class managePath {
            
                //String path = application.getRealPath("/")+"setting/setting.txt";
           BufferedReader br = new BufferedReader(new FileReader(path));
-           StringBuilder sb = new StringBuilder();
+           //StringBuilder sb = new StringBuilder();
             String line;
             ArrayList list = new ArrayList();
             
@@ -55,13 +55,31 @@ public class managePath {
                 //sb.append(line+",");
                 list.add(line);
             }
-            String spl = list.get(0).toString();
+            String sql = list.get(0).toString();
               
               
-           return spl.split(",")[1];
+           return sql.split(",")[1];
        }
        
        public String getPassDB() throws FileNotFoundException, IOException{
+           
+               //String path = application.getRealPath("/")+"setting/setting.txt";
+          BufferedReader br = new BufferedReader(new FileReader(path));
+           //StringBuilder sb = new StringBuilder();
+            String line;
+            ArrayList list = new ArrayList();
+            
+              while((line = br.readLine())!= null){
+                //sb.append(line+",");
+                list.add(line);
+            }
+             String sql = list.get(0).toString();
+             String newSql = (sql.split(",")[2]);
+              
+           return newSql.substring(0, newSql.indexOf(" "));
+       }
+       
+       public String getPathReport() throws FileNotFoundException, IOException{
            
                //String path = application.getRealPath("/")+"setting/setting.txt";
           BufferedReader br = new BufferedReader(new FileReader(path));
@@ -73,9 +91,9 @@ public class managePath {
                 //sb.append(line+",");
                 list.add(line);
             }
-             String spl = list.get(0).toString();
+             String sql = list.get(1).toString();
+             String newSql = sql.substring(0, sql.indexOf(" ")); 
               
-              
-           return spl.split(",")[2];
+           return newSql;
        }
 }

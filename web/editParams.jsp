@@ -154,13 +154,19 @@ textarea {
                }catch(Exception ex){
                   ex.printStackTrace();
                }
-               
+             if(query.equals(null)){
+                query = " ";
+             }  
+           out.print("<div id='textArea'>");
+           out.print("SQL Query :  <br><textarea row='50' cols='50' name='query' >"+query+"</textarea><br><br><br>");
+           out.print("</div>");
+              
+           if(filtertype.equals("list")){
+              out.print("<script>document.getElementById('textArea').style.display = 'block';</script>");
+           }else{
+              out.print("<script>document.getElementById('textArea').style.display = 'none';</script>");
+           }
            %>
-    
-          <div id="textArea">
-           SQL Query :  <br><textarea row="50" cols="50" name="query" ><%out.print(query);%></textarea><br><br><br>
-           </div>
-           
            <div id="buttonAccept">
            <input type="submit" align="right" action="" value="ยืนยัน">
            </div>
@@ -182,6 +188,16 @@ textarea {
         }else{
             document.getElementById('textArea').style.display = 'none';     
         }
+        //hideElement(theSelect[theSelect.selectedIndex].text);
+       }
+     function hideData() {
+        
+        alert();
+        
+            //document.getElementById('textArea').style.display = 'none';  
+        
+              
+       
         //hideElement(theSelect[theSelect.selectedIndex].text);
        }
     

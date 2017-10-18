@@ -220,7 +220,7 @@ public final class readXML_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("  \n");
       out.write("  function goBack() {\n");
       out.write("    //window.history.back();\n");
-      out.write("    window.open(\"manageReport.html\");\n");
+      out.write("    window.open(\"managePage.html\");\n");
       out.write("    }\n");
       out.write("\t</script>\n");
       out.write("        \n");

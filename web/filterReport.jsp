@@ -133,7 +133,11 @@ input[type=text] {
         
            
            request.setCharacterEncoding("UTF-8");
-           String text = request.getParameter("text");
+           String text="";
+           text = request.getParameter("text");
+           if(text.equals("")){
+              text = " ";
+           }
            out.println("<h4>"+text+"</h4>");
               //database filter type
               
@@ -196,11 +200,11 @@ input[type=text] {
                      cRow++;
                      }
                      if(paramDbType.equals("textfield")){
-                     out.print(paramDbName+": <input type='text' name="+paramJas+" value=''>"); 
+                     out.print(paramDbName+": <input type='text' name="+paramJas+" value=' '>"); 
                      cRow++;
                      }
                      if(paramDbType.equals("textarea")){
-                         out.print(paramDbName+":  <textarea name="+paramJas+" value='' rows='10' cols='50'>Write something here</textarea>");
+                         out.print(paramDbName+":  <textarea name="+paramJas+" value=' ' rows='10' cols='50'>Write something here</textarea>");
                          cRow++;
                      }
                      if(paramDbType.equals("list")){ //want database for test

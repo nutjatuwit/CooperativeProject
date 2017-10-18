@@ -258,7 +258,7 @@ input[type=text] {
               //String sqlCompile = "select * from member";
               //ResultSet rsCompile = statement1.executeQuery(sqlCompile);
               
-              String sql = "select id_cate,name_cate,name_folder from a_report_category order by id_cate ASC";
+              String sql = "select id_cate,name_cate,name_folder from a_report_category order by id_cate DESC";
               
               ResultSet rs = null;
               
@@ -302,7 +302,7 @@ input[type=text] {
                           out.print("</td>");
                           out.print("</form>");
                           
-                          String isFolder = getServletContext().getRealPath("/")+"upload/"+rs.getString(3);
+                          String isFolder = getServletContext().getRealPath("/")+path.getPathReport()+"/"+rs.getString(3);
                           File fileList = new File(isFolder);
                           if(fileList.isDirectory()){
                               out.print("<form action='openFolder'>");
@@ -332,12 +332,25 @@ input[type=text] {
                  out.print("<input type='text' class='w3-input w3-border w3-round  w3-light-blue' name='nameCate'>");
                  out.print("<input type='submit' class='w3-button w3-blue w3-medium w3-round' style='width:20% '  value='เพิ่ม'>");
                  out.print("</form>");
+                 
+                    
                 %>
+                
+                
 	</div>
 	
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.12.1/jquery.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jstree/3.2.1/jstree.min.js"></script>
          <script>
+             
+ $(document).ready(function() { 
+    
+  $(document).delegate("tr","click",function(e){
+  $("tr").css('background-color', 'white');
+  $("tr:nth-child(even)").css('background-color', '#f2f2f2');
+  $(this).css('background-color', '#74B3DF');
+});
+});
 function goEdit(e) {
     //window.history.back();
     var currentRow = $(e).
@@ -354,6 +367,7 @@ function goEdit(e) {
  function goLink(element) {
     //window.history.back();
     var y = element.innerHTML;
+    
     //alert(y);
     
      //alert(pkCate);

@@ -1,0 +1,7 @@
+*** Settings ***
+Library   Selenium2Library
+
+*** Test Cases ***
+TEST CASE1 :Open In Browser
+    [Documentation]    This test case is for open manageReport
+    Open Browser    http://192.168.137.1:8080/WebApplication3/managePage.html    googlechrome

@@ -12,6 +12,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import path.managePath;
 
 /**
  *
@@ -32,13 +33,22 @@ public class openFolder extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
+             managePath path = new managePath(getServletContext().getRealPath("/")+"setting/setting.txt");
         try (PrintWriter out = response.getWriter()) {
             request.setCharacterEncoding("UTF-8");
             String name_folder = request.getParameter("name_folder");
-           String pathFolder = getServletContext().getRealPath("/")+"upload/"+name_folder; 
+           String pathFolder = getServletContext().getRealPath("/")+path.getPathReport()+"/"+name_folder; 
                              File fileDir = new File (pathFolder);
+                             String[] fileTest = fileDir.list();
                              Desktop desktop = Desktop.getDesktop();
                              desktop.open(fileDir);
+                             
+
+                   for(int i=0;i<fileTest.length;i++){ 
+                  System.out.println(fileTest[i]); 
+                   }          
+                            
+
                              response.sendRedirect("/WebApplication3/reportCateForm.jsp");
         }
     }
