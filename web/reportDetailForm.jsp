@@ -201,6 +201,11 @@
 .tooltip:hover .tooltiptext {
     visibility: visible;
 }
+.warning {
+color: #9F6000;
+background-color: #FEEFB3;
+
+}
         </style>
         <link rel="stylesheet" href="dist/themes/default/style.min.css" />
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jstree/3.2.1/themes/default/style.min.css" />
@@ -210,6 +215,17 @@
        <%
            managePath path = new managePath(getServletContext().getRealPath("/")+"setting/setting.txt");
            request.setCharacterEncoding("UTF-8");
+           
+           if(request.getParameterMap().containsKey("messages")){
+                
+                 String messages = request.getParameter("messages");
+                        if(messages.equals("")){
+                        }else{
+                         //out.print("<script>alert('"+messages+"');</script>");
+                         out.print("<div class='warning'>"+messages+"</div>");
+                        }     
+                }
+           
            //response.setCharacterEncoding("UTF-8");
            String category=request.getParameter("category");
            String name_folder="";

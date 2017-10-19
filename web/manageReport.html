@@ -6,6 +6,8 @@ and open the template in the editor.
 -->
 <html>
     <head>
+        <link rel="stylesheet" href="style/w3.css">
+        
         <title>Report Center</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -88,14 +90,27 @@ div.tab button.active {
     background-color: #4CAF50;
 }
 
+body {
+    margin: 0;
+    padding: 0;
+}
+.banner {
+    width: 40%;
+    height: 150px;
+}
+
+
 </style>
     </head>
+    <div class="w3-container w3-center w3-animate-opacity">
     <div id="mySidenav" class="sidenav">
         <a id="about" onclick="goBack()">กลับ</a>
   
 </div>
     
+    <img class="banner" src="images/HosOSlogo.jpg" alt="" /><br><br>
     <body align='center'>
+        
         <form action = "reportForm.html">
             <input type="submit"  value="Manage Report Form" action=""><br><br>
         </form>
@@ -110,5 +125,6 @@ div.tab button.active {
     window.location.replace("managePage.html");
     }
     </script>
+    </div>
     </body>
 </html>

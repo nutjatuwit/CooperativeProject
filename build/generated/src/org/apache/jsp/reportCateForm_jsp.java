@@ -313,6 +313,27 @@ public final class reportCateForm_jsp extends org.apache.jasper.runtime.HttpJspB
       out.write("    <body>\n");
       out.write("        ");
 
+            
+            request.setCharacterEncoding("UTF-8");
+            String messages = "";
+            
+            if(request.getQueryString().toString().matches("//?")){
+                
+                 messages = request.getParameter("messages");
+                        if(messages.equals("")){
+                        }else{
+                         out.print("<script>alert('"+messages+"');</script>");
+                        }     
+            
+            
+                       
+                
+            }else{
+                    out.print("<script>alert('empty');</script>");    
+            
+                }
+           
+           
             managePath path = new managePath(getServletContext().getRealPath("/")+"setting/setting.txt");
             request.setCharacterEncoding("UTF-8");
             Class.forName("org.postgresql.Driver").newInstance();
@@ -321,7 +342,7 @@ public final class reportCateForm_jsp extends org.apache.jasper.runtime.HttpJspB
               //String sqlCompile = "select * from member";
               //ResultSet rsCompile = statement1.executeQuery(sqlCompile);
               
-              String sql = "select id_cate,name_cate,name_folder from a_report_category order by id_cate ASC";
+              String sql = "select id_cate,name_cate,name_folder from a_report_category order by id_cate DESC";
               
               ResultSet rs = null;
               
@@ -369,7 +390,7 @@ public final class reportCateForm_jsp extends org.apache.jasper.runtime.HttpJspB
                           out.print("</td>");
                           out.print("</form>");
                           
-                          String isFolder = getServletContext().getRealPath("/")+"upload/"+rs.getString(3);
+                          String isFolder = getServletContext().getRealPath("/")+path.getPathReport()+"/"+rs.getString(3);
                           File fileList = new File(isFolder);
                           if(fileList.isDirectory()){
                               out.print("<form action='openFolder'>");
@@ -399,13 +420,18 @@ public final class reportCateForm_jsp extends org.apache.jasper.runtime.HttpJspB
                  out.print("<input type='text' class='w3-input w3-border w3-round  w3-light-blue' name='nameCate'>");
                  out.print("<input type='submit' class='w3-button w3-blue w3-medium w3-round' style='width:20% '  value='เพิ่ม'>");
                  out.print("</form>");
+                 
+                    
                 
       out.write("\n");
+      out.write("                \n");
+      out.write("                \n");
       out.write("\t</div>\n");
       out.write("\t\n");
       out.write("        <script src=\"https://cdnjs.cloudflare.com/ajax/libs/jquery/1.12.1/jquery.min.js\"></script>\n");
       out.write("        <script src=\"https://cdnjs.cloudflare.com/ajax/libs/jstree/3.2.1/jstree.min.js\"></script>\n");
       out.write("         <script>\n");
+      out.write("             \n");
       out.write(" $(document).ready(function() { \n");
       out.write("    \n");
       out.write("  $(document).delegate(\"tr\",\"click\",function(e){\n");
@@ -414,17 +440,7 @@ public final class reportCateForm_jsp extends org.apache.jasper.runtime.HttpJspB
       out.write("  $(this).css('background-color', '#74B3DF');\n");
       out.write("});\n");
       out.write("});\n");
-      out.write("function goEdit(e) {\n");
-      out.write("    //window.history.back();\n");
-      out.write("    var currentRow = $(e).\n");
-      out.write("    alert(currentRow.toString());\n");
-      out.write("    \n");
-      out.write("     //alert(y);\n");
-      out.write("    //var x = document.getElementsByTagName(\"td\")[0].innerText;\n");
-      out.write("    //alert(x);\n");
-      out.write("    //var linkHref = \"reportCateForm.jsp\";\n");
-      out.write("    // window.open(linkHref,\"left\");\n");
-      out.write("    }\n");
+      out.write("\n");
       out.write("\n");
       out.write("\n");
       out.write(" function goLink(element) {\n");
@@ -439,9 +455,11 @@ public final class reportCateForm_jsp extends org.apache.jasper.runtime.HttpJspB
       out.write("    var linkHref = \"reportDetailForm.jsp?category=\"+y;\n");
       out.write("    window.open(linkHref,\"mid\");\n");
       out.write("    }\n");
+      out.write("   function errorShow(mes) {\n");
+      out.write("    //window.history.back();\n");
+      out.write("    alert(mes);\n");
+      out.write("    } \n");
       out.write("  \n");
-      out.write("    \n");
-      out.write("\n");
       out.write("  function goBack() {\n");
       out.write("    //window.history.back();\n");
       out.write("    window.open(\"manageReport.html\");\n");

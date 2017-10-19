@@ -238,7 +238,11 @@ input[type=text] {
 .tooltip:hover .tooltiptext {
     visibility: visible;
 }
+.warning {
+color: #9F6000;
+background-color: #FEEFB3;
 
+}
         </style>
         <link rel="stylesheet" href="dist/themes/default/style.min.css" />
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jstree/3.2.1/themes/default/style.min.css" />
@@ -250,6 +254,19 @@ input[type=text] {
     </head>
     <body>
         <%
+            
+            request.setCharacterEncoding("UTF-8");
+            if(request.getParameterMap().containsKey("messages")){
+                
+                 String messages = request.getParameter("messages");
+                        if(messages.equals("")){
+                        }else{
+                         //out.print("<script>alert('"+messages+"');</script>");
+                         out.print("<div class='warning'>"+messages+"</div>");
+                        }     
+                }
+           
+           
             managePath path = new managePath(getServletContext().getRealPath("/")+"setting/setting.txt");
             request.setCharacterEncoding("UTF-8");
             Class.forName("org.postgresql.Driver").newInstance();
@@ -351,17 +368,7 @@ input[type=text] {
   $(this).css('background-color', '#74B3DF');
 });
 });
-function goEdit(e) {
-    //window.history.back();
-    var currentRow = $(e).
-    alert(currentRow.toString());
-    
-     //alert(y);
-    //var x = document.getElementsByTagName("td")[0].innerText;
-    //alert(x);
-    //var linkHref = "reportCateForm.jsp";
-    // window.open(linkHref,"left");
-    }
+
 
 
  function goLink(element) {
@@ -376,9 +383,11 @@ function goEdit(e) {
     var linkHref = "reportDetailForm.jsp?category="+y;
     window.open(linkHref,"mid");
     }
+   function errorShow(mes) {
+    //window.history.back();
+    alert(mes);
+    } 
   
-    
-
   function goBack() {
     //window.history.back();
     window.open("manageReport.html");

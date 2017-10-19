@@ -51,11 +51,11 @@
         <div class="preload">
               <img src="images/remove.png">
         </div>    
-        
+        <div class="content">
  <%  
                 
             try {
-               out.print("<div class='content'>");
+               
                managePath pathDB = new managePath(getServletContext().getRealPath("/")+"setting/setting.txt");
                 //out.print(getServletContext().getRealPath("/")+"setting/setting.txt");
   
@@ -109,11 +109,13 @@
             outStream.write(bytes, 0, bytes.length);
             outStream.flush();
             outStream.close();
-            out.print("</div>");
+            
             } catch (Exception ex) {
                 ex.printStackTrace();
             }
         %>
+        </div> 
+        
      <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
      <script>
           $(function(){

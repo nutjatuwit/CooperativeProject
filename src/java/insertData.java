@@ -67,7 +67,8 @@ public class insertData extends HttpServlet {
             System.out.println("Query : "+query);
 
             
-            
+            if((name.equals(""))||(idFil.equals(""))||(description.equals(""))){
+            }else{
             
             Statement stmt = (Statement) conn.createStatement();
            
@@ -80,7 +81,7 @@ public class insertData extends HttpServlet {
             System.out.println(sql);
             
             stmt.executeUpdate(sql);
-            
+            }
         }
     }
 

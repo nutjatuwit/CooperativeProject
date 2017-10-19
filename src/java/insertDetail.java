@@ -30,7 +30,7 @@ public class insertDetail extends HttpServlet {
   String sql,sqlCate;
     
   
-    ResultSet res,resCate;
+    ResultSet res,resCate,rs;
     
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -46,6 +46,7 @@ public class insertDetail extends HttpServlet {
         //response.setContentType("text/html;charset=UTF-8");
         managePath path = new managePath(getServletContext().getRealPath("/")+"setting/setting.txt");
         request.setCharacterEncoding("UTF-8");
+         String messages = "";
         //response.setCharacterEncoding("UTF-8");
         try (PrintWriter out = response.getWriter()) {
             try {
@@ -69,26 +70,46 @@ public class insertDetail extends HttpServlet {
             
 
             
-              Statement stmt = (Statement) conn.createStatement();
+            Statement stmt = (Statement) conn.createStatement();
             Statement stmtCate = (Statement) conn.createStatement();
+            boolean checked = true;
             
-           
-            sql = "insert into a_report_detail(id_cate,name_report)"
-                    + " values('" + pkCate + "','" + nameDetail + "')";
+            if(nameDetail.equals("")){      
+               messages = "กรุณาใส่ข้อมูล";
+           }else{
+
+            
             sqlCate = "select name_cate from a_report_category where id_cate = '"+pkCate+"'";
             resCate = stmtCate.executeQuery(sqlCate);
+            
+            
+            Statement stmtCompare = (Statement) conn.createStatement(); //ถ้าเหมือนไม่เพิ่ม
+            String sqlCompare = "select name_report from a_report_detail";
+            rs = stmtCompare.executeQuery(sqlCompare);
             
             while(resCate.next()){
                 nameCate = resCate.getString(1);
             }
-            System.out.println(sql);
             
+            while(rs.next()){
+                if(rs.getString(1).equals(nameDetail)){
+                         checked = false;
+                         messages = "ข้อมูลนี้มีอยู่แล้ว"; 
+                }
+            }
+            if(checked){
+            sql = "insert into a_report_detail(id_cate,name_report)"
+                    + " values('" + pkCate + "','" + nameDetail + "')";
+            System.out.println(sql);
             //stmtCate.executeQuery(sqlCate);
             stmt.execute(sql);
+            }
+            }
+            
             
             //pass parameter error
             
-            response.sendRedirect("/WebApplication3/reportDetailForm.jsp?category="+ URLEncoder.encode(nameCate, "UTF-8"));
+            response.sendRedirect("/WebApplication3/reportDetailForm.jsp?category="+ URLEncoder.encode(category, "UTF-8")+"&messages="+ URLEncoder.encode(messages, "UTF-8"));
         }
     }
 

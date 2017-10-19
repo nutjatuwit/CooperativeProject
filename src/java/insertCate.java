@@ -8,6 +8,7 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.net.URLEncoder;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -45,6 +46,7 @@ public class insertCate extends HttpServlet {
         //response.setContentType("text/html;charset=UTF-8");
         managePath path = new managePath(getServletContext().getRealPath("/")+"setting/setting.txt");
         request.setCharacterEncoding("UTF-8");
+        String messages = "";
         //response.setCharacterEncoding("UTF-8");
         try (PrintWriter out = response.getWriter()) {
             try {
@@ -58,8 +60,9 @@ public class insertCate extends HttpServlet {
             
            nameCate = request.getParameter("nameCate");
            if(nameCate.equals("")){      
-            
+              messages = "กรุณาใส่ข้อมูล";
            }else{
+               
              System.out.println("nameCate : "+nameCate);
             Statement stmt = (Statement) conn.createStatement();
             Statement stmtCompare = (Statement) conn.createStatement();
@@ -70,7 +73,7 @@ public class insertCate extends HttpServlet {
             while(rs.next()){
                 if(rs.getString(1).equals(nameCate)){
                          checked = false;
-                         
+                         messages = "ข้อมูลนี้มีอยู่แล้ว"; 
                 }
             }
             
@@ -79,9 +82,12 @@ public class insertCate extends HttpServlet {
                     + " values('" + nameCate + "','" + nameCate + "')";
             System.out.println(sql);
             stmt.executeUpdate(sql);
+            
             }
            }
+           response.sendRedirect("/WebApplication3/reportCateForm.jsp?messages="+ URLEncoder.encode(messages, "UTF-8"));
         }
+         
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -99,7 +105,7 @@ public class insertCate extends HttpServlet {
         response.setContentType("text/html");
         response.setCharacterEncoding("UTF-8");
         //request.setAttribute("todo", "10");
-        response.sendRedirect("/WebApplication3/reportCateForm.jsp");
+       
         
         //request.getRequestDispatcher("/addParams.jsp").forward(request, response);
         try {
