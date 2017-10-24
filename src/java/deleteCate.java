@@ -43,6 +43,7 @@ public class deleteCate extends HttpServlet {
         //response.setContentType("text/html;charset=UTF-8");
         managePath path = new managePath(getServletContext().getRealPath("/")+"setting/setting.txt");
         request.setCharacterEncoding("UTF-8");
+        id_cate = request.getParameter("id_cate");
         //response.setCharacterEncoding("UTF-8");
         try (PrintWriter out = response.getWriter()) {
             try {
@@ -54,17 +55,11 @@ public class deleteCate extends HttpServlet {
 
 //Af_Scheme_Number=request.getParameter("Af_Scheme_Number"); 
         try{
-            id_cate = request.getParameter("id_cate");
             
-           
-           
+   
             System.out.println("ID Cate : "+id_cate);
             
-            
 
-            
-            
-            
             Statement stmt = (Statement) conn.createStatement();
            
             sqlCate = "delete from a_report_category where id_cate = '" + id_cate + "' ";
@@ -96,10 +91,16 @@ public class deleteCate extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        response.setContentType("text/html");
-        response.setCharacterEncoding("UTF-8");
-        //request.setAttribute("todo", "10");
-        response.sendRedirect("/WebApplication3/reportCateForm.jsp");
+        PrintWriter out = response.getWriter();
+         out.println("<html><body>");
+         out.println("<script type=\"text/javascript\">");
+        out.println("window.open('reportCateForm.jsp','left')");
+        out.println("</script>");
+         out.println("</body></html>");
+        //response.setContentType("text/html");
+        //response.setCharacterEncoding("UTF-8");
+        //request.setAttribute("todo", "10");a
+        //response.sendRedirect("/WebApplication3/reportForm.html");
         
         //request.getRequestDispatcher("/addParams.jsp").forward(request, response);
         try {

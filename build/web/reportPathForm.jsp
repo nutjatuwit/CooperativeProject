@@ -228,7 +228,7 @@
                     out.print("<div class='w3-container'>");
                     out.print("<form action='reportUploadReportFile.jsp'>");
                     out.print("ตำแหน่งไฟล์  <input type='text' name='path'  width='100%' value='"+rs.getString(3)+"' readonly><br>");
-                    out.print("Folder  <input type='text' name='name_folder'  width='100%' value='"+name_folder+"' readonly><br>");
+                    //out.print("Folder  <input type='text' name='name_folder'  width='100%' value='"+name_folder+"' readonly><br>");
                     out.print("jrxml  <input type='text' name='jrxml' width='100%' value='"+rs.getString(4)+"' readonly><br>");
                     out.print("jasper  <input type='text' name='jasper' width='100%' value='"+rs.getString(5)+"' readonly><br>");
                     //out.print("jrxml file: <input name='file' type='file' id='file' accept='.jrxml'><br>");

@@ -312,10 +312,10 @@ background-color: #FEEFB3;
                           out.print("</td>");
                           out.print("</form>");
                           
-                          out.print("<form action='deleteCate'>");
+                          out.print("<form>");
                            out.print("<td style='text-align: right; width: 10%;'>");
-                             out.print("<input type='hidden' name='id_cate' value='"+rs.getString(1)+"'>");
-                             out.print("<div class='tooltip'><button type='submit' class='button button2' src=''><img src='images/remove.png' id='img' height='25' width='25'></button><span class='tooltiptext'>ลบ</span></div>"); 
+                             //out.print("<input type='hidden' name='id_cate' value='"+rs.getString(1)+"'>");
+                             out.print("<div class='tooltip'><button type='submit'  class='button button2'  src=''  onClick='onDelete("+rs.getString(1)+")'><img src='images/remove.png' id='img' height='25' width='25'></button><span class='tooltiptext'>ลบ</span></div>"); 
                           out.print("</td>");
                           out.print("</form>");
                           
@@ -369,19 +369,37 @@ background-color: #FEEFB3;
 });
 });
 
-
-
- function goLink(element) {
+function goLink(element) {
     //window.history.back();
-    var y = element.innerHTML;
+
+    var cate = element.innerHTML;
+     //alert(y);
+    //var x = document.getElementsByTagName("td")[0].innerText;
+    //alert(x);
+    var linkHref = "reportDetailForm.jsp?category="+cate;
+    //alert(linkHref);
+     window.open(linkHref,'mid');
+    }
+
+ function onDelete(id_cate) {
+    //window.history.back();
+    //var y = element.innerHTML;
+    var confirmDel = confirm('รายงานในหมวดหมู่จะถูกลบทั้งหมด!!!');
     
-    //alert(y);
-    
+   
+    if(confirmDel){
+    var linkHref = "deleteCate?id_cate="+id_cate;  
+    window.open(linkHref,'mid');
+
+    }else{
+   
+    }
      //alert(pkCate);
     //var x = document.getElementsByTagName("td")[0].innerText;
     //alert(x);
-    var linkHref = "reportDetailForm.jsp?category="+y;
-    window.open(linkHref,"mid");
+    //var linkHref = "deleteCate?id_cate="+id_cate;
+    //window.open(linkHref);
+   
     }
    function errorShow(mes) {
     //window.history.back();

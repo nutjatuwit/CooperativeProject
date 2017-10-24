@@ -300,7 +300,11 @@ public final class reportCateForm_jsp extends org.apache.jasper.runtime.HttpJspB
       out.write(".tooltip:hover .tooltiptext {\n");
       out.write("    visibility: visible;\n");
       out.write("}\n");
+      out.write(".warning {\n");
+      out.write("color: #9F6000;\n");
+      out.write("background-color: #FEEFB3;\n");
       out.write("\n");
+      out.write("}\n");
       out.write("        </style>\n");
       out.write("        <link rel=\"stylesheet\" href=\"dist/themes/default/style.min.css\" />\n");
       out.write("        <link rel=\"stylesheet\" href=\"https://cdnjs.cloudflare.com/ajax/libs/jstree/3.2.1/themes/default/style.min.css\" />\n");
@@ -315,22 +319,14 @@ public final class reportCateForm_jsp extends org.apache.jasper.runtime.HttpJspB
 
             
             request.setCharacterEncoding("UTF-8");
-            String messages = "";
-            
-            if(request.getQueryString().toString().matches("//?")){
+            if(request.getParameterMap().containsKey("messages")){
                 
-                 messages = request.getParameter("messages");
+                 String messages = request.getParameter("messages");
                         if(messages.equals("")){
                         }else{
-                         out.print("<script>alert('"+messages+"');</script>");
+                         //out.print("<script>alert('"+messages+"');</script>");
+                         out.print("<div class='warning'>"+messages+"</div>");
                         }     
-            
-            
-                       
-                
-            }else{
-                    out.print("<script>alert('empty');</script>");    
-            
                 }
            
            
@@ -383,10 +379,10 @@ public final class reportCateForm_jsp extends org.apache.jasper.runtime.HttpJspB
                           out.print("</td>");
                           out.print("</form>");
                           
-                          out.print("<form action='deleteCate'>");
+                          out.print("<form>");
                            out.print("<td style='text-align: right; width: 10%;'>");
-                             out.print("<input type='hidden' name='id_cate' value='"+rs.getString(1)+"'>");
-                             out.print("<div class='tooltip'><button type='submit' class='button button2' src=''><img src='images/remove.png' id='img' height='25' width='25'></button><span class='tooltiptext'>ลบ</span></div>"); 
+                             //out.print("<input type='hidden' name='id_cate' value='"+rs.getString(1)+"'>");
+                             out.print("<div class='tooltip'><button type='submit'  class='button button2'  src=''  onClick='onDelete("+rs.getString(1)+")'><img src='images/remove.png' id='img' height='25' width='25'></button><span class='tooltiptext'>ลบ</span></div>"); 
                           out.print("</td>");
                           out.print("</form>");
                           
@@ -441,19 +437,41 @@ public final class reportCateForm_jsp extends org.apache.jasper.runtime.HttpJspB
       out.write("});\n");
       out.write("});\n");
       out.write("\n");
-      out.write("\n");
-      out.write("\n");
-      out.write(" function goLink(element) {\n");
+      out.write("function goLink(element) {\n");
       out.write("    //window.history.back();\n");
-      out.write("    var y = element.innerHTML;\n");
+      out.write("\n");
+      out.write("    var cate = element.innerHTML;\n");
+      out.write("     //alert(y);\n");
+      out.write("    //var x = document.getElementsByTagName(\"td\")[0].innerText;\n");
+      out.write("    //alert(x);\n");
+      out.write("    var linkHref = \"reportDetailForm.jsp?category=\"+cate;\n");
+      out.write("    //alert(linkHref);\n");
+      out.write("     window.open(linkHref,'mid');\n");
+      out.write("    }\n");
+      out.write("\n");
+      out.write(" function onDelete(id_cate) {\n");
+      out.write("    //window.history.back();\n");
+      out.write("    //var y = element.innerHTML;\n");
+      out.write("    var confirmDel = confirm('ต้องการลบ'+id_cate);\n");
       out.write("    \n");
-      out.write("    //alert(y);\n");
-      out.write("    \n");
+      out.write("   \n");
+      out.write("    if(confirmDel){\n");
+      out.write("    alert(\"จะลบละนะ\"+id_cate);\n");
+      out.write("    var linkHref = \"deleteCate?id_cate=\"+id_cate;\n");
+      out.write("    //window.location.href = \"deleteCate?id_cate=\"+id_cate;\n");
+      out.write("    window.open(linkHref,'left');\n");
+      out.write("    }else{\n");
+      out.write("        alert(\"ไม่ลบละ\"+id_cate);\n");
+      out.write("    var linkHref = \"reportCateForm.jsp\";\n");
+      out.write("    window.open(linkHref,'left');  \n");
+      out.write("        \n");
+      out.write("    }\n");
       out.write("     //alert(pkCate);\n");
       out.write("    //var x = document.getElementsByTagName(\"td\")[0].innerText;\n");
       out.write("    //alert(x);\n");
-      out.write("    var linkHref = \"reportDetailForm.jsp?category=\"+y;\n");
-      out.write("    window.open(linkHref,\"mid\");\n");
+      out.write("    //var linkHref = \"deleteCate?id_cate=\"+id_cate;\n");
+      out.write("    //window.open(linkHref);\n");
+      out.write("   \n");
       out.write("    }\n");
       out.write("   function errorShow(mes) {\n");
       out.write("    //window.history.back();\n");
