@@ -196,15 +196,15 @@ input[type=text] {
                   if(paramJas.equals(paramDbDes)){
                     //out.println(paramJas+"from report   <br>"); //test paramter list
                      if(paramDbType.equals("date")){
-                     out.print(paramDbName+": <input class='date' type='date' name="+paramJas+" value='2555-01-02'>");
+                     out.print(paramDbName+": <input class='date' type='date' name="+paramJas+" value='2555-01-02'> ");
                      cRow++;
                      }
                      if(paramDbType.equals("textfield")){
-                     out.print(paramDbName+": <input type='text' name="+paramJas+" value=' '>"); 
+                     out.print(paramDbName+": <input type='text' name="+paramJas+" value=' '> "); 
                      cRow++;
                      }
                      if(paramDbType.equals("textarea")){
-                         out.print(paramDbName+":  <textarea name="+paramJas+" value=' ' rows='10' cols='50'>Write something here</textarea>");
+                         out.print(paramDbName+":  <textarea name="+paramJas+" value=' ' rows='10' cols='50'></textarea> ");
                          cRow++;
                      }
                      if(paramDbType.equals("list")){ //want database for test
@@ -219,7 +219,7 @@ input[type=text] {
                                  out.print(rsCompile.getString(2));
                                  out.print("</option>");
                              }
-                             out.println("</select>");
+                             out.println("</select> ");
                              cRow++;
                              
                      }

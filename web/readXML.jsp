@@ -76,7 +76,7 @@ div.tab button.active {
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jstree/3.2.1/themes/default/style.min.css" />
         
          <div class="tab">
-      <button class="tablinks" onclick="goBack();">กลับ</button>
+      <button class="tablinks" name='backButton' onclick="goBack();">กลับ</button>
       
     </div>   
     </head>

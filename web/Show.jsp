@@ -48,14 +48,14 @@
       
     </head>
     <body>
-        <div class="preload">
-              <img src="images/remove.png">
+        <div class="preload">  
+              <h1>ไฟล์รายงานมีปัญหา</h1>
         </div>    
         <div class="content">
  <%  
                 
             try {
-               
+               request.setCharacterEncoding("UTF-8");
                managePath pathDB = new managePath(getServletContext().getRealPath("/")+"setting/setting.txt");
                 //out.print(getServletContext().getRealPath("/")+"setting/setting.txt");
   
@@ -69,10 +69,19 @@
               
                String path = request.getParameter("textPath");
                String textReportJasper = request.getParameter("textReportJasper");
-              
+               String textReport = request.getParameter("textReport"); 
+               //String textReportSplit = textReport.split("\\.")[0].toString();
+               
+               
+               //code for compile .jrxml file to .jasper file
+               /* 
+               JasperCompileManager.compileReportToFile(
+                application.getRealPath(path+"/"+textReport),//the path to the jrxml file to compile
+                application.getRealPath(path+"/"+textReportSplit+".jasper"));//the path and name we want to save the compiled file to
+               */
              
             File reportFile = new File(application.getRealPath(path+"/"+textReportJasper));//your report_name.jasper file
-          
+             //out.print(reportFile.getPath());
             //Split parameters and values
             String[] splits = request.getQueryString().toString().split("&");
             for(int i =0;i<splits.length;i++){
@@ -120,7 +129,7 @@
      <script>
           $(function(){
               $(".preload").fadeOut(2000, function(){
-                     $(".content").fadeIn(1000); 
+                     $(".content").fadeIn(3000); 
               });
           });
           

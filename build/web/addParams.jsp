@@ -99,7 +99,7 @@ textarea {
         <form name="insertData" action="insertData" align="left">
             
            ชื่อตัวแปร :  <br><input type="text" name="name" placeholder='ทดสอบ1(คำอธิบายตัวแปร)'><br><br>
-           ตัวแปร :  <br><input type="text" name="description" placeholder='test_1(ชื่อตัวแปรใช่ส่งไปยังreport)'><br><br>
+           ตัวแปร :  <br><input type="text" name="description" placeholder='test_1(ชื่อตัวแปรใช้ส่งไปยังreport)'><br><br>
            <%
                try{
                    managePath path = new managePath(getServletContext().getRealPath("/")+"setting/setting.txt");

@@ -280,7 +280,7 @@ background-color: #FEEFB3;
                              out.print("<input type='hidden' name='id_cate' value='"+pkCate+"'>");
                              out.print("<input type='hidden' name='id_report' value='"+rs.getString(1)+"'>");
                              out.print("<input type='hidden' name='detail' value='"+rs.getString(2)+"'>");
-                             out.print("<div class='tooltip'><button type='submit' class='button button2' src=''><img src='images/edit.png' id='img' height='25' width='25'></button><span class='tooltiptext'>แก้ไข</span></div>");
+                             out.print("<div class='tooltip'><button name='editorButton' type='submit' class='button button2' src=''><img src='images/edit.png' id='img' height='25' width='25'></button><span class='tooltiptext'>แก้ไข</span></div>");
                           out.print("</td>");
                           out.print("</form>");
                           
@@ -289,7 +289,7 @@ background-color: #FEEFB3;
                              out.print("<input type='hidden' name='category' value='"+category+"'>");
                              out.print("<input type='hidden' name='pkCate' value='"+pkCate+"'>");
                              out.print("<input type='hidden' name='id_report' value='"+rs.getString(1)+"'>");
-                             out.print("<div class='tooltip'><button type='submit' class='button button2' src=''><img src='images/remove.png' id='img' height='25' width='25'></button><span class='tooltiptext'>ลบ</span></div>");
+                             out.print("<div class='tooltip'><button name='deleterButton' type='submit' class='button button2' src=''><img src='images/remove.png' id='img' height='25' width='25'></button><span class='tooltiptext'>ลบ</span></div>");
                           out.print("</td>");
                           out.print("</form>");
                           

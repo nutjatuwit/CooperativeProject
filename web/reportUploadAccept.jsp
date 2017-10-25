@@ -292,7 +292,7 @@ input[type=text] {
                         }
 			    String itemName = item.getName();
 			    File savedFile = new File(getServletContext().getRealPath("/")+path.getPathReport()+"\\"+name_folder+"\\"+itemName); //set follow category folder
-                            out.println("testItemName : "+getServletContext().getRealPath("/")+path.getPathReport()+"\\"+name_folder+"\\"+itemName+"<br>");
+                            //out.println("testItemName : "+getServletContext().getRealPath("/")+path.getPathReport()+"\\"+name_folder+"\\"+itemName+"<br>");
                             item.write(savedFile);
                             
                             

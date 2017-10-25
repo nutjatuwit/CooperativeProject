@@ -248,7 +248,7 @@ background-color: #FEEFB3;
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jstree/3.2.1/themes/default/style.min.css" />
        
     <div class="tab">
-      <button class="tablinks" onclick="goBack();">กลับ</button>
+      <button class="tablinks" name='backButton' onclick="goBack();">กลับ</button>
     </div>   
       
     </head>
@@ -308,14 +308,14 @@ background-color: #FEEFB3;
                              out.print("<input type='hidden' name='category' value='"+rs.getString(2)+"'>");
                              out.print("<input type='hidden' name='name_folder' value='"+rs.getString(3)+"'>");
                              out.print("<input type='hidden' name='reportType' value='category'>");
-                             out.print("<div class='tooltip'><button type='submit' class='button button2' src=''><img src='images/edit.png' id='img' height='25' width='25'></button><span class='tooltiptext'>แก้ไข</span></div>");
+                             out.print("<div class='tooltip'><button name='editButton' type='submit' class='button button2' src=''><img src='images/edit.png' id='img' height='25' width='25'></button><span class='tooltiptext'>แก้ไข</span></div>");
                           out.print("</td>");
                           out.print("</form>");
                           
                           out.print("<form>");
                            out.print("<td style='text-align: right; width: 10%;'>");
                              //out.print("<input type='hidden' name='id_cate' value='"+rs.getString(1)+"'>");
-                             out.print("<div class='tooltip'><button type='submit'  class='button button2'  src=''  onClick='onDelete("+rs.getString(1)+")'><img src='images/remove.png' id='img' height='25' width='25'></button><span class='tooltiptext'>ลบ</span></div>"); 
+                             out.print("<div class='tooltip'><button name='deleteButton'type='submit'  class='button button2'  src=''  onClick='onDelete("+rs.getString(1)+")'><img src='images/remove.png' id='img' height='25' width='25'></button><span class='tooltiptext'>ลบ</span></div>"); 
                           out.print("</td>");
                           out.print("</form>");
                           
@@ -325,14 +325,14 @@ background-color: #FEEFB3;
                               out.print("<form action='openFolder'>");
                            out.print("<td style='text-align: right; width: 10%;'>");
                              out.print("<input type='hidden' name='name_folder' value='"+rs.getString(3)+"'>");
-                             out.print("<div class='tooltip'><button type='submit' class='button button2' src=''><img src='images/openfolder.png' id='img' height='25' width='25'></button><span class='tooltiptext'>เปิดโฟลเดอร์: "+rs.getString(3)+"</span></div>");  
+                             out.print("<div class='tooltip'><button name='folderButton' type='submit' class='button button2' src=''><img src='images/openfolder.png' id='img' height='25' width='25'></button><span class='tooltiptext'>เปิดโฟลเดอร์: "+rs.getString(3)+"</span></div>");  
                           out.print("</td>");
                           out.print("</form>");
                           }else{
                           out.print("<form action='openFolder'>");
                            out.print("<td style='text-align: right; width: 10%;'>");
                              out.print("<input type='hidden' name='name_folder' value='"+rs.getString(3)+"'>");
-                             out.print("<button type='submit' class='button button2' disabled><img src='images/openfolder.png' id='img' height='25' width='25'></button>"); 
+                             out.print("<button type='submit' name='folderButton' class='button button2' disabled><img src='images/openfolder.png' id='img' height='25' width='25'></button>"); 
                              
                           out.print("</td>");
                           out.print("</form>");
@@ -384,7 +384,7 @@ function goLink(element) {
  function onDelete(id_cate) {
     //window.history.back();
     //var y = element.innerHTML;
-    var confirmDel = confirm('รายงานในหมวดหมู่จะถูกลบทั้งหมด!!!');
+    var confirmDel = confirm('รายงานในหมวดหมู่นี้จะถูกลบทั้งหมด!!!');
     
    
     if(confirmDel){

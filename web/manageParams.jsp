@@ -259,12 +259,12 @@ th {
                           out.print("<input type='hidden' name='query' value='"+rs.getString(4)+"'>");
                           
                           out.print("<input type='hidden' name='filtertype' value="+rs.getString(5)+">");
-                          out.print("<td><div class='tooltip'><button type='submit' class='button button2' src=''><img src='images/edit.png' id='img' height='25' width='25'></button><span class='tooltiptext'>แก้ไข</span></div></td>");
+                          out.print("<td><div class='tooltip'><button type='submit' name='pEdit' class='button button2' src=''><img src='images/edit.png' id='img' height='25' width='25'></button><span class='tooltiptext'>แก้ไข</span></div></td>");
                          out.println("</form>"); 
                          
                          out.println("<form action='deleteData'>");
                          out.print("<input type='hidden' name='id' value="+rs.getString(1)+">");
-                         out.print("<td align='center'><div class='tooltip'><button type='submit' class='button button2'  src=''><img src='images/remove.png' id='img' height='25' width='25'></button><span class='tooltiptext'>ลบ</span></div></td>");
+                         out.print("<td align='center'><div class='tooltip'><button name='pDelete' type='submit' class='button button2'  src=''><img src='images/remove.png' id='img' height='25' width='25'></button><span class='tooltiptext'>ลบ</span></div></td>");
                          out.println("</form>"); 
                          out.println("</tr>");
                      }
