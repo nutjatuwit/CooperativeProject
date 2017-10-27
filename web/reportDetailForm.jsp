@@ -162,6 +162,10 @@
 
             #pagewrap, header, #content, #middle, #sidebar, footer {
                 border: solid 1px #ccc;
+                font-family: TH SarabunPSK;
+                font-size: 21px;
+                font-weight: bold;
+                
             }  
             
             input[type=text] {
@@ -280,7 +284,7 @@ background-color: #FEEFB3;
                              out.print("<input type='hidden' name='id_cate' value='"+pkCate+"'>");
                              out.print("<input type='hidden' name='id_report' value='"+rs.getString(1)+"'>");
                              out.print("<input type='hidden' name='detail' value='"+rs.getString(2)+"'>");
-                             out.print("<div class='tooltip'><button name='editorButton' type='submit' class='button button2' src=''><img src='images/edit.png' id='img' height='25' width='25'></button><span class='tooltiptext'>แก้ไข</span></div>");
+                             out.print("<div class='tooltip'><button name='editorButton' type='submit' class='button button2' style='background-color:transparent; border-color:transparent; padding: 0 ; margin-left: 1px; margin-bottom: 2px; cursor: pointer;' src=''><img src='images/edit.png' id='img' height='40' width='40'></button><span class='tooltiptext'>แก้ไข</span></div>");
                           out.print("</td>");
                           out.print("</form>");
                           
@@ -289,7 +293,7 @@ background-color: #FEEFB3;
                              out.print("<input type='hidden' name='category' value='"+category+"'>");
                              out.print("<input type='hidden' name='pkCate' value='"+pkCate+"'>");
                              out.print("<input type='hidden' name='id_report' value='"+rs.getString(1)+"'>");
-                             out.print("<div class='tooltip'><button name='deleterButton' type='submit' class='button button2' src=''><img src='images/remove.png' id='img' height='25' width='25'></button><span class='tooltiptext'>ลบ</span></div>");
+                             out.print("<div class='tooltip'><button name='deleterButton' type='submit' class='button button2' style='background-color:transparent; border-color:transparent; padding: 0 ; margin-left: 1px; margin-bottom: 2px; cursor: pointer;' src=''><img src='images/remove.png' id='img' height='40' width='40'></button><span class='tooltiptext'>ลบ</span></div>");
                           out.print("</td>");
                           out.print("</form>");
                           
@@ -304,7 +308,7 @@ background-color: #FEEFB3;
                  out.print("<input type='hidden' name='pkCate' value='"+pkCate+"'>");
                  //out.print("<input type='hidden' name='pkDetail' value='"+(count+1)+"'>");
                  
-                 out.print("<input type='submit' class='w3-button w3-blue w3-medium w3-round' style='width:20% '  value='เพิ่ม'>");
+                 out.print("<input type='submit' class='w3-button w3-blue w3-round' style='width: 20%; font-size:18.50px; '  value='เพิ่ม'>");
                  out.print("</form>");
                 %>
 	</div>

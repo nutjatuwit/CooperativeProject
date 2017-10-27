@@ -163,6 +163,7 @@
 
             #pagewrap, header, #content, #middle, #sidebar, footer {
                 border: solid 1px #ccc;
+                
             }  
             
              div.tab {

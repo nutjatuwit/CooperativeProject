@@ -281,19 +281,19 @@ th {
                           out.print("<th>PARAMETER</th>");
                           out.print("<th>QUERY</th>");
                           out.print("<th>TYPE FILTER</th>");
-                          out.print("<th>EDIT</th>");
-                          out.print("<th>DELETE</th>");
+                          out.print("<th></th>");
+                          out.print("<th></th>");
                          out.println("</tr>");
                      out.print("</thead>");    
                      while(rs.next()){
                          out.println("<tr>");
                          out.println("<form action='editParams.jsp'>");
                          
-                          out.print("<td>"+rs.getString(1)+"</td>");
-                          out.print("<td>"+rs.getString(2)+"</td>");
-                          out.print("<td>"+rs.getString(3)+"</td>");
+                          out.print("<td style='text-align: center; width: 5%;'>"+rs.getString(1)+"</td>");
+                          out.print("<td style='text-align: center; width: 15%;'>"+rs.getString(2)+"</td>");
+                          out.print("<td style='text-align: center; width: 15%;'>"+rs.getString(3)+"</td>");
                           out.print("<td>"+rs.getString(4)+"</td>");
-                          out.print("<td>"+rs.getString(5)+"</td>");
+                          out.print("<td style='text-align: center; width: 10%;'>"+rs.getString(5)+"</td>");
                           
                           out.print("<input type='hidden' name='id' value="+rs.getString(1)+">");
                           out.print("<input type='hidden' name='name' value="+rs.getString(2)+">");
@@ -301,12 +301,12 @@ th {
                           out.print("<input type='hidden' name='query' value="+rs.getString(4)+">");
                           out.print("<input type='hidden' name='filtertype' value="+rs.getString(5)+">");
                           
-                          out.print("<td><div class='tooltip'><button type='submit' class='button button2' src=''><img src='images/edit.png' id='img' height='25' width='25'></button><span class='tooltiptext'>แก้ไข</span></div></td>");
+                          out.print("<td style='text-align: center; width: 5%;'><div class='tooltip'><button type='submit'  style='background-color:transparent; border-color:transparent; padding: 0 ; margin-left: 1px; margin-bottom: 2px; cursor: pointer; src=''><img src='images/edit.png' id='img' height='40' width='40'></button><span class='tooltiptext'>แก้ไข</span></div></td>");
                          out.println("</form>"); 
                          
                          out.println("<form action='deleteData'>");
                          out.print("<input type='hidden' name='id' value="+rs.getString(1)+">");
-                         out.print("<td align='center'><div class='tooltip'><button type='submit' class='button button2'  src=''><img src='images/remove.png' id='img' height='25' width='25'></button><span class='tooltiptext'>ลบ</span></div></td>");
+                         out.print("<td style='text-align: center; width: 5%;'><div class='tooltip'><button type='submit' style='background-color:transparent; border-color:transparent; padding: 0 ; margin-left: 1px; margin-bottom: 2px; cursor: pointer;  src=''><img src='images/remove.png' id='img' height='40' width=''></button><span class='tooltiptext'>ลบ</span></div></td>");
                          out.println("</form>"); 
                          out.println("</tr>");
                      }

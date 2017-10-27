@@ -141,6 +141,7 @@
 
             #pagewrap, header, #content, #middle, #sidebar, footer {
                 border: solid 1px #ccc;
+                
             }  
             
              div.tab {
@@ -302,7 +303,7 @@ input[type=text] {
                             // Desktop desktop = Desktop.getDesktop();
                              //desktop.open(fileDir);
                             
-		           out.println("ตำแหน่งไฟล์ที่ได้บันทึก: "+getServletContext().getRealPath("/")+path.getPathReport()+"\\"+name_folder+"\\"+itemName+"<br><br>");
+		           //out.println("ตำแหน่งไฟล์ที่ได้บันทึก: "+getServletContext().getRealPath("/")+path.getPathReport()+"\\"+name_folder+"\\"+itemName+"<br><br>");
                            //out.println(itemName+" "+request.getParameter("category"));
 		   } catch (Exception e) {
 			   e.printStackTrace();
@@ -318,6 +319,11 @@ input[type=text] {
          for(int i=0;i<detailList.size();i++){
               //out.print(detailList.get(i)+"<br>");
          }
+        out.print("<div align='center' id='upload'>");
+        out.print("<img src='images/success.png' id='img' height='80' width='80'>");
+        out.print("<h4>อัพโหลดเสร็จสมบูรณ์</h4>");
+        out.print("</div>");
+        
         out.print("<form action='UploadServlet'>");
         out.print("<input type='hidden' name='category' value='"+detailList.get(0).toString()+"'>");
         out.print("<input type='hidden' name='detail' value='"+detailList.get(1).toString()+"'>");

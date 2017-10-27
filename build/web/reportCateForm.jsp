@@ -163,6 +163,9 @@
 
             #pagewrap, header, #content, #middle, #sidebar, footer {
                 border: solid 1px #ccc;
+                font-family: TH SarabunPSK;
+                font-size: 23px;
+                font-weight: bold;
             }  
             
              div.tab {
@@ -275,7 +278,7 @@ background-color: #FEEFB3;
               //String sqlCompile = "select * from member";
               //ResultSet rsCompile = statement1.executeQuery(sqlCompile);
               
-              String sql = "select id_cate,name_cate,name_folder from a_report_category order by id_cate DESC";
+              String sql = "select id_cate,name_cate,name_folder from a_report_category order by id_cate ASC";
               
               ResultSet rs = null;
               
@@ -286,7 +289,7 @@ background-color: #FEEFB3;
         <div id="pagewrap">
 
 	<header align='center'>
-		<% out.print("<h1>ประเภทรายงาน</h1>"); %>
+		<% out.print("<h2>ประเภทรายงาน</h2>"); %>
 	</header>
 	
         
@@ -303,19 +306,19 @@ background-color: #FEEFB3;
                           out.print("</td>");
                           
                           out.print("<form action='reportEditForm.jsp'>");
-                           out.print("<td style='text-align: right; width: 10%;'>");
+                           out.print("<td style='text-align: right; width: 8%;'>");
                              out.print("<input type='hidden' name='id_cate' value='"+rs.getString(1)+"'>");
                              out.print("<input type='hidden' name='category' value='"+rs.getString(2)+"'>");
                              out.print("<input type='hidden' name='name_folder' value='"+rs.getString(3)+"'>");
                              out.print("<input type='hidden' name='reportType' value='category'>");
-                             out.print("<div class='tooltip'><button name='editButton' type='submit' class='button button2' src=''><img src='images/edit.png' id='img' height='25' width='25'></button><span class='tooltiptext'>แก้ไข</span></div>");
+                             out.print("<div class='tooltip'><button name='editButton' type='submit' class='button button2' style='background-color:transparent; border-color:transparent; padding: 0 ; margin-left: 1px; margin-bottom: 2px; cursor: pointer; src=''><img src='images/edit.png' id='img' height='40' width='40'></button><span class='tooltiptext'>แก้ไข</span></div>");
                           out.print("</td>");
                           out.print("</form>");
                           
                           out.print("<form>");
-                           out.print("<td style='text-align: right; width: 10%;'>");
+                           out.print("<td style='text-align: right; width: 6%;'>");
                              //out.print("<input type='hidden' name='id_cate' value='"+rs.getString(1)+"'>");
-                             out.print("<div class='tooltip'><button name='deleteButton'type='submit'  class='button button2'  src=''  onClick='onDelete("+rs.getString(1)+")'><img src='images/remove.png' id='img' height='25' width='25'></button><span class='tooltiptext'>ลบ</span></div>"); 
+                             out.print("<div class='tooltip'><button name='deleteButton'type='submit'  class='button button2' style='background-color:transparent; border-color:transparent; padding: 0 ; margin-left: 1px; margin-bottom: 2px; cursor: pointer;  src=''  onClick='onDelete("+rs.getString(1)+")'><img src='images/remove.png' id='img' height='40' width='40'></button><span class='tooltiptext'>ลบ</span></div>"); 
                           out.print("</td>");
                           out.print("</form>");
                           
@@ -323,16 +326,16 @@ background-color: #FEEFB3;
                           File fileList = new File(isFolder);
                           if(fileList.isDirectory()){
                               out.print("<form action='openFolder'>");
-                           out.print("<td style='text-align: right; width: 10%;'>");
+                           out.print("<td style='text-align: right; width: 6%;'>");
                              out.print("<input type='hidden' name='name_folder' value='"+rs.getString(3)+"'>");
-                             out.print("<div class='tooltip'><button name='folderButton' type='submit' class='button button2' src=''><img src='images/openfolder.png' id='img' height='25' width='25'></button><span class='tooltiptext'>เปิดโฟลเดอร์: "+rs.getString(3)+"</span></div>");  
+                             out.print("<div class='tooltip'><button name='folderButton' type='submit' class='button button2' style='background-color:transparent; border-color:transparent; padding: 0 ; margin-left: 1px; margin-bottom: 2px; cursor: pointer; src=''><img src='images/openfolder.png' id='img' height='40' width='40'></button><span class='tooltiptext'>เปิดโฟลเดอร์: "+rs.getString(3)+"</span></div>");  
                           out.print("</td>");
                           out.print("</form>");
                           }else{
                           out.print("<form action='openFolder'>");
-                           out.print("<td style='text-align: right; width: 10%;'>");
+                           out.print("<td style='text-align: right; width: 6%;'>");
                              out.print("<input type='hidden' name='name_folder' value='"+rs.getString(3)+"'>");
-                             out.print("<button type='submit' name='folderButton' class='button button2' disabled><img src='images/openfolder.png' id='img' height='25' width='25'></button>"); 
+                             out.print("<button type='submit' name='folderButton' class='button button2' style='background-color:transparent; border-color:transparent; padding: 0 ; margin-left: 1px; margin-bottom: 2px; cursor: pointer;' disabled><img src='images/openfolder.png' id='img' height='40' width='40'></button>"); 
                              
                           out.print("</td>");
                           out.print("</form>");
@@ -347,7 +350,7 @@ background-color: #FEEFB3;
                     out.print("</div>");
                  out.print("<form action='insertCate'>");
                  out.print("<input type='text' class='w3-input w3-border w3-round  w3-light-blue' name='nameCate'>");
-                 out.print("<input type='submit' class='w3-button w3-blue w3-medium w3-round' style='width:20% '  value='เพิ่ม'>");
+                 out.print("<input type='submit' class='w3-button w3-blue w3-round' style='width:20%; font-size:18.50px;'  value='เพิ่ม'>");
                  out.print("</form>");
                  
                     
