@@ -30,10 +30,23 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Parsing using the DOM</title>
         <style>
-	html { margin:0; padding:0; font-size:62.5%; }
-	body { max-width:800px; min-width:300px; margin:0 auto; padding:20px 10px; font-size:14px; font-size:1.4em; }
+	
+        header {
+                height: 100px;
+                padding: 0 15px;
+            }
+	
 	h1 { font-size:1.8em; }
-	.demo { overflow:auto; border:1px solid silver; min-height:100px; }
+	
+         
+
+            #pagewrap, header{
+                border: solid 1px #ccc;
+                font-family: TH SarabunPSK;
+                font-size: 23px;
+                font-weight: bold;
+                padding: 0;
+            }  
         
         div.tab {
     overflow: hidden;
@@ -66,7 +79,7 @@ div.tab button.active {
 /* Style the tab content */
 .tabcontent {
     display: none;
-    padding: 6px 10px;
+    padding: 0px 10px;
     border: 1px solid #ccc;
     border-top: none;
 }
@@ -75,13 +88,16 @@ div.tab button.active {
 	<link rel="stylesheet" href="dist/themes/default/style.min.css" />
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jstree/3.2.1/themes/default/style.min.css" />
         
-         <div class="tab">
-      <button class="tablinks" name='backButton' onclick="goBack();">กลับ</button>
-      
-    </div>   
+        <%
+        
+         out.print("<div class='tab'>");
+         out.print("<button class='tablinks' name='backButton' onclick='goBack();'><img src='images/back.png' style=' padding: 0 ; margin-left: 1px; margin-bottom: -11px;'id='img' height='32' width='32'></button>"); 
+         out.print("</div>");   
+              
+        %>
     </head>
     <body>
-        
+       
        
        <%
             
@@ -102,6 +118,7 @@ div.tab button.active {
          
          
          %>
+       <div id="pagewrap">
        <div id="jstree"> 
            <!-- in this example the tree is populated from inline HTML -->
            <%
@@ -132,7 +149,7 @@ div.tab button.active {
                
        </div>
         
-
+</div>
       
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.12.1/jquery.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jstree/3.2.1/jstree.min.js"></script>

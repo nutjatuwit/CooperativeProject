@@ -250,9 +250,13 @@ background-color: #FEEFB3;
         <link rel="stylesheet" href="dist/themes/default/style.min.css" />
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jstree/3.2.1/themes/default/style.min.css" />
        
-    <div class="tab">
-      <button class="tablinks" name='backButton' onclick="goBack();">กลับ</button>
-    </div>   
+   <%
+        
+         out.print("<div class='tab'>");
+         out.print("<button class='tablinks' name='backButton' onclick='goBack();'><img src='images/back.png' style=' padding: 0 ; margin-left: 1px; margin-bottom: -11px;'id='img' height='32' width='32'></button>"); 
+         out.print("</div>");   
+              
+        %>
       
     </head>
     <body>
@@ -278,7 +282,7 @@ background-color: #FEEFB3;
               //String sqlCompile = "select * from member";
               //ResultSet rsCompile = statement1.executeQuery(sqlCompile);
               
-              String sql = "select id_cate,name_cate,name_folder from a_report_category order by id_cate ASC";
+              String sql = "select id_cate,name_cate,name_folder from a_report_category order by id_cate DESC";
               
               ResultSet rs = null;
               

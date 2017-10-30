@@ -37,7 +37,7 @@ th {
 }
 /*search button */
 .search {
-    width: 120px;
+    width: 180px;
     height: 25px;
     -webkit-transition: width 0.6s ease-in-out;
     transition: width 0.6s ease-in-out;
@@ -45,9 +45,7 @@ th {
 }
 
 /* When the input field gets focus, change its width to 100% */
-.search:focus {
-    width: 20%;
-}
+
 
 .button {
     background-color: #01A9DB; /* Green */
@@ -210,6 +208,14 @@ th {
     visibility: visible;
 }
 
+#pageForm{
+                border: solid 1px #ccc;
+                font-family: TH SarabunPSK;
+                font-size: 23px;
+                font-weight: bold;
+    
+}
+
 </style>
     </head>
     <body>
@@ -221,9 +227,10 @@ th {
         </div>
         
         <%
-            
+             out.print("<div id='pageForm'>");
            try{
                managePath path = new managePath(getServletContext().getRealPath("/")+"setting/setting.txt");
+               int i=1;
                request.setCharacterEncoding("UTF-8");
                //response.setCharacterEncoding("UTF-8");
                String query = request.getParameter("query");
@@ -289,30 +296,30 @@ th {
                          out.println("<tr>");
                          out.println("<form action='editParams.jsp'>");
                          
-                          out.print("<td style='text-align: center; width: 5%;'>"+rs.getString(1)+"</td>");
-                          out.print("<td style='text-align: center; width: 15%;'>"+rs.getString(2)+"</td>");
-                          out.print("<td style='text-align: center; width: 15%;'>"+rs.getString(3)+"</td>");
-                          out.print("<td>"+rs.getString(4)+"</td>");
-                          out.print("<td style='text-align: center; width: 10%;'>"+rs.getString(5)+"</td>");
+                         out.print("<td style='text-align: center; width: 3%;'>"+(i++)+"</td>");
+                          out.print("<td style='text-align: center; width: 7%;'>"+rs.getString(2)+"</td>");
+                          out.print("<td style='text-align: center; width: 7%;'>"+rs.getString(3)+"</td>");
+                          out.print("<td style='text-align: center; width: 20%;'>"+rs.getString(4)+"</td>");
+                          out.print("<td style='text-align: center; width: 5%;'>"+rs.getString(5)+"</td>");
+                          
                           
                           out.print("<input type='hidden' name='id' value="+rs.getString(1)+">");
                           out.print("<input type='hidden' name='name' value="+rs.getString(2)+">");
                           out.print("<input type='hidden' name='description' value="+rs.getString(3)+">");
-                          out.print("<input type='hidden' name='query' value="+rs.getString(4)+">");
+                          out.print("<input type='hidden' name='query' value='"+rs.getString(4)+"'>");
                           out.print("<input type='hidden' name='filtertype' value="+rs.getString(5)+">");
-                          
-                          out.print("<td style='text-align: center; width: 5%;'><div class='tooltip'><button type='submit'  style='background-color:transparent; border-color:transparent; padding: 0 ; margin-left: 1px; margin-bottom: 2px; cursor: pointer; src=''><img src='images/edit.png' id='img' height='40' width='40'></button><span class='tooltiptext'>แก้ไข</span></div></td>");
+                          out.print("<td style='text-align: center; width: 3%;'><div class='tooltip'><button type='submit'  style='background-color:transparent; border-color:transparent; padding: 0 ; margin-left: 1px; margin-bottom: 2px; cursor: pointer; src=''><img src='images/edit.png' id='img' height='40' width='40'></button><span class='tooltiptext'>แก้ไข</span></div></td>");
                          out.println("</form>"); 
                          
                          out.println("<form action='deleteData'>");
                          out.print("<input type='hidden' name='id' value="+rs.getString(1)+">");
-                         out.print("<td style='text-align: center; width: 5%;'><div class='tooltip'><button type='submit' style='background-color:transparent; border-color:transparent; padding: 0 ; margin-left: 1px; margin-bottom: 2px; cursor: pointer;  src=''><img src='images/remove.png' id='img' height='40' width=''></button><span class='tooltiptext'>ลบ</span></div></td>");
+                         out.print("<td style='text-align: center; width: 3%;'><div class='tooltip'><button type='submit' style='background-color:transparent; border-color:transparent; padding: 0 ; margin-left: 1px; margin-bottom: 2px; cursor: pointer;  src=''><img src='images/remove.png' id='img' height='40' width=''></button><span class='tooltiptext'>ลบ</span></div></td>");
                          out.println("</form>"); 
                          out.println("</tr>");
                      }
                     
                      out.println("</table>");
-           
+           out.print("</div>");
            
               rs.close();
                //out.println("test");
@@ -324,7 +331,7 @@ th {
         
         %>
         
-        <button onclick="topFunction()" id="myBtn" title="Go to top">ขึ้นบน</button>
+        
         
         <script>
      function goBack() {

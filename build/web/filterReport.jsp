@@ -112,6 +112,12 @@ input[type=text] {
 .tooltip:hover .tooltiptext {
     visibility: visible;
 }
+#pagewrap {
+                border: solid 1px #ccc;
+                font-family: TH SarabunPSK;
+                font-size: 23px;
+                font-weight: bold;
+            }  
 
 </style>
         
@@ -120,6 +126,7 @@ input[type=text] {
     <body>
         
         
+            
         <%  
             
           try{
@@ -139,6 +146,7 @@ input[type=text] {
               text = " ";
            }
            out.println("<h4>"+text+"</h4>");
+           out.println("<div id='pagewrap'>");
               //database filter type
               
               String sql = "select a_add_param.id,a_filter_type.namefil,a_add_param.name,a_add_param.description,a_add_param.query from a_add_param inner join a_filter_type on a_add_param.idfil = a_filter_type.idfil order by a_add_param.id ASC";
@@ -246,7 +254,7 @@ input[type=text] {
             out.print("<br><div class='tooltip'><input type='submit' class='button button2' value='แสดงรายการ'><span class='tooltiptext'>ตัวแปรที่จำเป็น: <br>"+sb+"</span></div>");
            out.print("</form>");
           
-            
+           out.print("</div>"); 
           
           
           

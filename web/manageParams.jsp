@@ -206,8 +206,8 @@ th {
               out.print("<div id='pageForm'>");
            try{
                managePath path = new managePath(getServletContext().getRealPath("/")+"setting/setting.txt");
-               
-               String sql = "select a_add_param.id,a_add_param.name,a_add_param.description,a_add_param.query,a_filter_type.namefil from a_add_param inner join a_filter_type on a_add_param.idfil = a_filter_type.idfil order by a_add_param.id ASC";
+               int i = 1;
+               String sql = "select a_add_param.id,a_add_param.name,a_add_param.description,a_add_param.query,a_filter_type.namefil from a_add_param inner join a_filter_type on a_add_param.idfil = a_filter_type.idfil order by a_add_param.id DESC";
                //String sqlFilter = "select filtertype.nameFil from addparam ";
                Connection con =null; 
                
@@ -251,7 +251,7 @@ th {
                          out.println("<tr>");
                          out.println("<form action='editParams.jsp'>");
                          
-                         out.print("<td style='text-align: center; width: 3%;'>"+rs.getString(1)+"</td>");
+                         out.print("<td style='text-align: center; width: 3%;'>"+(i++)+"</td>");
                           out.print("<td style='text-align: center; width: 7%;'>"+rs.getString(2)+"</td>");
                           out.print("<td style='text-align: center; width: 7%;'>"+rs.getString(3)+"</td>");
                           out.print("<td style='text-align: center; width: 20%;'>"+rs.getString(4)+"</td>");
@@ -262,7 +262,6 @@ th {
                           out.print("<input type='hidden' name='name' value="+rs.getString(2)+">");
                           out.print("<input type='hidden' name='description' value="+rs.getString(3)+">");
                           out.print("<input type='hidden' name='query' value='"+rs.getString(4)+"'>");
-                          
                           out.print("<input type='hidden' name='filtertype' value="+rs.getString(5)+">");
                           out.print("<td style='text-align: center; width: 3%;'><div class='tooltip'><button type='submit'  style='background-color:transparent; border-color:transparent; padding: 0 ; margin-left: 1px; margin-bottom: 2px; cursor: pointer; src=''><img src='images/edit.png' id='img' height='40' width='40'></button><span class='tooltiptext'>แก้ไข</span></div></td>");
                          out.println("</form>"); 
