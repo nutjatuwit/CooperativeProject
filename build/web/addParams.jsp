@@ -22,7 +22,8 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
+        <link rel="shortcut icon" href="images/Logo.png">
+        <title>Add Parameters</title>
         <style>
 input[type=text], select,button {
     width: 100%;
@@ -67,8 +68,8 @@ input[type=submit],button:hover {
 
 div {
     border-radius: 5px;
-    background-color: #e6f3ff;
-    padding: 0px 250px;
+    background-color: #ffffff;
+    padding: 0px 150px;
     
    
 }
@@ -91,9 +92,17 @@ textarea {
     background-color: #f8f8f8;
     resize: none;
 }
+#pagewrap{
+                border: solid 1px #e6ffff;
+                background-color: #e6ffff;
+                font-family: TH SarabunPSK;
+                font-size: 23px;
+                font-weight: bold;
+            }  
 </style>
     </head>
     <body>
+<div id='pagewrap'>
         <h1 align="center">Add Parameters</h1>
        
         <form name="insertData" action="insertData" align="left">
@@ -138,7 +147,7 @@ textarea {
            <div id="buttonBack">
           <button onclick="goBack()">กลับ</button>
            </div>
-
+</div>
         
            
            <script>

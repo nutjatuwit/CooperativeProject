@@ -217,6 +217,8 @@ th {
 }
 
 </style>
+<link rel="shortcut icon" href="images/Logo.png">
+  <title>Parameters Management</title>
     </head>
     <body>
         <div id="mySidenav" class="sidenav">
@@ -308,12 +310,11 @@ th {
                           out.print("<input type='hidden' name='description' value="+rs.getString(3)+">");
                           out.print("<input type='hidden' name='query' value='"+rs.getString(4)+"'>");
                           out.print("<input type='hidden' name='filtertype' value="+rs.getString(5)+">");
-                          out.print("<td style='text-align: center; width: 3%;'><div class='tooltip'><button type='submit'  style='background-color:transparent; border-color:transparent; padding: 0 ; margin-left: 1px; margin-bottom: 2px; cursor: pointer; src=''><img src='images/edit.png' id='img' height='40' width='40'></button><span class='tooltiptext'>แก้ไข</span></div></td>");
+                          out.print("<td style='text-align: center; width: 2%;'><div class='tooltip'><button type='submit'  style='background-color:transparent; border-color:transparent; padding: 0 ; margin-left: 1px; margin-bottom: 2px; cursor: pointer; src=''><img src='images/edit.png' id='img' height='40' width='40'></button><span class='tooltiptext'>แก้ไข</span></div></td>");
                          out.println("</form>"); 
                          
-                         out.println("<form action='deleteData'>");
-                         out.print("<input type='hidden' name='id' value="+rs.getString(1)+">");
-                         out.print("<td style='text-align: center; width: 3%;'><div class='tooltip'><button type='submit' style='background-color:transparent; border-color:transparent; padding: 0 ; margin-left: 1px; margin-bottom: 2px; cursor: pointer;  src=''><img src='images/remove.png' id='img' height='40' width=''></button><span class='tooltiptext'>ลบ</span></div></td>");
+                         out.println("<form>");
+                         out.print("<td style='text-align: center; width: 2%;'><div class='tooltip'><button type='submit' style='background-color:transparent; border-color:transparent; padding: 0 ; margin-left: 1px; margin-bottom: 2px; cursor: pointer;  src='' onClick='onDelete("+rs.getString(1)+")'><img src='images/remove.png' id='img' height='40' width=''></button><span class='tooltiptext'>ลบ</span></div></td>");
                          out.println("</form>"); 
                          out.println("</tr>");
                      }
@@ -336,7 +337,7 @@ th {
         <script>
      function goBack() {
     //window.history.back();
-    window.location.replace("manageReport.html");
+    window.history.back();
     }
     window.onscroll = function() {scrollFunction()};
 
@@ -353,6 +354,28 @@ function topFunction() {
     document.body.scrollTop = 0;
     document.documentElement.scrollTop = 0;
 }
+
+function onDelete(id) {
+    //window.history.back();
+    //var y = element.innerHTML;
+    var confirmDel = confirm('ยืนยันการลบตัวแปร');
+    //alert(id);
+   
+    if(confirmDel){
+    var linkHref = "deleteData?id="+id;  
+    window.open(linkHref);
+    window.close();
+
+    }else{
+   
+    }
+     //alert(pkCate);
+    //var x = document.getElementsByTagName("td")[0].innerText;
+    //alert(x);
+    //var linkHref = "deleteCate?id_cate="+id_cate;
+    //window.open(linkHref);
+   
+    }
     
     </script>
     </body>

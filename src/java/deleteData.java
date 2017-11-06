@@ -90,11 +90,13 @@ public class deleteData extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        response.setContentType("text/html");
-        response.setCharacterEncoding("UTF-8");
-        //request.setAttribute("todo", "10");
-        response.sendRedirect("/WebApplication3/manageParams.jsp");
-        //request.getRequestDispatcher("/addParams.jsp").forward(request, response);
+        PrintWriter out = response.getWriter();
+         out.println("<html><body>");
+         out.println("<script type=\"text/javascript\">");
+        out.println("location.replace('manageParams.jsp')");
+        out.println("</script>");
+         out.println("</body></html>");
+         
         try {
             processRequest(request, response);
         } catch (SQLException ex) {
