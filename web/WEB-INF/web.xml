@@ -52,6 +52,10 @@
         <servlet-name>openFolder</servlet-name>
         <servlet-class>openFolder</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>authenLogin</servlet-name>
+        <servlet-class>authenLogin</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>insertData</servlet-name>
         <url-pattern>/insertData</url-pattern>
@@ -103,6 +107,10 @@
     <servlet-mapping>
         <servlet-name>openFolder</servlet-name>
         <url-pattern>/openFolder</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>authenLogin</servlet-name>
+        <url-pattern>/authenLogin</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

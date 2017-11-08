@@ -289,7 +289,7 @@ input[type=text] {
                         if(! ProjectDir.exists())
                         {
                             ProjectDir.mkdir();
-                            out.print("make dir<br>");
+                            //out.print("make dir<br>");
                         }
 			    String itemName = item.getName();
 			    File savedFile = new File(getServletContext().getRealPath("/")+path.getPathReport()+"\\"+name_folder+"\\"+itemName); //set follow category folder

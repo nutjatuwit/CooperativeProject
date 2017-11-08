@@ -85,7 +85,7 @@ span.psw {
     <body>
        <h2 align="center">เข้าสู่ระบบ</h2>
 
-<form action="testDecrypt.jsp">
+       <form action="authenLogin" method="post">
   <div class="imgcontainer">
     <img src="images/HosOSlogo.jpg" alt="Avatar" class="avatar">
   </div>
