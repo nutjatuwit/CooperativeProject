@@ -9,10 +9,19 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <link rel="stylesheet" href="style/default.css">
+        <link rel="stylesheet" href="style/w3.css">
         <title>Login</title>
+        <div class="tab">
+            <form action="authenLogout">
+            <button type="submit" class="tablinks" name="backButton"><img src='images/logout.png' id='img' height='32' width='32'> Logout</button>
+            
+            </form>
+        </div>
+       
     </head>
     <style>
-form {
+#fieldData {
     border: 3px solid #4da6ff;
     margin: 10px 450px;
     background-color: #ccfff5;
@@ -30,25 +39,7 @@ input[type=text], input[type=password] {
     box-sizing: border-box;
 }
 
-button {
-    background-color: #4CAF50;
-    color: white;
-    padding: 14px 20px;
-    margin: 8px 0;
-    border: none;
-    cursor: pointer;
-    width: 100%;
-}
 
-button:hover {
-    opacity: 0.8;
-}
-
-.cancelbtn {
-    width: auto;
-    padding: 10px 18px;
-    background-color: #f44336;
-}
 
 .imgcontainer {
     text-align: center;
@@ -81,11 +72,41 @@ span.psw {
        width: 100%;
     }
 }
+
+#loginButton {
+    width: 100%;
+    padding: 6.25px 16px;
+    margin: 20px 0;
+    display: inline-block;
+    border: 3px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+    font-size: 22px;
+    background-color: #00b300;
+    cursor: pointer;
+}
 </style>
     <body>
-       <h2 align="center">เข้าสู่ระบบ</h2>
-
-       <form action="authenLogin" method="post">
+        
+        
+      
+        <% request.setCharacterEncoding("UTF-8"); 
+                       if(session.getAttribute("userid")!=null){  
+                        String nameUser=(String)session.getAttribute("username");
+                        String userID=(String)session.getAttribute("userid");
+                        
+                           if(nameUser.equals("null")){
+                              out.print("<h3>            กำลังเข้าใช้งานโดยไอดี : "+userID+"</h3>");
+                           }else{
+                              out.print("<h3>            กำลังเข้าใช้งานโดยชื่อผู้ใช้ : "+nameUser+"</h3>"); 
+                           }
+                        }  
+                        
+        %>
+       
+    
+        
+       <form id="fieldData" action="authenLogin" method="post">
   <div class="imgcontainer">
     <img src="images/HosOSlogo.jpg" alt="Avatar" class="avatar">
   </div>
@@ -97,7 +118,7 @@ span.psw {
     <label><b>Password</b></label>
     <input type="password" placeholder="Enter Password" name="psw">
         
-    <button type="submit">Login</button>
+    <button id="loginButton" type="submit">Login</button>
     
   </div>
 

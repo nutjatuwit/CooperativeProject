@@ -13,6 +13,8 @@
 <!DOCTYPE html>
 <html>
     <head>
+        <link rel="stylesheet" href="style/default.css">
+        
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
        
         <style>
@@ -198,11 +200,27 @@ th {
 <link rel="shortcut icon" href="images/Logo.png">
   <title>Parameters Management</title>
     </head>
-    <body>
-        <div id="mySidenav" class="sidenav">
-        <a id="back" onclick="goBack()">กลับ</a>
+    <% 
+                        request.setCharacterEncoding("UTF-8");
   
-         </div>
+                        if(session.getAttribute("userid")!=null){  
+                        String userID=(String)session.getAttribute("userid");  
+
+                        //out.print("Hello, "+userID+" Welcome to Profile");  
+                        }  
+                        else{  
+                            RequestDispatcher rq = request.getRequestDispatcher("index.jsp");
+                            rq.forward(request, response);
+                            
+                        }  
+
+    %>
+    <body>
+       <div id="mySidenav" class="sidenav">
+        <form action="authenLogout">
+        <button id="about">Logout</button>
+        </form>
+       </div>
         
         <%
               out.print("<div id='pageForm'>");

@@ -56,6 +56,10 @@
         <servlet-name>authenLogin</servlet-name>
         <servlet-class>authenLogin</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>authenLogout</servlet-name>
+        <servlet-class>authenLogout</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>insertData</servlet-name>
         <url-pattern>/insertData</url-pattern>
@@ -111,6 +115,10 @@
     <servlet-mapping>
         <servlet-name>authenLogin</servlet-name>
         <url-pattern>/authenLogin</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>authenLogout</servlet-name>
+        <url-pattern>/authenLogout</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

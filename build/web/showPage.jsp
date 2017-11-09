@@ -6,8 +6,19 @@
 <meta http-="content-type" content="text/html; charset=utf-8">
 
 
+<style>
+    frame[name=lefty]{
+        background-color: #EFFBFB;
+    }
+    frame[name=filty]{
+        background-color: #EFFBFB;
+    }
+</style>
 <link rel="shortcut icon" href="images/Logo.png">
-<title>Report Management</title>
+<title>Preview Report</title>
+
+
+
 </head>
 <% 
                         request.setCharacterEncoding("UTF-8");
@@ -25,10 +36,18 @@
 
     %>
     
-<frameset cols="33%,33%,33%">
-             <frame name="left" src="reportCateForm.jsp">
-             <frame name="mid" src="blankPage.jsp">
-             <frame name="right" src="blankPage.jsp">
+<frameset cols="25%,75%">
+    
+    <frame name="lefty" src="readXML.jsp">
+ 
+
+ <frameset rows="23%,77%">
+  
+  <frame name="filty" src="filterReport.jsp">
+  <frame name="righty" src="blankPage.jsp">
+  
+ </frameset>
+ 
 </frameset>
 
 </html>

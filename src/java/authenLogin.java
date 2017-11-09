@@ -12,10 +12,11 @@ import java.util.Set;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.servlet.RequestDispatcher;
-import javax.servlet.ServletException;
-import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
+import javax.servlet.ServletException;  
+import javax.servlet.http.HttpServlet;  
+import javax.servlet.http.HttpServletRequest;  
+import javax.servlet.http.HttpServletResponse;  
+import javax.servlet.http.HttpSession;  
 import javax.websocket.Session;
 import org.apache.commons.lang.Validate;
 import passwordDecrypt.validate;
@@ -27,7 +28,9 @@ import path.managePath;
  */
 public class authenLogin extends HttpServlet {
          String userID = null;
-        
+         String authenType = null;
+         String nameUser = null;
+         String userType = null;
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
@@ -88,15 +91,16 @@ public class authenLogin extends HttpServlet {
        
         String emp_login = request.getParameter("uname");
         String emp_pass = request.getParameter("psw");
-
+        
+        
         String pathFile = getServletContext().getRealPath("/")+"setting/setting.txt";
         validate v = new validate(pathFile);
         
         if(v.checkUser(emp_login, emp_pass))
         {
-          
+                        
                 try {
- 
+                     
                      managePath path = new managePath(pathFile);
                     Class.forName("org.postgresql.Driver");
                     Connection conn = (Connection) DriverManager.getConnection(path.getPathDB(), path.getUserDB(), path.getPassDB()); 
@@ -108,9 +112,25 @@ public class authenLogin extends HttpServlet {
                     
                     while(rs.next()){
                        userID = rs.getString(1);
-                       
+                       authenType = rs.getString(13);
+                       nameUser = rs.getString(4)+" "+rs.getString(5);
                     }
-                    response.sendRedirect("/WebApplication3/managePage.html?userid="+userID);
+                      HttpSession session=request.getSession();  
+                      session.setAttribute("userid",userID);
+                      session.setAttribute("username",nameUser);
+                      
+                       
+                    //check authen 10 is ONE STOP SERVICE  
+                    if(authenType.equals("10")){
+                    userType = "manager";  
+                    session.setAttribute("usertype",userType);
+                    response.sendRedirect("/WebApplication3/managePage.jsp?userid="+userID);
+                    }else{
+                      userType = "viewer";
+                      session.setAttribute("usertype",userType);
+                      response.sendRedirect("/WebApplication3/showPage.jsp?userid="+userID);
+                    }
+                    
                     
                 } catch (ClassNotFoundException ex) {
                     Logger.getLogger(authenLogin.class.getName()).log(Level.SEVERE, null, ex);

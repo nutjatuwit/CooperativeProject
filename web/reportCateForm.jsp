@@ -250,7 +250,7 @@ background-color: #FEEFB3;
         <link rel="stylesheet" href="dist/themes/default/style.min.css" />
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jstree/3.2.1/themes/default/style.min.css" />
        
-   <%
+     <%
         
          out.print("<div class='tab'>");
          out.print("<button class='tablinks' name='backButton' onclick='goBack();'><img src='images/back.png' style=' padding: 0 ; margin-left: 1px; margin-bottom: -11px;'id='img' height='32' width='32'></button>"); 

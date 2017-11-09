@@ -122,6 +122,15 @@ public final class index_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("}\n");
       out.write("</style>\n");
       out.write("    <body>\n");
+      out.write("        ");
+ request.setCharacterEncoding("UTF-8"); 
+                       if(session.getAttribute("userid")!=null){  
+                        String userID=(String)session.getAttribute("userid");  
+                        out.print("เข้าสู่ระบบโดยไอดี : "+userID);
+                        }  
+                        
+        
+      out.write("\n");
       out.write("       <h2 align=\"center\">เข้าสู่ระบบ</h2>\n");
       out.write("\n");
       out.write("       <form action=\"authenLogin\" method=\"post\">\n");
