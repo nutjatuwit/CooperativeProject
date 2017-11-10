@@ -13,6 +13,8 @@
 <!DOCTYPE html>
 <html>
     <head>
+         <link rel="stylesheet" href="style/default.css">
+         <link rel="stylesheet" href="style/w3.css">
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>JSP Page</title>
        <style>
@@ -36,13 +38,6 @@ th {
     color: #f2f2f2;
 }
 /*search button */
-.search {
-    width: 180px;
-    height: 25px;
-    -webkit-transition: width 0.6s ease-in-out;
-    transition: width 0.6s ease-in-out;
-    margin: 1px 2px;
-}
 
 /* When the input field gets focus, change its width to 100% */
 
@@ -217,16 +212,45 @@ th {
 }
 
 </style>
+<% 
+                         request.setCharacterEncoding("UTF-8");  
+                       String textUser = null;
+                        if(session.getAttribute("userid")!=null){  
+                        String userID=(String)session.getAttribute("userid");  
+                        String nameUser=(String)session.getAttribute("username");
+                        //out.print("Hello, "+userID+" Welcome to Profile");  
+                           if(nameUser.equals("null")){
+                              textUser = "กำลังเข้าใช้งานโดยไอดี : "+userID;
+                           }else{
+                              textUser = "กำลังเข้าใช้งานโดยชื่อผู้ใช้ : "+nameUser;
+                           }
+                        }else{  
+                            RequestDispatcher rq = request.getRequestDispatcher("index.jsp");
+                            rq.forward(request, response);
+                            
+                        }  
+
+    %>
 <link rel="shortcut icon" href="images/Logo.png">
   <title>Parameters Management</title>
     </head>
-    <body>
-        <div id="mySidenav" class="sidenav">
-        <a id="back" onclick="goBack()">กลับ</a>
-  
-         </div>
-      
+    <div class="tab">
+            
+            <form action="authenLogout"> 
+            <button type="submit" class="tablinks" name="backButton"><img src='images/logout.png' id='img' height='32' width='32'> Logout</button>
+            </form>
+            
+            <form> 
+            <button style="font-size: 16px;font-size: 20px;font-family: TH SarabunPSK;font-weight: bold;"><%=textUser%></button>
+            </form>
+            
+            <form>
+            <button type="submit" class="tablinks" name="backButton" style="float: left; font-size: 20px;font-family: TH SarabunPSK;font-weight: bold;" onclick="backtomenu()"><img src='images/back.png' id='img' height='32' width='32'> กลับสู่หน้าหลัก</button>
+           </form>
         </div>
+    <body>
+        
+       
         
         <%
              out.print("<div id='pageForm'>");
@@ -268,7 +292,7 @@ th {
                     
                       
                out.print("<form action='addParams.jsp' align='right'>"); //add parameter
-                   out.print("<input type='submit' class='button addButton'  name='' value='เพิ่มตัวแปร'>");
+                    out.print("<input type='submit' class='button addButton'  name='' style='font-size: 16px;font-size: 18px;font-family: TH SarabunPSK;font-weight: bold;padding: 7px 11px;' value='เพิ่มตัวแปร'>");
                out.print("</form>");
                    
                      
@@ -375,6 +399,17 @@ function onDelete(id) {
     //var linkHref = "deleteCate?id_cate="+id_cate;
     //window.open(linkHref);
    
+    }
+    
+     function backtomenu() {
+    //window.history.back();
+    //var y = element.innerHTML;
+    var linkHref = "managePage.jsp";  
+    window.open(linkHref);
+    
+   
+
+       
     }
     
     </script>

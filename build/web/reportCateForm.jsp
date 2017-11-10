@@ -250,13 +250,7 @@ background-color: #FEEFB3;
         <link rel="stylesheet" href="dist/themes/default/style.min.css" />
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jstree/3.2.1/themes/default/style.min.css" />
        
-     <%
-        
-         out.print("<div class='tab'>");
-         out.print("<button class='tablinks' name='backButton' onclick='goBack();'><img src='images/back.png' style=' padding: 0 ; margin-left: 1px; margin-bottom: -11px;'id='img' height='32' width='32'></button>"); 
-         out.print("</div>");   
-              
-        %>
+    
       
     </head>
     <body>
@@ -285,7 +279,11 @@ background-color: #FEEFB3;
               String sql = "select id_cate,name_cate,name_folder from a_report_category order by id_cate DESC";
               
               ResultSet rs = null;
-              
+              if(session.getAttribute("userid")!=null){  
+                        String userID=(String)session.getAttribute("userid");  
+
+                        //out.print("Hello, "+userID+" Welcome to Profile");  
+                         
              
         %>    
        
@@ -356,7 +354,14 @@ background-color: #FEEFB3;
                  out.print("<input type='text' class='w3-input w3-border w3-round  w3-light-blue' name='nameCate'>");
                  out.print("<input type='submit' class='w3-button w3-blue w3-round' style='width:20%; font-size:18.50px;'  value='เพิ่ม'>");
                  out.print("</form>");
-                 
+                  }  
+                        else{ 
+                           
+                           out.print("<h3>ต้องทำการเข้าสู่ระบบก่อนเข้าใช้งาน</h3>");
+                           out.print("<script>window.open('blankPage.jsp','mid')</script>");
+                           out.print("<script>window.open('blankPage.jsp','top')</script>");
+                           out.print("<script>window.open('blankPage.jsp','right')</script>"); 
+                           } 
                     
                 %>
                 

@@ -12,12 +12,7 @@
         <link rel="stylesheet" href="style/default.css">
         <link rel="stylesheet" href="style/w3.css">
         <title>Login</title>
-        <div class="tab">
-            <form action="authenLogout">
-            <button type="submit" class="tablinks" name="backButton"><img src='images/logout.png' id='img' height='32' width='32'> Logout</button>
-            
-            </form>
-        </div>
+        
        
     </head>
     <style>
@@ -73,37 +68,38 @@ span.psw {
     }
 }
 
-#loginButton {
-    width: 100%;
-    padding: 6.25px 16px;
-    margin: 20px 0;
-    display: inline-block;
-    border: 3px solid #ccc;
-    border-radius: 4px;
-    box-sizing: border-box;
-    font-size: 22px;
-    background-color: #00b300;
-    cursor: pointer;
-}
+
 </style>
     <body>
         
         
       
-        <% request.setCharacterEncoding("UTF-8"); 
-                       if(session.getAttribute("userid")!=null){  
+        <%  
+                       request.setCharacterEncoding("UTF-8");  
+                       String textUser = "";
+                        if(session.getAttribute("userid")!=null){  
+                        String userID=(String)session.getAttribute("userid");  
                         String nameUser=(String)session.getAttribute("username");
-                        String userID=(String)session.getAttribute("userid");
-                        
+                        //out.print("Hello, "+userID+" Welcome to Profile");  
                            if(nameUser.equals("null")){
-                              out.print("<h3>            กำลังเข้าใช้งานโดยไอดี : "+userID+"</h3>");
+                              textUser = "กำลังเข้าใช้งานโดยไอดี : "+userID;
                            }else{
-                              out.print("<h3>            กำลังเข้าใช้งานโดยชื่อผู้ใช้ : "+nameUser+"</h3>"); 
+                              textUser = "กำลังเข้าใช้งานโดยชื่อผู้ใช้ : "+nameUser;
                            }
-                        }  
-                        
+                        }
         %>
        
+        <div class="tab">
+            
+            <form action="authenLogout"> 
+            <button type="submit" class="tablinks" name="backButton"><img src='images/logout.png' id='img' height='32' width='32'> Logout</button>
+            </form>
+            
+            <form> 
+            <button style="font-size: 16px;font-size: 20px;font-family: TH SarabunPSK;font-weight: bold;"><%=textUser%></button>
+            </form>
+        </div>
+        
     
         
        <form id="fieldData" action="authenLogin" method="post">

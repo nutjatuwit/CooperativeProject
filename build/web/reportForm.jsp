@@ -24,11 +24,14 @@
                         }  
 
     %>
-    
-<frameset cols="33%,33%,33%">
-             <frame name="left" src="reportCateForm.jsp">
-             <frame name="mid" src="blankPage.jsp">
-             <frame name="right" src="blankPage.jsp">
+ 
+<frameset name="allSet" rows="8.7%,91.3%">  
+    <frame name="top" src="tabContent.jsp" noresize="noresize">
+        <frameset cols="33%,33%,33%">
+                     <frame name="left" src="reportCateForm.jsp">
+                     <frame name="mid" src="blankPage.jsp">
+                     <frame name="right" src="blankPage.jsp">
+        </frameset>
 </frameset>
 
 </html>

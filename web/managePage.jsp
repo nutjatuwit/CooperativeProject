@@ -12,6 +12,8 @@ and open the template in the editor.
         <link rel="stylesheet" href="style/w3.css">
         
         <title>Report Center</title>
+        
+    
         <link rel="shortcut icon" href="images/Logo.png">
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -46,10 +48,16 @@ body {
 </style>
 <%
                        request.setCharacterEncoding("UTF-8");  
+                       String textUser = null;
                         if(session.getAttribute("userid")!=null){  
                         String userID=(String)session.getAttribute("userid");  
-
+                        String nameUser=(String)session.getAttribute("username");
                         //out.print("Hello, "+userID+" Welcome to Profile");  
+                           if(nameUser.equals("null")){
+                              textUser = "กำลังเข้าใช้งานโดยไอดี : "+userID;
+                           }else{
+                              textUser = "กำลังเข้าใช้งานโดยชื่อผู้ใช้ : "+nameUser;
+                           }
                         }  
                         else{  
                             RequestDispatcher rq = request.getRequestDispatcher("index.jsp");
@@ -58,12 +66,18 @@ body {
                         }  
 %>
 
-<div class="w3-container w3-center w3-animate-opacity">
-     <div id="mySidenav" class="sidenav">
-        <form action="authenLogout">
-        <button id="about">Logout</button>
-        </form>
-    </div>
+        <div class="tab">
+            
+            <form action="authenLogout"> 
+            <button type="submit" class="tablinks" name="backButton"><img src='images/logout.png' id='img' height='32' width='32'> Logout</button>
+            </form>
+            
+            <form> 
+            <button style="font-size: 16px;font-size: 20px;font-family: TH SarabunPSK;font-weight: bold;"><%=textUser%></button>
+            </form>
+        </div>
+
+
 <div class="w3-container w3-center">
        <img class="banner" src="images/HosOSlogo.jpg" alt="" /><br><br>
     </head>

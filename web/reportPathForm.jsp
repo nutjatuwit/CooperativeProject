@@ -213,7 +213,10 @@
               String sql = "select id_report,name_report,path_report,jrxml_report,jasper_report from a_report_category inner join a_report_detail on (a_report_category.id_cate = a_report_detail.id_cate) where name_cate = '"+category+"' and name_report = '"+detail+"' ";
               ResultSet rs = null;
               //out.print(sql);
-           
+           if(session.getAttribute("userid")!=null){  
+                        String userID=(String)session.getAttribute("userid");  
+
+                        //out.print("Hello, "+userID+" Welcome to Profile");  
         %>
         <div id="pagewrap">
 
@@ -239,6 +242,15 @@
                     out.print("</form>");
                     out.print("</div>");
                     }
+                    
+                       }  
+                        else{ 
+                           
+                           out.print("<h3>ต้องทำการเข้าสู่ระบบก่อนเข้าใช้งาน</h3>");
+                           out.print("<script>window.open('blankPage.jsp','left')</script>");
+                           out.print("<script>window.open('blankPage.jsp','mid')</script>");
+                           out.print("<script>window.open('blankPage.jsp','top')</script>"); 
+                           } 
                 %>
 	</div>
         

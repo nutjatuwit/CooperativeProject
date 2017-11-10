@@ -13,7 +13,7 @@
 <%@page import="org.w3c.dom.traversal.NodeIterator"%>
 <%@page import="javax.swing.tree.DefaultMutableTreeNode"%>
 <%@page import="java.io.File"%>
-<%@page contentType="text/html; charset=UTF-8" %>
+<%@page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@page import="java.util.ArrayList"%>
 <%@page import="org.w3c.dom.Node, org.w3c.dom.Element, org.w3c.dom.Document, org.w3c.dom.NodeList, javax.xml.parsers.DocumentBuilder, javax.xml.parsers.DocumentBuilderFactory" %>
 <!DOCTYPE html>
@@ -49,43 +49,31 @@
                 padding: 0;
             }  
         
-        div.tab {
-    overflow: hidden;
-    border: 1px solid #ccc;
-    background-color: #f1f1f1;
-}
-
-/* Style the buttons inside the tab */
-div.tab button {
-    background-color: inherit;
-    float: left;
-    border: none;
-    outline: none;
-    cursor: pointer;
-    padding: 12px 20px;
-    transition: 0.6s;
-    font-size: 22px;
-}
-
-/* Change background color of buttons on hover */
-div.tab button:hover {
-    background-color: #cceeff;
-}
-
-/* Create an active/current tablink class */
-div.tab button.active {
-    background-color: #ccc;
-}
-
-/* Style the tab content */
-.tabcontent {
-    display: none;
-    padding: 0px 10px;
-    border: 1px solid #ccc;
-    border-top: none;
-}
+        
 
 	</style>
+        <%
+                       request.setCharacterEncoding("UTF-8");  
+                       String textUser = null;
+                        if(session.getAttribute("userid")!=null){  
+                        String userID=(String)session.getAttribute("userid");  
+                        String nameUser=(String)session.getAttribute("username");
+                        //out.print("Hello, "+userID+" Welcome to Profile");  
+                           if(nameUser.equals("null")){
+                              textUser = "กำลังเข้าใช้งานโดยไอดี : "+userID;
+                           }else{
+                              textUser = "กำลังเข้าใช้งานโดยชื่อผู้ใช้ : "+nameUser;
+                           }
+                        }  
+                        else{  
+                            RequestDispatcher rq = request.getRequestDispatcher("index.jsp");
+                            rq.forward(request, response);
+                            
+                        }  
+%>
+
+      
+    
 	<link rel="stylesheet" href="dist/themes/default/style.min.css" />
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jstree/3.2.1/themes/default/style.min.css" />
       
@@ -170,7 +158,7 @@ div.tab button.active {
   });
   
   function goBack() {
-    //window.history.back();
+   
     window.history.back();
     }
 	</script>

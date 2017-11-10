@@ -12,6 +12,7 @@ and open the template in the editor.
         <%@page contentType="text/html" pageEncoding="UTF-8"%>
         <link rel="shortcut icon" href="images/Logo.png">
         <title>Report Center</title>
+        
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <style>
@@ -34,42 +35,6 @@ input[type=submit]:hover {
 }
 
 
-div.tab {
-    overflow: hidden;
-    border: 1px solid #ccc;
-    background-color: #f1f1f1;
-}
-
-/* Style the buttons inside the tab */
-div.tab button {
-    background-color: inherit;
-    float: left;
-    border: none;
-    outline: none;
-    cursor: pointer;
-    padding: 12px 14px;
-    transition: 0.6s;
-}
-
-/* Change background color of buttons on hover */
-div.tab button:hover {
-    background-color: #1ac6ff;
-    padding: 12px 25px;
-    
-}
-
-/* Create an active/current tablink class */
-div.tab button.active {
-    background-color: #ccc;
-}
-
-/* Style the tab content */
-.tabcontent {
-    display: none;
-    padding: 6px 10px;
-    border: 1px solid #ccc;
-    border-top: none;
-}
 
 
 
@@ -85,14 +50,18 @@ body {
 
 </style>
     <% 
-                        request.setCharacterEncoding("UTF-8");
-  
+                         request.setCharacterEncoding("UTF-8");  
+                       String textUser = null;
                         if(session.getAttribute("userid")!=null){  
                         String userID=(String)session.getAttribute("userid");  
-
+                        String nameUser=(String)session.getAttribute("username");
                         //out.print("Hello, "+userID+" Welcome to Profile");  
-                        }  
-                        else{  
+                           if(nameUser.equals("null")){
+                              textUser = "กำลังเข้าใช้งานโดยไอดี : "+userID;
+                           }else{
+                              textUser = "กำลังเข้าใช้งานโดยชื่อผู้ใช้ : "+nameUser;
+                           }
+                        }else{  
                             RequestDispatcher rq = request.getRequestDispatcher("index.jsp");
                             rq.forward(request, response);
                             
@@ -100,12 +69,18 @@ body {
 
     %>
     </head>
-    <div class="w3-container w3-center w3-animate-opacity">
-    <div id="mySidenav" class="sidenav">
-        <form action="authenLogout">
-        <button id="about">Logout</button>
-        </form>
-    </div>
+   
+     <div class="tab">
+            
+            <form action="authenLogout"> 
+            <button type="submit" class="tablinks" name="backButton"><img src='images/logout.png' id='img' height='32' width='32'> Logout</button>
+            </form>
+            
+            <form> 
+            <button style="font-size: 16px;font-size: 20px;font-family: TH SarabunPSK;font-weight: bold;"><%=textUser%></button>
+            </form>
+        </div>
+    
     
     <img class="banner" src="images/HosOSlogo.jpg" alt="" /><br><br>
     <body align='center'>

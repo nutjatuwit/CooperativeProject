@@ -128,8 +128,13 @@ input[type=text] {
         
             
         <%  
-            
-          try{
+              request.setCharacterEncoding("UTF-8");  
+                       String textUser = null;
+                        if(session.getAttribute("userid")!=null){  
+                        String userID=(String)session.getAttribute("userid");  
+                        String nameUser=(String)session.getAttribute("username");
+                        //out.print("Hello, "+userID+" Welcome to Profile");  
+                            try{
               managePath path = new managePath(getServletContext().getRealPath("/")+"setting/setting.txt");
             int cRow = 0;  
               StringBuilder sb = new StringBuilder();
@@ -261,6 +266,12 @@ input[type=text] {
          }catch(Exception ex){
            ex.printStackTrace();
             }
+                        }else{  
+                            
+                          out.print("ต้องทำการเข้าสู่ระบบก่อนเข้าใช้งาน");  
+                        }  
+            
+        
          %>
            
     </body>

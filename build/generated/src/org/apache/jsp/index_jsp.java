@@ -48,10 +48,14 @@ public final class index_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("<html>\n");
       out.write("    <head>\n");
       out.write("        <meta http-equiv=\"Content-Type\" content=\"text/html; charset=UTF-8\">\n");
+      out.write("        <link rel=\"stylesheet\" href=\"style/default.css\">\n");
+      out.write("        <link rel=\"stylesheet\" href=\"style/w3.css\">\n");
       out.write("        <title>Login</title>\n");
+      out.write("        \n");
+      out.write("       \n");
       out.write("    </head>\n");
       out.write("    <style>\n");
-      out.write("form {\n");
+      out.write("#fieldData {\n");
       out.write("    border: 3px solid #4da6ff;\n");
       out.write("    margin: 10px 450px;\n");
       out.write("    background-color: #ccfff5;\n");
@@ -69,25 +73,7 @@ public final class index_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("    box-sizing: border-box;\n");
       out.write("}\n");
       out.write("\n");
-      out.write("button {\n");
-      out.write("    background-color: #4CAF50;\n");
-      out.write("    color: white;\n");
-      out.write("    padding: 14px 20px;\n");
-      out.write("    margin: 8px 0;\n");
-      out.write("    border: none;\n");
-      out.write("    cursor: pointer;\n");
-      out.write("    width: 100%;\n");
-      out.write("}\n");
       out.write("\n");
-      out.write("button:hover {\n");
-      out.write("    opacity: 0.8;\n");
-      out.write("}\n");
-      out.write("\n");
-      out.write(".cancelbtn {\n");
-      out.write("    width: auto;\n");
-      out.write("    padding: 10px 18px;\n");
-      out.write("    background-color: #f44336;\n");
-      out.write("}\n");
       out.write("\n");
       out.write(".imgcontainer {\n");
       out.write("    text-align: center;\n");
@@ -120,20 +106,46 @@ public final class index_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("       width: 100%;\n");
       out.write("    }\n");
       out.write("}\n");
+      out.write("\n");
+      out.write("\n");
       out.write("</style>\n");
       out.write("    <body>\n");
+      out.write("        \n");
+      out.write("        \n");
+      out.write("      \n");
       out.write("        ");
- request.setCharacterEncoding("UTF-8"); 
-                       if(session.getAttribute("userid")!=null){  
+  
+                       request.setCharacterEncoding("UTF-8");  
+                       String textUser = "";
+                        if(session.getAttribute("userid")!=null){  
                         String userID=(String)session.getAttribute("userid");  
-                        out.print("เข้าสู่ระบบโดยไอดี : "+userID);
-                        }  
-                        
+                        String nameUser=(String)session.getAttribute("username");
+                        //out.print("Hello, "+userID+" Welcome to Profile");  
+                           if(nameUser.equals("null")){
+                              textUser = "กำลังเข้าใช้งานโดยไอดี : "+userID;
+                           }else{
+                              textUser = "กำลังเข้าใช้งานโดยชื่อผู้ใช้ : "+nameUser;
+                           }
+                        }
         
       out.write("\n");
-      out.write("       <h2 align=\"center\">เข้าสู่ระบบ</h2>\n");
-      out.write("\n");
-      out.write("       <form action=\"authenLogin\" method=\"post\">\n");
+      out.write("       \n");
+      out.write("        <div class=\"tab\">\n");
+      out.write("            \n");
+      out.write("            <form action=\"authenLogout\"> \n");
+      out.write("            <button type=\"submit\" class=\"tablinks\" name=\"backButton\"><img src='images/logout.png' id='img' height='32' width='32'> Logout</button>\n");
+      out.write("            </form>\n");
+      out.write("            \n");
+      out.write("            <form> \n");
+      out.write("            <button style=\"font-size: 16px\">");
+      out.print(textUser);
+      out.write("</button>\n");
+      out.write("            </form>\n");
+      out.write("        </div>\n");
+      out.write("        \n");
+      out.write("    \n");
+      out.write("        \n");
+      out.write("       <form id=\"fieldData\" action=\"authenLogin\" method=\"post\">\n");
       out.write("  <div class=\"imgcontainer\">\n");
       out.write("    <img src=\"images/HosOSlogo.jpg\" alt=\"Avatar\" class=\"avatar\">\n");
       out.write("  </div>\n");
@@ -145,7 +157,7 @@ public final class index_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("    <label><b>Password</b></label>\n");
       out.write("    <input type=\"password\" placeholder=\"Enter Password\" name=\"psw\">\n");
       out.write("        \n");
-      out.write("    <button type=\"submit\">Login</button>\n");
+      out.write("    <button id=\"loginButton\" type=\"submit\">Login</button>\n");
       out.write("    \n");
       out.write("  </div>\n");
       out.write("\n");

@@ -217,8 +217,14 @@ background-color: #FEEFB3;
     </head>
     <body>
        <%
+           
+                            
+  
+                       
+                          
+            request.setCharacterEncoding("UTF-8");
            managePath path = new managePath(getServletContext().getRealPath("/")+"setting/setting.txt");
-           request.setCharacterEncoding("UTF-8");
+           
            
            if(request.getParameterMap().containsKey("messages")){
                 
@@ -249,8 +255,12 @@ background-color: #FEEFB3;
               String sqlCate = "select id_cate,name_folder from a_report_category where name_cate = '"+category+"' limit 1";
               ResultSet rs = null;
               ResultSet rsCate = null;
-              
-           
+             
+            if(session.getAttribute("userid")!=null){  
+                        String userID=(String)session.getAttribute("userid");  
+
+                        //out.print("Hello, "+userID+" Welcome to Profile");  
+                         
         %>
         <div id="pagewrap">
 
@@ -310,6 +320,14 @@ background-color: #FEEFB3;
                  
                  out.print("<input type='submit' class='w3-button w3-blue w3-round' style='width: 20%; font-size:18.50px; '  value='เพิ่ม'>");
                  out.print("</form>");
+                  }  
+                        else{ 
+                           
+                           out.print("<h3>ต้องทำการเข้าสู่ระบบก่อนเข้าใช้งาน</h3>");
+                           out.print("<script>window.open('blankPage.jsp','left')</script>");
+                           out.print("<script>window.open('blankPage.jsp','top')</script>");
+                           out.print("<script>window.open('blankPage.jsp','right')</script>"); 
+                           } 
                 %>
 	</div>
         
@@ -343,6 +361,14 @@ $(document).ready(function() {
   function goBack() {
     //window.history.back();
     window.open("manageReport.html");
+    }
+    
+    function goLogin() {
+    //window.history.back();
+   
+    var linkHref = "blankPage.jsp";
+    //alert(linkHref);
+     window.open(linkHref,'left');
     }
 	</script>
     </body>

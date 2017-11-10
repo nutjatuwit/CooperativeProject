@@ -31,6 +31,7 @@ public class authenLogin extends HttpServlet {
          String authenType = null;
          String nameUser = null;
          String userType = null;
+         String userPointID = null;
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
@@ -114,10 +115,13 @@ public class authenLogin extends HttpServlet {
                        userID = rs.getString(1);
                        authenType = rs.getString(13);
                        nameUser = rs.getString(4)+" "+rs.getString(5);
+                       userPointID = rs.getString(10);
                     }
                       HttpSession session=request.getSession();  
                       session.setAttribute("userid",userID);
                       session.setAttribute("username",nameUser);
+                      session.setAttribute("userpointid",userPointID);
+                      
                       
                        
                     //check authen 10 is ONE STOP SERVICE  

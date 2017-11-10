@@ -14,7 +14,7 @@
 <html>
     <head>
         <link rel="stylesheet" href="style/default.css">
-        
+        <link rel="stylesheet" href="style/w3.css">
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
        
         <style>
@@ -34,17 +34,10 @@ th, td {
 tr:nth-child(even){background-color: #f2f2f2}
 
 th {
-    background-color: #01A9DB;  
-    color: #F2F2F2;
+    background-color: #01A9DB;
+    color: #f2f2f2;
 }
 /*search button */
-.search {
-    width: 180px;
-    height: 25px;
-    -webkit-transition: width 0.6s ease-in-out;
-    transition: width 0.6s ease-in-out;
-    margin: 1px 2px;
-}
 
 /* When the input field gets focus, change its width to 100% */
 
@@ -86,7 +79,8 @@ th {
 .button1:hover{
      background-color: #81DAF5;
      color: black;
-     padding: 8px 28px;
+     padding: 8px 23px;
+     
 }
 
 .button2 {
@@ -98,10 +92,34 @@ th {
 .button2:hover{
      background-color: #81DAF5;
      color: black;
-     padding: 8px 28px;
+     padding: 8px 23px;
+     
 }
 
+.buttonBack span {
+  cursor: pointer;
+  display: inline-block;
+  position: relative;
+  transition: 0.5s;
+}
 
+.buttonBack span:after {
+  content: 'ย้อน';
+  position: absolute;
+  opacity: 0;
+  top: 0;
+  left: -40px;
+  transition: 0.5s;
+}
+
+.buttonBack:hover span {
+  padding-left: 25px;
+}
+
+.buttonBack:hover span:after {
+  opacity: 1;
+  left: 0;
+}
 
 .addButton {
     background-color: #01A9DB; 
@@ -115,8 +133,6 @@ th {
      color: black;
      
 }
-
-
 
 #mySidenav a {
     position: absolute;
@@ -139,7 +155,6 @@ th {
     top: 10px;
     background-color: #4CAF50;
 }
-
 #myBtn {
   display: none;
   position: fixed;
@@ -187,6 +202,7 @@ th {
 .tooltip:hover .tooltiptext {
     visibility: visible;
 }
+
 #pageForm{
                 border: solid 1px #ccc;
                 font-family: TH SarabunPSK;
@@ -195,32 +211,52 @@ th {
     
 }
 
-</style>
 
-<link rel="shortcut icon" href="images/Logo.png">
-  <title>Parameters Management</title>
-    </head>
-    <% 
-                        request.setCharacterEncoding("UTF-8");
-  
+</style>
+<% 
+                         request.setCharacterEncoding("UTF-8");  
+                       String textUser = null;
+                       
                         if(session.getAttribute("userid")!=null){  
                         String userID=(String)session.getAttribute("userid");  
-
-                        //out.print("Hello, "+userID+" Welcome to Profile");  
-                        }  
-                        else{  
+                        String nameUser=(String)session.getAttribute("username");
+                        //out.print("Hello, "+userID+" Welcome to Profile"); 
+                        
+                           if(nameUser.equals("null")){
+                              textUser = "กำลังเข้าใช้งานโดยไอดี : "+userID;
+                           }else{
+                              textUser = "กำลังเข้าใช้งานโดยชื่อผู้ใช้ : "+nameUser;
+                           }
+                        }else{  
                             RequestDispatcher rq = request.getRequestDispatcher("index.jsp");
                             rq.forward(request, response);
                             
                         }  
-
+                           
     %>
+
+<link rel="shortcut icon" href="images/Logo.png">
+  <title>Parameters Management</title>
+  
+    
+    <div class="tab">
+            
+            <form action="authenLogout"> 
+            <button type="submit" class="tablinks" name="backButton"><img src='images/logout.png' id='img' height='32' width='32'> Logout</button>
+            </form>
+            
+            <form> 
+            <button style="font-size: 16px;font-size: 20px;font-family: TH SarabunPSK;font-weight: bold;"><%=textUser%></button>
+            </form>
+            
+            <form>
+            <button type="submit" class="tablinks" name="backButton" style="float: left; font-size: 20px;font-family: TH SarabunPSK;font-weight: bold;" onclick="backtomenu()"><img src='images/back.png' id='img' height='32' width='32'> กลับสู่หน้าหลัก</button>
+           </form>
+        </div>
+            
+   
     <body>
-       <div id="mySidenav" class="sidenav">
-        <form action="authenLogout">
-        <button id="about">Logout</button>
-        </form>
-       </div>
+       
         
         <%
               out.print("<div id='pageForm'>");
@@ -243,7 +279,7 @@ th {
  
                       
                out.print("<form action='addParams.jsp' align='right'>"); //add parameter
-                   out.print("<input type='submit' class='button addButton'  name='' value='เพิ่มตัวแปร'>");
+                   out.print("<input type='submit' class='button addButton'  name='' style='font-size: 16px;font-size: 18px;font-family: TH SarabunPSK;font-weight: bold;padding: 7px 11px;' value='เพิ่มตัวแปร'>");
                out.print("</form>");
                    
                      
@@ -355,6 +391,17 @@ function topFunction() {
     document.body.scrollTop = 0;
     document.documentElement.scrollTop = 0;
 }
+
+ function backtomenu() {
+    //window.history.back();
+    //var y = element.innerHTML;
+    var linkHref = "managePage.jsp";  
+    window.open(linkHref);
+    
+   
+
+       
+    }
     </script>
     </body>
 </html>
