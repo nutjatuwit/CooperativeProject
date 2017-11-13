@@ -126,24 +126,19 @@ public final class index_jsp extends org.apache.jasper.runtime.HttpJspBase
                            }else{
                               textUser = "กำลังเข้าใช้งานโดยชื่อผู้ใช้ : "+nameUser;
                            }
+                           out.print("<div class='tab'>");
+                           out.print("<form action='authenLogout'>");
+                           out.print("<button type='submit' class='tablinks' name='backButton'><img src='images/logout.png' id='img' height='32' width='32'> Logout</button>");
+                           out.print("</form>");
+                           
+                           out.print("<form>");
+                           out.print("<button style='font-size: 16px;font-size: 20px;font-family: TH SarabunPSK;font-weight: bold;'>"+textUser+"</button>");
+                           out.print("</form>");
+                           out.print("</div>");
                         }
         
       out.write("\n");
       out.write("       \n");
-      out.write("        <div class=\"tab\">\n");
-      out.write("            \n");
-      out.write("            <form action=\"authenLogout\"> \n");
-      out.write("            <button type=\"submit\" class=\"tablinks\" name=\"backButton\"><img src='images/logout.png' id='img' height='32' width='32'> Logout</button>\n");
-      out.write("            </form>\n");
-      out.write("            \n");
-      out.write("            <form> \n");
-      out.write("            <button style=\"font-size: 16px\">");
-      out.print(textUser);
-      out.write("</button>\n");
-      out.write("            </form>\n");
-      out.write("        </div>\n");
-      out.write("        \n");
-      out.write("    \n");
       out.write("        \n");
       out.write("       <form id=\"fieldData\" action=\"authenLogin\" method=\"post\">\n");
       out.write("  <div class=\"imgcontainer\">\n");

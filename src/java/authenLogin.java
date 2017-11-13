@@ -120,6 +120,7 @@ public class authenLogin extends HttpServlet {
                       HttpSession session=request.getSession();  
                       session.setAttribute("userid",userID);
                       session.setAttribute("username",nameUser);
+                      
                       session.setAttribute("userpointid",userPointID);
                       
                       

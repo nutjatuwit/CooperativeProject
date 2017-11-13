@@ -73,9 +73,9 @@ public class insertData extends HttpServlet {
             Statement stmt = (Statement) conn.createStatement();
            
             sql = "insert into a_add_param(name,idfil,description,query)"
-                    + " values('" + name + "','" + idFil + "','" + description + "','" + query + "')";
+                    + " values('" + name + "','" + idFil + "','" + description + "','"+ query +"')";
             //stmt.executeUpdate("SET NAMES UTF8");
-            //stmt.executeUpdate("SET character_set_results=utf8");
+            //stmt.executeUpdate("SET character_set_results=utf8")
             //stmt.executeUpdate("SET character_set_client=utf8");
             //stmt.executeUpdate("SET character_set_connection=utf8");
             System.out.println(sql);

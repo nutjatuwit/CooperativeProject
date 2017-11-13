@@ -25,7 +25,7 @@ import path.managePath;
  * @author NUT
  */
 public class insertCate extends HttpServlet {
-  String nameCate;
+  String nameCate,service_point;
         
   String sql;
     
@@ -59,6 +59,7 @@ public class insertCate extends HttpServlet {
 //Af_Scheme_Number=request.getParameter("Af_Scheme_Number");  
             
            nameCate = request.getParameter("nameCate");
+           service_point = request.getParameter("service_point");
            if(nameCate.equals("")){      
               messages = "กรุณาใส่ข้อมูล";
            }else{
@@ -78,8 +79,8 @@ public class insertCate extends HttpServlet {
             }
             
             if(checked){
-            sql = "insert into a_report_category(name_cate,name_folder)"
-                    + " values('" + nameCate + "','" + nameCate + "')";
+            sql = "insert into a_report_category(name_cate,name_folder,b_service_point_id)"
+                    + " values('" + nameCate + "','" + nameCate + "','"+service_point+"')";
             System.out.println(sql);
             stmt.executeUpdate(sql);
             

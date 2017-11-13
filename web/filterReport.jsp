@@ -223,7 +223,8 @@ input[type=text] {
                      if(paramDbType.equals("list")){ //want database for test
                          //out.print(rsCompile);
                          sqlCompile=rs.getString(5);
-                         rsCompile = statement1.executeQuery(sqlCompile);
+                         String newSql = sqlCompile.replace("\"","\'");
+                         rsCompile = statement1.executeQuery(newSql);
                          
                         out.print(paramDbName+": ");
                              out.println("<select name="+paramJas+">");

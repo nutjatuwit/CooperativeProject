@@ -313,12 +313,12 @@ background-color: #FEEFB3;
                     out.print("</table>");
                     out.print("</div>");
                  out.print("<form action='insertDetail'>");
-                 out.print("<input type='text' class='w3-input w3-border w3-round  w3-light-blue' name='nameDetail'>");
+                 out.print("<input type='text' placeholder='กรอกรายงาน...' class='w3-input w3-border w3-round  w3-light-blue' name='nameDetail' style='width: 75%;height: 28px;font-size: 22px;font-family: TH SarabunPSK;'>");
                  out.print("<input type='hidden' name='category' value='"+category+"'>");
                  out.print("<input type='hidden' name='pkCate' value='"+pkCate+"'>");
                  //out.print("<input type='hidden' name='pkDetail' value='"+(count+1)+"'>");
                  
-                 out.print("<input type='submit' class='w3-button w3-blue w3-round' style='width: 20%; font-size:18.50px; '  value='เพิ่ม'>");
+                 out.print("<input type='submit' class='w3-button w3-blue w3-round' style='width:20%;height: 30px;padding: 0 ; margin-left: 1px; margin-bottom: 4px;'  value='เพิ่ม'>");
                  out.print("</form>");
                   }  
                         else{ 

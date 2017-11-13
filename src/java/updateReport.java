@@ -58,7 +58,9 @@ public class updateReport extends HttpServlet {
                  String id_cate = request.getParameter("id_cate");
                  String edited = request.getParameter("edited");
                  String folder = request.getParameter("folder");
-                 String sql="update a_report_category set name_cate='"+edited+"' ,name_folder='"+folder+"' where id_cate = '"+id_cate+"' ";
+                 String service_point = request.getParameter("service_point");
+                 
+                 String sql="update a_report_category set name_cate='"+edited+"' ,name_folder='"+folder+"',b_service_point_id='"+service_point+"' where id_cate = '"+id_cate+"' ";
                   Statement stmt = (Statement) conn.createStatement();          
                   System.out.println(sql);
                    //stmtCate.executeQuery(sqlCate);

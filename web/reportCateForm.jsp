@@ -273,12 +273,16 @@ background-color: #FEEFB3;
             Class.forName("org.postgresql.Driver").newInstance();
                Connection conn = DriverManager.getConnection(path.getPathDB(), path.getUserDB(), path.getPassDB()); //database connection
                Statement statement = conn.createStatement();
+               Statement stmt = conn.createStatement();
               //String sqlCompile = "select * from member";
               //ResultSet rsCompile = statement1.executeQuery(sqlCompile);
               
-              String sql = "select id_cate,name_cate,name_folder from a_report_category order by id_cate DESC";
+              String sql = "select id_cate,name_cate,name_folder,b_service_point_id from a_report_category order by id_cate DESC";
+              String sqlServicePoint = "select b_service_point.b_service_point_id,b_service_point.service_point_description from b_service_point where service_point_active = '1' order by b_service_point.service_point_description ASC";
               
               ResultSet rs = null;
+              ResultSet rsServicePoint = null;
+              
               if(session.getAttribute("userid")!=null){  
                         String userID=(String)session.getAttribute("userid");  
 
@@ -297,7 +301,8 @@ background-color: #FEEFB3;
         
 		<%
                     rs = statement.executeQuery(sql);
-                    
+                    rsServicePoint = stmt.executeQuery(sqlServicePoint);
+                            
                     out.print("<div class='w3-container'>");
                     out.print("<table class='w3-table-all w3-hoverable'>");
                     
@@ -312,6 +317,7 @@ background-color: #FEEFB3;
                              out.print("<input type='hidden' name='id_cate' value='"+rs.getString(1)+"'>");
                              out.print("<input type='hidden' name='category' value='"+rs.getString(2)+"'>");
                              out.print("<input type='hidden' name='name_folder' value='"+rs.getString(3)+"'>");
+                             out.print("<input type='hidden' name='service_point' value='"+rs.getString(4)+"'>");
                              out.print("<input type='hidden' name='reportType' value='category'>");
                              out.print("<div class='tooltip'><button name='editButton' type='submit' class='button button2' style='background-color:transparent; border-color:transparent; padding: 0 ; margin-left: 1px; margin-bottom: 2px; cursor: pointer; src=''><img src='images/edit.png' id='img' height='40' width='40'></button><span class='tooltiptext'>แก้ไข</span></div>");
                           out.print("</td>");
@@ -351,8 +357,17 @@ background-color: #FEEFB3;
                     out.print("</table>");
                     out.print("</div>");
                  out.print("<form action='insertCate'>");
-                 out.print("<input type='text' class='w3-input w3-border w3-round  w3-light-blue' name='nameCate'>");
-                 out.print("<input type='submit' class='w3-button w3-blue w3-round' style='width:20%; font-size:18.50px;'  value='เพิ่ม'>");
+                 out.print("<input type='text' placeholder='กรอกประเภทรายงาน...' class='w3-input w3-border w3-round  w3-light-blue' name='nameCate' style='width: 52%;height: 28px;font-size: 22px;font-family: TH SarabunPSK;'>");
+                  
+                  
+                             out.println("<select name='service_point' style='width: 25%;height:30px;'>");
+                             while(rsServicePoint.next()) {
+                                 out.print("<option value=" + rsServicePoint.getString(1) + ">");
+                                 out.print(rsServicePoint.getString(2));
+                                 out.print("</option>");
+                             }
+                             out.println("</select> ");
+                 out.print("<input type='submit' class='w3-button w3-blue w3-round' style='width:20%;height: 30px;padding: 0 ; margin-left: 1px; margin-bottom: 4px;'  value='เพิ่ม'>");
                  out.print("</form>");
                   }  
                         else{ 

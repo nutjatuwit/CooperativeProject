@@ -17,7 +17,7 @@ and open the template in the editor.
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <style>
 
-input[type=submit]{
+#mainmenu{
     width: 49%;
     background-color: #0040FF;
     color: white;
@@ -29,8 +29,7 @@ input[type=submit]{
 }
 
 
-
-input[type=submit]:hover {
+#mainmenu:hover {
     background-color: #45a049;
 }
 
@@ -86,11 +85,11 @@ body {
     <body align='center'>
         
         <form action = "reportForm.jsp">
-            <input type="submit"  value="Manage Report Form" action=""><br><br>
+            <button id="mainmenu" type='submit'  action="" ><img src="images/manageReport.png" style=" padding: 0 ; margin-left: 1px; margin-bottom: -11px;" id="img" height='32' width='32'>Manage Report Form</button><br><br>
         </form>
         
         <form action = "manageParams.jsp">
-            <input type="submit"  value="Manage Parameters"><br><br>
+            <button id="mainmenu" type='submit'  action="" ><img src="images/manageParam.png" style=" padding: 0 ; margin-left: 1px; margin-bottom: -11px;" id="img" height='32' width='32'>Manage Parameters</button><br><br>
         </form>
         
         <script>

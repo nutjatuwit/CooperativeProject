@@ -137,7 +137,7 @@ textarea {
            %>
            
            <div id="textArea">
-           SQL Query :  <br><textarea row="60" cols="50" name="query" placeholder='select id,name from membertest //ใช้2คอลัมน์ คือid(ส่งไปยัง report) ,name(แสดงในlist)'></textarea>
+           SQL Query :  <br><textarea row="60" cols="50" name="query" placeholder='select id,name from membertest //ใช้2คอลัมน์ คือid(ส่งไปยัง report) ,name(แสดงในlist) ใช้ "" ในการระบุString เช่น where b_service_point_id = "1"'></textarea>
            </div>
            
            <div id="buttonAccept">

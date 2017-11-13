@@ -45,7 +45,7 @@
     %>
     
 <frameset name="allSet" rows="8.7%,91.3%">   
-    <frame name="top" src="tabContent.jsp" noresize="noresize">
+    <frame name="top" src="tabContent.jsp" noresize="noresize" scrolling="no">
         
         
     

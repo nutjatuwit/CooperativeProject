@@ -53,23 +53,7 @@
 
 	</style>
         <%
-                       request.setCharacterEncoding("UTF-8");  
-                       String textUser = null;
-                        if(session.getAttribute("userid")!=null){  
-                        String userID=(String)session.getAttribute("userid");  
-                        String nameUser=(String)session.getAttribute("username");
-                        //out.print("Hello, "+userID+" Welcome to Profile");  
-                           if(nameUser.equals("null")){
-                              textUser = "กำลังเข้าใช้งานโดยไอดี : "+userID;
-                           }else{
-                              textUser = "กำลังเข้าใช้งานโดยชื่อผู้ใช้ : "+nameUser;
-                           }
-                        }  
-                        else{  
-                            RequestDispatcher rq = request.getRequestDispatcher("index.jsp");
-                            rq.forward(request, response);
-                            
-                        }  
+                      
 %>
 
       
@@ -82,18 +66,44 @@
        
        
        <%
-            
+             request.setCharacterEncoding("UTF-8");  
+                       String textUser = null;
+                       String userPointID = null;
+                       String nameUser = null;
+                       String userID = null;
+                       String sqlCateCount = null;
+                       String userType = null;
+                        if(session.getAttribute("userid")!=null){  
+                        userID=(String)session.getAttribute("userid");  
+                        nameUser=(String)session.getAttribute("username");
+                        userPointID=(String)session.getAttribute("userpointid");
+                        //out.print("Hello, "+userPointID+" Welcome to Profile");  
+                           if(nameUser.equals("null")){
+                              textUser = "กำลังเข้าใช้งานโดยไอดี : "+userID;
+                           }else{
+                              textUser = "กำลังเข้าใช้งานโดยชื่อผู้ใช้ : "+nameUser;
+                           }
+                        }  
+                        else{  
+                            RequestDispatcher rq = request.getRequestDispatcher("index.jsp");
+                            rq.forward(request, response);
+                            
+                        }  
            managePath path = new managePath(getServletContext().getRealPath("/")+"setting/setting.txt");
            
            
-         request.setCharacterEncoding("UTF-8");
+         
             Class.forName("org.postgresql.Driver");
                Connection conn = DriverManager.getConnection(path.getPathDB(), path.getUserDB(), path.getPassDB()); //database connection
                Statement statement = conn.createStatement();
                Statement statement1 = conn.createStatement();
-            
-              
-              String sqlCateCount = "select id_cate,name_cate from a_report_category order by id_cate ASC";
+                userType = (String)session.getAttribute("usertype");
+               
+              if(userType.equals("manager")){
+              sqlCateCount = "select id_cate,name_cate from a_report_category order by id_cate ASC";
+              }else{
+              sqlCateCount = "select id_cate,name_cate from a_report_category  where b_service_point_id = '"+userPointID+"' order by id_cate ASC";
+              }
               ResultSet rsCateCount = statement.executeQuery(sqlCateCount);
                
 

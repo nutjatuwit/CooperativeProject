@@ -86,21 +86,18 @@ span.psw {
                            }else{
                               textUser = "กำลังเข้าใช้งานโดยชื่อผู้ใช้ : "+nameUser;
                            }
+                           out.print("<div class='tab'>");
+                           out.print("<form action='authenLogout'>");
+                           out.print("<button type='submit' class='tablinks' name='backButton'><img src='images/logout.png' id='img' height='32' width='32'> Logout</button>");
+                           out.print("</form>");
+                           
+                           out.print("<form>");
+                           out.print("<button style='font-size: 16px;font-size: 20px;font-family: TH SarabunPSK;font-weight: bold;'>"+textUser+"</button>");
+                           out.print("</form>");
+                           out.print("</div>");
                         }
         %>
        
-        <div class="tab">
-            
-            <form action="authenLogout"> 
-            <button type="submit" class="tablinks" name="backButton"><img src='images/logout.png' id='img' height='32' width='32'> Logout</button>
-            </form>
-            
-            <form> 
-            <button style="font-size: 16px;font-size: 20px;font-family: TH SarabunPSK;font-weight: bold;"><%=textUser%></button>
-            </form>
-        </div>
-        
-    
         
        <form id="fieldData" action="authenLogin" method="post">
   <div class="imgcontainer">
