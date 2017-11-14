@@ -79,7 +79,7 @@ body {
 
 
 <div class="w3-container w3-center">
-       <img class="banner" src="images/HosOSlogo.jpg" alt="" /><br><br>
+       <img class="banner" src="images/HosOSlogo.png" alt="" /><br><br>
     </head>
     <body align='center'>
         <form action = "manageReport.jsp">

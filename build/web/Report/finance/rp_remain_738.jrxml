@@ -17,10 +17,6 @@
 	<parameter name="testTF" class="java.lang.String"/>
 	<parameter name="testDate" class="java.lang.String"/>
 	<parameter name="testList1" class="java.lang.String"/>
-	<parameter name="testT" class="java.lang.String"/>
-	<parameter name="testR" class="java.lang.String">
-		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
-	</parameter>
 	<queryString>
 		<![CDATA[SELECT
 q2.date_rec

@@ -125,7 +125,7 @@ background-color: #FEEFB3;
         
        <form id="fieldData" action="authenLogin" method="post">
   <div class="imgcontainer">
-    <img src="images/HosOSlogo.jpg" alt="Avatar" class="avatar">
+    <img src="images/HosOSlogo.png" alt="Avatar" class="avatar">
   </div>
 
   <div class="container">

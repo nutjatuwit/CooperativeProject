@@ -56,7 +56,7 @@ public final class index_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("    </head>\n");
       out.write("    <style>\n");
       out.write("#fieldData {\n");
-      out.write("    border: 3px solid #4da6ff;\n");
+      out.write("    border: 3px solid #A9F5F2;\n");
       out.write("    margin: 10px 450px;\n");
       out.write("    background-color: #ccfff5;\n");
       out.write("}\n");
@@ -66,8 +66,8 @@ public final class index_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("}\n");
       out.write("input[type=text], input[type=password] {\n");
       out.write("    width: 100%;\n");
-      out.write("    padding: 12px 20px;\n");
-      out.write("    margin: 8px 0;\n");
+      out.write("    padding: 6px 10px;\n");
+      out.write("    margin: 4px 0;\n");
       out.write("    display: inline-block;\n");
       out.write("    border: 1px solid #ccc;\n");
       out.write("    box-sizing: border-box;\n");
@@ -77,18 +77,23 @@ public final class index_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("\n");
       out.write(".imgcontainer {\n");
       out.write("    text-align: center;\n");
-      out.write("    margin: 24px 0 12px 0;\n");
+      out.write("    \n");
       out.write("    \n");
       out.write("}\n");
       out.write("\n");
       out.write("img.avatar {\n");
-      out.write("    width:50%;\n");
-      out.write("   \n");
+      out.write("    width:90%;\n");
+      out.write("    height: 180px;\n");
+      out.write("    border-radius: 8px;\n");
+      out.write("    margin: 0px 6px;\n");
       out.write("}\n");
       out.write("\n");
       out.write(".container {\n");
-      out.write("    padding: 16px;\n");
-      out.write("    margin: 8px 0;\n");
+      out.write("    padding: 8px;\n");
+      out.write("    margin: 4px 0;\n");
+      out.write("    font-weight: bold;\n");
+      out.write("    font-family: TH SarabunPSK;\n");
+      out.write("    font-size: 25px;\n");
       out.write("}\n");
       out.write("\n");
       out.write("span.psw {\n");
@@ -107,8 +112,21 @@ public final class index_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("    }\n");
       out.write("}\n");
       out.write("\n");
+      out.write(".warning {\n");
+      out.write("color: #9F6000;\n");
+      out.write("background-color: #FEEFB3;\n");
+      out.write("\n");
+      out.write("}\n");
+      out.write("#loginButton{\n");
+      out.write("   background-color: #2E2EFE; \n");
+      out.write("   font-weight: bold;\n");
+      out.write("   font-family: TH SarabunPSK;\n");
+      out.write("   font-size: 25px;\n");
+      out.write("   color: white;\n");
+      out.write("}\n");
       out.write("\n");
       out.write("</style>\n");
+      out.write("<link rel=\"shortcut icon\" href=\"images/Logo.png\">\n");
       out.write("    <body>\n");
       out.write("        \n");
       out.write("        \n");
@@ -126,6 +144,12 @@ public final class index_jsp extends org.apache.jasper.runtime.HttpJspBase
                            }else{
                               textUser = "กำลังเข้าใช้งานโดยชื่อผู้ใช้ : "+nameUser;
                            }
+                           
+                            
+                        
+                         
+                        
+                
                            out.print("<div class='tab'>");
                            out.print("<form action='authenLogout'>");
                            out.print("<button type='submit' class='tablinks' name='backButton'><img src='images/logout.png' id='img' height='32' width='32'> Logout</button>");
@@ -146,13 +170,13 @@ public final class index_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("  </div>\n");
       out.write("\n");
       out.write("  <div class=\"container\">\n");
-      out.write("    <label><b>Username</b></label>\n");
-      out.write("    <input type=\"text\" placeholder=\"Enter Username\" name=\"uname\" required>\n");
+      out.write("    <label><b>ชื่อผู้ใช้</b></label>\n");
+      out.write("    <input type=\"text\" placeholder=\"ใส่ชื่อผู้ใช้...\" name=\"uname\" required>\n");
       out.write("\n");
-      out.write("    <label><b>Password</b></label>\n");
-      out.write("    <input type=\"password\" placeholder=\"Enter Password\" name=\"psw\">\n");
+      out.write("    <label><b>รหัสผ่าน</b></label>\n");
+      out.write("    <input type=\"password\" placeholder=\"ใส่รหัสผ่าน...\" name=\"psw\">\n");
       out.write("        \n");
-      out.write("    <button id=\"loginButton\" type=\"submit\">Login</button>\n");
+      out.write("    <button id=\"loginButton\" type=\"submit\" >เข้าสู่ระบบ</button>\n");
       out.write("    \n");
       out.write("  </div>\n");
       out.write("\n");

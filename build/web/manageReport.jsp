@@ -81,7 +81,7 @@ body {
         </div>
     
     
-    <img class="banner" src="images/HosOSlogo.jpg" alt="" /><br><br>
+    <img class="banner" src="images/HosOSlogo.png" alt="" /><br><br>
     <body align='center'>
         
         <form action = "reportForm.jsp">
