@@ -148,7 +148,7 @@ public class authenLogin extends HttpServlet {
         }
         else
         {
-           out.println("Username or Password incorrect");
+           out.print("<div class='warning'>"+"username หรือ password ไม่ถูกต้อง "+"</div>");
            RequestDispatcher rq = request.getRequestDispatcher("index.jsp");
            rq.include(request, response);
         }

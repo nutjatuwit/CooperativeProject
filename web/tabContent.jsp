@@ -72,15 +72,17 @@
        function logout() {
     //window.history.back();
     //var y = element.innerHTML;
+    
     var linkHref = "index.jsp";  
     window.open(linkHref);
+    
     window.open('blankPage.jsp','lefty');
     window.open('blankPage.jsp','top');
     window.open('blankPage.jsp','filty');
     window.open('blankPage.jsp','righty');
-    window.open('blankPage.jsp','allSet');
-    window.open('blankPage.jsp','_self');
-    window.open('blankPage.jsp','_blank'); 
+    window.close();
+    allSet.close();
+    
     }  
                            
         

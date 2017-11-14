@@ -357,7 +357,7 @@ background-color: #FEEFB3;
                     out.print("</table>");
                     out.print("</div>");
                  out.print("<form action='insertCate'>");
-                 out.print("<input type='text' placeholder='กรอกประเภทรายงาน...' class='w3-input w3-border w3-round  w3-light-blue' name='nameCate' style='width: 52%;height: 28px;font-size: 22px;font-family: TH SarabunPSK;'>");
+                 out.print("<input type='text' placeholder='เพิ่มประเภทรายงาน...' class='w3-input w3-border w3-round  w3-light-blue' name='nameCate' style='width: 52%;height: 28px;font-size: 22px;font-family: TH SarabunPSK;'>");
                   
                   
                              out.println("<select name='service_point' style='width: 25%;height:30px;'>");

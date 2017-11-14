@@ -17,7 +17,7 @@
     </head>
     <style>
 #fieldData {
-    border: 3px solid #4da6ff;
+    border: 3px solid #A9F5F2;
     margin: 10px 450px;
     background-color: #ccfff5;
 }
@@ -27,8 +27,8 @@ body{
 }
 input[type=text], input[type=password] {
     width: 100%;
-    padding: 12px 20px;
-    margin: 8px 0;
+    padding: 6px 10px;
+    margin: 4px 0;
     display: inline-block;
     border: 1px solid #ccc;
     box-sizing: border-box;
@@ -38,18 +38,23 @@ input[type=text], input[type=password] {
 
 .imgcontainer {
     text-align: center;
-    margin: 24px 0 12px 0;
+    
     
 }
 
 img.avatar {
-    width:50%;
-   
+    width:90%;
+    height: 180px;
+    border-radius: 8px;
+    margin: 0px 6px;
 }
 
 .container {
-    padding: 16px;
-    margin: 8px 0;
+    padding: 8px;
+    margin: 4px 0;
+    font-weight: bold;
+    font-family: TH SarabunPSK;
+    font-size: 25px;
 }
 
 span.psw {
@@ -68,8 +73,21 @@ span.psw {
     }
 }
 
+.warning {
+color: #9F6000;
+background-color: #FEEFB3;
+
+}
+#loginButton{
+   background-color: #2E2EFE; 
+   font-weight: bold;
+   font-family: TH SarabunPSK;
+   font-size: 25px;
+   color: white;
+}
 
 </style>
+<link rel="shortcut icon" href="images/Logo.png">
     <body>
         
         
@@ -86,6 +104,12 @@ span.psw {
                            }else{
                               textUser = "กำลังเข้าใช้งานโดยชื่อผู้ใช้ : "+nameUser;
                            }
+                           
+                            
+                        
+                         
+                        
+                
                            out.print("<div class='tab'>");
                            out.print("<form action='authenLogout'>");
                            out.print("<button type='submit' class='tablinks' name='backButton'><img src='images/logout.png' id='img' height='32' width='32'> Logout</button>");
@@ -105,13 +129,13 @@ span.psw {
   </div>
 
   <div class="container">
-    <label><b>Username</b></label>
-    <input type="text" placeholder="Enter Username" name="uname" required>
+    <label><b>ชื่อผู้ใช้</b></label>
+    <input type="text" placeholder="ใส่ชื่อผู้ใช้..." name="uname" required>
 
-    <label><b>Password</b></label>
-    <input type="password" placeholder="Enter Password" name="psw">
+    <label><b>รหัสผ่าน</b></label>
+    <input type="password" placeholder="ใส่รหัสผ่าน..." name="psw">
         
-    <button id="loginButton" type="submit">Login</button>
+    <button id="loginButton" type="submit" >เข้าสู่ระบบ</button>
     
   </div>
 
