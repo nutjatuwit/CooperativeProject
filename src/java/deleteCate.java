@@ -17,6 +17,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import path.managePath;
 
 /**
@@ -70,9 +71,13 @@ public class deleteCate extends HttpServlet {
             //stmt.executeUpdate("SET character_set_connection=utf8");
             System.out.println(sqlCate);
             System.out.println(sqlDetail);
+             HttpSession session=request.getSession();
+            if(session.getAttribute("userid")!=null){  
+                    stmt.execute(sqlCate);
+                    stmt.execute(sqlDetail);    
+             }
             
-            stmt.execute(sqlCate);
-            stmt.execute(sqlDetail);
+            
         }catch(Exception e){
             e.printStackTrace();
         }

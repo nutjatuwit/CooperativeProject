@@ -17,6 +17,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import path.managePath;
 
 
@@ -83,7 +84,11 @@ public class updateData extends HttpServlet {
             //stmt.executeUpdate("SET character_set_connection=utf8");
             System.out.println(sql);
             
-            stmt.executeUpdate(sql);
+            HttpSession session=request.getSession();
+            if(session.getAttribute("userid")!=null){  
+                        stmt.executeUpdate(sql);  
+             }   
+            
             
         }
     }

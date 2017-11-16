@@ -18,6 +18,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import path.managePath;
 
 /**
@@ -71,14 +72,25 @@ public class insertCate extends HttpServlet {
             
             rs = stmtCompare.executeQuery(sqlCompare);
             boolean checked = true;
+            boolean sessionChecked = true;
             while(rs.next()){
                 if(rs.getString(1).equals(nameCate)){
                          checked = false;
                          messages = "ข้อมูลนี้มีอยู่แล้ว"; 
                 }
             }
+            HttpSession session=request.getSession();
+            if(session.getAttribute("userid")!=null){  
+                        String userID=(String)session.getAttribute("userid");  
+                        String nameUser=(String)session.getAttribute("username");
+                        //out.print("Hello, "+userID+" Welcome to Profile");  
+                        sessionChecked = true;  
+             }else{
+                        sessionChecked = false;
+                        messages = "ต้องทำการเข้าสู่ระบบก่อนการใช้งาน";
+             }           
             
-            if(checked){
+            if(checked&&sessionChecked){
             sql = "insert into a_report_category(name_cate,name_folder,b_service_point_id)"
                     + " values('" + nameCate + "','" + nameCate + "','"+service_point+"')";
             System.out.println(sql);

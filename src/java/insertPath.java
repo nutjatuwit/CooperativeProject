@@ -18,6 +18,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import path.managePath;
 
 /**
@@ -94,7 +95,10 @@ public class insertPath extends HttpServlet {
             System.out.println(sql);
             
             //stmtCate.executeQuery(sqlCate);
-            stmt.execute(sql);
+            HttpSession session=request.getSession();
+            if(session.getAttribute("userid")!=null){  
+                        stmt.execute(sql);  
+             }   
             
             //pass parameter error
             //response.setCharacterEncoding("UTF-8");

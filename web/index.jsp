@@ -16,11 +16,19 @@
        
     </head>
     <style>
-#fieldData {
-    border: 3px solid #A9F5F2;
-    margin: 10px 450px;
-    background-color: #ccfff5;
+
+/* Change styles for span and cancel button on extra small screens */
+@media screen and (max-width: 300px) {
+    span.psw {
+       display: block;
+       float: none;
+    }
+    .cancelbtn {
+       width: 100%;
+    }
 }
+
+
 body{
     
     background-color: #e6ffff;
@@ -49,41 +57,49 @@ img.avatar {
     margin: 0px 6px;
 }
 
-.container {
-    padding: 8px;
-    margin: 4px 0;
-    font-weight: bold;
-    font-family: TH SarabunPSK;
-    font-size: 25px;
-}
+
 
 span.psw {
     float: right;
     padding-top: 16px;
 }
 
-/* Change styles for span and cancel button on extra small screens */
-@media screen and (max-width: 300px) {
-    span.psw {
-       display: block;
-       float: none;
-    }
-    .cancelbtn {
-       width: 100%;
-    }
-}
 
 .warning {
 color: #9F6000;
 background-color: #FEEFB3;
 
 }
-#loginButton{
-   background-color: #2E2EFE; 
-   font-weight: bold;
-   font-family: TH SarabunPSK;
-   font-size: 25px;
-   color: white;
+
+.container {
+    padding: 8px;
+    margin: 4px 0;
+    font-weight: bold;
+    font-family: TH SarabunPSK;
+    font-size: 25px;
+    display: table;
+    
+    float:left;
+    width:20%;
+    min-width:400px;
+    margin-top:25px;
+    margin-left:calc(50% - 200px);
+    margin-left:-webkit-calc(50% - 200px);
+    margin-left:-moz-calc(50% - 200px);
+    background: rgba(256,256,256, 0.4);
+    border-radius: 6px; 
+  }
+#fieldData{
+   display: table-cell;
+   text-align: center;
+   vertical-align: middle;
+    height: 500px;
+}
+
+body{
+    background-image: url("images/background.jpg");
+    background-size: auto;
+    background-repeat: no-repeat;
 }
 
 </style>
@@ -111,6 +127,11 @@ background-color: #FEEFB3;
                         
                 
                            out.print("<div class='tab'>");
+                           out.print("<form>");
+                           out.print("<button type='submit' class='tablinks' name='backButton' style='float: left; font-size: 20px;font-family: TH SarabunPSK;font-weight: bold;' onclick='backtomenu()'>");
+                           out.print("<img src='images/Logo Open.jpg' id='img' height='48' width='159'>");
+                           out.print("</button>");
+                           out.print("</form>");
                            out.print("<form action='authenLogout'>");
                            out.print("<button type='submit' class='tablinks' name='backButton'><img src='images/logout.png' id='img' height='32' width='32'> Logout</button>");
                            out.print("</form>");
@@ -122,23 +143,13 @@ background-color: #FEEFB3;
                         }
         %>
        
-        
-       <form id="fieldData" action="authenLogin" method="post">
-  <div class="imgcontainer">
-    <img src="images/HosOSlogo.png" alt="Avatar" class="avatar">
-  </div>
+       <div class="container" id="container">   
+          <form id="fieldData" action="authenLogin" method="post" align="center" >
+              <img src='images/Hospital-OS-LOGO1.png' id='img' width="304" height="140" ><br><br>
+            <input type="text" id="textLogin" placeholder="ผู้ใช้" name="uname" required><br>
+            <input type="password" id="textLogin" placeholder="รหัสผ่าน" name="psw"><br>   
+            <button id="loginButton" type="submit" >เข้าสู่ระบบ</button>
+          </form>
 
-  <div class="container">
-    <label><b>ชื่อผู้ใช้</b></label>
-    <input type="text" placeholder="ใส่ชื่อผู้ใช้..." name="uname" required>
-
-    <label><b>รหัสผ่าน</b></label>
-    <input type="password" placeholder="ใส่รหัสผ่าน..." name="psw">
-        
-    <button id="loginButton" type="submit" >เข้าสู่ระบบ</button>
-    
-  </div>
-
- 
     </body>
 </html>

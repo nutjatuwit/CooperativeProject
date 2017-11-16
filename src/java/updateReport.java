@@ -18,6 +18,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import path.managePath;
 
 /**
@@ -51,7 +52,8 @@ public class updateReport extends HttpServlet {
                 Logger.getLogger(insertData.class.getName()).log(Level.SEVERE, null, ex);
             }
             Connection conn = (Connection) DriverManager.getConnection(path.getPathDB(), path.getUserDB(), path.getPassDB());
-
+             HttpSession session=request.getSession();
+            
             reportType = request.getParameter("reportType");
              if(reportType.equals("category")){ //id_cate=1&category=1.รายงานการเงิน&reportType=category
                  String category = request.getParameter("category");
@@ -64,7 +66,9 @@ public class updateReport extends HttpServlet {
                   Statement stmt = (Statement) conn.createStatement();          
                   System.out.println(sql);
                    //stmtCate.executeQuery(sqlCate);
+                   if(session.getAttribute("userid")!=null){ 
                    stmt.execute(sql);
+                   }
                    response.sendRedirect("/WebApplication3/reportCateForm.jsp");
                    //out.print("category submit");
                 
@@ -79,7 +83,9 @@ public class updateReport extends HttpServlet {
                  System.out.println(sql);
                  System.out.println(category);
                  //stmtCate.executeQuery(sqlCate);
-                 stmt.execute(sql);
+                  if(session.getAttribute("userid")!=null){ 
+                   stmt.execute(sql);
+                   }
                  response.sendRedirect("/WebApplication3/reportDetailForm.jsp?category="+ URLEncoder.encode(category, "UTF-8"));
                   //out.print("detail submit");  
              }

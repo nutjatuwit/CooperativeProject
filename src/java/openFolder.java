@@ -12,6 +12,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import path.managePath;
 
 /**
@@ -41,7 +42,11 @@ public class openFolder extends HttpServlet {
                              File fileDir = new File (pathFolder);
                              String[] fileTest = fileDir.list();
                              Desktop desktop = Desktop.getDesktop();
-                             desktop.open(fileDir);
+                              HttpSession session=request.getSession();
+            if(session.getAttribute("userid")!=null){  
+                          desktop.open(fileDir);
+             }
+                             
                              
 
                    for(int i=0;i<fileTest.length;i++){ 

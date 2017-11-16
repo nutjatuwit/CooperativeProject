@@ -18,6 +18,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import path.managePath;
 
 /**
@@ -73,7 +74,7 @@ public class insertDetail extends HttpServlet {
             Statement stmt = (Statement) conn.createStatement();
             Statement stmtCate = (Statement) conn.createStatement();
             boolean checked = true;
-            
+            boolean sessionChecked = true;
             if(nameDetail.equals("")){      
                messages = "กรุณาใส่ข้อมูล";
            }else{
@@ -97,7 +98,17 @@ public class insertDetail extends HttpServlet {
                          messages = "ข้อมูลนี้มีอยู่แล้ว"; 
                 }
             }
-            if(checked){
+             HttpSession session=request.getSession();
+            if(session.getAttribute("userid")!=null){  
+                        String userID=(String)session.getAttribute("userid");  
+                        String nameUser=(String)session.getAttribute("username");
+                        //out.print("Hello, "+userID+" Welcome to Profile");  
+                        sessionChecked = true;  
+             }else{
+                        sessionChecked = false;
+                        messages = "ต้องทำการเข้าสู่ระบบก่อนการใช้งาน";
+             }           
+            if(checked&&sessionChecked){
             sql = "insert into a_report_detail(id_cate,name_report)"
                     + " values('" + pkCate + "','" + nameDetail + "')";
             System.out.println(sql);

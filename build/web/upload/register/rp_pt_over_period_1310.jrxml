@@ -8,6 +8,12 @@
 	<parameter name="SUBREPORT_DIR" class="java.lang.String" isForPrompting="false">
 		<defaultValueExpression><![CDATA["D:\\01_ProjectSVN56\\CHU1\\WorkingDirectory\\Development\\DevDocument\\2.jrxml_รายงานหน้าห้องตรวจ\\"]]></defaultValueExpression>
 	</parameter>
+	<parameter name="start_date" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="end_date" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
 	<queryString>
 		<![CDATA[select distinct
 t_patient.t_patient_id as pid
@@ -22,9 +28,9 @@ else f_patient_prefix.patient_prefix_description end
 , t_health_family.health_family_active as active
 ,case when b_visit_clinic.visit_clinic_description is null then 'ไม่ระบุ' else visit_clinic_description end as clinic
 from t_patient
-        inner join t_visit on  t_visit.t_patient_id = t_patient.t_patient_id
-        inner join t_health_family on t_health_family.t_health_family_id = t_patient.t_health_family_id
-        left join f_patient_prefix on f_patient_prefix.f_patient_prefix_id = t_health_family.f_prefix_id
+inner join t_visit on  t_visit.t_patient_id = t_patient.t_patient_id
+inner join t_health_family on t_health_family.t_health_family_id = t_patient.t_health_family_id
+left join f_patient_prefix on f_patient_prefix.f_patient_prefix_id = t_health_family.f_prefix_id
 left join t_diag_icd10 on (t_visit.t_visit_id =  t_diag_icd10.diag_icd10_vn and  t_diag_icd10.f_diag_icd10_type_id ='1' and diag_icd10_active = '1')
 left join b_visit_clinic on t_diag_icd10.b_visit_clinic_id = b_visit_clinic.b_visit_clinic_id
         inner join (select
@@ -36,11 +42,11 @@ left join b_visit_clinic on t_diag_icd10.b_visit_clinic_id = b_visit_clinic.b_vi
                             group by t_visit.t_patient_id) as max_visit
       on t_visit.t_patient_id = max_visit.t_patient_id
             and t_visit.visit_begin_visit_time = max_visit.visit_begin_visit_time
+
 where
 t_health_family.health_family_active = '1' -- parameter 0 or 1
 and t_patient.patient_active = '1' -- parameter 0 or 1
-and extract(year from age(to_date((to_number(substr(t_visit.visit_begin_visit_time, 1, 4),'9999') - 543
-|| substr(t_visit.visit_begin_visit_time, 5, 6)), 'YYYY-MM-DD'))) >= 5 -- parameter จำนวนปีที่เลือกจากหน้าจอ
+and substr(t_visit.visit_begin_visit_time, 1, 10) between $P{start_date} and $P{end_date}
 order by visit_date asc, hn asc]]>
 	</queryString>
 	<field name="pid" class="java.lang.String"/>
@@ -50,7 +56,6 @@ order by visit_date asc, hn asc]]>
 	<field name="years" class="java.lang.Double"/>
 	<field name="months" class="java.lang.Double"/>
 	<field name="active" class="java.lang.String"/>
-	<field name="pt_type" class="java.lang.String"/>
 	<field name="clinic" class="java.lang.String"/>
 	<variable name="sum_remain" class="java.lang.Double" calculation="Sum">
 		<variableExpression><![CDATA[]]></variableExpression>
@@ -59,68 +64,83 @@ order by visit_date asc, hn asc]]>
 		<band splitType="Stretch"/>
 	</background>
 	<pageHeader>
-		<band height="44">
+		<band height="51">
 			<textField>
 				<reportElement x="-1" y="1" width="576" height="20" uuid="290703e2-db48-40c1-8934-6be82cf1d5ea"/>
 				<textElement textAlignment="Center">
 					<font fontName="TH SarabunPSK" size="14" pdfEncoding="Identity-H"/>
 				</textElement>
-				<textFieldExpression><![CDATA["รายงานรายชื่อผู้ป่วยนอกที่ขาดการติดต่อเกิน 5 ปี"]]></textFieldExpression>
+				<textFieldExpression><![CDATA["รายงานรายชื่อผู้ป่วยนอกที่รับบริการล่าสุด  ระหว่างวันที่ "+
+new java.text.SimpleDateFormat("d MMMMM yyyy", new java.util.Locale("th", "TH")).format(new java.text.SimpleDateFormat("yyyy-MM-dd", new java.util.Locale("th", "TH")).parse($P{start_date}))
++" ถึงวันที่ "+new java.text.SimpleDateFormat("d MMMMM yyyy", new java.util.Locale("th", "TH")).format(new java.text.SimpleDateFormat("yyyy-MM-dd", new java.util.Locale("th", "TH")).parse($P{end_date}))]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement x="81" y="24" width="277" height="20" uuid="87470697-7c7b-4ec9-9588-9577fdf690c1"/>
+				<reportElement x="74" y="21" width="233" height="30" uuid="87470697-7c7b-4ec9-9588-9577fdf690c1"/>
 				<box>
 					<topPen lineWidth="0.0"/>
 					<leftPen lineWidth="0.0"/>
 					<bottomPen lineWidth="0.0"/>
 					<rightPen lineWidth="0.0"/>
 				</box>
-				<textElement textAlignment="Center">
+				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font fontName="TH SarabunPSK" size="12" isBold="true" pdfEncoding="Identity-H"/>
 				</textElement>
 				<text><![CDATA[ชื่อ - สกุล ]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="34" y="24" width="47" height="20" uuid="87470697-7c7b-4ec9-9588-9577fdf690c1"/>
+				<reportElement x="34" y="21" width="40" height="30" uuid="87470697-7c7b-4ec9-9588-9577fdf690c1"/>
 				<box>
 					<topPen lineWidth="0.0"/>
 					<leftPen lineWidth="0.0"/>
 					<bottomPen lineWidth="0.0"/>
 					<rightPen lineWidth="0.0"/>
 				</box>
-				<textElement textAlignment="Center">
+				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font fontName="TH SarabunPSK" size="12" isBold="true" pdfEncoding="Identity-H"/>
 				</textElement>
 				<text><![CDATA[HN]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="358" y="24" width="80" height="20" uuid="87470697-7c7b-4ec9-9588-9577fdf690c1"/>
+				<reportElement x="307" y="21" width="70" height="30" uuid="87470697-7c7b-4ec9-9588-9577fdf690c1"/>
 				<box>
 					<topPen lineWidth="0.0"/>
 					<leftPen lineWidth="0.0"/>
 					<bottomPen lineWidth="0.0"/>
 					<rightPen lineWidth="0.0"/>
 				</box>
-				<textElement textAlignment="Center">
+				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font fontName="TH SarabunPSK" size="12" isBold="true" pdfEncoding="Identity-H"/>
 				</textElement>
 				<text><![CDATA[วันที่รับบริการล่าสุด]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="439" y="24" width="86" height="20" uuid="87470697-7c7b-4ec9-9588-9577fdf690c1"/>
+				<reportElement x="450" y="21" width="105" height="30" uuid="87470697-7c7b-4ec9-9588-9577fdf690c1"/>
 				<box>
 					<topPen lineWidth="0.0"/>
 					<leftPen lineWidth="0.0"/>
 					<bottomPen lineWidth="0.0"/>
 					<rightPen lineWidth="0.0"/>
 				</box>
-				<textElement textAlignment="Center">
+				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font fontName="TH SarabunPSK" size="12" isBold="true" pdfEncoding="Identity-H"/>
 				</textElement>
 				<text><![CDATA[คลินิคที่รับบริการล่าสุด]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="0" y="24" width="35" height="20" uuid="87470697-7c7b-4ec9-9588-9577fdf690c1"/>
+				<reportElement x="0" y="21" width="35" height="30" uuid="87470697-7c7b-4ec9-9588-9577fdf690c1"/>
+				<box>
+					<topPen lineWidth="0.0"/>
+					<leftPen lineWidth="0.0"/>
+					<bottomPen lineWidth="0.0"/>
+					<rightPen lineWidth="0.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="TH SarabunPSK" size="12" isBold="true" pdfEncoding="Identity-H"/>
+				</textElement>
+				<text><![CDATA[ลำดับ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="380" y="21" width="70" height="30" uuid="87470697-7c7b-4ec9-9588-9577fdf690c1"/>
 				<box>
 					<topPen lineWidth="0.0"/>
 					<leftPen lineWidth="0.0"/>
@@ -130,7 +150,8 @@ order by visit_date asc, hn asc]]>
 				<textElement textAlignment="Center">
 					<font fontName="TH SarabunPSK" size="12" isBold="true" pdfEncoding="Identity-H"/>
 				</textElement>
-				<text><![CDATA[ลำดับ]]></text>
+				<text><![CDATA[ระยะเวลา
+(ปี/เดือน)]]></text>
 			</staticText>
 		</band>
 	</pageHeader>
@@ -140,7 +161,7 @@ order by visit_date asc, hn asc]]>
 	<detail>
 		<band height="20">
 			<textField pattern="#,##0" isBlankWhenNull="true">
-				<reportElement x="34" y="0" width="47" height="20" uuid="18d17051-5b3b-4b0d-b428-8dee0df76027"/>
+				<reportElement x="34" y="0" width="40" height="20" uuid="18d17051-5b3b-4b0d-b428-8dee0df76027"/>
 				<box>
 					<topPen lineWidth="0.0"/>
 					<leftPen lineWidth="0.0"/>
@@ -154,7 +175,7 @@ order by visit_date asc, hn asc]]>
 				<textFieldExpression><![CDATA[$F{hn}]]></textFieldExpression>
 			</textField>
 			<textField isStretchWithOverflow="true" pattern="#,##0" isBlankWhenNull="true">
-				<reportElement x="102" y="0" width="256" height="20" isPrintWhenDetailOverflows="true" uuid="18d17051-5b3b-4b0d-b428-8dee0df76027"/>
+				<reportElement x="95" y="0" width="212" height="20" isPrintWhenDetailOverflows="true" uuid="18d17051-5b3b-4b0d-b428-8dee0df76027"/>
 				<box>
 					<topPen lineWidth="0.0"/>
 					<leftPen lineWidth="0.0"/>
@@ -168,7 +189,7 @@ order by visit_date asc, hn asc]]>
 				<textFieldExpression><![CDATA[$F{patient_name}]]></textFieldExpression>
 			</textField>
 			<textField isStretchWithOverflow="true" pattern="dd/MM/yyyy" isBlankWhenNull="true">
-				<reportElement x="358" y="0" width="80" height="20" isPrintWhenDetailOverflows="true" uuid="18d17051-5b3b-4b0d-b428-8dee0df76027"/>
+				<reportElement x="307" y="0" width="70" height="20" isPrintWhenDetailOverflows="true" uuid="18d17051-5b3b-4b0d-b428-8dee0df76027"/>
 				<box>
 					<topPen lineWidth="0.0"/>
 					<leftPen lineWidth="0.0"/>
@@ -182,7 +203,7 @@ order by visit_date asc, hn asc]]>
 				<textFieldExpression><![CDATA[$F{visit_date}]]></textFieldExpression>
 			</textField>
 			<textField isStretchWithOverflow="true" pattern="#,##0.00" isBlankWhenNull="true">
-				<reportElement x="455" y="0" width="70" height="20" isPrintWhenDetailOverflows="true" uuid="18d17051-5b3b-4b0d-b428-8dee0df76027"/>
+				<reportElement x="464" y="0" width="91" height="20" isPrintWhenDetailOverflows="true" uuid="18d17051-5b3b-4b0d-b428-8dee0df76027"/>
 				<box>
 					<topPen lineWidth="0.0"/>
 					<leftPen lineWidth="0.0"/>
@@ -209,6 +230,47 @@ order by visit_date asc, hn asc]]>
 				</textElement>
 				<textFieldExpression><![CDATA[$V{REPORT_COUNT}]]></textFieldExpression>
 			</textField>
+			<textField isStretchWithOverflow="true" pattern="###0" isBlankWhenNull="true">
+				<reportElement x="393" y="0" width="20" height="20" isPrintWhenDetailOverflows="true" uuid="18d17051-5b3b-4b0d-b428-8dee0df76027"/>
+				<box>
+					<topPen lineWidth="0.0"/>
+					<leftPen lineWidth="0.0"/>
+					<bottomPen lineWidth="0.0"/>
+					<rightPen lineWidth="0.0"/>
+				</box>
+				<textElement textAlignment="Right">
+					<font fontName="TH SarabunPSK" size="12" pdfEncoding="Identity-H"/>
+					<paragraph leftIndent="5"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{years}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" pattern="###0" isBlankWhenNull="true">
+				<reportElement x="422" y="0" width="15" height="20" isPrintWhenDetailOverflows="true" uuid="18d17051-5b3b-4b0d-b428-8dee0df76027"/>
+				<box>
+					<topPen lineWidth="0.0"/>
+					<leftPen lineWidth="0.0"/>
+					<bottomPen lineWidth="0.0"/>
+					<rightPen lineWidth="0.0"/>
+				</box>
+				<textElement>
+					<font fontName="TH SarabunPSK" size="12" pdfEncoding="Identity-H"/>
+					<paragraph leftIndent="5"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{months}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="413" y="0" width="10" height="20" uuid="87470697-7c7b-4ec9-9588-9577fdf690c1"/>
+				<box>
+					<topPen lineWidth="0.0"/>
+					<leftPen lineWidth="0.0"/>
+					<bottomPen lineWidth="0.0"/>
+					<rightPen lineWidth="0.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Top">
+					<font fontName="TH SarabunPSK" size="12" isBold="true" pdfEncoding="Identity-H"/>
+				</textElement>
+				<text><![CDATA[/]]></text>
+			</staticText>
 		</band>
 	</detail>
 	<pageFooter>
@@ -239,6 +301,13 @@ order by visit_date asc, hn asc]]>
 	</pageFooter>
 	<summary>
 		<band height="20">
+			<textField pattern="#,##0" isBlankWhenNull="true">
+				<reportElement x="67" y="0" width="35" height="20" uuid="45da4c1d-4a21-44bf-8acb-3230ce576556"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="TH SarabunPSK" size="12" isBold="true" pdfEncoding="Identity-H"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{REPORT_COUNT}]]></textFieldExpression>
+			</textField>
 			<staticText>
 				<reportElement x="35" y="0" width="32" height="20" uuid="87470697-7c7b-4ec9-9588-9577fdf690c1"/>
 				<box>
@@ -265,13 +334,6 @@ order by visit_date asc, hn asc]]>
 				</textElement>
 				<text><![CDATA[รายการ]]></text>
 			</staticText>
-			<textField pattern="#,##0" isBlankWhenNull="true">
-				<reportElement x="67" y="0" width="35" height="20" uuid="45da4c1d-4a21-44bf-8acb-3230ce576556"/>
-				<textElement verticalAlignment="Middle">
-					<font fontName="TH SarabunPSK" size="12" isBold="true" pdfEncoding="Identity-H"/>
-				</textElement>
-				<textFieldExpression><![CDATA[$V{REPORT_COUNT}]]></textFieldExpression>
-			</textField>
 		</band>
 	</summary>
 </jasperReport>

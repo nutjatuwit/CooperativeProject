@@ -26,7 +26,7 @@
     %>
  
 <frameset name="allSet" rows="8.7%,91.3%">  
-    <frame name="top" src="tabContent.jsp" noresize="noresize">
+    <frame name="top" src="tabContent.jsp" noresize="noresize" scrolling="no">
         <frameset cols="33%,33%,33%">
                      <frame name="left" src="reportCateForm.jsp">
                      <frame name="mid" src="blankPage.jsp">

@@ -1,4 +1,4 @@
-<%-- 
+ <%-- 
     Document   : reportForm
     Created on : Sep 25, 2017, 1:34:49 PM
     Author     : NUT
@@ -266,6 +266,15 @@ background-color: #FEEFB3;
                          out.print("<div class='warning'>"+messages+"</div>");
                         }     
                 }
+             if(session.getAttribute("userid")!=null){  
+                        String userID=(String)session.getAttribute("userid");  
+                        String nameUser=(String)session.getAttribute("username");
+                        //out.print("Hello, "+userID+" Welcome to Profile");  
+                          
+             }else{
+                        out.print(" "); 
+             }             
+                           
            
            
             managePath path = new managePath(getServletContext().getRealPath("/")+"setting/setting.txt");
@@ -277,7 +286,7 @@ background-color: #FEEFB3;
               //String sqlCompile = "select * from member";
               //ResultSet rsCompile = statement1.executeQuery(sqlCompile);
               
-              String sql = "select id_cate,name_cate,name_folder,b_service_point_id from a_report_category order by id_cate DESC";
+              String sql = "select id_cate,name_cate,name_folder,b_service_point_id from a_report_category order by id_cate ASC";
               String sqlServicePoint = "select b_service_point.b_service_point_id,b_service_point.service_point_description from b_service_point where service_point_active = '1' order by b_service_point.service_point_description ASC";
               
               ResultSet rs = null;

@@ -29,62 +29,10 @@
     <head>
   
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        
+        <link rel="stylesheet" href="style/default.css">
+        <link rel="stylesheet" href="style/w3.css">
         
         <style>
-.button {
-    background-color: #4CAF50; /* Green */
-    border: none;
-    color: white;
-    padding: 8px 16px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 12px;
-    margin: 4px 2px;
-    -webkit-transition-duration: 0.4s; /* Safari */
-    transition-duration: 0.4s;
-    cursor: pointer;
-}
-
-.button2 {
-    background-color: white; 
-    color: black; 
-    border: 2px solid #008CBA;
-}
-
-.button2:hover {
-    background-color: #008CBA;
-    color: white;
-    border-radius: 12px;
-}
-
-div {
-    font-size: 12pt;
-    font-family: times new roman;
-    color: #23238e;
-}
-
-select {
-        border:2px solid lightblue;
-	border-radius:8px;
-	height: 22px;
-	width: 120px;
-}
-
-input[type=date] {
-        border:2px solid lightblue;
-	border-radius:8px;
-	height: 22px;
-	width: 130px;
-}
-
-input[type=text] {
-        border:2px solid lightblue;
-	border-radius:8px;
-	height: 22px;
-	width: 130px;
-}
 
 .tooltip {
     position: relative;
@@ -101,7 +49,7 @@ input[type=text] {
     border-radius: 6px;
     padding: 5px 0;
     width: 180px;
-    top: -5px;
+    top: -155px;
     left: 155%; 
     margin-left: -60px;
     /* Position the tooltip */
@@ -109,15 +57,7 @@ input[type=text] {
     z-index: 1;
 }
 
-.tooltip:hover .tooltiptext {
-    visibility: visible;
-}
-#pagewrap {
-                border: solid 1px #ccc;
-                font-family: TH SarabunPSK;
-                font-size: 23px;
-                font-weight: bold;
-            }  
+
 
 </style>
         
@@ -257,7 +197,7 @@ input[type=text] {
             out.print("<input type='hidden' name='textPath' value="+textPath+">");
             out.print("<input type='hidden' name='textReportJasper' value="+textReportJasper+">");
             out.print("<input type='hidden' name='textReport' value="+textReport+">");
-            out.print("<br><div class='tooltip'><input type='submit' class='button button2' value='แสดงรายการ'><span class='tooltiptext'>ตัวแปรที่จำเป็น: <br>"+sb+"</span></div>");
+            out.print("<br><div class='tooltip'><input type='submit' class='button button2' value='แสดงรายงาน'><span class='tooltiptext'>ตัวแปรที่จำเป็น: <br>"+sb+"</span></div>");
            out.print("</form>");
           
            out.print("</div>"); 

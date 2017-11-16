@@ -70,6 +70,12 @@ body {
     </head>
    
      <div class="tab">
+            <form>
+                <button type="submit" class="tablinks" name="backButton" style="float: left; font-size: 20px;font-family: TH SarabunPSK;font-weight: bold;" onclick="backtomenu()">
+                    <img src='images/Logo Open.jpg' id='img' height='48' width='159'>
+                </button>
+             </form>
+           
             
             <form action="authenLogout"> 
             <button type="submit" class="tablinks" name="backButton"><img src='images/logout.png' id='img' height='32' width='32'> Logout</button>
@@ -81,7 +87,7 @@ body {
         </div>
     
     
-    <img class="banner" src="images/HosOSlogo.png" alt="" /><br><br>
+    
     <body align='center'>
         
         <form action = "reportForm.jsp">
