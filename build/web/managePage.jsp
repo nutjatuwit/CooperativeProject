@@ -88,7 +88,7 @@ body {
       
     </head>
     <body align='center'>
-        <form action = "manageReport.jsp">
+        <form action = "manageForm.jsp">
             <button id="mainmenu" type='submit' name='reportButton'  action="" ><img src="images/manage.png" style=" padding: 0 ; margin-left: 1px; margin-bottom: -11px;" id="img" height='32' width='32'>Manage</button><br><br>
         </form>
         

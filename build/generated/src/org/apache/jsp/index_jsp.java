@@ -125,7 +125,7 @@ public final class index_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("    margin-left:calc(50% - 200px);\n");
       out.write("    margin-left:-webkit-calc(50% - 200px);\n");
       out.write("    margin-left:-moz-calc(50% - 200px);\n");
-      out.write("    background: rgba(256,256,256, 0.3);\n");
+      out.write("    background: rgba(256,256,256, 0.4);\n");
       out.write("    border-radius: 6px; \n");
       out.write("  }\n");
       out.write("#fieldData{\n");
@@ -167,6 +167,11 @@ public final class index_jsp extends org.apache.jasper.runtime.HttpJspBase
                         
                 
                            out.print("<div class='tab'>");
+                           out.print("<form>");
+                           out.print("<button type='submit' class='tablinks' name='backButton' style='float: left; font-size: 20px;font-family: TH SarabunPSK;font-weight: bold;' onclick='backtomenu()'>");
+                           out.print("<img src='images/Logo Open.jpg' id='img' height='48' width='159'>");
+                           out.print("</button>");
+                           out.print("</form>");
                            out.print("<form action='authenLogout'>");
                            out.print("<button type='submit' class='tablinks' name='backButton'><img src='images/logout.png' id='img' height='32' width='32'> Logout</button>");
                            out.print("</form>");
@@ -181,7 +186,7 @@ public final class index_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("       \n");
       out.write("       <div class=\"container\" id=\"container\">   \n");
       out.write("          <form id=\"fieldData\" action=\"authenLogin\" method=\"post\" align=\"center\" >\n");
-      out.write("              <img src='images/Hospital-OS-LOGO1.png' id='img' width=\"304\" height=\"140\" ><br>\n");
+      out.write("              <img src='images/Hospital-OS-LOGO1.png' id='img' width=\"304\" height=\"140\" ><br><br>\n");
       out.write("            <input type=\"text\" id=\"textLogin\" placeholder=\"ผู้ใช้\" name=\"uname\" required><br>\n");
       out.write("            <input type=\"password\" id=\"textLogin\" placeholder=\"รหัสผ่าน\" name=\"psw\"><br>   \n");
       out.write("            <button id=\"loginButton\" type=\"submit\" >เข้าสู่ระบบ</button>\n");

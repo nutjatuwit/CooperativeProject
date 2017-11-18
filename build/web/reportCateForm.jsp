@@ -161,13 +161,18 @@
                 margin-bottom: 5px;
             }
 
-            #pagewrap, header, #content, #middle, #sidebar, footer {
+            #pagewrap,  #content, #middle, #sidebar, footer {
                 border: solid 1px #ccc;
                 font-family: TH SarabunPSK;
                 font-size: 23px;
                 font-weight: bold;
+                
             }  
+            #pagewrap{
+                padding-right: 25px;   
+            }
             
+           
              div.tab {
     overflow: hidden;
     border: 1px solid #ccc;
@@ -246,6 +251,14 @@ color: #9F6000;
 background-color: #FEEFB3;
 
 }
+body{
+   background-color: #A9D0F5;
+   color: black;
+            }
+#pagewrap{
+    background: rgba(256,256,256, 0.6);
+    border-radius: 6px; 
+}       
         </style>
         <link rel="stylesheet" href="dist/themes/default/style.min.css" />
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jstree/3.2.1/themes/default/style.min.css" />
@@ -303,7 +316,7 @@ background-color: #FEEFB3;
 
         <div id="pagewrap">
 
-	<header align='center'>
+	<header id="header" align='center' style="font-family: TH SarabunPSK;">
 		<% out.print("<h2>ประเภทรายงาน</h2>"); %>
 	</header>
 	
@@ -365,19 +378,21 @@ background-color: #FEEFB3;
                     }
                     out.print("</table>");
                     out.print("</div>");
+                 out.print("<div id='setGroup' align='left'  >");
                  out.print("<form action='insertCate'>");
-                 out.print("<input type='text' placeholder='เพิ่มประเภทรายงาน...' class='w3-input w3-border w3-round  w3-light-blue' name='nameCate' style='width: 52%;height: 28px;font-size: 22px;font-family: TH SarabunPSK;'>");
+                 out.print("<input type='text' placeholder='เพิ่มประเภทรายงาน...' id='inputForm' name='nameCate' style='width: 72%;height: 35px;font-size: 22px;font-family: TH SarabunPSK;margin-left:25px;'>");
+                   out.print("<input type='submit' class='addButton'  style='width:20%;height: 35px; margin-left: 1px;padding: 0px 0px;margin-top: 10px;font-size: 22px;' value='เพิ่ม'><br>");
                   
-                  
-                             out.println("<select name='service_point' style='width: 25%;height:30px;'>");
+                             out.println("<select name='service_point' style='width: 72%;padding: 0px 0px;margin: 0px 0px;margin-left:25px;margin-top:-25px;'>");
                              while(rsServicePoint.next()) {
                                  out.print("<option value=" + rsServicePoint.getString(1) + ">");
                                  out.print(rsServicePoint.getString(2));
                                  out.print("</option>");
                              }
                              out.println("</select> ");
-                 out.print("<input type='submit' class='w3-button w3-blue w3-round' style='width:20%;height: 30px;padding: 0 ; margin-left: 1px; margin-bottom: 4px;'  value='เพิ่ม'>");
+                
                  out.print("</form>");
+                 out.print("</div>");
                   }  
                         else{ 
                            

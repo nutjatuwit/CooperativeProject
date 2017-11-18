@@ -1,5 +1,11 @@
- 
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Frameset//EN" "http://www.w3.org/TR/html4/frameset.dtd">
+<%-- 
+    Document   : manageForm
+    Created on : Nov 17, 2017, 4:25:48 PM
+    Author     : NUT
+--%>
+
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<!DOCTYPE html>
 <html>
 <head>
 <meta http-equiv="content-type" content="text/html; charset=utf-8">
@@ -25,13 +31,12 @@
 
     %>
  
-
-    
-        <frameset cols="33%,33%,33%" border="1" BORDERCOLOR="#5858FA">
-                     <frame name="left" src="reportCateForm.jsp" noresize="noresize">
-                     <frame name="mid" src="blankPage.jsp" noresize="noresize">
-                     <frame name="right" src="blankPage.jsp" noresize="noresize">
+<frameset name="allSet" rows="8.7%,91.3%" border="1" BORDERCOLOR="#5858FA">  
+    <frame name="topper" src="tabContent.jsp" noresize="noresize" scrolling="no">
+        <frameset cols="8%,92%" border="1" BORDERCOLOR="#5858FA">
+                     <frame name="lefter" src="menuAdmin.jsp">
+                     <frame name="righter" src="blankPage.jsp">
         </frameset>
-
+</frameset>
 
 </html>

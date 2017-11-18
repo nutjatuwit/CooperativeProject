@@ -86,7 +86,7 @@ background-color: #FEEFB3;
     margin-left:calc(50% - 200px);
     margin-left:-webkit-calc(50% - 200px);
     margin-left:-moz-calc(50% - 200px);
-    background: rgba(256,256,256, 0.4);
+    background: rgba(256,256,256, 0.6);
     border-radius: 6px; 
   }
 #fieldData{

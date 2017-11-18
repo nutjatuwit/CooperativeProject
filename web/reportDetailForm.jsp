@@ -156,17 +156,20 @@
             #sidebar {
                 background: #f0efef;
             }
-            header, #content, #middle, #sidebar {
+             #content, #middle, #sidebar {
                 margin-bottom: 5px;
             }
 
-            #pagewrap, header, #content, #middle, #sidebar, footer {
+              #content, #middle, #sidebar, footer {
                 border: solid 1px #ccc;
                 font-family: TH SarabunPSK;
                 font-size: 21px;
                 font-weight: bold;
                 
             }  
+            #pagewrap{
+                padding-right: 25px;   
+            }
             
             input[type=text] {
     width: 80%;
@@ -210,6 +213,15 @@ color: #9F6000;
 background-color: #FEEFB3;
 
 }
+
+body{
+   background-color: #A9D0F5;
+   color: black;
+            }
+#pagewrap{
+    background: rgba(256,256,256, 0.6);
+    border-radius: 6px; 
+}     
         </style>
         <link rel="stylesheet" href="dist/themes/default/style.min.css" />
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jstree/3.2.1/themes/default/style.min.css" />
@@ -264,8 +276,8 @@ background-color: #FEEFB3;
         %>
         <div id="pagewrap">
 
-	<header align='center'>
-		<% out.print("<h3>"+category+"</h3>"); %>
+	<header align='center' id="header" style="font-family: TH SarabunPSK;">
+		<% out.print("<h2>"+category+"</h2>"); %>
 	</header>
 	
         
@@ -313,12 +325,12 @@ background-color: #FEEFB3;
                     out.print("</table>");
                     out.print("</div>");
                  out.print("<form action='insertDetail'>");
-                 out.print("<input type='text' placeholder='เพิ่มรายงาน...' class='w3-input w3-border w3-round  w3-light-blue' name='nameDetail' style='width: 75%;height: 28px;font-size: 22px;font-family: TH SarabunPSK;'>");
+                 out.print("<input type='text' placeholder='เพิ่มรายงาน...' id='inputForm' name='nameDetail' style='width: 72%;height: 35px;;font-size: 22px;font-family: TH SarabunPSK;margin-left:25px;'>");
                  out.print("<input type='hidden' name='category' value='"+category+"'>");
                  out.print("<input type='hidden' name='pkCate' value='"+pkCate+"'>");
                  //out.print("<input type='hidden' name='pkDetail' value='"+(count+1)+"'>");
                  
-                 out.print("<input type='submit' class='w3-button w3-blue w3-round' style='width:20%;height: 30px;padding: 0 ; margin-left: 1px; margin-bottom: 4px;'  value='เพิ่ม'>");
+                 out.print("<input type='submit' class='addButton' style='width:20%;height: 35px;padding: 0 ; margin-left: 1px;font-size: 22px; margin-bottom: 4px;' value='เพิ่ม'>");
                  out.print("</form>");
                   }  
                         else{ 

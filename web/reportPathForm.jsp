@@ -161,21 +161,23 @@
                 margin-bottom: 5px;
             }
 
-            #pagewrap, header, #content, #middle, #sidebar, footer {
+            #pagewrap,  #content, #middle, #sidebar, footer {
                 border: solid 1px #ccc;
             } 
+            #pagewrap{
+                padding-right: 25px;   
+            }
             
            input[type=submit]{
-                    width: 100%;
+                    width: 60%;
                     background-color: #088A08;
                     color: white;
-                    padding: 14px 20px;
                     margin: 8px 0;
                     border: none;
-                    border-radius: 4px;
+                    border-radius: 6px;
                     cursor: pointer;
                     align-content: center;
-                    font-size: 16px;
+                    font-size: 24px;
 }
 
             input[type=text]{
@@ -188,6 +190,15 @@
                     box-sizing: border-box;
                     font-size: 16px;
 }
+
+body{
+   background-color: #A9D0F5;
+   color: black;
+            }
+#pagewrap{
+    background: rgba(256,256,256, 0.6);
+    border-radius: 6px; 
+}     
         </style>
         <link rel="stylesheet" href="dist/themes/default/style.min.css" />
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jstree/3.2.1/themes/default/style.min.css" />
@@ -220,8 +231,8 @@
         %>
         <div id="pagewrap">
 
-	<header align='center'>
-		<% out.print("<h5>"+detail+"</h5>"); %>
+	<header align='center' style="font-family: TH SarabunPSK;">
+		<% out.print("<h2>"+detail+"</h2>"); %>
 	</header>
 	
         
@@ -230,15 +241,15 @@
                     while(rs.next()){
                     out.print("<div class='w3-container'>");
                     out.print("<form action='reportUploadReportFile.jsp'>");
-                    out.print("ตำแหน่งไฟล์  <input type='text' name='path'  width='100%' value='"+rs.getString(3)+"' readonly><br>");
-                    out.print("jrxml  <input type='text' name='jrxml' width='100%' value='"+rs.getString(4)+"' readonly><br>");
-                    out.print("jasper  <input type='text' name='jasper' width='100%' value='"+rs.getString(5)+"' readonly><br>");
-                    out.print("<input type='hidden' name='name_folder'  width='100%' value='"+name_folder+"'>");
+                    out.print("ตำแหน่งไฟล์  <input type='text' name='path'  id='inputForm' value='"+rs.getString(3)+"' style='width: 68%;height: 35px;;font-size: 24px;font-family: TH SarabunPSK;margin-left:10px;' readonly><br>");
+                    out.print("jrxml  <input type='text' id='inputForm' name='jrxml'  value='"+rs.getString(4)+"' style='width: 68%;height: 35px;;font-size: 24px;font-family: TH SarabunPSK;margin-left:51px;' readonly><br>");
+                    out.print("jasper  <input type='text'  id='inputForm' name='jasper' value='"+rs.getString(5)+"' style='width: 68%;height: 35px;;font-size: 24px;font-family: TH SarabunPSK;margin-left:46px;' readonly><br>");
+                    out.print("<input type='hidden' name='name_folder'   value='"+name_folder+"'>");
                     //out.print("jrxml file: <input name='file' type='file' id='file' accept='.jrxml'><br>");
                     //out.print("jasper file: <input name='file' type='file' id='file' accept='.jasper'>");
                     out.print("<input type='hidden' name='category' value='"+category+"'>");
                     out.print("<input type='hidden' name='detail' value='"+detail+"'>");
-                    out.print("<input type='submit' value='แก้ไขไฟล์รายงาน'>");
+                    out.print("<input type='submit' value='แก้ไขไฟล์รายงาน' style='margin-left: 75px;' > ");
                     out.print("</form>");
                     out.print("</div>");
                     }

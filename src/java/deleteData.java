@@ -59,6 +59,10 @@ public class deleteData extends HttpServlet {
             Integer id = Integer.valueOf(request.getParameter("id"));
             
             
+            out.println("<script>");
+            out.println("window.close()");
+            out.println("</script>");
+            
             System.out.println("Id : "+id);
 
             
@@ -72,6 +76,7 @@ public class deleteData extends HttpServlet {
             //stmt.executeUpdate("SET character_set_client=utf8");
             //stmt.executeUpdate("SET character_set_connection=utf8");
             System.out.println(sql);
+            
             
             stmt.executeUpdate(sql);
             
@@ -93,7 +98,7 @@ public class deleteData extends HttpServlet {
         PrintWriter out = response.getWriter();
          out.println("<html><body>");
          out.println("<script type=\"text/javascript\">");
-        out.println("location.replace('manageParams.jsp')");
+        out.println("window.open('manageParams.jsp','righter')");
         out.println("</script>");
          out.println("</body></html>");
          
