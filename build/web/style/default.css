@@ -280,3 +280,11 @@ inputForm{
     transition-duration: 0.3s;
      
 }
+#textInput{
+        border:2px solid #74B3DF;  
+	border-radius:6px;
+	height: 40px;
+	width: 250px;
+        font-size: 25px;
+    
+}

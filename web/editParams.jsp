@@ -21,35 +21,17 @@
 <!DOCTYPE html>
 <html>
     <head>
+        <link rel="stylesheet" href="style/default.css">
+        <link rel="stylesheet" href="style/w3.css">
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>JSP Page</title>
         <style>
-input[type=text], select,button {
-    width: 100%;
-    padding: 12px 20px;
-    margin: 8px 0;
-    display: inline-block;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    box-sizing: border-box;
-    font-size: 16px;
-}
-
-input[type=submit]{
-    width: 100%;
-    background-color: #0040FF;
-    color: white;
-    padding: 14px 20px;
-    margin: 8px 0;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    align-content: center;
-    font-size: 16px;
-}
+html{
+          background-color: #A9D0F5;      
+            }
 
 button {
-    width: 100%;
+    width: 50%;
     background-color: #0040FF;
     color: white;
     padding: 14px 20px;
@@ -61,9 +43,6 @@ button {
 }
 
 
-input[type=submit],button:hover {
-    background-color: #45a049;
-}
 
 div {
     border-radius: 5px;
@@ -81,28 +60,49 @@ div {
     font-size: 20px;
 }
 
-textarea {
-    width: 100%;
-    height: 150px;
-    padding: 12px 20px;
-    box-sizing: border-box;
-    border: 2px solid #ccc;
-    border-radius: 4px;
-    background-color: #f8f8f8;
+#textArea {
+   height: 150px;
+    border-radius: 6px;
+    background-color: transparent;
     resize: none;
 }
+#addButton {
+   background-color: #ffffff; 
+   border-radius:6px;
+   font-weight: bold;
+   font-family: TH SarabunPSK;
+   font-size: 24px;
+   padding: 0px 11px;
+   color: black;
+   height: 40px;
+   
+   border:2px solid #74B3DF;
+   cursor: pointer;
+}
+#addButton:hover{
+    color: white;
+    background-color: #005ce6;
+    transition-duration: 0.3s;
+     
+}
 #pagewrap{
-                border: solid 1px #e6ffff;
-                background-color: #e6ffff;
-                font-family: TH SarabunPSK;
-                font-size: 23px;
-                font-weight: bold;
-            }  
+    background: rgba(256,256,256, 0.6);
+    border-radius: 6px; 
+    padding: 10px 10px;
+    margin: 40px 150px;
+    align-content: center;
+    
+}
+#groupDetail{
+    background: transparent;
+    align-content: center;
+    margin-left: 148px;
+} 
 </style>
     </head>
     <body>
         <div id='pagewrap'>
-        <h1 align="center">Edit Parameters</h1>
+        <h1 align="center" style="font-family: TH SarabunPSK;font-size:45px;margin-left: 33px;font-weight: bold;">แก้ไขตัวแปร</h1>
        <%
                 response.setContentType("text/html;charset=UTF-8");
                 request.setCharacterEncoding("UTF-8");
@@ -113,8 +113,9 @@ textarea {
                 String filtertype = request.getParameter("filtertype");
        %>
         <form name="updateData" action="updateData" align="left">
-           ชื่อตัวแปร :  <br><input type="text" name="name" value=<%=name%>><br><br>
-           ตัวแปร :  <br><input type="text" name="description" value=<%=description%>><br><br>
+            <div id="groupDetail">
+           ชื่อตัวแปร :  <input type="text" id="textInput" name="name" value='<%=name%>' style='margin-left: 15px;'><br><br>
+           ตัวแปร :  <input type="text" id="textInput" name="description" value='<%=description%>' style='margin-left: 33px;'><br><br>
            <%
                try{
                   managePath path = new managePath(getServletContext().getRealPath("/")+"setting/setting.txt"); 
@@ -136,8 +137,8 @@ textarea {
                
                ResultSet rs = statement.executeQuery(sql);
               
-              out.print("FilterType : <br>");
-               out.println("<select name='idfil' onchange='showData()'>");
+              
+               out.println("การรับข้อมูล : <select name='idfil' onchange='showData()' style='height: 40px;border:2px solid #74B3DF;'>");
                while(rs.next()){
                    //out.print(rs.getString(2));
                    if(rs.getString(2).equals(filtertype)){
@@ -165,8 +166,8 @@ textarea {
              if(query.equals(null)){
                 query = " ";
              }  
-           out.print("<div id='textArea'>");
-           out.print("SQL Query :  <br><textarea row='50' cols='50' name='query' >"+query+"</textarea><br><br><br>");
+           out.print("<div id='textArea' style='padding: 0px 0px;margin-right: 35px;'>");
+           out.print("คำสั่งSQL :  <textarea row='60' cols='80' name='query' style='width: 400px;'>"+query+"</textarea><br>");
            out.print("</div>");
               
            if(filtertype.equals("list")){
@@ -175,14 +176,15 @@ textarea {
               out.print("<script>document.getElementById('textArea').style.display = 'none';</script>");
            }
            %>
-           <div id="buttonAccept">
-           <input type="submit" align="right" action="" value="ยืนยัน">
-           </div>
+           
+           <button type="submit" id="addButton" align="right" action="" style='padding: 0px 0px;margin-left: 45px;'>ยืนยัน</button>
+           
         </form>  
-           <div id="buttonBack">
-          <button onclick="goBack()">กลับ</button>
-           </div>
-</div>           
+           
+          <button id="addButton" onclick="goBack()" style='padding: 0px 0px;margin-left: 45px;'>กลับ</button>
+          
+             </div> 
+            </div> 
            <script>
      function goBack() {
     //window.history.back();

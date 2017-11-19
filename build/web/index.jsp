@@ -72,6 +72,7 @@ background-color: #FEEFB3;
 }
 
 .container {
+    
     padding: 8px;
     margin: 4px 0;
     font-weight: bold;
@@ -82,7 +83,7 @@ background-color: #FEEFB3;
     float:left;
     width:20%;
     min-width:400px;
-    margin-top:25px;
+    margin-top:58px;
     margin-left:calc(50% - 200px);
     margin-left:-webkit-calc(50% - 200px);
     margin-left:-moz-calc(50% - 200px);

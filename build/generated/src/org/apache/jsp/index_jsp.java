@@ -125,7 +125,7 @@ public final class index_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("    margin-left:calc(50% - 200px);\n");
       out.write("    margin-left:-webkit-calc(50% - 200px);\n");
       out.write("    margin-left:-moz-calc(50% - 200px);\n");
-      out.write("    background: rgba(256,256,256, 0.4);\n");
+      out.write("    background: rgba(256,256,256, 0.6);\n");
       out.write("    border-radius: 6px; \n");
       out.write("  }\n");
       out.write("#fieldData{\n");
