@@ -33,7 +33,8 @@ public static void main(String[] args) {
         file.createNewFile();
         FileWriter fw = new FileWriter(file);
         BufferedWriter bw = new BufferedWriter(fw);
-        bw.write("Some text here for a reason\n");
+        bw.write("Some text here for a reason,test,test2");
+        bw.newLine();
         bw.write("Some text here for a reason2");
         bw.flush();
 

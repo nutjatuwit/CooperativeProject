@@ -1,2 +1,2 @@
-jdbc:postgresql://localhost:5433/dbHos,postgres,postgres 
-Report                                                
+jdbc:postgresql://localhost:5433/dbHos,postgres,postgres
+Report

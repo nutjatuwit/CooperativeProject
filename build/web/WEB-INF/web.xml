@@ -60,6 +60,10 @@
         <servlet-name>authenLogout</servlet-name>
         <servlet-class>authenLogout</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>setPathDB</servlet-name>
+        <servlet-class>setPathDB</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>insertData</servlet-name>
         <url-pattern>/insertData</url-pattern>
@@ -119,6 +123,10 @@
     <servlet-mapping>
         <servlet-name>authenLogout</servlet-name>
         <url-pattern>/authenLogout</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>setPathDB</servlet-name>
+        <url-pattern>/setPathDB</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

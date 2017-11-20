@@ -26,7 +26,7 @@
   <div class="btn-group-vertical" style="width: 100%;">
     <button type="button" id="menuButton"  class="btn btn-primary" onclick="manageReport();">จัดการรายงาน</button>
     <button type="button" id="menuButton" class="btn btn-primary" onclick="manageParams();">จัดการตัวแปร</button>
-    <button type="button" id="menuButton" class="btn btn-primary" >ตั้งค่าระบบ</button>
+    <button type="button" id="menuButton" class="btn btn-primary" onclick="manageSetting();">ตั้งค่าระบบ</button>
   </div>
 
 
@@ -38,6 +38,9 @@
        }
        function manageParams(){
            window.open('manageParams.jsp','righter');
+       }
+       function manageSetting(){
+           window.open('manageSetting.jsp','righter');
        }
        
        $(document).ready(function() { 

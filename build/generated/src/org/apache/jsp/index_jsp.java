@@ -133,13 +133,12 @@ public final class index_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("   display: table-cell;\n");
       out.write("   text-align: center;\n");
       out.write("   vertical-align: middle;\n");
+      out.write("   \n");
       out.write("    height: 500px;\n");
       out.write("}\n");
       out.write("\n");
       out.write("body{\n");
-      out.write("    background-image: url(\"images/background.jpg\");\n");
-      out.write("    background-size: auto;\n");
-      out.write("    background-repeat: no-repeat;\n");
+      out.write("    background-color: #A9D0F5;\n");
       out.write("}\n");
       out.write("\n");
       out.write("</style>\n");
@@ -174,11 +173,11 @@ public final class index_jsp extends org.apache.jasper.runtime.HttpJspBase
                            out.print("</button>");
                            out.print("</form>");
                            out.print("<form action='authenLogout'>");
-                           out.print("<button type='submit' class='tablinks' name='backButton'><img src='images/logout.png' id='img' height='32' width='32'></button>");
+                           out.print("<button type='submit' class='tablinks' name='backButton'><img src='images/logout.png' id='img' height='48' width='48' style='margin-right: 10px; '></button>");
                            out.print("</form>");
                            
                            out.print("<form>");
-                           out.print("<button style='font-size: 16px;font-size: 20px;font-family: TH SarabunPSK;font-weight: bold;'>"+textUser+"</button>");
+                           out.print("<button style='font-size: 16px;font-size: 20px;font-family: TH SarabunPSK;font-weight: bold;margin-top: 10px;'>"+textUser+"</button>");
                            out.print("</form>");
                            out.print("</div>");
                         }
