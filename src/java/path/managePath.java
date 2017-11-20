@@ -38,10 +38,10 @@ public class managePath {
                 //sb.append(line+",");
                 list.add(line);
             }
-              String spl = list.get(0).toString();
+              String sql = list.get(0).toString();
               
               
-           return spl.split(",")[0];
+           return sql.split(",")[0];
        }
        public String getUserDB() throws FileNotFoundException, IOException{
            
@@ -76,7 +76,7 @@ public class managePath {
              String sql = list.get(0).toString();
              String newSql = (sql.split(",")[2]);
               
-           return newSql.substring(0, newSql.indexOf(" "));
+           return newSql.trim();
        }
        
        public String getPathReport() throws FileNotFoundException, IOException{
@@ -92,8 +92,8 @@ public class managePath {
                 list.add(line);
             }
              String sql = list.get(1).toString();
-             String newSql = sql.substring(0, sql.indexOf(" ")); 
+             
               
-           return newSql;
+           return sql.trim();
        }
 }

@@ -33,7 +33,18 @@
         <link rel="stylesheet" href="style/w3.css">
         
         <style>
-
+#pagewrap, header{
+                border: solid 0px #ccc;
+                font-family: TH SarabunPSK;
+                font-size: 23px;
+                font-weight: bold;
+                padding: 0;
+            } 
+            
+ body{
+       margin-left: 20px;         
+       font-family: TH SarabunPSK;         
+            }
 .tooltip {
     position: relative;
     display: inline-block;
@@ -49,12 +60,15 @@
     border-radius: 6px;
     padding: 5px 0;
     width: 180px;
-    top: -155px;
+    top: -105px;
     left: 155%; 
     margin-left: -60px;
     /* Position the tooltip */
     position: absolute;
     z-index: 1;
+}
+.tooltip:hover .tooltiptext {
+    visibility: visible;
 }
 
 
@@ -76,7 +90,8 @@
                         //out.print("Hello, "+userID+" Welcome to Profile");  
                             try{
               managePath path = new managePath(getServletContext().getRealPath("/")+"setting/setting.txt");
-            int cRow = 0;  
+            int cRow = 0;
+            int cRowOther = 0;
               StringBuilder sb = new StringBuilder();
 
 
@@ -90,7 +105,7 @@
            if(text.equals("")){
               text = " ";
            }
-           out.println("<h4>"+text+"</h4>");
+           out.println("<h4 style='font-size: 26px;font-family: TH SarabunPSK;font-weight: bold;text-decoration: underline;'>"+text+"</h4>");
            out.println("<div id='pagewrap'>");
               //database filter type
               
@@ -149,17 +164,14 @@
                   if(paramJas.equals(paramDbDes)){
                     //out.println(paramJas+"from report   <br>"); //test paramter list
                      if(paramDbType.equals("date")){
-                     out.print(paramDbName+": <input class='date' type='date' name="+paramJas+" value='2555-01-02'> ");
-                     cRow++;
+                     out.print(paramDbName+": <input class='date' type='date' name="+paramJas+" value='2555-01-02' style='font-size: 22px;'> ");
+                      cRow++;
                      }
                      if(paramDbType.equals("textfield")){
-                     out.print(paramDbName+": <input type='text' name="+paramJas+" value=' '> "); 
-                     cRow++;
+                     out.print(paramDbName+": <input type='text' name="+paramJas+" value=' ' style='font-size: 22px;margin-top:10px;'>"); 
+                     cRowOther++;
                      }
-                     if(paramDbType.equals("textarea")){
-                         out.print(paramDbName+":  <textarea name="+paramJas+" value=' ' rows='10' cols='50'></textarea> ");
-                         cRow++;
-                     }
+                    
                      if(paramDbType.equals("list")){ //want database for test
                          //out.print(rsCompile);
                          sqlCompile=rs.getString(5);
@@ -167,20 +179,24 @@
                          rsCompile = statement1.executeQuery(newSql);
                          
                         out.print(paramDbName+": ");
-                             out.println("<select name="+paramJas+">");
+                             out.println("<select name="+paramJas+" style='font-size: 22px;margin-top:10px;'>");
                              while (rsCompile.next()) {
                                  out.print("<option value=" + rsCompile.getString(1) + ">");
                                  out.print(rsCompile.getString(2));
                                  out.print("</option>");
                              }
-                             out.println("</select> ");
-                             cRow++;
+                             out.println("</select><br>");
                              
+                      cRowOther++;       
                      }
                      
-                    if(cRow>2){
+                    if(cRow>1){
                         cRow = 0;
-                       out.print("<br><br>");
+                       out.print("<br>");
+                    }
+                    if(cRowOther>2){
+                        cRowOther = 0;
+                       out.print("<br>");
                     }
                     // break;
                   } 
@@ -189,7 +205,7 @@
                     
             } 
           //Set<String> set=new HashSet<>(reportParams);
-          List li2 = new ArrayList(new LinkedHashSet(reportParams));
+          List li2 = new ArrayList(new LinkedHashSet(reportParams)); //หาparameter จาก jrxml
              for(int i=0;i<li2.size();i++){
                //out.print(li2.get(i)+"<br>");
                sb.append(li2.get(i)+"<br>");
@@ -197,7 +213,9 @@
             out.print("<input type='hidden' name='textPath' value="+textPath+">");
             out.print("<input type='hidden' name='textReportJasper' value="+textReportJasper+">");
             out.print("<input type='hidden' name='textReport' value="+textReport+">");
-            out.print("<br><div class='tooltip'><input type='submit' class='button button2' value='แสดงรายงาน'><span class='tooltiptext'>ตัวแปรที่จำเป็น: <br>"+sb+"</span></div>");
+            //out.print("<br><input type='submit' class='button button2' value='แสดงรายงาน'>");
+            
+            out.print("<div class='tooltip'><input type='submit' class='button button2' value='แสดงรายงาน' style='margin-top:10px;'><span class='tooltiptext' style='font-size: 18px;'>ตัวแปรที่จำเป็น: <br>"+sb+"</span></div>");
            out.print("</form>");
           
            out.print("</div>"); 

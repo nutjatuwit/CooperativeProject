@@ -111,6 +111,7 @@ public final class index_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("}\n");
       out.write("\n");
       out.write(".container {\n");
+      out.write("    \n");
       out.write("    padding: 8px;\n");
       out.write("    margin: 4px 0;\n");
       out.write("    font-weight: bold;\n");
@@ -121,7 +122,7 @@ public final class index_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("    float:left;\n");
       out.write("    width:20%;\n");
       out.write("    min-width:400px;\n");
-      out.write("    margin-top:25px;\n");
+      out.write("    margin-top:58px;\n");
       out.write("    margin-left:calc(50% - 200px);\n");
       out.write("    margin-left:-webkit-calc(50% - 200px);\n");
       out.write("    margin-left:-moz-calc(50% - 200px);\n");
@@ -173,7 +174,7 @@ public final class index_jsp extends org.apache.jasper.runtime.HttpJspBase
                            out.print("</button>");
                            out.print("</form>");
                            out.print("<form action='authenLogout'>");
-                           out.print("<button type='submit' class='tablinks' name='backButton'><img src='images/logout.png' id='img' height='32' width='32'> Logout</button>");
+                           out.print("<button type='submit' class='tablinks' name='backButton'><img src='images/logout.png' id='img' height='32' width='32'></button>");
                            out.print("</form>");
                            
                            out.print("<form>");

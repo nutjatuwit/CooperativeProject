@@ -44,17 +44,17 @@
                         }  
     %>
     
-<frameset name="allSet" rows="8.7%,91.3%">   
+<frameset name="allSet" rows="8.7%,91.3%" border="1" BORDERCOLOR="#5858FA" >   
     <frame name="top" src="tabContent.jsp" noresize="noresize" scrolling="no">
         
         
     
-    <frameset cols="25%,75%">
+    <frameset cols="25%,75%" border="1" BORDERCOLOR="#5858FA">
 
             <frame name="lefty" src="readXML.jsp">
 
 
-            <frameset rows="35%,65%">
+            <frameset rows="38%,62%" >
 
                    <frame id="filty" name="filty" src="filterReport.jsp" style="height: auto;">
                    <frame name="righty" src="blankPage.jsp">

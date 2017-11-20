@@ -232,7 +232,7 @@ body{
         <div id="pagewrap">
 
 	<header align='center' style="font-family: TH SarabunPSK;">
-		<% out.print("<h2>"+detail+"</h2>"); %>
+		<% out.print("<h3>"+detail+"</h3>"); %>
 	</header>
 	
         

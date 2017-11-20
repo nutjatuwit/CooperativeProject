@@ -352,13 +352,14 @@ body{
                           out.print("</td>");
                           out.print("</form>");
                           
-                          String isFolder = getServletContext().getRealPath("/")+path.getPathReport()+"/"+rs.getString(3);
+                          String isFolder = getServletContext().getRealPath("\\")+path.getPathReport()+"\\"+rs.getString(3);
+                          //out.print(getServletContext().getRealPath("/")+path.getPathReport()+"/"+rs.getString(3));
                           File fileList = new File(isFolder);
                           if(fileList.isDirectory()){
                               out.print("<form action='openFolder'>");
                            out.print("<td style='text-align: right; width: 6%;'>");
                              out.print("<input type='hidden' name='name_folder' value='"+rs.getString(3)+"'>");
-                             out.print("<div class='tooltip'><button name='folderButton' type='submit' class='button button2' style='background-color:transparent; border-color:transparent; padding: 0 ; margin-left: 1px; margin-bottom: 2px; cursor: pointer; src=''><img src='images/openfolder.png' id='img' height='40' width='40'></button><span class='tooltiptext'>เปิดโฟลเดอร์: "+rs.getString(3)+"</span></div>");  
+                             out.print("<div class='tooltip'><button name='folderButton' type='submit' class='button button2' style='background-color:transparent; border-color:transparent; padding: 0 ; margin-left: 1px; margin-bottom: 2px; cursor: pointer; src=''><img src='images/folder.png' id='img' height='40' width='40'></button><span class='tooltiptext'>เปิดโฟลเดอร์: "+rs.getString(3)+"</span></div>");  
                           out.print("</td>");
                           out.print("</form>");
                           }else{
@@ -378,12 +379,12 @@ body{
                     }
                     out.print("</table>");
                     out.print("</div>");
-                 out.print("<div id='setGroup' align='left'  >");
+                
                  out.print("<form action='insertCate'>");
                  out.print("<input type='text' placeholder='เพิ่มประเภทรายงาน...' id='inputForm' name='nameCate' style='width: 72%;height: 35px;font-size: 22px;font-family: TH SarabunPSK;margin-left:25px;'>");
-                   out.print("<input type='submit' class='addButton'  style='width:20%;height: 35px; margin-left: 1px;padding: 0px 0px;margin-top: 10px;font-size: 22px;' value='เพิ่ม'><br>");
+                   out.print("<input type='submit' class='addButton'  style='width:20%;height: 35px; margin-left: 1px;padding: 0px 0px;margin-top: 10px;font-size: 22px;margin-bottom: 0px;' value='เพิ่ม'><br>");
                   
-                             out.println("<select name='service_point' style='width: 72%;padding: 0px 0px;margin: 0px 0px;margin-left:25px;margin-top:-25px;'>");
+                             out.println("<select name='service_point' style='width: 72%;padding: 0px 0px;margin-left:25px;margin-top: 0px;margin-bottom: 8px;'>");
                              while(rsServicePoint.next()) {
                                  out.print("<option value=" + rsServicePoint.getString(1) + ">");
                                  out.print(rsServicePoint.getString(2));
@@ -392,7 +393,7 @@ body{
                              out.println("</select> ");
                 
                  out.print("</form>");
-                 out.print("</div>");
+                 
                   }  
                         else{ 
                            

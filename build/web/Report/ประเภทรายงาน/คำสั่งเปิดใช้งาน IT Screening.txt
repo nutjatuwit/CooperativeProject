@@ -1,0 +1,9 @@
+cd C:\kvpo\nginx-1.13.4
+
+start nginx
+
+cd C:\kvpo\Server
+
+npm start server.js
+
+pm2 start server.js

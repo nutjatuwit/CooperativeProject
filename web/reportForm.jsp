@@ -28,9 +28,9 @@
 
     
         <frameset cols="33%,33%,33%" border="1" BORDERCOLOR="#5858FA">
-                     <frame name="left" src="reportCateForm.jsp" noresize="noresize">
-                     <frame name="mid" src="blankPage.jsp" noresize="noresize">
-                     <frame name="right" src="blankPage.jsp" noresize="noresize">
+                     <frame name="left" src="reportCateForm.jsp" >
+                     <frame name="mid" src="blankPage.jsp" >
+                     <frame name="right" src="blankPage.jsp" >
         </frameset>
 
 

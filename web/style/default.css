@@ -1,3 +1,6 @@
+html{
+    font-family: TH SarabunPSK;
+}
 table {
     border-collapse: collapse;
     width: 100%;
@@ -41,7 +44,7 @@ th {
     text-align: center;
     text-decoration: none;
     display: inline-block;
-    
+    border-radius: 6px;
    
     -webkit-transition-duration: 0.4s; /* Safari */
     transition-duration: 0.4s;
@@ -171,7 +174,7 @@ select {
 	border-radius:6px;
 	padding: 0px 0px;
 	width: 130px;
-        font-size: 16px;
+        font-size: 18px;
         width: 25%;
         height:35px;
         
@@ -185,17 +188,19 @@ select {
 input[type=date] {
         border:2px solid lightblue;
 	border-radius:6px;
-	height: 25px;
-	width: 130px;
+        padding: 0px 0px;
+	height: 35px;
+	width: 25%;
         font-size: 18px;
 }
 
 input[type=text] {
         border:2px solid lightblue;
 	border-radius:6px;
-	height: 25px;
+	height: 35px;
 	width: 130px;
         font-size: 18px;
+        margin-top: 10px;
 }
 
 
@@ -288,3 +293,11 @@ inputForm{
         font-size: 25px;
     
 }
+#menuButton{
+          font-family: TH SarabunPSK;
+          text-align: center;  
+          font-weight: bold;
+          background-color: blue; 
+          font-size: 19px;
+          width: 100%;
+      }

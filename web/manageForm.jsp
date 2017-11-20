@@ -35,7 +35,7 @@
     <frame name="topper" src="tabContent.jsp" noresize="noresize" scrolling="no">
         <frameset cols="8%,92%" border="1" BORDERCOLOR="#5858FA">
                      <frame name="lefter" src="menuAdmin.jsp">
-                     <frame name="righter" src="blankPage.jsp">
+                     <frame name="righter" src="reportForm.jsp">
         </frameset>
 </frameset>
 

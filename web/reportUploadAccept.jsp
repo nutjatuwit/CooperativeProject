@@ -179,30 +179,36 @@ div.tab button.active {
     border-top: none;
 }
 
-input[type=submit]{
-                    width: 100%;
+ input[type=submit]{
+                    width: 60%;
                     background-color: #088A08;
                     color: white;
-                    padding: 14px 20px;
                     margin: 8px 0;
                     border: none;
-                    border-radius: 4px;
+                    border-radius: 6px;
                     cursor: pointer;
                     align-content: center;
+                    font-size: 24px;
+}
+
+            input[type=text]{
+                    width: 100%;
+                    padding: 12px 20px;
+                    margin: 8px 0;
+                    display: inline-block;
+                    border: 1px solid #ccc;
+                    border-radius: 4px;
+                    box-sizing: border-box;
                     font-size: 16px;
 }
-
-
-input[type=text] {
-    width: 80%;
-    padding: 6.25px 16px;
-    margin: 20px 0;
-    display: inline-block;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    box-sizing: border-box;
-    font-size: 16px;
-}
+body{
+   background-color: #A9D0F5;
+   color: black;
+            }
+#pagewrap{
+    background: rgba(256,256,256, 0.6);
+    border-radius: 6px; 
+}     
         </style>
    
    <%
@@ -282,17 +288,18 @@ input[type=text] {
                         
                         
                         String strProjectDir = ""; 
-                        strProjectDir = getServletContext().getRealPath("/")+path.getPathReport()+"\\"+name_folder; //create directory if exist
-                        //out.print("testDir"+strProjectDir);
+                        strProjectDir = getServletContext().getRealPath("/")+path.getPathReport()+"/"+name_folder; //create directory if exist
+                       
+                        out.print("testDir"+strProjectDir);
                         File ProjectDir = new File(strProjectDir);
-                        //out.print(getServletContext().getRealPath("/")+"upload"+"\\"+name_folder+"\\<br>");
+                        out.print(getServletContext().getRealPath("/")+"upload"+"\\"+name_folder+"\\<br>");
                         if(! ProjectDir.exists())
                         {
                             ProjectDir.mkdir();
                             //out.print("make dir<br>");
                         }
 			    String itemName = item.getName();
-			    File savedFile = new File(getServletContext().getRealPath("/")+path.getPathReport()+"\\"+name_folder+"\\"+itemName); //set follow category folder
+			    File savedFile = new File(getServletContext().getRealPath("/")+path.getPathReport()+"/"+name_folder+"\\"+itemName); //set follow category folder
                             //out.println("testItemName : "+getServletContext().getRealPath("/")+path.getPathReport()+"\\"+name_folder+"\\"+itemName+"<br>");
                             item.write(savedFile);
                             
@@ -331,7 +338,7 @@ input[type=text] {
         out.print("<input type='hidden' name='jrxml' value='"+reportList.get(0).toString()+"'>");
         out.print("<input type='hidden' name='jasper' value='"+reportList.get(1).toString()+"'>");
         
-        out.print("<input type='submit' value='ตกลง'>");
+        out.print("<input type='submit' value='ตกลง' style='margin-left: 75px;'>");
         out.print("<form>");
        
        

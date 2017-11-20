@@ -17,11 +17,6 @@
   <link rel="stylesheet" href="style/default.css">
   <link rel="stylesheet" href="style/w3.css">
   <style>
-      button{
-          font-family: TH SarabunPSK;
-          text-align: center;  
-          font-weight: bold;
-      }
       
   </style>  
 </head>
@@ -29,19 +24,19 @@
 
 
   <div class="btn-group-vertical" style="width: 100%;">
-    <button type="button" id="menuButton"  class="btn btn-primary" onclick="test1();"  style="width: 100%;font-size: 19px;font-weight: bold;">จัดการรายงาน</button>
-    <button type="button" class="btn btn-primary" onclick="test2();"  style="width: 100%;font-size: 19px;font-weight: bold;">จัดการตัวแปร</button>
-    <button type="button" class="btn btn-primary" style="width: 100%;font-size: 19px;font-weight: bold;">ดดดด</button>
+    <button type="button" id="menuButton"  class="btn btn-primary" onclick="manageReport();">จัดการรายงาน</button>
+    <button type="button" id="menuButton" class="btn btn-primary" onclick="manageParams();">จัดการตัวแปร</button>
+    <button type="button" id="menuButton" class="btn btn-primary" >ตั้งค่าระบบ</button>
   </div>
 
 
 </body>
 </html>
 <script>
-       function test1(){
+       function manageReport(){
            window.open('reportForm.jsp','righter');
        }
-       function test2(){
+       function manageParams(){
            window.open('manageParams.jsp','righter');
        }
        

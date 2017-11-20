@@ -16,11 +16,20 @@
 <title>EDIT</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="style/w3.css">
+<link rel="stylesheet" href="style/default.css">
+<style>
+    body{
+    font-family: TH SarabunPSK;
+    font-size: 24px;
+    font-weight: bold;
+      }
+    
+</style>
 <body>
 
 <div class="w3-card-4">
   <div class="w3-container w3-blue">
-    <h2>แก้ไขชื่อ</h2>
+    <h2>แก้ไขข้อมูล</h2>
   </div>
     <%
         Class.forName("org.postgresql.Driver");
@@ -53,10 +62,10 @@
                  
                  out.print("<form class='w3-container' action='updateReport'>");
                  out.print("<p><label class='w3-text-blue'><b></b></label>");
-                 out.print("ชื่อ<br><input class='w3-input w3-sand' name='edited' type='text' value='"+text+"'><br>");
-                 out.print("โฟลเดอร์<br><input class='w3-input w3-sand' name='folder' type='text' value='"+name_folder+"'></p>");
+                 out.print("ชื่อ<br><input class='w3-input w3-sand' name='edited' type='text' value='"+text+"' style='height: 30px;width: 250px;font-size:22px;margin-bottom: 0px'>");
+                 out.print("โฟลเดอร์<br><input class='w3-input w3-sand' name='folder' type='text' value='"+name_folder+"' style='height: 30px;width: 250px;font-size:22px;margin-bottom: 0px'>");
                  
-                 out.println("แผนก<br><select name='service_point' style='width: 100%;height:30px;'>");
+                 out.println("แผนก<br><select name='service_point' style='height: 30px;width: 250px;font-size:22px;margin-bottom: 0px'>");
                             
                  while(rsServicePoint.next()) {
                                   if(rsServicePoint.getString(1).equals(service_point)){
@@ -72,7 +81,7 @@
                              }
                              out.println("</select> ");
                  
-                 out.print("<p><button class='w3-btn w3-green' >ยืนยัน</button></p>");
+                 out.print("<p><button class='w3-btn w3-green' style='height: 45px;width: 180px;font-size:22px;margin-bottom: 10px;border-radius: 6px;margin-left: 26%;'>ยืนยัน</button></p>");
                  out.print("<input type='hidden' name='reportType' value='"+reportType+"'>");
                  out.print("<input type='hidden' name='id_cate' value='"+id_cate+"'>");
                  out.print("<input type='hidden' name='category' value='"+category+"'>");
@@ -89,8 +98,8 @@
                  
                  out.print("<form class='w3-container' action='updateReport'>");
                  out.print("<p><label class='w3-text-blue'><b></b></label>");
-                 out.print("<input class='w3-input w3-sand' name='edited' type='text' value='"+text+"'></p>");
-                 out.print("<p><button class='w3-btn w3-green' >ยืนยัน</button></p>");
+                 out.print("<input class='w3-input w3-sand' name='edited' type='text' value='"+text+"' style='height: 30px;width: 280px;font-size:22px;margin-bottom: 0px'>");
+                 out.print("<p><button class='w3-btn w3-green' style='height: 45px;width: 180px;font-size:22px;margin-bottom: 10px;border-radius: 6px;margin-left: 26%;'>ยืนยัน</button></p>");
                  out.print("<input type='hidden' name='reportType' value='"+reportType+"'>");
                  out.print("<input type='hidden' name='id_cate' value='"+id_cate+"'>");
                  out.print("<input type='hidden' name='category' value='"+category+"'>");

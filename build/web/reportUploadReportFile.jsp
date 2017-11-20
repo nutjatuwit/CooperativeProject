@@ -161,70 +161,44 @@
                 margin-bottom: 5px;
             }
 
-            #pagewrap, header, #content, #middle, #sidebar, footer {
+            #pagewrap,  #content, #middle, #sidebar, footer {
                 border: solid 1px #ccc;
                 
             }  
             
-             div.tab {
-    overflow: hidden;
-    border: 1px solid #ccc;
-    background-color: #f1f1f1;
-}
-
-/* Style the buttons inside the tab */
-div.tab button {
-    background-color: inherit;
-    float: left;
-    border: none;
-    outline: none;
-    cursor: pointer;
-    padding: 12px 20px;
-    transition: 0.6s;
-}
-
-/* Change background color of buttons on hover */
-div.tab button:hover {
-    background-color: #cceeff;
-}
-
-/* Create an active/current tablink class */
-div.tab button.active {
-    background-color: #ccc;
-}
-
-/* Style the tab content */
-.tabcontent {
-    display: none;
-    padding: 6px 10px;
-    border: 1px solid #ccc;
-    border-top: none;
-}
+            
 
 input[type=submit]{
-                    width: 100%;
+                    width: 60%;
                     background-color: #088A08;
                     color: white;
-                    padding: 14px 20px;
                     margin: 8px 0;
                     border: none;
-                    border-radius: 4px;
+                    border-radius: 6px;
                     cursor: pointer;
                     align-content: center;
+                    font-size: 24px;
+}
+
+            input[type=text]{
+                    width: 100%;
+                    padding: 12px 20px;
+                    margin: 8px 0;
+                    display: inline-block;
+                    border: 1px solid #ccc;
+                    border-radius: 4px;
+                    box-sizing: border-box;
                     font-size: 16px;
 }
 
-
-input[type=text] {
-    width: 80%;
-    padding: 6.25px 16px;
-    margin: 20px 0;
-    display: inline-block;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    box-sizing: border-box;
-    font-size: 16px;
-}
+body{
+   background-color: #A9D0F5;
+   color: black;
+            }
+#pagewrap{
+    background: rgba(256,256,256, 0.6);
+    border-radius: 6px; 
+}     
 
 
         </style>
@@ -264,10 +238,6 @@ input[type=text] {
 
         <div id="pagewrap">
 
-	<header align='center'>
-		<% out.print("<h1>อัพโหลดไฟล์รายงาน</h1>"); %>
-	</header>
-	
         
 		<%
                     rs = statement.executeQuery(sql);
@@ -275,20 +245,20 @@ input[type=text] {
                     out.print("<div class='w3-container'>");
                     out.print("<form action='reportUploadAccept.jsp' method='post' enctype='multipart/form-data' name='form1' id='form1' accept-charset='UTF-8'>");
                     out.print("<div class='custom-file-upload'>");
-                    out.print("jrxml file: <input name='file' type='file' id='file' accept='.jrxml'><br><br>");
-                    out.print("jasper file: <input name='file' type='file' id='file' accept='.jasper'><br><br>");
+                    out.print("jrxml file: <input name='file' type='file' id='file' accept='.jrxml' style='font-size: 20px;margin-bottom: 20px;margin-left: 6px;'><br>");
+                    out.print("jasper file: <input name='file' type='file' id='file' accept='.jasper' style='font-size: 20px;'><br>");
                     out.print("</div>");
                     out.print("<input type='hidden' name='category' value='"+category+"'>");
                     out.print("<input type='hidden' name='detail' value='"+detail+"'>");
                     out.print("<input type='hidden' name='name_folder' value='"+name_folder+"'>");
-                    out.print("<input type='submit' value='อัพโหลดไฟล์รายงาน'>");
+                    out.print("<input type='submit' value='อัพโหลดไฟล์รายงาน' style='margin-left: 75px;'>");
                     out.print("</form>");
                     
                     out.print("<form action='reportPathForm.jsp'>");
                     out.print("<input type='hidden' name='category' value='"+category+"'>");
                     out.print("<input type='hidden' name='detail' value='"+detail+"'>");
                     out.print("<input type='hidden' name='name_folder' value='"+name_folder+"'>");
-                    out.print("<input type='submit' style='background-color: #2A69E5;' value='กลับ'>");
+                    out.print("<input type='submit' style='background-color: #2A69E5;margin-left: 75px;' value='กลับ'>");
                     out.print("</form>");
                     out.print("</div>");
                     

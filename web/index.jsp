@@ -94,13 +94,12 @@ background-color: #FEEFB3;
    display: table-cell;
    text-align: center;
    vertical-align: middle;
+   
     height: 500px;
 }
 
 body{
-    background-image: url("images/background.jpg");
-    background-size: auto;
-    background-repeat: no-repeat;
+    background-color: #A9D0F5;
 }
 
 </style>
@@ -134,11 +133,11 @@ body{
                            out.print("</button>");
                            out.print("</form>");
                            out.print("<form action='authenLogout'>");
-                           out.print("<button type='submit' class='tablinks' name='backButton'><img src='images/logout.png' id='img' height='32' width='32'> Logout</button>");
+                           out.print("<button type='submit' class='tablinks' name='backButton'><img src='images/logout.png' id='img' height='48' width='48' style='margin-right: 10px; '></button>");
                            out.print("</form>");
                            
                            out.print("<form>");
-                           out.print("<button style='font-size: 16px;font-size: 20px;font-family: TH SarabunPSK;font-weight: bold;'>"+textUser+"</button>");
+                           out.print("<button style='font-size: 16px;font-size: 20px;font-family: TH SarabunPSK;font-weight: bold;margin-top: 10px;'>"+textUser+"</button>");
                            out.print("</form>");
                            out.print("</div>");
                         }

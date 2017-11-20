@@ -90,8 +90,8 @@ div {
 #pagewrap{
     background: rgba(256,256,256, 0.6);
     border-radius: 6px; 
-    padding: 10px 10px;
-    margin: 40px 150px;
+    padding: 0px 0px;
+    margin: 0px 200px;
     align-content: center;
     
 }
@@ -142,11 +142,13 @@ div {
            </div>
            <script>document.getElementById('textArea').style.display = 'none';</script>
            
-           <button type="submit" id="addButton" align="right" action="" style='padding: 0px 0px;margin-left: 45px;'>ยืนยัน</button>
+           <button type="submit" id="addButton" align="right" action="" style='padding: 0px 0px;margin-left: 45px;margin-top: 0px;'>ยืนยัน</button>
         </form>  
-            <button id="addButton" onclick="goBack()" style='padding: 0px 0px;margin-left: 45px;'>กลับ</button>
+            
             </div>
-           
+            <div id="groupDetail">
+           <button id="addButton" onclick="goBack()" style='padding: 0px 0px;margin-left: 45px;margin-top: 2px;'>กลับ</button>
+           </div>
          </div>  
 
         

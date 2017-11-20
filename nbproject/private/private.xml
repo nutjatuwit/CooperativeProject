@@ -3,16 +3,9 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/NUT/Documents/NetBeansProjects/WebApplication3/web/addParams.jsp</file>
             <file>file:/C:/Users/NUT/Documents/NetBeansProjects/WebApplication3/web/index.jsp</file>
-            <file>file:/C:/Users/NUT/Documents/NetBeansProjects/WebApplication3/web/menuAdmin.jsp</file>
-            <file>file:/C:/Users/NUT/Documents/NetBeansProjects/WebApplication3/web/manageParams.jsp</file>
-            <file>file:/C:/Users/NUT/Documents/NetBeansProjects/WebApplication3/web/reportForm.jsp</file>
-            <file>file:/C:/Users/NUT/Documents/NetBeansProjects/WebApplication3/web/manageForm.jsp</file>
-            <file>file:/C:/Users/NUT/Documents/NetBeansProjects/WebApplication3/web/reportPathForm.jsp</file>
-            <file>file:/C:/Users/NUT/Documents/NetBeansProjects/WebApplication3/web/style/default.css</file>
-            <file>file:/C:/Users/NUT/Documents/NetBeansProjects/WebApplication3/web/editParams.jsp</file>
-            <file>file:/C:/Users/NUT/Documents/NetBeansProjects/WebApplication3/web/reportCateForm.jsp</file>
+            <file>file:/C:/Users/NUT/Documents/NetBeansProjects/WebApplication3/src/java/EditFile.java</file>
+            <file>file:/C:/Users/NUT/Documents/NetBeansProjects/WebApplication3/src/java/path/settingPath.java</file>
         </group>
     </open-files>
 </project-private>
