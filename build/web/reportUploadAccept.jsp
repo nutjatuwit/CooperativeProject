@@ -290,9 +290,9 @@ body{
                         String strProjectDir = ""; 
                         strProjectDir = getServletContext().getRealPath("/")+path.getPathReport()+"/"+name_folder; //create directory if exist
                        
-                        out.print("testDir"+strProjectDir);
+                        //out.print("testDir"+strProjectDir);
                         File ProjectDir = new File(strProjectDir);
-                        out.print(getServletContext().getRealPath("/")+"upload"+"\\"+name_folder+"\\<br>");
+                        //out.print(getServletContext().getRealPath("/")+"upload"+"\\"+name_folder+"\\<br>");
                         if(! ProjectDir.exists())
                         {
                             ProjectDir.mkdir();

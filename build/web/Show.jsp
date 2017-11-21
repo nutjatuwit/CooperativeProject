@@ -47,7 +47,7 @@
        
       
     </head>
-    <body>
+    <body onload="alert();">
         <div class="preload">  
               <h1>ไฟล์รายงานมีปัญหา</h1>
         </div>    
@@ -116,6 +116,7 @@
             response.setContentLength(bytes.length);
             ServletOutputStream outStream = response.getOutputStream();
             outStream.write(bytes, 0, bytes.length);
+            
             outStream.flush();
             outStream.close();
             

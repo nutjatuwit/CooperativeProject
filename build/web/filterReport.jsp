@@ -60,7 +60,7 @@
     border-radius: 6px;
     padding: 5px 0;
     width: 180px;
-    top: -105px;
+    top: -95px;
     left: 155%; 
     margin-left: -60px;
     /* Position the tooltip */

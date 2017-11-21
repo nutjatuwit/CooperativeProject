@@ -33,11 +33,14 @@ public class setPathDB extends HttpServlet {
         request.setCharacterEncoding("UTF-8");
         try (PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */
-            String pathDB = request.getParameter("pathDB");
+            String serverDB = request.getParameter("serverDB");
+            String nameDB = request.getParameter("nameDB");
+            String portDB = request.getParameter("portDB");
+            
             String userDB = request.getParameter("userDB");
             String passDB = request.getParameter("passDB");
             String folderReport = request.getParameter("folderReport");
-            
+            String pathDB = "jdbc:postgresql://"+serverDB+":"+portDB+"/"+nameDB;
             settingPath sp = new settingPath(getServletContext().getRealPath("/")+"setting/setting.txt");
             sp.writeFile(pathDB, userDB, passDB, folderReport);
             response.sendRedirect("/WebApplication3/manageSetting.jsp");

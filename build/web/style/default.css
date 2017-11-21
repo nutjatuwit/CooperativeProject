@@ -1,4 +1,4 @@
-html{
+.html{
     font-family: TH SarabunPSK;
 }
 table {
@@ -132,7 +132,7 @@ th {
 
 div.tab {
     overflow: hidden;
-    border: 1px solid #ccc;
+    
     background-color: white;
 }
 

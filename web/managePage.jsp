@@ -18,32 +18,76 @@ and open the template in the editor.
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <style>
-
-#mainmenu{
-    width: 49%;
-    background-color: #0040FF;
-    color: white;
-    padding: 14px 20px;
-    margin: 8px 0;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-}
-
-
-#mainmenu:hover {
-    background-color: #45a049;
-}
-
+h2{
+    font-family: TH SarabunPSK;
+    font-weight: bold;
+    
+    
+      }
 body {
+    font-family: TH SarabunPSK;
     margin: 0;
     padding: 0;
+    background-color: #A9D0F5;
 }
 .banner {
     width: 35%;
     height: 150px;
 }
 
+
+#mainmenu1{
+    border-radius: 6px;
+    margin: 3% 4%;
+   margin-top: 5%;
+   margin-left: 35%;
+   float: left;
+   align-items: center;
+   height: 150px;
+    width: 150px;
+}
+#mainmenu2{
+    border-radius: 6px;
+    margin: 3% 4%;
+   margin-top: 5%;
+   float: left;
+   align-items: center;
+   height: 150px;
+    width: 150px;
+}
+
+.container{
+    margin-left: 38%;
+    margin-top: 11%;
+    background: rgba(256,256,256, 0.6);
+    
+}
+#img1{
+    background-image: url('images/setting3.1.png');
+    height: 150px;
+    width: 150px; 
+    padding: 0; 
+    margin-left: 1px; 
+    margin-bottom: -11px;
+    border-radius: 6px;
+}
+#img1:hover {
+    background-image: url('images/setting3.2.png');
+    
+}
+#img2{
+    background-image: url('images/Report1.1.png');
+    height: 150px;
+    width: 150px; 
+    padding: 0; 
+    margin-left: 1px; 
+    margin-bottom: -11px;
+    border-radius: 6px;
+}
+#img2:hover {
+    background-image: url('images/Report1.2.png');
+    
+}
 
 </style>
 <%
@@ -71,6 +115,7 @@ body {
              <form>
                 <button type="submit" class="tablinks" name="backButton" style="float: left; font-size: 20px;font-family: TH SarabunPSK;font-weight: bold;" onclick="backtomenu()">
                     <img src='images/Logo Open.jpg' id='img' height='48' width='159'>
+                    
                 </button>
              </form>
             
@@ -84,17 +129,16 @@ body {
         </div>
 
 
-<div class="w3-container w3-center">
+<div class="container">
       
     </head>
     <body align='center'>
-        <form action = "manageForm.jsp">
-            <button id="mainmenu" type='submit' name='reportButton'  action="" ><img src="images/manage.png" style=" padding: 0 ; margin-left: 1px; margin-bottom: -11px;" id="img" height='32' width='32'>Manage</button><br><br>
+        <form action = "manageForm.jsp" id="manageForm1">
+            <button id="mainmenu1" type='submit' style='background-color:transparent; border-color:transparent; padding: 0 ; margin-left: 1px; margin-bottom: 2px; cursor: pointer;' ><img id="img1"><br><h2>การจัดการระบบ</h2></button>
         </form>
         
-        <form action = "showPage.jsp">
-            
-            <button id="mainmenu" type='submit' name='paramsButton'  action="" ><img src="images/preview.png" style=' padding: 0 ; margin-left: 1px; margin-bottom: -11px;'id='img' height='32' width='32'>Preview</button><br><br>
+        <form action = "showPage.jsp" id="manageForm2">
+            <button id="mainmenu2" type='submit' style='background-color:transparent; border-color:transparent; padding: 0 ; margin-left: 1px; margin-bottom: 2px; cursor: pointer;' ><img id="img2"><br><h2>ดูรายงาน</h2></button>
         </form>
         
     </body>

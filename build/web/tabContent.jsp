@@ -40,7 +40,7 @@
            </form>
             
             <form> 
-                <button style="font-size: 16px;font-size: 20px;font-family: TH SarabunPSK;font-weight: bold;"><%=textUser%>
+                <button style="font-size: 16px;font-size: 20px;font-family: TH SarabunPSK;font-weight: bold;margin-top: 10px;"><%=textUser%>
                 </button>
             </form>
             
@@ -50,11 +50,11 @@
               <div class="tab">
             
             <form action="authenLogout"> 
-            <button type="submit" class="tablinks" name="lockoutButton"  onclick="logout()"><img src='images/logout.png' id='img' height='32' width='32'> Logout</button>
+            <button type="submit" class="tablinks" name="lockoutButton"  onclick="logout()"><img src='images/logout.png' id='img' height='48' width='48'></button>
             </form>
             
             <form> 
-            <button style="font-size: 20px;font-family: TH SarabunPSK;font-weight: bold;"><%=textUser%></button>
+            <button style="font-size: 20px;font-family: TH SarabunPSK;font-weight: bold;margin-top: 10px;"><%=textUser%></button>
                
            
             </form>

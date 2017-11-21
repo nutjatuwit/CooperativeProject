@@ -133,7 +133,6 @@ public final class index_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("   display: table-cell;\n");
       out.write("   text-align: center;\n");
       out.write("   vertical-align: middle;\n");
-      out.write("   \n");
       out.write("    height: 500px;\n");
       out.write("}\n");
       out.write("\n");

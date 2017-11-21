@@ -359,7 +359,7 @@ body{
                               out.print("<form action='openFolder'>");
                            out.print("<td style='text-align: right; width: 6%;'>");
                              out.print("<input type='hidden' name='name_folder' value='"+rs.getString(3)+"'>");
-                             out.print("<div class='tooltip'><button name='folderButton' type='submit' class='button button2' style='background-color:transparent; border-color:transparent; padding: 0 ; margin-left: 1px; margin-bottom: 2px; cursor: pointer; src=''><img src='images/folder.png' id='img' height='40' width='40'></button><span class='tooltiptext'>เปิดโฟลเดอร์: "+rs.getString(3)+"</span></div>");  
+                             out.print("<div class='tooltip'><button name='folderButton' type='submit' class='button button2' style='background-color:transparent; border-color:transparent; padding: 0 ; margin-left: 1px; margin-bottom: 2px; cursor: pointer; src=''><img src='images/openfolder.png' id='img' height='40' width='40'></button><span class='tooltiptext'>เปิดโฟลเดอร์: "+rs.getString(3)+"</span></div>");  
                           out.print("</td>");
                           out.print("</form>");
                           }else{

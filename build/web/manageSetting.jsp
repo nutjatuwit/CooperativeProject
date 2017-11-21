@@ -69,11 +69,12 @@ div {
 #groupDetail{
     background: transparent;
     align-content: center;
-    margin-left: 50px;
+    margin-left: 80px;
     margin-top: 20px;
 } 
 #textInput{
-    width: 350px;
+    width: 250px;
+    padding-left: 7px;
 }
 </style>
     </head>
@@ -86,10 +87,12 @@ div {
        %>
         <form name="setPathDB" action="setPathDB" align="left">
             <div id="groupDetail">
-                ฐานข้อมูล :  <input type="text" id="textInput" name="pathDB" value='<%=path.getPathDB()%>' style='margin-left: 60px;'><br>
-           ชื่อผู้ใช้ฐานข้อมูล :  <input type="text" id="textInput" name="userDB" value='<%=path.getUserDB()%>' style='margin-left: 19px;'><br>
-           รหัสผ่านฐานข้อมูล :  <input type="text" id="textInput" name="passDB" value='<%=path.getPassDB()%>' style='margin-left: 8px;'><br>
-           ชื่อแฟ้มเก็บรายงาน :  <input type="text" id="textInput" name="folderReport" value='<%=path.getPathReport()%>' style='margin-left: 5px;'><br>
+           เครื่องแม่ข่าย :  <input type="text" id="textInput" name="serverDB" value='<%=path.getPathDB().split("//")[1].split(":")[0]%>' style='margin-left: 60px;'><br>
+           ชื่อฐานข้อมูล :  <input type="text" id="textInput" name="nameDB" value='<%=path.getPathDB().split("/+")[2]%>' style='margin-left: 60px;'><br>
+            พอร์ต :  <input type="text" id="textInput" name="portDB" value='<%=path.getPathDB().split("/+")[1].split(":")[1]%>' style='margin-left: 105px;'><br>
+           ชื่อผู้ใช้ :  <input type="text" id="textInput" name="userDB" value='<%=path.getUserDB()%>' style='margin-left: 100px;'><br>
+           รหัสผ่าน :  <input type="text" id="textInput" name="passDB" value='<%=path.getPassDB()%>' style='margin-left: 91px;'><br>
+           ชื่อแฟ้มเก็บรายงาน :  <input type="text" id="textInput" name="folderReport" value='<%=path.getPathReport()%>' style='margin-left: 22px;'><br>
           
            <button type="submit" id="addButton" align="right" action="" style='padding: 0px 0px;margin-left: 22%;margin-top: 25px;'>ยืนยัน</button>         
         </form>  

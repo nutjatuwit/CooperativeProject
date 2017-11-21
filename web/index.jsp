@@ -144,7 +144,7 @@ body{
        
        <div class="container" id="container">   
           <form id="fieldData" action="authenLogin" method="post" align="center" >
-              <img src='images/Hospital-OS-LOGO1.png' id='img' width="304" height="140" ><br><br>
+              <img src='images/Hospital-OS-LOGO1.png' id='img' width="300" height="140" ><br><br>
             <input type="text" id="textLogin" placeholder="ผู้ใช้" name="uname" required><br>
             <input type="password" id="textLogin" placeholder="รหัสผ่าน" name="psw"><br>   
             <button id="loginButton" type="submit" >เข้าสู่ระบบ</button>

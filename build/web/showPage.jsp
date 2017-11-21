@@ -8,8 +8,7 @@
 <meta http-="content-type" content="text/html; charset=utf-8">
 <link rel="stylesheet" href="style/default.css">
 <link rel="stylesheet" href="style/w3.css">
-        
-
+      
 <style>
     frame[name=lefty]{
         background-color: #EFFBFB;
@@ -17,13 +16,17 @@
     frame[name=filty]{
         background-color: #EFFBFB;
     }
+   
 </style>
 <link rel="shortcut icon" href="images/Logo.png">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <title>Preview Report</title>
 
 
 
 </head>
+
+
 <% 
                          request.setCharacterEncoding("UTF-8");  
                        String textUser = null;
@@ -43,7 +46,7 @@
                             
                         }  
     %>
-    
+  
 <frameset name="allSet" rows="8.7%,91.3%" border="1" BORDERCOLOR="#5858FA" >   
     <frame name="top" src="tabContent.jsp" noresize="noresize" scrolling="no">
         
@@ -62,10 +65,13 @@
             </frameset>
     </frameset>
 </frameset>        
-
+       
+    
 </html>
-
+ 
 <script>
+   
+       
     function resize( frame ) {
   var b = frame.contentWindow.document.body || frame.contentDocument.body,
       cHeight = $(b).height();
@@ -101,6 +107,6 @@ window.onload = function() {
     i -= 1;
   }
 };
-});
+
     
 </script>
